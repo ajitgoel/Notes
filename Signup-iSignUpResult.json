@@ -1,0 +1,38 @@
+{
+  "user": {
+    "username": "ajitgoel@gmail.com",
+    "pool": {
+      "userPoolId": "us-east-1_Fvp76tzTJ",
+      "clientId": "6f9ksk4av8u29d4hr2vkuqcmpi",
+      "client": {
+        "endpoint": "https://cognito-idp.us-east-1.amazonaws.com/"
+      },
+      "advancedSecurityDataCollectionFlag": true,
+      "storage": {
+        "aws-amplify-cacheCurSize": "239",
+        "loglevel:webpack-dev-server": "SILENT",
+        "aws-amplify-cacheAWSPinpoint_b9281274310c4f1fb6692bead9a76911": "{\"key\":\"aws-amplify-cacheAWSPinpoint_b9281274310c4f1fb6692bead9a76911\",\"data\":\"3d87d1d0-897d-11ea-988f-7120b90001ba\",\"timestamp\":1588098158449,\"visitedTime\":1588133602666,\"priority\":5,\"expires\":1588357358449,\"type\":\"string\",\"byteSize\":239}"
+      }
+    },
+    "Session": null,
+    "client": {
+      "endpoint": "https://cognito-idp.us-east-1.amazonaws.com/"
+    },
+    "signInUserSession": null,
+    "authenticationFlowType": "USER_SRP_AUTH",
+    "storage": {
+      "aws-amplify-cacheCurSize": "239",
+      "loglevel:webpack-dev-server": "SILENT",
+      "aws-amplify-cacheAWSPinpoint_b9281274310c4f1fb6692bead9a76911": "{\"key\":\"aws-amplify-cacheAWSPinpoint_b9281274310c4f1fb6692bead9a76911\",\"data\":\"3d87d1d0-897d-11ea-988f-7120b90001ba\",\"timestamp\":1588098158449,\"visitedTime\":1588133602666,\"priority\":5,\"expires\":1588357358449,\"type\":\"string\",\"byteSize\":239}"
+    },
+    "keyPrefix": "CognitoIdentityServiceProvider.6f9ksk4av8u29d4hr2vkuqcmpi",
+    "userDataKey": "CognitoIdentityServiceProvider.6f9ksk4av8u29d4hr2vkuqcmpi.ajitgoel@gmail.com.userData"
+  },
+  "userConfirmed": false,
+  "userSub": "2800855e-6d4c-4e30-a8db-065c566b8a29",
+  "codeDeliveryDetails": {
+    "AttributeName": "email",
+    "DeliveryMedium": "EMAIL",
+    "Destination": "a***@g***.com"
+  }
+}
