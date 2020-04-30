@@ -1,0 +1,1 @@
+{"query":"mutation CreateVocabulary($input: CreateVocabularyInput!, $condition: ModelVocabularyConditionInput) {\n  createVocabulary(input: $input, condition: $condition) {\n    id\n    userId\n    vocabularies\n    owner\n  }\n}\n","variables":{"input":{"userId":"2800855e-6d4c-4e30-a8db-065c566b8a29","vocabularies":["ajit","goel"]}}}

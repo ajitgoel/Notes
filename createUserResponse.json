@@ -1,0 +1,1 @@
+{"data":{"createVocabulary":null},"errors":[{"path":["createVocabulary","id"],"locations":null,"message":"Cannot return null for non-nullable type: 'ID' within parent 'Vocabulary' (/createVocabulary/id)"}]}
