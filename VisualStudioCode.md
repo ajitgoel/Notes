@@ -6,5 +6,11 @@ module.exports = {
     devtool: 'source-map',
   }
 }
+put debugger on the line in the .vue code where we need to debug
+run npm run serve
+click start button to debug
 
-put debugger on that line, in the .vue code where we need to debug
+###### Prettify Json:
+Install Prettify Json extension
+select json in the file
+Cntl+Shift+P=> type "Prettify Json"

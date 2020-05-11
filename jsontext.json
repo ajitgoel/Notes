@@ -1,0 +1,20 @@
+{
+    "data": {
+        "listVocabularys": {
+            "items": [
+                {
+                    "id": "660e6598-cc8a-46d6-8978-5a93e017bcd0",
+                    "userId": "7dfb5335-cc14-4533-bac6-c3c70591919b",
+                    "vocabularies": [
+                        "baby boom",
+                        "gnocchi",
+                        "HS",
+                        "CEO"
+                    ],
+                    "owner": "7dfb5335-cc14-4533-bac6-c3c70591919b"
+                }
+            ],
+            "nextToken": null
+        }
+    }
+}
