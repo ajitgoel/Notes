@@ -36,3 +36,10 @@ type Comment @model {
   content: String
   post: Post @connection(name: "PostComments")
 }
+
+@key: DynamoDB query operations may use at most two attributes to efficiently query data. The first query argument passed to a query (the hash key) must use strict equality and the second attribute (the sort key) may use gt, ge, lt, le, eq, beginsWith, and between. 
+Definition directive @key(fields: [String!]!, name: String, queryField: String) on OBJECT
+
+fields=>	A list of fields that should comprise the @key, used in conjunction with an @model type. The first field in the list will always be the HASH key. If two fields are provided the second field will be the SORT key. If more than two fields are provided, a single composite SORT key will be created from a combination of fields[1...n]. All generated GraphQL queries & mutations will be updated to work with custom @key directives.
+name=> When provided, specifies the name of the secondary index. When omitted, specifies that the @key is defining the primary index. You may have at most one primary key per table and therefore you may have at most one @key that does not specify a name per @model type.
+queryField=>	When defining a secondary index (by specifying the name argument), this specifies that a new top level query field that queries the secondary index should be generated with the given name.
