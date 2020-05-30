@@ -1,5 +1,6 @@
 ###### Commands:
 npm install -g @aws-amplify/cli
+npm install -g @aws-amplify/cli --unsafe-perm=true
 amplify configure
 npm install -g @vue/cli
 npm install aws-amplify @aws-amplify/ui-vue
@@ -21,3 +22,6 @@ amplify delete
 https://docs.aws.amazon.com/appsync/latest/devguide/scalars.html
 ID, String, Int, Float, Boolean
 AWSDate, AWSTime, AWSDateTime, AWSTimestamp, AWSEmail, AWSJSON, AWSURL, AWSPhone, AWSIPAddress
+
+###### Multiple Serverless Environments with AWS Amplify:
+https://read.acloud.guru/multiple-serverless-environments-with-aws-amplify-344759e1be08
