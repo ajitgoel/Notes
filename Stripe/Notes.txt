@@ -1,0 +1,1 @@
+curl https://api.stripe.com/v1/charges -u sk_test_8GAASYcYGl4zvXfXTkfNH3i200HuyvP6fm -d payment_intent=pi_1GpRKvKs9y22NbsBGyPG4Ail -G

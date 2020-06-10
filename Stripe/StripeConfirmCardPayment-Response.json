@@ -1,0 +1,27 @@
+{
+  "paymentIntent": {
+      "id": "pi_1GpRKvKs9y22NbsBGyPG4Ail",
+      "object": "payment_intent",
+      "amount": 40800,
+      "canceled_at": null,
+      "cancellation_reason": null,
+      "capture_method": "automatic",
+      "client_secret": "pi_1GpRKvKs9y22NbsBGyPG4Ail_secret_CLuMZmhUwVWlQf2t32dJNaNPT",
+      "confirmation_method": "automatic",
+      "created": 1591070569,
+      "currency": "usd",
+      "description": null,
+      "last_payment_error": null,
+      "livemode": false,
+      "next_action": null,
+      "payment_method": "pm_1GpRKvKs9y22NbsBKmIl87KM",
+      "payment_method_types": [
+          "card"
+      ],
+      "receipt_email": "ajitgoel@gmail.com",
+      "setup_future_usage": null,
+      "shipping": null,
+      "source": null,
+      "status": "succeeded"
+  }
+}

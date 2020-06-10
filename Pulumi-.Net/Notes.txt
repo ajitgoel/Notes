@@ -1,0 +1,39 @@
+choco install pulumi
+pulumi config set aws:profile <profilename>
+mkdir quickstart && cd quickstart
+pulumi new aws-csharp
+pulumi up
+pulumi destroy
+pulumi stack rm
+
+Pulumi projects and stacks let you organize Pulumi code. Consider a Pulumi project to be analogous to a GitHub repo—a single place for code—and a stack to be an instance of that code with a separate configuration. 
+For instance, Project Foo may have multiple stacks for different development environments (Dev, Test, or Prod), or perhaps for different cloud configurations (geographic region for example).
+Pulumi.yaml defines the project. Pulumi.dev.yaml contains configuration values for the stack we initialized.
+
+using Pulumi;
+using Aws = Pulumi.Aws;
+class MyStack : Stack
+{
+    public MyStack()
+    {
+        var key = new Aws.Kms.Key("my-key");// Create a KMS Key for S3 server-side encryption
+        // Create an AWS resource (S3 Bucket)
+        var bucket = new Aws.S3.Bucket("my-bucket", new Aws.S3.BucketArgs
+        {
+            ServerSideEncryptionConfiguration = new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationArgs
+            {
+                Rule = new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationRuleArgs
+                {
+                    ApplyServerSideEncryptionByDefault = new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs
+                    {
+                        SseAlgorithm = "aws:kms",
+                        KmsMasterKeyId = key.Id,
+                    },
+                },
+            },
+        });
+        this.BucketName = bucket.Id;// Export the name of the bucket        
+    }
+    [Output]
+    public Output<string> BucketName { get; set; }
+}
