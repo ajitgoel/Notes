@@ -1,0 +1,27 @@
+{
+    "paymentIntent": {
+        "id": "pi_1GwqzgKs9y22NbsBjW3Oacmr",
+        "object": "payment_intent",
+        "amount": 1000,
+        "canceled_at": null,
+        "cancellation_reason": null,
+        "capture_method": "automatic",
+        "client_secret": "pi_1GwqzgKs9y22NbsBjW3Oacmr_secret_kVs4XFxd9zYscABYHVvYyNRoK",
+        "confirmation_method": "automatic",
+        "created": 1592837492,
+        "currency": "usd",
+        "description": "Top off payment for video audio transcription",
+        "last_payment_error": null,
+        "livemode": false,
+        "next_action": null,
+        "payment_method": "pm_1GwqziKs9y22NbsBFiyN6MFl",
+        "payment_method_types": [
+            "card"
+        ],
+        "receipt_email": "ajitgoel@gmail.com",
+        "setup_future_usage": null,
+        "shipping": null,
+        "source": null,
+        "status": "succeeded"
+    }
+}

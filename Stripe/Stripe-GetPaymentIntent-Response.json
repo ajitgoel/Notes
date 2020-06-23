@@ -1,0 +1,152 @@
+{
+    "id": "pi_1GwqzgKs9y22NbsBjW3Oacmr",
+    "object": "payment_intent",
+    "amount": 1000,
+    "amount_capturable": 0,
+    "amount_received": 1000,
+    "application": null,
+    "application_fee_amount": null,
+    "canceled_at": null,
+    "cancellation_reason": null,
+    "capture_method": "automatic",
+    "charges": {
+      "object": "list",
+      "data": [
+        {
+          "id": "ch_1GwqzjKs9y22NbsBbnPnhCWx",
+          "object": "charge",
+          "amount": 1000,
+          "amount_refunded": 0,
+          "application": null,
+          "application_fee": null,
+          "application_fee_amount": null,
+          "balance_transaction": "txn_1GwqzjKs9y22NbsByHVSOQXi",
+          "billing_details": {
+            "address": {
+              "city": null,
+              "country": null,
+              "line1": null,
+              "line2": null,
+              "postal_code": null,
+              "state": null
+            },
+            "email": null,
+            "name": "ajit goel",
+            "phone": null
+          },
+          "calculated_statement_descriptor": "WWW.AJITGOEL.NET",
+          "captured": true,
+          "created": 1592837495,
+          "currency": "usd",
+          "customer": null,
+          "description": "Top off payment for video audio transcription",
+          "destination": null,
+          "dispute": null,
+          "disputed": false,
+          "failure_code": null,
+          "failure_message": null,
+          "fraud_details": {
+          },
+          "invoice": null,
+          "livemode": false,
+          "metadata": {
+            "integration_check": "accept_a_payment"
+          },
+          "on_behalf_of": null,
+          "order": null,
+          "outcome": {
+            "network_status": "approved_by_network",
+            "reason": null,
+            "risk_level": "normal",
+            "risk_score": 15,
+            "seller_message": "Payment complete.",
+            "type": "authorized"
+          },
+          "paid": true,
+          "payment_intent": "pi_1GwqzgKs9y22NbsBjW3Oacmr",
+          "payment_method": "pm_1GwqziKs9y22NbsBFiyN6MFl",
+          "payment_method_details": {
+            "card": {
+              "brand": "visa",
+              "checks": {
+                "address_line1_check": null,
+                "address_postal_code_check": null,
+                "cvc_check": "pass"
+              },
+              "country": "US",
+              "exp_month": 1,
+              "exp_year": 2021,
+              "fingerprint": "DteukdV0Y2ljRuqn",
+              "funding": "credit",
+              "installments": null,
+              "last4": "4242",
+              "network": "visa",
+              "three_d_secure": null,
+              "wallet": null
+            },
+            "type": "card"
+          },
+          "receipt_email": "ajitgoel@gmail.com",
+          "receipt_number": "1571-5897",
+          "receipt_url": "https://pay.stripe.com/receipts/acct_1Gje8uKs9y22NbsB/ch_1GwqzjKs9y22NbsBbnPnhCWx/rcpt_HVsl7EML9G1uGps6izJnaCvcvdREkpW",
+          "refunded": false,
+          "refunds": {
+            "object": "list",
+            "data": [
+  
+            ],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/charges/ch_1GwqzjKs9y22NbsBbnPnhCWx/refunds"
+          },
+          "review": null,
+          "shipping": null,
+          "source": null,
+          "source_transfer": null,
+          "statement_descriptor": null,
+          "statement_descriptor_suffix": null,
+          "status": "succeeded",
+          "transfer_data": null,
+          "transfer_group": null
+        }
+      ],
+      "has_more": false,
+      "total_count": 1,
+      "url": "/v1/charges?payment_intent=pi_1GwqzgKs9y22NbsBjW3Oacmr"
+    },
+    "client_secret": "pi_1GwqzgKs9y22NbsBjW3Oacmr_secret_kVs4XFxd9zYscABYHVvYyNRoK",
+    "confirmation_method": "automatic",
+    "created": 1592837492,
+    "currency": "usd",
+    "customer": null,
+    "description": "Top off payment for video audio transcription",
+    "invoice": null,
+    "last_payment_error": null,
+    "livemode": false,
+    "metadata": {
+      "integration_check": "accept_a_payment"
+    },
+    "next_action": null,
+    "on_behalf_of": null,
+    "payment_method": "pm_1GwqziKs9y22NbsBFiyN6MFl",
+    "payment_method_options": {
+      "card": {
+        "installments": null,
+        "network": null,
+        "request_three_d_secure": "automatic"
+      }
+    },
+    "payment_method_types": [
+      "card"
+    ],
+    "receipt_email": "ajitgoel@gmail.com",
+    "review": null,
+    "setup_future_usage": null,
+    "shipping": null,
+    "source": null,
+    "statement_descriptor": null,
+    "statement_descriptor_suffix": null,
+    "status": "succeeded",
+    "transfer_data": null,
+    "transfer_group": null
+  }

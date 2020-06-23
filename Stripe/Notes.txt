@@ -1,1 +1,5 @@
+On command prompt
 curl https://api.stripe.com/v1/charges -u sk_test_8GAASYcYGl4zvXfXTkfNH3i200HuyvP6fm -d payment_intent=pi_1GpRKvKs9y22NbsBGyPG4Ail -G
+curl https://api.stripe.com/v1/invoices/in_1BjOm62eZvKYlo2CVovmMxI1 -u sk_test_4eC39HqLyjWDarjtT1zdp7dc:
+curl https://api.stripe.com/v1/payment_intents/pi_1GwqzgKs9y22NbsBjW3Oacmr -u sk_test_4eC39HqLyjWDarjtT1zdp7dc:
+curl https://api.stripe.com//v1/charges?payment_intent=pi_1GwqzgKs9y22NbsBjW3Oacmr -u sk_test_4eC39HqLyjWDarjtT1zdp7dc:

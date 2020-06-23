@@ -1,6 +1,33 @@
-CREDIT CARD NUMBER:4000 0000 0000 3220
-EXPIRATION DATE:12/21
-CVV:123
+###### Testing Stripe Payments: 
+https://stripe.com/docs/testing
+
+4242 4242 4242 4242             No authentication required
+4000 0000 0000 3220 12/21 123   Authentication required
+
+NUMBER	                DESCRIPTION
+4000 0000 0000 0077	    Charge succeeds and funds will be added directly to your available balance (bypassing your pending balance).
+4000 0037 2000 0278	    Charge succeeds and funds will be added directly to your available balance (bypassing your pending balance).
+4000 0000 0000 0093	    Charge succeeds and domestic pricing is used (other test cards use international pricing). This card is only significant in countries with split pricing.
+4000 0000 0000 0010	    The address_line1_check and address_zip_check verifications fail. If your account is blocking payments that fail ZIP code validation, the charge is declined.
+4000 0000 0000 0028	    Charge succeeds but the address_line1_check verification fails.
+4000 0000 0000 0036	    The address_zip_check verification fails. If your account is blocking payments that fail ZIP code validation, the charge is declined.
+4000 0000 0000 0044	    Charge succeeds but the address_zip_check and address_line1_check verifications are both unavailable.
+4000 0000 0000 5126	    Charge succeeds but refunding a captured charge fails asynchronously with a failure_reason of expired_or_canceled_card. 
+                        Note that because refund failures are asynchronous, the refund will appear to be successful at first and will only have the failed status on subsequent fetches. 
+                        We also notify you of refund failures using the charge.refund.updated webhook event.
+4000 0000 0000 0101	    If a CVC number is provided, the cvc_check fails. If your account is blocking payments that fail CVC code validation, the charge is declined.
+4000 0000 0000 0341	    Attaching this card to a Customer object succeeds, but attempts to charge the customer fail.
+4000 0000 0000 9235	    Results in a charge with a risk_level of elevated.
+4000 0000 0000 4954	    Results in a charge with a risk_level of highest.
+4100 0000 0000 0019	    Results in a charge with a risk_level of highest. The charge is blocked as it's considered fraudulent.
+4000 0000 0000 0002	    Charge is declined with a card_declined code.
+4000 0000 0000 9995	    Charge is declined with a card_declined code. The decline_code attribute is insufficient_funds.
+4000 0000 0000 9987	    Charge is declined with a card_declined code. The decline_code attribute is lost_card.
+4000 0000 0000 9979	    Charge is declined with a card_declined code. The decline_code attribute is stolen_card.
+4000 0000 0000 0069	    Charge is declined with an expired_card code.
+4000 0000 0000 0127	    Charge is declined with an incorrect_cvc code.
+4000 0000 0000 0119	    Charge is declined with a processing_error code.
+4242 4242 4242 4241	    Charge is declined with an incorrect_number code as the card number fails the Luhn check.
 
 ###### Card Numbers
 NUMBER	            BRAND	                    CVC	            DATE

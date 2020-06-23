@@ -1,9 +1,1 @@
-{
-    "id": "us-east-1:5e9adf47-2390-4860-842e-27e75527ce3f",
-    "username": "7dfb5335-cc14-4533-bac6-c3c70591919b",
-    "attributes": {
-        "sub": "7dfb5335-cc14-4533-bac6-c3c70591919b",
-        "email_verified": true,
-        "email": "ajitgoel@gmail.com"
-    }
-}
+{"amount":"40800","created":"2020-06-02T04:02:49Z","paymentMethod":" - ","receiptUrl":"https://pay.stripe.com/receipts/acct_1Gje8uKs9y22NbsB/ch_1GpRLQKs9y22NbsBCdQWpX8z/rcpt_HODnMCyjfqSXGm11cY3xtYdALn6nEhF","receiptNumber":"1575-7276"}
