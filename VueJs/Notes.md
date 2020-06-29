@@ -10,3 +10,14 @@ console.log(`hello ${username}`);
 
 ###### split string into array based on newline:
 var stringAsArray = stringInstance.Split("\n");
+
+###### Concat text and variable in template:
+<vs-list-item :subtitle="data[id].invoiceData.tasks[0].pricePerHour + ' USD'"/>
+
+###### Change a value inside the onclick:
+<button @click="newTitle = false">Save</button>
+<script type="text/javascript">
+  data :{
+      newTitle : true
+  }
+</script>

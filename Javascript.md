@@ -43,6 +43,13 @@ Object.entries(zoo);
 ###### array to string with newline after each element:
 var arr = ['apple','banana','mango'];
 arr.join('<br/>')
+
 ###### string (with elements seperated by divider) to string with newline after each element:
 var str = "apple,banana,mango";
 str.split(',').join("\r\n")
+
+###### Remove elements that have are a "" string:
+let vocabulariesArray1 = vocabulariesArray.filter(function(v){return v!==''});
+
+###### Remove duplicate array elements
+let array2 = array1.filter(function(item, index){return array1.indexOf(item) === index});

@@ -8,7 +8,7 @@ module.exports = {
 }
 put debugger on the line in the .vue code where we need to debug
 run npm run serve
-click start button to debug
+Go to the Debug view, select the 'vuejs: chrome' configuration, then press F5 or click the green play button.
 
 ###### Prettify Json:
 Install Prettify Json extension

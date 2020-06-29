@@ -8,8 +8,8 @@ npm install aws-amplify @aws-amplify/ui-vue
 amplify init
 amplify add auth
 amplify add api
-amplify mock api 
-amplify mock function <FunctionName> //will allow you to unit test the application.
+amplify mock api //allows you to mock graphql api and test it locally
+amplify mock function <FunctionName> //will allow you to unit test the lambda function.
 "amplify add <category>" will allow you to add features like user login or a backend API
 "amplify status" will show you what you've added already and if it's locally configured or deployed
 "amplify console" to open the Amplify Console and view your project status
