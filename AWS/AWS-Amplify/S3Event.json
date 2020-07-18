@@ -1,0 +1,42 @@
+{
+    "Records": [
+        {
+            "AwsRegion": "us-east-1",
+            "EventName": {
+                "Value": "ObjectCreated:Put"
+            },
+            "EventSource": "aws:s3",
+            "EventTime": "2020-07-08T04:40:38.952Z",
+            "EventVersion": "2.1",
+            "RequestParameters": {
+                "SourceIPAddress": "73.239.46.8"
+            },
+            "ResponseElements": {
+                "XAmzId2": "z5uXd3n5a/AQf/2JomGNpGyJ3FpA8p6WwMZafCwKmtNGwP4y8USZZ/pupA05r9FT8RwGilAet53k80i3/wV/89cYyzDjVJht",
+                "XAmzRequestId": "2490CD4240EE1A48"
+            },
+            "S3": {
+                "ConfigurationId": "b36bebdb-a82a-48ba-a2cf-665adcb0c8ec",
+                "Bucket": {
+                    "Name": "vidaudtranscriptionb772eac002c6449096461a128cad70417-dev",
+                    "OwnerIdentity": {
+                        "PrincipalId": "A3LQ3OFG5ZVW7U"
+                    },
+                    "Arn": "arn:aws:s3:::vidaudtranscriptionb772eac002c6449096461a128cad70417-dev"
+                },
+                "Object": {
+                    "Key": "public/TOEFL+Listening+Practice+-+Lecture+1.mp4",
+                    "Size": 235,
+                    "ETag": "6f3bc5bc9fd2ae0d994f1a3f7a6dc692",
+                    "VersionId": null,
+                    "Sequencer": "005F054E4A4486D6BF"
+                },
+                "S3SchemaVersion": "1.0"
+            },
+            "UserIdentity": {
+                "PrincipalId": "AWS:AROAXWUCFA3Q6ZN7UZN6E:CognitoIdentityCredentials"
+            },
+            "GlacierEventData": null
+        }
+    ]
+}

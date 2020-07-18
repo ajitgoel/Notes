@@ -16,7 +16,7 @@ amplify mock function <FunctionName> //will allow you to unit test the lambda fu
 amplify add storage
 amplify add hosting
 amplify add analytics
-amplify push=> When prompted about code generation, select ‘Yes’, then choose Typescript, and accept the defaults for the remaining prompts.
+amplify push --y
 amplify publish
 amplify delete
 
@@ -51,3 +51,44 @@ amplify/team-provider-info.json modified: A cognito pool is added to this config
 amplify/backend-config.json modified: “auth” has been added next to our “hosting” configuration
 amplify/backend/auth/<<cognitoPoolId>>/<<templatename.yml created: A YAML file describing the Cognito Pool, which will be used by Amplify to actually create the Cognito Identity Pool on AWS
 amplify/backend/auth/<<cognitoPoolId>>/parameters.json created: Also used for the creation of the Identity Pool on AWS.
+
+###### Upload file through amplify vue.js:
+https://docs.amplify.aws/lib/storage/upload/q/platform/js
+https://github.com/ykbryan/amplify-vuejs-file-upload-rekognition/blob/cb8ec0822d440717378271442889e94d020588ea/src/App.vue
+
+https://github.com/turjachaudhuri/aws-sam/tree/d01f1ac1b3cf37f173be8452ef5ac13420948a3e
+https://github.com/rycx/AWSTranscribe/tree/f8514cdd42176a26caeb9f0c7a41bc90d307c6b1/ProcessAudio/ProcessAudio
+https://docs.aws.amazon.com/lambda/latest/dg/lambda-csharp.html
+
+Add permissions to lambda trigger function and api:
+---------------------------------------------------
+When Amplify first created our S3 Trigger function to handle our uploads, it created an AWS Lambda function with IAM(Identity and Access Management) permissions that would let it access files in the S3 bucket. To allow it to talk to api via IAM, run "amplify update function" command.
+When the AppSync GraphQL API was first created it was configured to authenticate requests using an Amazon Cognito User Pool so that only the users who authenticated to our web app front end would be able to communicate with the API.
+To allow the AppSync GraphQL api to allow clients(eg: lambda function) to authenticate via IAM as a secondary authentication mechanism, run "amplify update api" command.
+
+to allow lambda trigger function to communicate with a aws service like rekognition:
+---------------------------------------------------------------------------
+Add the following to the lamda trigger function's cloud formation template under the "resources" node. 
+
+"RekognitionPolicy": {
+    "DependsOn": [
+        "LambdaExecutionRole"
+    ],
+    "Type": "AWS::IAM::Policy",
+    "Properties": {
+        "PolicyName": "rekognition-detect-labels",
+        "Roles": [{
+            "Ref": "LambdaExecutionRole"
+        }],
+        "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [{
+                "Effect": "Allow",
+                "Action": [
+                    "rekognition:detectLabels"
+                ],
+                "Resource": "*"
+            }]
+        }
+    }
+},

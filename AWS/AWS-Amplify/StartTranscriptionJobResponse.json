@@ -1,0 +1,43 @@
+{
+  "TranscriptionJob": {
+    "CompletionTime": "0001-01-01T00:00:00",
+    "ContentRedaction": null,
+    "CreationTime": "2020-07-13T02:54:45.79Z",
+    "FailureReason": null,
+    "JobExecutionSettings": null,
+    "LanguageCode": {
+      "Value": "en-US"
+    },
+    "Media": {
+      "MediaFileUri": "https://jblj1t45.s3.amazonaws.com/samplevideofile.mp4"
+    },
+    "MediaFormat": {
+      "Value": "mp4"
+    },
+    "MediaSampleRateHertz": 0,
+    "Settings": {
+      "ChannelIdentification": false,
+      "MaxAlternatives": 0,
+      "MaxSpeakerLabels": 2,
+      "ShowAlternatives": false,
+      "ShowSpeakerLabels": true,
+      "VocabularyFilterMethod": null,
+      "VocabularyFilterName": null,
+      "VocabularyName": null
+    },
+    "StartTime": "2020-07-13T02:54:45.825Z",
+    "Transcript": null,
+    "TranscriptionJobName": "250d907f-b207-47dc-bdd6-19887c5fcb1c",
+    "TranscriptionJobStatus": {
+      "Value": "IN_PROGRESS"
+    }
+  },
+  "ResponseMetadata": {
+    "RequestId": "3114135c-9b5c-4ab0-a4a4-707f3d4fcc82",
+    "Metadata": {
+      
+    }
+  },
+  "ContentLength": 366,
+  "HttpStatusCode": 200
+}

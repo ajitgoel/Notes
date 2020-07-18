@@ -21,3 +21,16 @@ var stringAsArray = stringInstance.Split("\n");
       newTitle : true
   }
 </script>
+
+###### pass a parameter to Vue @click event handler:
+<vs-button @click="selectOperation('transcription')">Select</vs-button>
+methods: 
+{ 
+  selectOperation(operation1)
+  {
+    this.operation=operation1;
+  },
+
+###### SyncFusion controls:
+https://ej2.syncfusion.com/vue/documentation/api/list-view/#selectitem  
+https://ej2.syncfusion.com/vue/documentation/drop-down-list/getting-started/

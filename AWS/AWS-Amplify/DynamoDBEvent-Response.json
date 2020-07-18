@@ -1,0 +1,256 @@
+{
+    "Records": [
+        {
+            "EventSourceArn": "arn:aws:dynamodb:us-east-1:529627678433:table/UserProfile-dhrkexlojfhgjb54fd4snnurgm-feature/stream/2020-07-16T06:12:47.832",
+            "AwsRegion": "us-east-1",
+            "Dynamodb": {
+                "ApproximateCreationDateTime": "2020-07-18T16:21:38Z",
+                "Keys": {
+                    "id": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [],
+                        "IsLSet": false,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": "us-east-1:ef78fb2b-3768-4f64-b7c2-84516424ca9b",
+                        "SS": []
+                    }
+                },
+                "NewImage": {
+                    "owner": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [],
+                        "IsLSet": false,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": "0cdd7988-fd11-48b4-aece-5c3c9cfb1391",
+                        "SS": []
+                    },
+                    "vocabularies": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [
+                            {
+                                "B": null,
+                                "BOOL": false,
+                                "IsBOOLSet": false,
+                                "BS": [],
+                                "L": [],
+                                "IsLSet": false,
+                                "M": {},
+                                "IsMSet": false,
+                                "N": null,
+                                "NS": [],
+                                "NULL": false,
+                                "S": "F.B.I.s",
+                                "SS": []
+                            }
+                        ],
+                        "IsLSet": true,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": null,
+                        "SS": []
+                    },
+                    "createdAt": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [],
+                        "IsLSet": false,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": "2020-07-18T09:11:46.662Z",
+                        "SS": []
+                    },
+                    "__typename": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [],
+                        "IsLSet": false,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": "UserProfile",
+                        "SS": []
+                    },
+                    "id": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [],
+                        "IsLSet": false,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": "us-east-1:ef78fb2b-3768-4f64-b7c2-84516424ca9b",
+                        "SS": []
+                    },
+                    "updatedAt": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [],
+                        "IsLSet": false,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": "2020-07-18T16:21:38.318Z",
+                        "SS": []
+                    }
+                },
+                "OldImage": {
+                    "owner": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [],
+                        "IsLSet": false,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": "0cdd7988-fd11-48b4-aece-5c3c9cfb1391",
+                        "SS": []
+                    },
+                    "vocabularies": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [
+                            {
+                                "B": null,
+                                "BOOL": false,
+                                "IsBOOLSet": false,
+                                "BS": [],
+                                "L": [],
+                                "IsLSet": false,
+                                "M": {},
+                                "IsMSet": false,
+                                "N": null,
+                                "NS": [],
+                                "NULL": false,
+                                "S": "F.B.I.",
+                                "SS": []
+                            }
+                        ],
+                        "IsLSet": true,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": null,
+                        "SS": []
+                    },
+                    "createdAt": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [],
+                        "IsLSet": false,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": "2020-07-18T09:11:46.662Z",
+                        "SS": []
+                    },
+                    "__typename": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [],
+                        "IsLSet": false,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": "UserProfile",
+                        "SS": []
+                    },
+                    "id": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [],
+                        "IsLSet": false,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": "us-east-1:ef78fb2b-3768-4f64-b7c2-84516424ca9b",
+                        "SS": []
+                    },
+                    "updatedAt": {
+                        "B": null,
+                        "BOOL": false,
+                        "IsBOOLSet": false,
+                        "BS": [],
+                        "L": [],
+                        "IsLSet": false,
+                        "M": {},
+                        "IsMSet": false,
+                        "N": null,
+                        "NS": [],
+                        "NULL": false,
+                        "S": "2020-07-18T15:36:11.774Z",
+                        "SS": []
+                    }
+                },
+                "SequenceNumber": "11075800000000019474450661",
+                "SizeBytes": 445,
+                "StreamViewType": {
+                    "Value": "NEW_AND_OLD_IMAGES"
+                }
+            },
+            "EventID": "5d10c1755a1535c5b3a8edca9224b7e1",
+            "EventName": {
+                "Value": "MODIFY"
+            },
+            "EventSource": "aws:dynamodb",
+            "EventVersion": "1.1",
+            "UserIdentity": null
+        }
+    ]
+}

@@ -2,6 +2,9 @@
 var username = 'craig';
 console.log(`hello ${username}`);
 
+###### Convert Array of Objects into Comma Separated String extracting only one property
+let result=Array.prototype.map.call(arrayObjects, function(item) { return item.name; }).join(",");
+
 ###### Convert object instance to string:
 const objectInstanceAsString=JSON.stringify(objectInstance);
 
@@ -49,7 +52,14 @@ var str = "apple,banana,mango";
 str.split(',').join("\r\n")
 
 ###### Remove elements that have are a "" string:
-let vocabulariesArray1 = vocabulariesArray.filter(function(v){return v!==''});
+let arrayResult = array.filter(function(item){return item!==''});
 
 ###### Remove duplicate array elements
-let array2 = array1.filter(function(item, index){return array1.indexOf(item) === index});
+let arrayResult = array1.filter(function(item, index){return array1.indexOf(item) === index});
+
+###### change object array to comma seperated string, for a property in the object
+let resultString = Array.prototype.map.call(objectArray, function(item) { return item.specificProperty; }).join(",");
+
+###### find first element of object array matching a boolean condition
+###### Notes: Array.find() return the first matching element, undefined if it finds nothing, Array.filter returns a new array containing all matching elements, [] if it matches nothing.
+let element=array.find(function (item) {return item.specificProperty === propertyValue;});

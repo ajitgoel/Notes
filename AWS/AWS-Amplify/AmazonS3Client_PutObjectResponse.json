@@ -1,0 +1,16 @@
+{
+  "Expiration": null,
+  "ServerSideEncryptionMethod": null,
+  "ETag": "\"baed892833fc53b2ca352128aa92279c\"",
+  "VersionId": null,
+  "ServerSideEncryptionKeyManagementServiceKeyId": null,
+  "RequestCharged": null,
+  "ResponseMetadata": {
+    "RequestId": "9F4738339A702A26",
+    "Metadata": {
+      "x-amz-id-2": "eVIAO+uoepEIMwCKKxVBtTwiGRqlKB7lFaMHsXA3MPywSJ3OurwG/43fuh0Wn6rVtXD7ftj05/4="
+    }
+  },
+  "ContentLength": 0,
+  "HttpStatusCode": 200
+}
