@@ -31,6 +31,10 @@ methods:
     this.operation=operation1;
   },
 
+###### query parameters from a URL in Vue.js
+url: http://somesite.com?sessionId=yay.
+=>this.$route.query.sessionId
+
 ###### SyncFusion controls:
 https://ej2.syncfusion.com/vue/documentation/api/list-view/#selectitem  
 https://ej2.syncfusion.com/vue/documentation/drop-down-list/getting-started/
