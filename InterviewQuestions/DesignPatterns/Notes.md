@@ -1,6 +1,4 @@
-## [Encapsulate and vary algorithm from the client that uses it(Strategy Pattern)](http://ajitgoel.net/encapsulate-vary-algorithm-client-uses-itstrategy-pattern/)
-
-July 10, 2016 [No Comments](http://ajitgoel.net/encapsulate-vary-algorithm-client-uses-itstrategy-pattern/#respond)
+## Encapsulate and vary algorithm from the client that uses it(Strategy Pattern)
 
 **Strategy pattern** is a software design pattern that enables an algorithm’s behavior to be selected at runtime. It
 a. defines a family of algorithms,
@@ -72,9 +70,7 @@ public class MergeSort : SortStrategy
 
 ------
 
-## [Adapter Pattern with a twist](http://ajitgoel.net/adapter-pattern-with-a-twist/)
-
-April 23, 2016 [No Comments](http://ajitgoel.net/adapter-pattern-with-a-twist/#respond)
+## Adapter Pattern with a twist
 
 One of my friends recently went to an interview to a very well known startup company. It is supposed to hire only the very best people in the industry.  One of the problem that he was asked to white board was:
 
@@ -147,7 +143,9 @@ public class LegacyRobotAdapter : IRobot
     }
 }
 
-## [Ensure a class has only one instance and provide a global point of access to it(Singleton Pattern)](http://ajitgoel.net/ensure-a-class-has-only-one-instance-and-provide-a-global-point-of-access-to-itsingleton-pattern/)
+------
+
+## Ensure a class has only one instance and provide a global point of access to it(Singleton Pattern
 
 **Singleton Pattern: **Ensure a class has only one instance and provide a global point of access to it.
 
@@ -252,38 +250,73 @@ public sealed class Singleton
 	}
 }
 
-## [Avoid accidentally throwing a NullReferenceException and null object checking code(Null Object Pattern)](http://ajitgoel.net/avoid-accidentally-throwing-a-nullreferenceexception-and-null-object-checking-codenull-object-pattern/)
+------
 
-April 22, 2016 [No Comments](http://ajitgoel.net/avoid-accidentally-throwing-a-nullreferenceexception-and-null-object-checking-codenull-object-pattern/#respond)
+## Avoid accidentally throwing a NullReferenceException and null object checking code(Null Object Pattern)
 
 **Null Object Pattern:**
 Avoid accidentally throwing a NullReferenceException and null object checking code by using the **Null Object** design pattern.
 
-```
-using` `System;``using` `System.Linq;``  ``public` `static` `class` `StringExtensions ``  ``{ ``    ``public` `static` `int` `GetSafeLength(``this` `string` `valueOrNull) ``    ``{ ``      ``return` `(valueOrNull ?? ``string``.Empty).Length; ``    ``}``  ``}``  ``public` `static` `class` `Program ``  ``{``    ``static` `readonly` `string``[] strings = ``new` `[] { ``"ajit"``, ``"goel"``, ``null``, ``"kumar"` `};``    ``public` `static` `void` `Main(``string``[] args) ``    ``{``      ``//no need to do any checks here``      ``var` `query = ``from` `text ``in` `strings ``select` `text.GetSafeLength(); ``      ``Console.WriteLine(query.Sum());``    ``}``  ``}
-```
+using System;
+using System.Linq;
+    public static class StringExtensions 
+    { 
+        public static int GetSafeLength(this string valueOrNull) 
+        { 
+            return (valueOrNull ?? string.Empty).Length; 
+        }
+    }
+    public static class Program 
+    {
+        static readonly string[] strings = new [] { "ajit", "goel", null, "kumar" };
+        public static void Main(string[] args) 
+        {
+           ==//no need to do any checks here
+            var query = from text in strings select text.GetSafeLength();== 
+            Console.WriteLine(query.Sum());
+        }
+    }
 
-[Continue Reading](http://ajitgoel.net/avoid-accidentally-throwing-a-nullreferenceexception-and-null-object-checking-codenull-object-pattern/)
+------
 
-- 
-- 
-- 
+## Convert the interface of a class into another interface that the clients expects(Adapter Pattern)
 
-[Post](http://ajitgoel.net/category/post/)
-
-## [Convert the interface of a class into another interface that the clients expects(Adapter Pattern)](http://ajitgoel.net/convert-the-interface-of-a-class-into-another-interface-that-the-clients-expectsadapter-pattern/)
-
-April 13, 2016 [No Comments](http://ajitgoel.net/convert-the-interface-of-a-class-into-another-interface-that-the-clients-expectsadapter-pattern/#respond)
-
-![Adapter Pattern](http://blog-goel.rhcloud.com/wp-content/uploads/2016/04/AdapterPattern-300x155.jpg)
+![](C:\Users\ajitg\AppData\Local\Microsoft\Windows\INetCache\IE\M06XL6SB\AdapterPattern[1].jpg)
 
 **Adapter pattern:**
 
-```
-class` `Program``{``  ``static` `IExpectedInterface dependency = ``new` `Adapter(``new` `TargetClass());``  ``static` `void` `Main(``string``[] args)``  ``{``    ``dependency.MethodA();``  ``}``}``public` `interface` `IExpectedInterface``{``  ``void` `MethodA();``}``public` `class` `Adapter : IExpectedInterface``{``  ``public` `Adapter(TargetClass target)``  ``{``    ``this``.target = target;``  ``}``  ``public` `void` `MethodA()``  ``{``    ``target.MethodB();``  ``}``  ``private` `TargetClass target;``}``public` `class` `TargetClass``{``  ``public` `void` `MethodB()``  ``{``  ``}``}
-```
+class Program
+{
+    static IExpectedInterface dependency = new Adapter(new TargetClass());
+    static void Main(string[] args)
+    {
+        dependency.MethodA();
+    }
+}
+public interface IExpectedInterface
+{
+    void MethodA();
+}
+public class Adapter : IExpectedInterface
+{
+    public Adapter(TargetClass target)
+    {
+        this.target = target;
+    }
+    public void MethodA()
+    {
+        target.MethodB();
+    }
+    private TargetClass target;
+}
+public class TargetClass
+{
+    public void MethodB()
+    {
+    }
+}
 
-**Advantages of using a Adaptor pattern:**
+*Advantages of using a Adaptor pattern:**
 
 - Adapter pattern lets classes work together that couldn’t otherwise because of incompatible interfaces.
 - The code is more maintainable.

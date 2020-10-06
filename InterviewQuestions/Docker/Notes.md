@@ -1,8 +1,6 @@
 Following are frequently asked Docker job interview questions for fresher as well as experienced DevOps engineers.
 
-**1. What is Docker?**
-
-Docker is an open-source lightweight containerization technology. It has gained widespread popularity in the cloud and application packaging world. It allows you to automate the deployment of applications in lightweight and portable containers.
+**1. What is Docker?** Docker is an open-source ==lightweight containerization technology==. It has gained widespread popularity in the cloud and application packaging world. ==It allows you to automate the deployment of applications in lightweight and portable containers.==
 
 **2. What are the advantages of using Docker container?**
 
@@ -35,9 +33,7 @@ Some notable drawbacks of Docker are:
 
 ==**5. What is Docker image?** The Docker image help to create Docker containers. You can create the Docker image with the build command. Due to this, it creates a container that starts when it begins to run. Every docker images are stored in the Docker registry.==
 
-**6. What is Docker Engine?**
-
-Docker daemon or Docker engine represents the server. The docker daemon and the clients should be run on the same or remote host, which can communicate through command-line client binary and full RESTful API.
+**6. What is Docker Engine?** Docker daemon or Docker engine represents the server. The docker daemon and the clients should be run on the same or remote host, which can communicate through command-line client binary and full RESTful API.
 
 ==**7. Explain Registries**==: ==There are two types of registry is Public Registry, Private Registry. Docker's public registry is called Docker hub, which allows you to store images privately.== In Docker hub, you can store millions of images.
 
