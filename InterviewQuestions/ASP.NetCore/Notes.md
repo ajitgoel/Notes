@@ -7,12 +7,10 @@
 
 ### Q. What is .NET Core?
 
-**Ans:** .NET Core is a newer version of .NET, which is cross-platform, supporting Windows, MacOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
-
-The following characteristics best define .NET Core:
+**Ans:** .NET Core is a newer version of .NET, which is cross-platform, supporting Windows, MacOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios. The following characteristics best define .NET Core:
 
 - **Flexible deployment:** Can be included in your app or installed side-by-side user or machine-wide.
-- **==Cross-platform==:** Runs on Windows, MacOS and Linux; can be ported to other OSes. The supported Operating Systems (OS), CPUs and application scenarios will grow over time, provided by Microsoft, other companies, and individuals.
+- ==**Cross-platform:** Runs on Windows, MacOS and Linux==; can be ported to other OSes. The supported Operating Systems (OS), CPUs and application scenarios will grow over time, provided by Microsoft, other companies, and individuals.
 - **Command-line tools**: All product scenarios can be exercised at the command-line.
 - **Compatible**: ==.NET Core is compatible with .NET Framework, Xamarin and Mono, via the .NET Standard Library.==
 
@@ -36,17 +34,17 @@ The following characteristics best define .NET Core:
 
 **Ans:** ASP.NET Core is an robust, and feature-rich framework that provides features to develop super-fast APIs for web apps. ASP.NET Core should be prefered for following reason:
 
-- ASP.NET Core is faster compare to traditional ASP.NET.
-- **Cross-platform:** Runs on Windows, MacOS and Linux; can be ported to other OSes. The supported Operating Systems (OS), CPUs and application scenarios will grow over time, provided by Microsoft, other companies, and individuals.
+- ==ASP.NET Core is faster compare to traditional ASP.NET.==
+- ==**Cross-platform:** Runs on Windows, MacOS and Linux;== can be ported to other OSes. The supported Operating Systems (OS), CPUs and application scenarios will grow over time, provided by Microsoft, other companies, and individuals.
 - **Flexible deployment:** Can be included in your app or installed side-by-side user or machine-wide. Runs on IIS or can be self-hosted in your own process.
-- Built-in support for dependency injection.
+- ==Built-in support for dependency injection.==
 - ASP.NET Core is cloud-ready and has improved support for cloud deployment.
 - Provides Support for Popular JavaScript Frameworks.
 - Unification Of Development Models which allows the MVC and Web API development models to use the same base class Controller.
 - Razor Pages makes coding page-focused scenarios easier and more productive.
-- Environment based configuration supported for cloud deployment.
-- Built in logging support.
-- In ASP.NET we had modules and handlers to deal with requests. In ASP.NET Core we have middleware which provides more control how the request should be processed as they are executed in the order in which they are added.
+- ==Environment based configuration== supported for cloud deployment.
+- ==Built in logging support.==
+- ==In ASP.NET we had modules and handlers to deal with requests. In ASP.NET Core we have middleware which provides more control how the request should be processed as they are executed in the order in which they are added.==
 
 ### Q. What is ASP.NET Core Middleware and How it is different from HttpModule?
 
@@ -94,11 +92,9 @@ else
 // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859
 try
 {
-    using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
-        .CreateScope())
+    using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
     {
-        serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
-                .Database.Migrate();
+        serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
     }
 }
 catch { }
@@ -109,9 +105,7 @@ app.UseIdentity();==
 // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 app.UseMvc(routes =>
 {
-    routes.MapRoute(
-        name: "default",
-        template: "{controller=Home}/{action=Index}/{id?}");
+    routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
 });
 }
 
@@ -143,7 +137,7 @@ If you expose your application to the Internet, you must use IIS, Nginx, or Apac
 
 ### Q.What is a Host and what’s the importance of Host in ASP.NET Core application?
 
-**Ans:** ASP.NET Core apps require a host in which to execute. The host is responsible for application startup and lifetime management. Other responsibility of host’s includes ensuring the application’s services and the server are available and properly configured. **Don’t confuse yourself with a Server.** The host is responsible for starting the app and its management, where the server is responsible for accepting HTTP requests. The host is configured to use a particular server; the server is unaware of its host.
+**Ans:** ASP.NET Core apps require a host in which to execute. ==The host is responsible for application startup and lifetime management. Other responsibility of host’s includes ensuring the application’s services and the server are available and properly configured.== **Don’t confuse yourself with a Server.** ==The host is responsible for starting the app and its management, where the server is responsible for accepting HTTP requests.== The host is configured to use a particular server; the server is unaware of its host.
 
 The host is typically created using an instance of a `WebHostBuilder`, which builds and returns a `WebHost` instance. The `WebHost` references the server that will handle requests.
 
@@ -151,12 +145,7 @@ public class Program
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
+            var host = new WebHostBuilder().UseKestrel().UseContentRoot(Directory.GetCurrentDirectory()).UseIISIntegration().UseStartup<Startup>().Build();
 host.Run();
     }
 }
@@ -170,9 +159,7 @@ public class Program
         BuildWebHost(args).Run();
     }
 public static IWebHost BuildWebHost(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .UseStartup<Startup>()
-        .Build();
+    WebHost.CreateDefaultBuilder(args).UseStartup<Startup>().Build();
 }
 Read this [post](https://www.talkingdotnet.com/whats-new-in-asp-net-core-2-0/) to know more.
 
@@ -224,9 +211,9 @@ For more Read [Overview of Tools for bundling and minification in ASP.NET Core](
 
 **Ans:** Read [Launchsetting.json in ASP.NET Core](https://www.talkingdotnet.com/launchsetting-json-in-aspnet-5/)
 
-### Q.What is wwwroot folder in ASP.NET Core?
+### ==Q.What is wwwroot folder in ASP.NET Core?==
 
-**Ans:** In ASP.NET Core, all the static resources, such as CSS, JavaScript, and image files are kept under the `wwwroot` folder (default). You can also [change](https://www.talkingdotnet.com/change-startup-wwwroot-folder-name-asp-net-core/) the name of this folder.
+**Ans:** ==In ASP.NET Core, all the static resources, such as CSS, JavaScript, and image files are kept under the `wwwroot` folder (default)==. You can also [change](https://www.talkingdotnet.com/change-startup-wwwroot-folder-name-asp-net-core/) the name of this folder.
 
 ### Q.What is “Razor pages” in ASP.NET Core?
 

@@ -10,10 +10,8 @@ e. Dependency Inversion Principle
 **a. Single Responsibility Principle**
 Single Responsibility Principle states that every class should have a single responsibility. There should never be more than one reason for a class to change.
 
-```
-//This class violates Single Responsibility Principle since this class is doing two
-//things. It is dealing with both opening \ closing connections and with 
-//data communication.
+==//This class violates Single Responsibility Principle since this class is doing two things. It is dealing with both opening \ closing connections and with 
+//data communication.==
 public interface IDatabase
 {
     void Connect(string connectionString);
@@ -21,15 +19,10 @@ public interface IDatabase
     object GetData();
     void SendData(object data);
 }
-```
 
 **Refactored code to follow Single Responsibility Principle and Open\closed principle:**
-
-```
-//IDatabase class has now been refactored into two classes. The IDataManager 
-//class deals with data communication.The IConnectionManager 
-//class deals with opening \ closing connections. These classes now follow the 
-//Single Responsibility Principle.
+==//IDatabase class has now been refactored into two classes. The IDataManager class deals with data communication.The IConnectionManager 
+//class deals with opening \ closing connections. These classes now follow the Single Responsibility Principle.==
 public interface IDataManager
 {
     object GetData(IConnectionManager connManager);
@@ -40,7 +33,6 @@ public interface IConnectionManager
     void Connect(string connectionString);
     void Close();
 }
-```
 
 **b. Open/Closed Principle**
 Open/Closed Principle states that software entities should be open for extension, but closed for modification.
@@ -52,20 +44,17 @@ b. if the client application likes to change the way its getting or sending data
 **c. Liskov Substitution Principle**
 Liskov Substitution Principle states that code should not know it is using base class or its subtypes.
 
-```
 public class DatabaseRepository
 {
-    //This method violates Liskov Substitution Principle since it consumes an object 
-    //of a base type but internally uses the base type's subclass. According to 
-    //Liskov Substitution Principle, it should not know it is using base class 
-    //or its subtypes. 
-    public bool TestConnection(IConnectionManager connMngr)
+   ==//This method violates Liskov Substitution Principle since it consumes an object of a base type but internally uses the base type's subclass. According to 
+    //Liskov Substitution Principle, it should not know it is using base class or its subtypes. 
+    public bool TestConnection(IConnectionManager connMngr)==
     {
-        if (connMngr is SqlServerConnectionManager)
+        ==if (connMngr is SqlServerConnectionManager)==
         {
             // Do something...
         }
-        else if (connMngr is OracleConnectionManager)
+        ==else if (connMngr is OracleConnectionManager)==
         {
             // Do something else...
         }
@@ -98,7 +87,6 @@ public class OracleConnectionManager : IConnectionManager
     {
     }
 }
-```
 
 **d. Interface Segregation Principle**
 The Interface Segregation Principle states that clients should not be forced to implement interfaces they don’t use.
@@ -137,11 +125,9 @@ public class Manager
 
 **Interface Segregation Principle implemented in current design**
 
-```
-//Following code supports the Interface Segregation Principle. By splitting the 
-//IWorker interface in IFeedable, IWorkable interfaces the new Robot class is 
+==//Following code supports the Interface Segregation Principle. By splitting the IWorker interface in IFeedable, IWorkable interfaces the new Robot class is 
 //no longer forced to implement the "eat" method.
-public interface IWorker : IFeedable, IWorkable 
+public interface IWorker : IFeedable, IWorkable== 
 {
 }
 public interface IWorkable 
@@ -152,7 +138,7 @@ public interface IFeedable
 {
     public void Eat();
 }
-public class Worker : IWorkable, IFeedable
+==public class Worker : IWorkable, IFeedable==
 {
     public void Work() 
         {
@@ -161,7 +147,7 @@ public class Worker : IWorkable, IFeedable
         {
     }
 }
-public class Robot : IWorkable
+==public class Robot : IWorkable==
 {
     public void Work() 
         {
@@ -179,7 +165,6 @@ public class Manager
         worker.Work();
     }
 }
-```
 
 **e. Dependency Inversion Principle**
 Dependency Inversion Principle states that
@@ -218,23 +203,18 @@ public class Manager
 
 **Dependency Inversion Principle implemented in current design**
 
-```
-//Following code supports the Dependency Inversion Principle. In this new design 
-//a new IWorker Interface has been added. Now the Manager class doesn't require 
-//changes when SuperWorkers are added since the work has been delegated to the 
-//SuperWorker class.It also reduces risk since no other parts of the system need 
-//to be tested.
+==//Following code supports the Dependency Inversion Principle. In this new design a new IWorker Interface has been added. Now the Manager class doesn't //require  changes when SuperWorkers are added since the work has been delegated to the  SuperWorker class.It also reduces risk since no other parts of the //system need to be tested.
 public interface IWorker 
 {
     public void Work();
 }
-public class Worker : IWorker
+public class Worker : IWorker==
 {
     public void Work() 
     {
     }
 }
-public class SuperWorker : IWorker
+==public class SuperWorker : IWorker==
 {
     public void Work() 
     {
@@ -243,7 +223,7 @@ public class SuperWorker : IWorker
 public class Manager 
 {
     IWorker worker;
-    public void SetWorker(IWorker w) 
+    ==public void SetWorker(IWorker w)==
     {
         worker = w;
     }
@@ -252,7 +232,6 @@ public class Manager
         worker.Work();
     }
 }
-```
 
 **Dependency Injection** is about how one object acquires a dependency.
 **Inversion of Control (IoC)** means that objects do not create other objects on which they rely to do their work. Instead, they get the objects that they need from an outside source (for example, an xml configuration file).

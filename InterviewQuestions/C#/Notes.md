@@ -184,9 +184,5 @@ public string ==Foo() => throw new NotImplementedException();==
 A throw expression can also appear in a ternary conditional expression:
 string Capitalize (string value) => ==value == null ? throw new ArgumentException ("value")== : value == "" ? "" : char.ToUpper (value[0]) + value.Substring (1);
 
-```
-
-```
-
 Reference: [C# 7.0 in a nutshell by Oreilly publications](https://www.amazon.com/C-7-0-Nutshell-Definitive-Reference/dp/1491987650/ref=sr_1_1?keywords=c%23+7+in+a+nutshell&qid=1569731253&sr=8-1)
 

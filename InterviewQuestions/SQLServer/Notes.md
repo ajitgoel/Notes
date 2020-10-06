@@ -1,5 +1,4 @@
-A table may have more than one combination of columns that could uniquely identify the rows in a table; each
-combination is a **candidate key**.
+A table may have more than one combination of columns that could uniquely identify the rows in a table; each combination is a **candidate key**.
 
 A **clustered index** is a special type of index that reorders the way in which records in the table are physically stored.Therefore table can have only one clustered index.
 
@@ -19,17 +18,17 @@ There are two types of triggers :-
 INSTEAD OF triggers fire in place of the triggering action. For example, if an INSTEAD OF UPDATE trigger exists on the Sales table and an UPDATE statement is executed against the Sales table, the UPDATE statement will not change a row in the sales table. Instead, the UPDATE statement causes the INSTEAD OF UPDATE trigger to be executed, which may or may not modify data in the Sales table.
 
 √ AFTER triggers
-AFTER triggers execute following the SQL action, such as an insert, update, or delete. This is the traditional trigger which existed in SQL SERVER. <u>INSTEAD OF triggers gets executed automatically before the Primary Key and the Foreign Key constraints are checked, whereas the traditional AFTER triggers gets executed after these constraints are checked. Unlike AFTER triggers, INSTEAD OF triggers can be created on views.</u>
+AFTER triggers execute following the SQL action, such as an insert, update, or delete. This is the traditional trigger which existed in SQL SERVER. ==INSTEAD OF triggers gets executed automatically before the Primary Key and the Foreign Key constraints are checked, whereas the traditional AFTER triggers gets executed after these constraints are checked. Unlike AFTER triggers, INSTEAD OF triggers can be created on views.==
 
 **Prevent deadlocks in database**
 Although deadlocks cannot be completely avoided, following certain coding conventions can minimize the chance ofgenerating a deadlock. Minimizing deadlocks can increase transaction throughput and reduce system overhead because
 fewer transactions are rolled back, undoing all the work performed by the transaction or Resubmitted by applications because they were rolled back when deadlocked.
-<u>To help minimize deadlocks:</u>
-<u>• Access objects in the same order.</u>
-<u>• Avoid user interaction in transactions.</u>
-<u>• Keep transactions short and in one batch.</u>
-<u>• Use a lower isolation level.</u>
-<u>• Use bound connections.</u>
+==To help minimize deadlocks:
+• Access objects in the same order.
+• Avoid user interaction in transactions.
+• Keep transactions short and in one batch.
+• Use a lower isolation level.
+• Use bound connections.==
 • Use a row versioning-based isolation level.
 • Set READ_COMMITTED_SNAPSHOT database option ON to enable read-committed transactions to use row versioning.
 • Use snapshot isolation.
@@ -41,14 +40,13 @@ If all concurrent transactions access objects in the same order, deadlocks are l
 Avoid writing transactions that include user interaction, because the speed of batches running without user intervention is much faster than the speed at which a user must manually respond to queries, such as replying to a prompt for a parameter requested by an application. For example, if a transaction is waiting for user input and the user goes to lunch or even home for the weekend, the user delays the transaction from completing. This degrades system throughput because any locks held by the transaction are released only when the transaction is committed or rolled back. Even if a deadlock situation does not arise, other transactions accessing the same resources are blocked while waiting for the transaction to complete.
 
 **Keep Transactions Short and in One Batch**
-A deadlock typically occurs when several long-running transactions execute concurrently in the same database. The longer the transaction, the longer the exclusive or update locks are held, blocking other activity and leading to possible deadlock situations. == <u>Keeping transactions in one batch minimizes network roundtrips during a transaction, reducing possible delays in completing the transaction and releasing locks.</u> ==
+A deadlock typically occurs when several long-running transactions execute concurrently in the same database. The longer the transaction, the longer the exclusive or update locks are held, blocking other activity and leading to possible deadlock situations. ==Keeping transactions in one batch minimizes network roundtrips during a transaction, reducing possible delays in completing the transaction and releasing locks==
 
 **Use a Lower Isolation Level**
 Determine whether a transaction can run at a lower isolation level. Implementing read committed allows a transaction to read data previously read (not modified) by another transaction without waiting for the first transaction to complete. Using a lower isolation level, such as read committed, holds shared locks for a shorter duration than a higher isolation level, such as serializable. This reduces locking contention
 
 **Use Bound Connections**
-<u>Using bound connections, two or more connections opened by the same application can cooperate with each other. Any</u>
-<u>locks acquired by the secondary connections are held as if they were acquired by the primary connection, and vice versa. Therefore they do not block each other.</u>
+==Using bound connections, two or more connections opened by the same application can cooperate with each other. Any locks acquired by the secondary connections are held as if they were acquired by the primary connection, and vice versa. Therefore they do not block each other.==
 
 **Use a Row Versioning-based Isolation Level**
 When the READ_COMMITTED_SNAPSHOT database option is set ON, a transaction running under read committed isolation

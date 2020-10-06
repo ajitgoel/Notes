@@ -21,4 +21,10 @@ Zone-redundant storage (ZRS) replicates your data synchronously across three sto
 Locally redundant storage(LRS) would not remain available if a data center in the region fails 
 Geo Redundant Storage(GRS) and Read Access Geo Redundant Storage(RA GRS) use asynchronous replication. 
 
-
+Deployment slots
+Swapping
+Scale Up
+Scale Out
+Azure Container Registry
+Azure DevOps
+Webjobs
