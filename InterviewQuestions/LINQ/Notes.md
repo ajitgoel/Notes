@@ -5,16 +5,16 @@ Consider the below simple code which uses IEnumerable with entity framework. Itâ
 EmpEntities ent = new EmpEntities();
 **IEnumerable<Employee>** emp = ent.Employees;
 IEnumerable<Employee> temp = emp.Where(x => x.Empid == 2).ToList<Employee>();
-This where filter is executed on the client side where the IEnumerable code is. **In other words all the data is fetched from the database and then at the client its scans and gets the record with EmpId is 2.**
+This where filter is executed on the client side where the IEnumerable code is. ==In other words all the data is fetched from the database and then at the client its scans and gets the record with EmpId is 2.==
 
-But now see the below code we have changed IEnumerable to IQueryable. **It creates a SQL Query at the server side and only necessary data is sent to the client side.**
+But now see the below code we have changed IEnumerable to IQueryable. ==It creates a SQL Query at the server side and only necessary data is sent to the client side.==
 
 EmpEntities ent = new EmpEntities();
 **IQueryable<Employee>** emp = ent.Employees;
 IQueryable<Employee> temp = emp.Where(x => x.Empid == 2).ToList<Employee>();
 enter image description here
 
-<u>So if you working with only in-memory data collection IEnumerable is a good choice but if you want to query data collection which is connected with database `IQueryable is a better choice as it reduces network traffic and uses the power of SQL language.</u>
+==So if you working with only in-memory data collection IEnumerable is a good choice but if you want to query data collection which is connected with database `IQueryable is a better choice as it reduces network traffic and uses the power of SQL language.==
 
 **What are advantages of LINQ?**
 Ans. There are following advantages of using LINQ:

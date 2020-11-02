@@ -1,12 +1,12 @@
 **Types Of loading data:**
-**Eagerly Loading:** Eager loading is the process whereby a query for one type of entity also loads related entities as part of the query. Eager loading is achieved by use of the Include method.
+**Eagerly Loading:** ==Eager loading is the process whereby a query for one type of entity also loads related entities as part of the query. Eager loading is achieved by use of the Include method.==
 
 using (var context = new BloggingContext())
 {
     // Load all blogs and related posts
     var blogs1 = context.Blogs.==Include(b => b.Posts)==.ToList();
 
-**Lazy Loading:** Lazy loading is the process whereby an entity or collection of entities is automatically loaded from the database the first time that a property referring to the entity/entities is accessed.
+**Lazy Loading:** ==Lazy loading is the process whereby an entity or collection of entities is automatically loaded from the database the first time that a property referring to the entity/entities is accessed.==
 
 public class Blog
 {  
