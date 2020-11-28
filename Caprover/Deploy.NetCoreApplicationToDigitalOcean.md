@@ -16,5 +16,10 @@ password: SonFirstName@YearOfBirth
 
 https://instatranscribe.com/
 https://captain.instatranscribe.com/#/apps/details/blog-db
-password: SonFirstName@YearOfBirth
+
+**UserName \ password**: ajitgoel \ SonFirstName@YearOfBirth
+**UserName \ password**: root\ SonFirstName@YearOfBirth
+
+**Check application logs using putty:**
+docker service logs srv-captain--www --since 60m --follow => where www is the application name.
 

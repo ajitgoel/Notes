@@ -5,6 +5,20 @@
 
 **Reference:**[Service Lifetimes](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2#service-lifetimes)
 
+**Dependency-injection-in-aspnet-core: Get Services Manually**
+
+It is not required to include dependency services in the constructor. We can access dependent services configured with built-in IoC container manually using `RequestServices` property of `HttpContext` as shown below.
+public class HomeController : Controller
+{
+    public IActionResult Index()
+    {
+        ==var services = this.HttpContext.RequestServices;
+        var log = (ILog)services.GetService(typeof(ILog));
+        log.info("Index method executing");==
+        return View();
+    }
+}
+
 ### Q. What is .NET Core?
 
 **Ans:** .NET Core is a newer version of .NET, which is cross-platform, supporting Windows, MacOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios. The following characteristics best define .NET Core:
