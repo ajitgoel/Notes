@@ -599,7 +599,7 @@ Develop for Azure storage
 
 ## Topic 2 - Question Set 2
 
-Question #1*Topic 2*
+==Question #1*Topic 2*==
 
 You develop Azure solutions.
 You must connect to a No-SQL globally-distributed database by using the .NET API.
@@ -608,7 +608,7 @@ Which code segment should you use?
 
 - A. new Container(EndpointUri, PrimaryKey);
 - B. new Database(EndpointUri, PrimaryKey);
-- C. new CosmosClient(EndpointUri, PrimaryKey);
+- ==C. new CosmosClient(EndpointUri, PrimaryKey);==
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/6/#) [  Discussion  **2**](https://www.examtopics.com/exams/microsoft/az-204/view/6/#)
 
@@ -621,7 +621,7 @@ await this.CreateDatabaseAsync();
 Reference:
 https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-get-started
 
-Question #2*Topic 2*
+==Question #2*Topic 2*==
 
 DRAG DROP -
 You are developing a new page for a website that uses Azure Cosmos DB for data storage. The feature uses documents that have the following format:
@@ -632,11 +632,11 @@ You need to configure a Cosmos DB policy to the support the query.
 How should you configure the policy? To answer, drag the appropriate JSON segments to the correct locations. Each JSON segment may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007700001.png)
+<img src="C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007700001.png" alt="img" style="zoom: 67%;" />
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/7/#) [  Discussion  **7**](https://www.examtopics.com/exams/microsoft/az-204/view/7/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007800001.png)*
+**Correct Answer:** *<img src="C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007800001.png" alt="img" style="zoom:67%;" />*
 Box 1: compositeIndexes -
 You can order by multiple properties. A query that orders by multiple properties requires a composite index.
 
@@ -781,7 +781,7 @@ If the TTL for the file hasn't expired, the POP edge server returns the file dir
 Reference:
 https://docs.microsoft.com/en-us/azure/cdn/cdn-overview
 
-Question #7*Topic 2*
+==Question #7*Topic 2*==
 
 You are developing an Azure Cosmos DB solution by using the Azure Cosmos DB SQL API. The data includes millions of documents. Each document may contain hundreds of properties.
 The properties of the documents do not contain distinct values for partitioning. Azure Cosmos DB must scale individual containers in the database to meet the performance needs of the application by spreading the workload evenly across all partitions over time.
@@ -792,8 +792,8 @@ NOTE: Each correct selection is worth one point.
 - A. a single property value that does not appear frequently in the documents
 - B. a value containing the collection name
 - C. a single property value that appears frequently in the documents
-- D. a concatenation of multiple property values with a random suffix appended
-- E. a hash suffix appended to a property value
+- ==D. a concatenation of multiple property values with a random suffix appended==
+- ==E. a hash suffix appended to a property value==
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/8/#) [  Discussion  **1**](https://www.examtopics.com/exams/microsoft/az-204/view/8/#)
 
@@ -804,7 +804,7 @@ Note: It's the best practice to have a partition key with many distinct values, 
 Reference:
 https://docs.microsoft.com/en-us/azure/cosmos-db/synthetic-partition-keys
 
-Question #8*Topic 2*
+===Question #8*Topic 2*==
 
 HOTSPOT -
 A company develops a series of mobile games. All games use a single leaderboard service.
@@ -832,8 +832,7 @@ Create a table.
 A CloudTableClient object lets you get reference objects for tables and entities. The following code creates a CloudTableClient object and uses it to create a new
 CloudTable object, which represents a table
 // Retrieve storage account from connection-string.
-CloudStorageAccount storageAccount =
-CloudStorageAccount.parse(storageConnectionString);
+CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
 // Create the table client.
 CloudTableClient tableClient = storageAccount.createCloudTableClient();
 // Create the table if it doesn't exist.
@@ -841,8 +840,7 @@ String tableName = "people";
 CloudTable cloudTable = tableClient.getTableReference(tableName); cloudTable.createIfNotExists();
 
 Box 2: No -
-New records are inserted with TableOperation.insert. Old records are not updated.
-To update old records TableOperation.insertOrReplace should be used instead.
+==New records are inserted with TableOperation.insert. Old records are not updated. To update old records TableOperation.insertOrReplace should be used instead.==
 
 Box 3: No -
 
@@ -1185,8 +1183,6 @@ JSONP - Adds JSON with padding (JSONP) support to an operation or an API to allo
 Reference:
 https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad
 
-
-
 Question #11*Topic 3*
 
 DRAG DROP -
@@ -1495,7 +1491,9 @@ This attribute must be set to one of the following values.
 
 Box 3: Authorization -
 <vary-by-header>Authorization</vary-by-header>
+
 <!-- should be present when allow-private-response-caching is "true"-->
+
 Note: Start caching responses per value of specified header, such as Accept, Accept-Charset, Accept-Encoding, Accept-Language, Authorization, Expect, From,
 
 Host, If-Match -
@@ -2838,8 +2836,6 @@ JSONP - Adds JSON with padding (JSONP) support to an operation or an API to allo
 Reference:
 https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad
 
-
-
 Question #11*Topic 3*
 
 DRAG DROP -
@@ -3148,7 +3144,9 @@ This attribute must be set to one of the following values.
 
 Box 3: Authorization -
 <vary-by-header>Authorization</vary-by-header>
+
 <!-- should be present when allow-private-response-caching is "true"-->
+
 Note: Start caching responses per value of specified header, such as Accept, Accept-Charset, Accept-Encoding, Accept-Language, Authorization, Expect, From,
 
 Host, If-Match -
