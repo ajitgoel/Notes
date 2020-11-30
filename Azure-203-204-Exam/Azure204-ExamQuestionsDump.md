@@ -3634,3 +3634,4 @@ Does the solution meet the goal?
 You can create a function that is triggered when messages are submitted to an Azure Storage queue.
 Reference:
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-storage-queue-triggered-function
+
