@@ -91,8 +91,7 @@ It is a feature provided by Razor view engine that enables us to write server-si
 **Ans:** .NET Core is a newer version of .NET, which is cross-platform, supporting Windows, MacOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios. The following characteristics best define .NET Core:
 
 - **Flexible deployment:** Can be included in your app or installed side-by-side user or machine-wide.
-- ==**Cross-platform:** Runs on Windows, MacOS and Linux==; can be ported to other OSes. The supported Operating Systems (OS), CPUs and application scenarios will grow over time, provided by Microsoft, other companies, and individuals.
-- **Command-line tools**: All product scenarios can be exercised at the command-line.
+- ==**Cross-platform:** Runs on Windows, MacOS and Linux==; can be ported to other OSes. The supported Operating Systems (OS), CPUs and application scenarios will grow over time, provided by Microsoft, other companies, and individuals.**Command-line tools**: All product scenarios can be exercised at the command-line.
 - **Compatible**: ==.NET Core is compatible with .NET Framework, Xamarin and Mono, via the .NET Standard Library.==
 
 ### Q. How is it different from existing .NET framework?
