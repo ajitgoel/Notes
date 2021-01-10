@@ -183,3 +183,20 @@ Below are the steps for Docker life cycle:
 **42. What is the purpose of Docker_Host?** It contains container, images, and Docker daemon. It offers a complete environment to execute and run your application.
 
 **43. How do I run multiple copies of Compose file on the same host?** Compose uses the project name which allows you to create unique identifiers for all of a project's containers and other resources. To run multiple copies of a project, set a custom project name using the -a command-line option or using COMPOSE_PROJECT_NAME environment variable.
+
+## How is Docker different from a virtual machine?
+
+Docker isn't a virtualization methodology. It relies on other tools that actually implement **container-based virtualization** or operating system level virtualization. For that, Docker was initially using LXC driver, then moved to `libcontainer` which is now renamed as`runc`. Docker primarily focuses on automating the deployment of applications inside application containers. Application containers are designed to package and run a single service, whereas system containers are designed to run multiple processes, like virtual machines. So, Docker is considered as a container management or application deployment tool on containerized systems.
+
+
+
+![img](C:\Users\ajitg\Notes\InterviewQuestions\Docker\Notes.assets\qTuWpm.png)
+
+
+
+- Unlike a virtual machine, a container does not need to boot the operating system kernel, so containers can be created in less than a second. This feature makes container-based virtualization unique and desirable than other virtualization approaches.
+- Since container-based virtualization adds little or no overhead to the host machine, container-based virtualization has near-native performance
+- For container-based virtualization, no additional software is required, unlike other virtualizations.
+- All containers on a host machine share the scheduler of the host machine saving need of extra resources.
+- Container states (Docker or LXC images) are small in size compared to virtual machine images, so container images are easy to distribute.
+- Resource management in containers is achieved through cgroups. Cgroups does not allow containers to consume more resources than allocated to them. However, as of now, all resources of host machine are visible in virtual machines, but can't be used. This can be realized by running top or htop on containers and host machine at the same time. The output across all environments will look similar.

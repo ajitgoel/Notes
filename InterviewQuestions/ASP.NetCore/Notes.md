@@ -1,6 +1,6 @@
 **Service lifetimes:**
-**Transient:** Transient lifetime services (AddTransient) are created each time they’re requested from the service container. This lifetime works best for lightweight, stateless services.
-**Scoped:** Scoped lifetime services (AddScoped) are created once per client request (connection).
+**Transient:** ==Transient lifetime services (AddTransient) are created each time they’re requested from the service container.== This lifetime works best for lightweight, stateless services.
+**Scoped:** ==Scoped lifetime services (AddScoped) are created once per client request (connection).==
 **Singleton:** Singleton lifetime services (AddSingleton) are created the first time they’re requested (or when Startup.ConfigureServices is run and an instance is specified with the service registration). Every subsequent request uses the same instance. If the app requires singleton behavior, allowing the service container to manage the service’s lifetime is recommended. Don’t implement the singleton design pattern and provide user code to manage the object’s lifetime in the class.
 
 **Reference:**[Service Lifetimes](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2#service-lifetimes)
@@ -18,6 +18,73 @@ public class HomeController : Controller
         return View();
     }
 }
+
+## What is the use of "Map" extension while adding middleware to ASP.NET Core pipeline?
+
+It is used for branching the pipeline. It branches the ASP.NET Core pipeline based on request path matching. If request path starts with the given path, middleware on to that branch will execute.
+
+```c
+ public void Configure(IApplicationBuilder app)
+ {
+ app.Map("/path1", Middleware1);
+ app.Map("/path2", Middleware2);
+ }
+```
+
+## How to enable Session in ASP.NET Core?
+
+The middleware for the session is provided by the package Microsoft.AspNetCore.Session. To use the session in ASP.NET Core application, we need to add this package to csproj file and add the Session middleware to ASP.NET Core request pipeline.
+
+```c
+ public class Startup
+ {
+ public void ConfigureServices(IServiceCollection services)
+ {
+ ….
+ ….
+ services.AddSession();
+ services.AddMvc();
+ }
+ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+ {
+ ….
+ ….
+ app.UseSession();
+ ….
+ ….
+ }
+ }
+```
+
+## How can we do automatic model binding in Razor pages?
+
+The Razor pages provide the option to bind property automatically when posted the data using BindProperty attribute. By default, it only binds the properties only with non-GET verbs. we need to set SupportsGet property to true to bind a property on getting request.
+
+**Example**
+
+```c
+ public class Test1Model : PageModel
+ {
+ [BindProperty]
+ public string Name { get; set; }
+ }
+```
+
+## What is tag helper in ASP.NET Core?
+
+It is a feature provided by Razor view engine that enables us to write server-side code to create and render the HTML element in view (Razor). The tag-helper is C# classes that used to generate the view by adding the HTML element. The functionality of tag helper is very similar to HTML helper of ASP.NET MVC.
+
+```html
+ Example:
+ //HTML Helper
+ @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", placeholder = "Enter Your First Name" }) 
+ 
+ //content with tag helper
+ <input asp-for="FirstName" placeholder="Enter Your First Name" class="form-control" /> 
+ 
+ //Equivalent HTML
+ <input placeholder="Enter Your First Name" class="form-control" id="FirstName" name="FirstName" value="" type="text"> 
+```
 
 ### Q. What is .NET Core?
 
@@ -172,8 +239,7 @@ public class Program
     {
         BuildWebHost(args).Run();
     }
-public static IWebHost BuildWebHost(string[] args) =>
-    WebHost.CreateDefaultBuilder(args).UseStartup<Startup>().Build();
+public static IWebHost BuildWebHost(string[] args) =>WebHost.CreateDefaultBuilder(args).UseStartup<Startup>().Build();
 }
 Read this [post](https://www.talkingdotnet.com/whats-new-in-asp-net-core-2-0/) to know more.
 
@@ -244,3 +310,4 @@ For more Read [Overview of Tools for bundling and minification in ASP.NET Core](
 ### Q.What are the differences between ASP.NET MVC 5 and ASP.NET MVC Core 1.0?
 
 **Ans:** Read [Difference between ASP.NET MVC 5 and ASP.NET MVC Core 1.0](https://www.talkingdotnet.com/difference-asp-net-mvc-5-mvc-6-core-1-0/).
+
