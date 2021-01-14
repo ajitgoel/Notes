@@ -47,6 +47,7 @@ Guidance on doing a phone interview:
 4.Get a high-quality phone.
 5.Shower, groom and dress up (at least a little).
 6.Stand up, or at least sit up straight at a table or desk.
+
 In the days before the interview
 Draw a line down the center of a piece of paper. On the left side, make a bulleted list of what the employer is
 looking for based on the job posting. On the right side, make a bulleted list of the qualities you possess that fit those
@@ -68,13 +69,15 @@ What are your goals?
 What are your strengths and weaknesses?
 Why do you want to work here?
 What has been your most significant achievement?
-How would your last boss and colleagues describe you?
+
+==**How would your last boss and colleagues describe you?**
 Very dependable and honest
 Willing to go alone, take the path less travelled.
 Very high quality of work.
 Can be relied on to do the diagnose and resolve complex issues using innovative approaches, within the technical
-constraints imposed by the project.
-Why should we hire you?
+constraints imposed by the project.==
+
+**Why should we hire you?**
 • Have deep experience designing, coding, testing SQL Server databases
 • Design, code, and deliver multi-tier products with web-based, windows-based, mobile-based clients on the
 .NET/SQL Server technology stack.
@@ -88,6 +91,7 @@ customers.
  Develop applications utilizing Hybrid Cloud technologies (SaaS, Paas, IaaS).
  Generate innovative approaches and solutions to complex issues.
  Mentor less-experienced staff in their career development, and provide them daily guidance and direction.
+
 What are your salary expectations?
 Before you go to the interview
 Do you look professional? Check yourself in the mirror; part of your confidence will come from looking good.

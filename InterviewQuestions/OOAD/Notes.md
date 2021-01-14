@@ -10,8 +10,7 @@ e. Dependency Inversion Principle
 **a. Single Responsibility Principle**
 Single Responsibility Principle states that every class should have a single responsibility. There should never be more than one reason for a class to change.
 
-==//This class violates Single Responsibility Principle since this class is doing two things. It is dealing with both opening \ closing connections and with 
-//data communication.==
+==This class violates Single Responsibility Principle since this class is doing two things. It is dealing with both opening \ closing connections and with data communication.==
 public interface IDatabase
 {
     void Connect(string connectionString);
@@ -21,8 +20,9 @@ public interface IDatabase
 }
 
 **Refactored code to follow Single Responsibility Principle and Open\closed principle:**
-==//IDatabase class has now been refactored into two classes. The IDataManager class deals with data communication.The IConnectionManager 
-//class deals with opening \ closing connections. These classes now follow the Single Responsibility Principle.==
+==Database class has now been refactored into two classes. ==
+==The IDataManager class deals with data communication.==
+==The IConnectionManager class deals with opening \ closing connections. These classes now follow the Single Responsibility Principle.==
 public interface IDataManager
 {
     object GetData(IConnectionManager connManager);
@@ -46,8 +46,7 @@ Liskov Substitution Principle states that code should not know it is using base 
 
 public class DatabaseRepository
 {
-   ==//This method violates Liskov Substitution Principle since it consumes an object of a base type but internally uses the base type's subclass. According to 
-    //Liskov Substitution Principle, it should not know it is using base class or its subtypes. 
+   ==This method violates Liskov Substitution Principle since it consumes an object of a base type but internally uses the base type's subclass. According to Liskov Substitution Principle, it should not know it is using base class or its subtypes. 
     public bool TestConnection(IConnectionManager connMngr)==
     {
         ==if (connMngr is SqlServerConnectionManager)==
@@ -89,7 +88,7 @@ public class OracleConnectionManager : IConnectionManager
 }
 
 **d. Interface Segregation Principle**
-The Interface Segregation Principle states that clients should not be forced to implement interfaces they don’t use.
+==The Interface Segregation Principle states that clients should not be forced to implement interfaces they don’t use.==
 
 **Existing Design**
 Let’s assume we have to implement a new Robot class in this design. **Robots** will need to implement the **IWorker** interface because robots works. On the other side, they don’t have to implement it because they don’t eat. If we keep the present design, the new Robot class is forced to implement the “eat” method.
@@ -125,8 +124,7 @@ public class Manager
 
 **Interface Segregation Principle implemented in current design**
 
-==//Following code supports the Interface Segregation Principle. By splitting the IWorker interface in IFeedable, IWorkable interfaces the new Robot class is 
-//no longer forced to implement the "eat" method.
+==Following code supports the Interface Segregation Principle. By splitting the IWorker interface in IFeedable, IWorkable interfaces the new Robot class is no longer forced to implement the "eat" method.
 public interface IWorker : IFeedable, IWorkable== 
 {
 }
@@ -167,9 +165,10 @@ public class Manager
 }
 
 **e. Dependency Inversion Principle**
-Dependency Inversion Principle states that
-\1. High-level modules(Manager class) should not depend on low-level modules(Worker, SuperWorker classes). Both(Manager, Worker, SuperWorker classes) should depend on abstractions(IWorker).
-\2. Abstractions should not depend on details. Details should depend on abstractions.
+==Dependency Inversion Principle states that==
+
+1. ==High-level modules(Manager class) should not depend on low-level modules(Worker, SuperWorker classes). Both(Manager, Worker, SuperWorker classes) should depend on abstractions(IWorker).==
+2. ==Abstractions should not depend on details. Details should depend on abstractions.==
 
 **Existing Design**
 Let’s assume we have to implement a new SuperWorker class in this design. If we do that then we will have to change the Manager.Manage() method also which introduces risk.
@@ -203,7 +202,7 @@ public class Manager
 
 **Dependency Inversion Principle implemented in current design**
 
-==//Following code supports the Dependency Inversion Principle. In this new design a new IWorker Interface has been added. Now the Manager class doesn't //require  changes when SuperWorkers are added since the work has been delegated to the  SuperWorker class.It also reduces risk since no other parts of the //system need to be tested.
+==Following code supports the Dependency Inversion Principle. In this new design a new IWorker Interface has been added. Now the Manager class doesn't require  changes when SuperWorkers are added since the work has been delegated to the  SuperWorker class.It also reduces risk since no other parts of the system need to be tested.
 public interface IWorker 
 {
     public void Work();

@@ -184,6 +184,10 @@ Below are the steps for Docker life cycle:
 
 **43. How do I run multiple copies of Compose file on the same host?** Compose uses the project name which allows you to create unique identifiers for all of a project's containers and other resources. To run multiple copies of a project, set a custom project name using the -a command-line option or using COMPOSE_PROJECT_NAME environment variable.
 
+## ==Docker Containers versus Virtual Machines:==
+
+<img src="C:\Users\ajitg\Notes\InterviewQuestions\Docker\Notes.assets\vm-docker4.png" alt="My Image" style="zoom:67%;" />
+
 ## How is Docker different from a virtual machine?
 
 Docker isn't a virtualization methodology. It relies on other tools that actually implement **container-based virtualization** or operating system level virtualization. For that, Docker was initially using LXC driver, then moved to `libcontainer` which is now renamed as`runc`. Docker primarily focuses on automating the deployment of applications inside application containers. Application containers are designed to package and run a single service, whereas system containers are designed to run multiple processes, like virtual machines. So, Docker is considered as a container management or application deployment tool on containerized systems.

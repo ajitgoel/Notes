@@ -1,6 +1,6 @@
 ## Encapsulate and vary algorithm from the client that uses it(Strategy Pattern)
 
-**Strategy pattern** is a software design pattern that enables an algorithm’s behavior to be selected at runtime. It
+==**Strategy pattern** is a software design pattern that enables an algorithm’s behavior to be selected at runtime.== It
 a. defines a family of algorithms,
 b. encapsulates each algorithm, and
 c. makes the algorithms interchangeable within that family.
@@ -18,7 +18,7 @@ class StrategyDesignPatternClient
         sortedList.Add("name 1");
         sortedList.Add("name 2");
         sortedList.Add("name 3");
-        ==//The client passes the "sort strategy" to the SortedList so the SortedList can use that passed strategy to sort the internal list
+        ==The client passes the "sort strategy" to the SortedList so the SortedList can use that passed strategy to sort the internal list
         sortedList.SetSortStrategy(new QuickSort());==
         sortedList.Sort();
     }
@@ -37,7 +37,7 @@ public class SortedList
     }==
     public void Sort()
     {
-        ==//Ask the "SortStrategy" class to sort the list. 
+        ==Ask the "SortStrategy" class to sort the list. 
         sortstrategy.Sort(list);==
     }
 }
@@ -78,7 +78,7 @@ You have a robot that can turn left and right. It can also move forward and back
 
 **Solution**
 
-![](C:\Users\ajitg\AppData\Local\Microsoft\Windows\INetCache\IE\M06XL6SB\AdapterDesignPatternWithATwist[1].jpg)
+<img src="C:\Users\ajitg\Notes\InterviewQuestions\DesignPatterns\Notes.assets\AdapterDesignPatternWithATwist.jpg" style="zoom: 80%;" />
 
 using System;
 using System.Collections.Generic;
@@ -125,7 +125,7 @@ public class LegacyRobotAdapter : IRobot
     {
         this.legacyRobot.GoFront(noOfSteps);
     }
-   ==//The legacy robot can go back by turning right by 180 degrees then going front by the number of steps requested by the client then turning right by 180 //degrees to be facing from where the robot started from.==
+   ==The legacy robot can go back by turning right by 180 degrees then going front by the number of steps requested by the client then turning right by 180 degrees to be facing from where the robot started from.==
     public void GoBack(int noOfSteps)
     {
         ==this.legacyRobot.TurnRight(180);
@@ -158,9 +158,7 @@ I have implemented the same in Solution 2 below.
 
 **Solution 1(Not recommended):**
 
-![](C:\Users\ajitg\AppData\Local\Microsoft\Windows\INetCache\IE\M06XL6SB\SingletonDesignPattern-2[1].jpg)
-
-
+![](C:\Users\ajitg\Notes\InterviewQuestions\DesignPatterns\Notes.assets\SingletonDesignPattern-2.jpg)
 
 using System;
 using System.Collections.Generic;
@@ -198,7 +196,7 @@ public class Singleton
             }
             lock (tempObjectForLocking)
             {
-                //Multiple processes could access the code below at the same time, therefore a "null" check has been added so only one process can create a singleton //instance. 
+                Multiple processes could access the code below at the same time, therefore a "null" check has been added so only one process can create a singleton instance. 
                 if (singleton == null)//Second(double) check
                 {
                     singleton = new Singleton();
@@ -233,7 +231,7 @@ public class UnitTest1
 }
 public sealed class Singleton
 {
-   ==//Using the .NET 4's Lazy<T>; type, to implement a singleton pattern. The Lazy<T>; class internally uses double-checked locking by default to  store either // the exception that was thrown during construction, or the result of the function that was passed to Lazy<T>.
+   ==Using the .NET 4's Lazy<T>; type, to implement a singleton pattern. The Lazy<T>; class internally uses double-checked locking by default to  store either the exception that was thrown during construction, or the result of the function that was passed to Lazy<T>.
 	private static readonly Lazy<Singleton> lazy = new Lazy<Singleton>
 	(
 	  () => new Singleton()
@@ -281,7 +279,7 @@ using System.Linq;
 
 ## Convert the interface of a class into another interface that the clients expects(Adapter Pattern)
 
-![](C:\Users\ajitg\AppData\Local\Microsoft\Windows\INetCache\IE\M06XL6SB\AdapterPattern[1].jpg)
+<img src="C:\Users\ajitg\Notes\InterviewQuestions\DesignPatterns\Notes.assets\AdapterPattern.jpg" style="zoom: 80%;" />
 
 **Adapter pattern:**
 
