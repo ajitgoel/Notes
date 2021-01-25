@@ -36,3 +36,11 @@ Storage Account
 ​	Blob storage account generation1: 
 
 ​	Blob storage account Generation2: 
+
+**<u>Secure Data:</u>**
+
+SSE: Secure Storage Account
+Microsoft Key Vault
+Encryption in transient
+**TDE:** Transparent Data Encryption
+**HSM:** Hardware security solution
