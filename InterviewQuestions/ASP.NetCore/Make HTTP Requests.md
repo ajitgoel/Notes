@@ -37,9 +37,7 @@ public class Startup
     {
         Configuration = configuration;
     }
-
     public IConfiguration Configuration { get; }
-
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddHttpClient();
@@ -54,27 +52,20 @@ C#Copy
 public class BasicUsageModel : PageModel
 {
     private readonly IHttpClientFactory _clientFactory;
-
     public IEnumerable<GitHubBranch> Branches { get; private set; }
-
     public bool GetBranchesError { get; private set; }
-
     public BasicUsageModel(IHttpClientFactory clientFactory)
     {
         _clientFactory = clientFactory;
     }
-
     public async Task OnGet()
     {
         var request = new HttpRequestMessage(HttpMethod.Get,
             "https://api.github.com/repos/aspnet/AspNetCore.Docs/branches");
         request.Headers.Add("Accept", "application/vnd.github.v3+json");
         request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
-
         var client = _clientFactory.CreateClient();
-
         var response = await client.SendAsync(request);
-
         if (response.IsSuccessStatusCode)
         {
             using var responseStream = await response.Content.ReadAsStreamAsync();
@@ -101,10 +92,7 @@ Named clients are a good choice when:
 
 Configuration for a named `HttpClient` can be specified during registration in `Startup.ConfigureServices`:
 
-C#Copy
-
-```csharp
-services.AddHttpClient("github", c =>
+services.AddHttpClient(=="github"==, c =>
 {
     c.BaseAddress = new Uri("https://api.github.com/");
     // Github API versioning
@@ -112,7 +100,6 @@ services.AddHttpClient("github", c =>
     // Github requires a user-agent
     c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
 });
-```
 
 In the preceding code the client is configured with:
 
@@ -128,33 +115,21 @@ Each time [CreateClient](https://docs.microsoft.com/en-us/dotnet/api/system.net.
 
 To create a named client, pass its name into `CreateClient`:
 
-C#Copy
-
-```csharp
 public class NamedClientModel : PageModel
 {
     private readonly IHttpClientFactory _clientFactory;
-
     public IEnumerable<GitHubPullRequest> PullRequests { get; private set; }
-
     public bool GetPullRequestsError { get; private set; }
-
     public bool HasPullRequests => PullRequests.Any();
-
     public NamedClientModel(IHttpClientFactory clientFactory)
     {
         _clientFactory = clientFactory;
     }
-
     public async Task OnGet()
     {
-        var request = new HttpRequestMessage(HttpMethod.Get,
-            "repos/aspnet/AspNetCore.Docs/pulls");
-
-        var client = _clientFactory.CreateClient("github");
-
+        var request = new HttpRequestMessage(HttpMethod.Get,"repos/aspnet/AspNetCore.Docs/pulls");
+        ==var client = _clientFactory.CreateClient("github");==
         var response = await client.SendAsync(request);
-
         if (response.IsSuccessStatusCode)
         {
             using var responseStream = await response.Content.ReadAsStreamAsync();
@@ -168,7 +143,6 @@ public class NamedClientModel : PageModel
         }
     }
 }
-```
 
 In the preceding code, the request doesn't need to specify a hostname. The code can pass just the path, since the base address configured for the client is used.
 

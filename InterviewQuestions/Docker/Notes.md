@@ -186,7 +186,7 @@ Below are the steps for Docker life cycle:
 
 ## ==Docker Containers versus Virtual Machines:==
 
-<img src="C:\Users\ajitg\Notes\InterviewQuestions\Docker\Notes.assets\vm-docker4.png" alt="My Image" style="zoom:67%;" />
+<img src="C:\temp\Notes\InterviewQuestions\Docker\Notes.assets\vm-docker4.png" alt="My Image" style="zoom:67%;" />
 
 ## How is Docker different from a virtual machine?
 
@@ -194,7 +194,7 @@ Docker isn't a virtualization methodology. It relies on other tools that actuall
 
 
 
-![img](C:\Users\ajitg\Notes\InterviewQuestions\Docker\Notes.assets\qTuWpm.png)
+![img](C:\temp\Notes\InterviewQuestions\Docker\Notes.assets\qTuWpm.png)
 
 
 

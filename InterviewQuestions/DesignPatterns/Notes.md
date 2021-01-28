@@ -41,11 +41,11 @@ public class SortedList
         sortstrategy.Sort(list);==
     }
 }
-public interface SortStrategy
+public interface ISortStrategy
 {
     void Sort(List<string> list);
 }
-public class QuickSort : SortStrategy
+public class QuickSort : ISortStrategy
 {
     ==public void Sort(List<string> list)
     {
@@ -53,14 +53,14 @@ public class QuickSort : SortStrategy
         list.Sort(); 
     }==
 }
-public class ShellSort : SortStrategy
+public class ShellSort : ISortStrategy
 {
     public void Sort(List<string> list)
     {
         // ShellSort the "list" collection here. 
     }
 }
-public class MergeSort : SortStrategy
+public class MergeSort : ISortStrategy
 {
     public void Sort(List<string> list)
     {
@@ -78,7 +78,7 @@ You have a robot that can turn left and right. It can also move forward and back
 
 **Solution**
 
-<img src="C:\Users\ajitg\Notes\InterviewQuestions\DesignPatterns\Notes.assets\AdapterDesignPatternWithATwist.jpg" style="zoom: 80%;" />
+<img src="C:\temp\Notes\InterviewQuestions\DesignPatterns\Notes.assets\AdapterDesignPatternWithATwist.jpg" style="zoom: 80%;" />
 
 using System;
 using System.Collections.Generic;
@@ -158,7 +158,7 @@ I have implemented the same in Solution 2 below.
 
 **Solution 1(Not recommended):**
 
-![](C:\Users\ajitg\Notes\InterviewQuestions\DesignPatterns\Notes.assets\SingletonDesignPattern-2.jpg)
+<img src="C:\temp\Notes\InterviewQuestions\DesignPatterns\Notes.assets\SingletonDesignPattern-2.jpg"  />
 
 using System;
 using System.Collections.Generic;
@@ -252,8 +252,8 @@ public sealed class Singleton
 
 ## Avoid accidentally throwing a NullReferenceException and null object checking code(Null Object Pattern)
 
-**Null Object Pattern:**
-Avoid accidentally throwing a NullReferenceException and null object checking code by using the **Null Object** design pattern.
+==**Null Object Pattern:**
+Avoid accidentally throwing a NullReferenceException and null object checking code by using the **Null Object** design pattern.==
 
 using System;
 using System.Linq;
@@ -279,7 +279,7 @@ using System.Linq;
 
 ## Convert the interface of a class into another interface that the clients expects(Adapter Pattern)
 
-<img src="C:\Users\ajitg\Notes\InterviewQuestions\DesignPatterns\Notes.assets\AdapterPattern.jpg" style="zoom: 80%;" />
+<img src="C:\temp\Notes\InterviewQuestions\DesignPatterns\Notes.assets\AdapterPattern.jpg"  />
 
 **Adapter pattern:**
 
