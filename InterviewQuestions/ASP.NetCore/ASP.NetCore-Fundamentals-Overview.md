@@ -1,14 +1,5 @@
 # ASP.NET Core fundamentals
 
-- 03/30/2020
-- 17 minutes to read
-- - [![img](https://github.com/Rick-Anderson.png?size=32)](https://github.com/Rick-Anderson)
-  - [![img](https://github.com/scottaddie.png?size=32)](https://github.com/scottaddie)
-  - [![img](https://github.com/guardrex.png?size=32)](https://github.com/guardrex)
-  - [![img](https://github.com/serpent5.png?size=32)](https://github.com/serpent5)
-  - [![img](https://github.com/PickNickChock.png?size=32)](https://github.com/PickNickChock)
-  - 
-
 This article provides an overview of key topics for understanding how to develop ASP.NET Core apps.
 
 ## The Startup class
