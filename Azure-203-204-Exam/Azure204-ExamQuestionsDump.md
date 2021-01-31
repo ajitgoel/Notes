@@ -418,7 +418,7 @@ Select and Place:
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/4/#) [  Discussion  **11**](https://www.examtopics.com/exams/microsoft/az-204/view/4/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004600001.png)*
+**Correct Answer:** *<img src="C:\Users\ajitg\Notes\Azure-203-204-Exam\Azure204-ExamQuestionsDump.assets\0004600001.png" alt="img" style="zoom: 67%;" />*
 Step 1: Create the Azure Functions app with a Consumption plan type.
 Use the Consumption plan for serverless.
 Step 2: Create a system-assigned managed identity for the application.

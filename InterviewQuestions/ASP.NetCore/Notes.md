@@ -62,13 +62,11 @@ The Razor pages provide the option to bind property automatically when posted th
 
 **Example**
 
-```c
- public class Test1Model : PageModel
+public class Test1Model : PageModel
  {
- [BindProperty]
+==[BindProperty]==
  public string Name { get; set; }
- }
-```
+ } 
 
 ## What is tag helper in ASP.NET Core?
 
@@ -112,7 +110,7 @@ It is a feature provided by Razor view engine that enables us to write server-si
 
 ### Q. Why Use ASP.NET Core for Web Application Development?
 
-**Ans:** ASP.NET Core is an robust, and feature-rich framework that provides features to develop super-fast APIs for web apps. ASP.NET Core should be prefered for following reason:
+**Ans:** ASP.NET Core is an robust, and feature-rich framework that provides features to develop super-fast APIs for web apps. ASP.NET Core should be preferred for following reason:
 
 - ==ASP.NET Core is faster compare to traditional ASP.NET.==
 - ==**Cross-platform:** Runs on Windows, MacOS and Linux;== can be ported to other OSes. The supported Operating Systems (OS), CPUs and application scenarios will grow over time, provided by Microsoft, other companies, and individuals.
@@ -126,7 +124,7 @@ It is a feature provided by Razor view engine that enables us to write server-si
 - ==Built in logging support.==
 - ==In ASP.NET we had modules and handlers to deal with requests. In ASP.NET Core we have middleware which provides more control how the request should be processed as they are executed in the order in which they are added.==
 
-### Q. What is ASP.NET Core Middleware and How it is different from HttpModule?
+### Q. What is ASP.NET Core Middleware and how it is different from HttpModule?
 
 **Ans:** Read my post about [How ASP.NET Core 1.0 Middleware is different from HttpModule](https://www.talkingdotnet.com/asp-net-core-middleware-is-different-from-httpmodule/)
 
