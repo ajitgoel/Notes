@@ -1,10 +1,8 @@
 # [C# Async Antipatterns](https://markheath.net/post/async-antipatterns)
 
-February 22. 2019 [32 Comments](https://markheath.net/post/async-antipatterns#disqus_thread) Posted in: [C#](https://markheath.net/category/c%23)
-
 The `async` and `await` keywords have done a great job of simplifying writing asynchronous code in C#, but unfortunately they can't magically protect you from getting things wrong. In this article, I want to highlight a bunch of the most common async coding mistakes or antipatterns that I've come across in code reviews.
 
-### 1. Forgotten `await`
+### ==1. Forgotten `await`==
 
 Whenever you call a method that returns a `Task` or `Task<T>` you should not ignore its return value. In most cases, that means awaiting it, although there are occasions where you might keep hold of the `Task` to be awaited later.
 
@@ -35,7 +33,7 @@ The danger with this approach is that nothing is going to catch any exceptions t
 
 So use this approach with caution, and make sure the method has good exception handling. Often when I see code like this in cloud-applications, I often refactor it to post a message to a queue, whose message handler performs the background operation.
 
-### 3. Using `async void` methods
+### ==3. Using `async void` methods==
 
 Every now and then you'll find yourself in a synchronous method (i.e. one that doesn't return a `Task` or `Task<T>`) but you want to call an `async` method. However, without marking the method as `async` you can't use the `await` keyword. There are two ways developers work round this and both are risky.
 
@@ -64,7 +62,7 @@ public async void OnButton1Clicked(object sender, EventArgs args)
 
 But in most cases, I recommend against using `async void`. If you can make your method return a `Task`, you should do so.
 
-### 4. Blocking on tasks with `.Result` or `.Wait`
+### ==4. Blocking on tasks with `.Result` or `.Wait`==
 
 Another common way that developers work around the difficulty of calling asynchronous methods from synchronous methods is by using the `.Result` property or `.Wait` method on the `Task`. The `.Result` property waits for a `Task` to complete, and then returns its result, which at first seems really useful. We can use it like this:
 
@@ -117,7 +115,7 @@ Other situations where your hands are tied are when you are implementing a third
 
 The good news is that with modern C# development, it is becoming increasingly rare that you need to block on a task. Since C# 7.1 you could declare [async Main](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7-1) methods for console apps, and ASP.NET Core is much more async friendly than the previous ASP.NET MVC was, meaning that you should rarely find yourself in this situation.
 
-### 5. Mixing `ForEach` with `async` methods
+### ==5. Mixing `ForEach` with `async` methods==
 
 The `List<T>` class has a "handy" method called `ForEach` that performs an `Action<T>` on every element in the list. If you've seen any of my LINQ talks you'll know my misgivings about this method as encourages a variety of bad practices (read [this](https://blogs.msdn.microsoft.com/ericlippert/2009/05/18/foreach-vs-foreach/) for some of the reasons to avoid `ForEach`). But one common threading-related misuse I see, is using `ForEach` to call an asynchronous method.
 
@@ -157,13 +155,11 @@ foreach(var c in customers)
 
 Some people prefer to make this into an extension method, called something like `ForEachAsync`, which would allow you to write code that looks like this:
 
-```cs
-await customers.ForEachAsync(async c => await SendEmailAsync(c));
-```
+==await customers.ForEachAsync(async c => await SendEmailAsync(c));==
 
 But don't mix `List<T>.ForEach` (or indeed `Parallel.ForEach` which has exactly the same problem) with asyncrhonous methods.
 
-### 6. Excessive parallelization
+### ==6. Excessive parallelization==
 
 Occasionally, a developer will identify a series of tasks that are performed sequentially as being a performance bottleneck. For example, here's some code that processes some orders sequentially:
 
