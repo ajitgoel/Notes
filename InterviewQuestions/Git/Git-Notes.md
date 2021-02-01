@@ -47,8 +47,8 @@ git checkout feature git rebase master
 ==The major benefit of rebasing is that you get a much cleaner project history.== First, it eliminates the unnecessary merge commits required by `git merge`. Second, as you can see in the above diagram, rebasing also results in a perfectly linear project history—you can follow the tip of `feature` all the way to the beginning of the project without any forks. This makes it easier to navigate your project with commands like `git log`, `git bisect`, and `gitk`.
 
 But, there are two trade-offs for this pristine commit history: safety and traceability. If you don’t follow the [Golden Rule of Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing), re-writing project history can be potentially catastrophic for your collaboration workflow. And, less importantly, ==rebasing loses the context provided by a merge commit—you can’t see when upstream changes were incorporated into the feature.==
-=======
-==How do you revert a commit that has already been pushed and made public?==
+
+**==How do you revert a commit that has already been pushed and made public?==**
 
 One or more commits can be reverted through the use of *git revert*. This command, in essence, creates a new commit with patches that cancel out the changes introduced in specific commits. In case the commit that needs to be reverted has already been published or changing the repository history is not an option, *git revert* can be used to revert commits. Running the following command will revert the last two commits:
 

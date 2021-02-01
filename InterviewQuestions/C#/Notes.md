@@ -32,8 +32,49 @@ public class UnitTest1
 
 ==Action<int> action1 = (int counter) => Console.WriteLine("Write {0}", counter);==
 
+**Yield keyword:**
+
+==The use of the yield keyword controls the iterator’s behavior. If the consumer requests an iterator to produce a value, it runs until a yield statement is encountered. At that point, the iterator is 
+suspended until the consumer asks for the next value.==
+
+[TestClass]
+public class FizzBuzzTest
+{
+    [TestMethod]
+    public void Test1()
+    {
+        var iEnumerableString = new FizzBuzz().GenerateFizzBuzzUpto(100);
+        var list = iEnumerableString.ToList();
+        Assert.IsTrue(list[0] == "Fizz:3");
+        Assert.IsTrue(list[1] == "Buzz:5");
+        Assert.IsTrue(list[6] == "FizzBuzz:15");
+    }
+}
+public class FizzBuzz
+{
+    public IEnumerable<string> GenerateFizzBuzzUpto(int numberUpto)
+    {
+        for (var counter = 1; counter < numberUpto; counter++)
+        {
+            if (counter%3 == 0 && counter%5 == 0)
+            {
+
+                yield return $"FizzBuzz:{counter}";
+            }
+            if (counter % 3 == 0)
+            {
+                yield return $"Fizz:{counter}";
+            }
+            if (counter % 5 == 0)
+            {
+                yield return $"Buzz:{counter}";
+            }
+        }
+    }
+}
+
 **(B)What is garbage collection?**
-Garbage collection is a CLR feature which automatically manages memory. CLR automatically releases objects when they are no longer in use and refernced. One side effect of this non-deterministic feature is that we cannot assume an object is destroyed when it goes out of the scope of a function. We should avoid using destructors because before GC destroys the object it first executes destructor in that case it will have to wait for code to release the umanaged resource.
+Garbage collection is a CLR feature which automatically manages memory. CLR automatically releases objects when they are no longer in use and referenced. One side effect of this non-deterministic feature is that we cannot assume an object is destroyed when it goes out of the scope of a function. We should avoid using destructors because before GC destroys the object it first executes destructor in that case it will have to wait for code to release the umanaged resource.
 resultin in additional delays in GC. So its recommended to implement IDisposable interface and write cleaup code in Dispose method and call GC.SuppressFinalize method so instructing GC not to call your constructor.
 
 **(B) What are Value types and Reference types ?**
@@ -42,57 +83,48 @@ resultin in additional delays in GC. So its recommended to implement IDisposable
 
 **(B) What is concept of Boxing and Unboxing ?**
 
-Boxing permits any value type to be implicitly converted to type object or to any interface type implemented by value
-type.
-Unboxing is vice versa of boxing operation where the value is copied from the instance in to appropriate storage
-location.
+Boxing permits any value type to be implicitly converted to type object or to any interface type implemented by value type.
+Unboxing is vice versa of boxing operation where the value is copied from the instance in to appropriate storage location.
 ==boxing process: value Type=> Object Type
 Unboxing process: Object Type=> Value Type==
-(I) What is the difference between Convert.toString and .toString() method ?
+**(I) What is the difference between Convert.toString and .toString() method ?**
 The basic difference between them is “Convert” function handles NULLS while “i.ToString()” does not it will throw a NULL
 reference exception error. So as good coding practice using “convert” is always safe.
-(B)What is an application domain?
+**(B)What is an application domain?**
 Previously “PROCESS” where used as security boundaries. One process has its own virtual memory and does not overlap
 the other process virtual memory; due to this one process can not crash the other process. In .NET they went one step
 ahead introducing application domains. In application domains multiple applications can run in same process with out
 influencing each other. If one of the application domains throws error it does not affect the other application domains.
-(B) What is UDDI ?
+**(B) What is UDDI ?**
 UDDI is Universal Description, Discovery and Integration. It is a directory that can be used to publish and discover public
 Web Services.
-(B) What is DISCO ?
+**(B) What is DISCO ?**
 DISCO is the abbreviated form of Discovery. It is basically used to club or group common services together on a server and
 provides links to the schema documents of the services it describes may require.
-(B) What is WSDL?
+**(B) What is WSDL?**
 Web Service Description Language (WSDL)is a W3C specification which defines XML grammar for describing Web Services.
 Abstraction: It allows complex real world to be represented in simplified manner.
 Encapsulation: It is a process of hiding all the internal details of an object from the outside world.
-Association: This is the simplest relationship between objects. Example every customer has sales. So Customer object and
-sales object have an association relation between them.
-Aggregation(Composition): This is also called as composition model. Example in order to make a “Accounts” class it has
-use other objects example “Voucher”, “Journal” and “Cash” objects. So accounts class is aggregation of these three
-objects.
+Association: This is the simplest relationship between objects. Example every customer has sales. So Customer object and sales object have an association relation between them.
+Aggregation(Composition): This is also called as composition model. Example in order to make a “Accounts” class it has use other objects example “Voucher”, “Journal” and “Cash” objects. So accounts class is aggregation of these three objects.
 Inheritance: Hierarchy is used to define more specialized classes based on a preexisting generalized class.
 **<u>Polymorphism:</u>** ==When inheritance is used to extend a generalized class to a more specialized class, it includes behavior of the top class(Generalized class). The inheriting class often implement a behavior that can be somewhat different than the generalized class, but the name of the behavior can be same. It is important that a given instance of an object use the correct behavior, and the property of polymorphism allows this to happen automatically.==
 
 **(I) What are abstract classes ?**
 Following are features of a abstract class :-
 √ You can not create a object of abstract class
-√ Abstract class is designed to act as a base class (to be inherited by other classes). Abstract class is a design concept in
-program development and provides a base upon which other classes are built.
-√ Abstract classes are similar to interfaces. After declaring an abstract class, it cannot be instantiated on its own, it must
-be inherited.
-√ Abstract classes can have implementation or pure abstract methods which should be implemented in the child class.
+√ Abstract class is designed to act as a base class (to be inherited by other classes). Abstract class is a design concept in program development and provides a base upon which other classes are built.
+√ Abstract classes are similar to interfaces. After declaring an abstract class, it cannot be instantiated on its own, it must be inherited.
+√ Abstract classes can have implementation or pure abstract methods which should be implemented in the child class. 
 Abstract classes can also have virtual or non-virtual methods.
 
 **(B) What is a Interface ?**
-Interface is a contract that defines the signature of the functionality. So if a class is implementing a interface it says to
-the outer world, that it provides specific behavior.
+Interface is a contract that defines the signature of the functionality. So if a class is implementing a interface it says to the outer world, that it provides specific behavior.
 (A) What is difference between abstract classes and interfaces?
 √ Abstract classes can have concrete methods while interfaces have no methods implemented.
 √ Interfaces do not come in inheriting chain, while abstract classes come in inheritance.
 
-**(B) What is a delegate ?** Delegate is a class that can hold a reference to a method or a function. Delegate class has a signature and it can only
-reference those methods whose signature is compliant with the class.
+**(B) What is a delegate ?** Delegate is a class that can hold a reference to a method or a function. Delegate class has a signature and it can only reference those methods whose signature is compliant with the class.
 
 using System;
 class Program
@@ -128,9 +160,9 @@ A virtual function, is basically saying look, here's the functionality that may 
 Array list can hold item of different types. As Array list can increase and decrease size dynamically
 Hashtable provides way of accessing the index using a user identified KEY value,
 Queue is for first-in, first-out (FIFO) structures. Stack is for last-in, first-out (LIFO) structures.
-Why is Dictionary preferred over hashtable? Dictionary is a generic type, Hashtable is not. That means you get type safety
-with Dictionary, because you can't insert any random object into it, and you don't have to cast the values you take out.
-And also generic collections are a lot faster as there's no boxing/unboxing
+**Why is Dictionary preferred over hashtable?** 
+==Dictionary is a generic type, Hashtable is not. That means you get type safety with Dictionary, because you can't insert any random object into it, and you don't have to cast the values you take out.
+And also generic collections are a lot faster as there's no boxing/unboxing==
 using System;
 using System.Collections.Generic;
 class Program
@@ -150,38 +182,22 @@ The constructor of the derived class gets called after the constructor of the ba
 reversed order.
 
 **(B)What is the significance of Finalize method in .NET?**
-.NET Garbage collector does almost all clean up activity for your objects. But unmanaged resources (ex: - Windows API
-created objects, File, Database connection objects, COM objects etc) is outside the scope of .NET framework we have to
-explicitly clean our resources. which can be overridden and clean up code for unmanaged resources can be put in this
-section.
+.NET Garbage collector does almost all clean up activity for your objects. But unmanaged resources (ex: - Windows API created objects, File, Database connection objects, COM objects etc) is outside the scope of .NET framework we have to explicitly clean our resources. which can be overridden and clean up code for unmanaged resources can be put in this section.
 
 **(A)Why is it preferred to not use finalize for clean up?**
-Problem with finalize is that garbage collection has to make two rounds in order to remove objects which have finalize
-methods.
+Problem with finalize is that garbage collection has to make two rounds in order to remove objects which have finalize methods.
 
 **(I)How can we suppress a finalize method?**
 GC.SuppressFinalize ()
 
 **(B)What is the use of DISPOSE method?**
-Dispose method belongs to IDisposable interface. We had seen in the previous section how bad it can be to override the
-finalize method for writing the cleaning of unmanaged resources. So if any object wants to release its unmanaged code
-best is to implement IDisposable and override the Dispose method of IDisposable interface. Now once your class has
-exposed the Dispose method it’s the responsibility of the client to call the Dispose method to do the cleanup.
+Dispose method belongs to IDisposable interface. We had seen in the previous section how bad it can be to override the finalize method for writing the cleaning of unmanaged resources. So if any object wants to release its unmanaged code best is to implement IDisposable and override the Dispose method of IDisposable interface. Now once your class has exposed the Dispose method it’s the responsibility of the client to call the Dispose method to do the cleanup.
 
 **(A) What is the difference between System.String and System.StringBuilder classes?**
-System.String is immutable; System.StringBuilder can have mutable string where a variety of operations can be
-performed.
-Response.Redirect sends message to the browser saying it to move to some different page, while server.transfer does not
-send any message to the browser but rather redirects the user directly from the server itself. So in server.transfer there is
-no round trip while response.redirect has a round trip
-Authentication is verifying the identity of a user and authorization is process where we check does this identity have
-access rights to the system.
+System.String is immutable; System.StringBuilder can have mutable string where a variety of operations can be performed. Response.Redirect sends message to the browser saying it to move to some different page, while server.transfer does not send any message to the browser but rather redirects the user directly from the server itself. So in server.transfer there is no round trip while response.redirect has a round trip Authentication is verifying the identity of a user and authorization is process where we check does this identity have access rights to the system.
 
 **(I) What is impersonation in ASP.NET ?**
-By default, ASP.NET executes in the security context of a restricted user account on the local machine. Sometimes you
-need to access network resources such as a file on a shared drive, which requires additional permissions. One way to
-overcome this restriction is to use impersonation. With impersonation, ASP.NET can execute the request using the identity
-of the client who is making the request, or ASP.NET can impersonate a specific account you specify in web.config
+By default, ASP.NET executes in the security context of a restricted user account on the local machine. Sometimes you need to access network resources such as a file on a shared drive, which requires additional permissions. One way to overcome this restriction is to use impersonation. With impersonation, ASP.NET can execute the request using the identity of the client who is making the request, or ASP.NET can impersonate a specific account you specify in web.config
 
 **(B)What is a candidate key ?**
 A table may have more than one combination of columns that could uniquely identify the rows in a table; each
@@ -331,36 +347,7 @@ an assembly is either a program (.exe) or a library (.dll).
 Protected internal access means either protected or internal. A protected internal member can therefore be accessed
 anywhere within the current assembly, or in classes outside the assembly that are derived from the enclosing class.
 Public access gives unrestricted access from anywhere that the member can be referenced.
-CQRS Command and Query Responsibility Segregation
-Starting with CQRS, CQRS is simply the creation of two objects where there was previously only one The separation occurs
-based upon whether the methods are a command or a query (the same definition that is used by Meyer in Command and
-Query Separation, a command is any method that mutates state and a query is any method that returns a value).
-When most people talk about CQRS they are really speaking about applying the CQRS pattern to the object that represents
-the service boundary of the application. Consider the following pseudo-code service definition.
-CustomerService
-void MakeCustomerPreferred(CustomerId)
-Customer GetCustomer(CustomerId)
-CustomerSet GetCustomersWithName(Name)
-CustomerSet GetPreferredCustomers()
-void ChangeCustomerLocale(CustomerId, NewLocale)
-void CreateCustomer(Customer)
-void EditCustomerDetails(CustomerDetails)
-Applying CQRS on this would result in two services
-CustomerWriteService
-void MakeCustomerPreferred(CustomerId)
-void ChangeCustomerLocale(CustomerId, NewLocale)
-void CreateCustomer(Customer)
-void EditCustomerDetails(CustomerDetails)
-CustomerReadService
-Customer GetCustomer(CustomerId)
-CustomerSet GetCustomersWithName(Name)
-CustomerSet GetPreferredCustomers()
-This separation however enables us to do many interesting things architecturally, the largest is that it forces a break of
-the mental retardation that because the two use the same data they should also use the same data model.
-The largest possible benefit though is that it recognizes that their are different architectural properties when dealing with
-commands and queries … for example it allows us to host the two services differently eg: we can host the read service on
-25 servers and the write service on two. The processing of commands and queries is fundamentally asymmetrical, and
-scaling the services symmetrically does not make a lot of sense.
+
 What is the difference between MVVM and MVC design patterns?
 What is the difference between “null” and “undefined”?
 Which situations will you use a sql based database versus a no-sql database?
