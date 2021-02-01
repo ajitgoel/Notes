@@ -1,7 +1,5 @@
 # [C# Async Antipatterns](https://markheath.net/post/async-antipatterns)
 
-February 22. 2019 [32 Comments](https://markheath.net/post/async-antipatterns#disqus_thread) Posted in: [C#](https://markheath.net/category/c%23)
-
 The `async` and `await` keywords have done a great job of simplifying writing asynchronous code in C#, but unfortunately they can't magically protect you from getting things wrong. In this article, I want to highlight a bunch of the most common async coding mistakes or antipatterns that I've come across in code reviews.
 
 ### 1. Forgotten `await`
@@ -245,7 +243,7 @@ But if you are working on projects that run the risk of a deadlock, you need to 
 
 Whenever a method in the .NET framework takes some time, or performs some disk or network IO, there is almost always an asynchronous version of the method you can use instead. Unfortunately, the synchronous versions remain for backwards compatibility reasons. But there is no longer any good reason to use them.
 
-So for example, prefer `Task.Delay` to `Thread.Sleep`, prefer `dbContext.SaveChangesAsync` to `dbContext.SaveChanges` and prefer `fileStream.ReadAsync` to `fileStream.Read`. These changes free up the thread-pool threads to do other more useful work, allowing your program to process a higher volume of requests.
+So for example, prefer `Task.Delay` to `Thread.Sleep`, prefer `dbContext.SaveChangesAsync` to `dbContext.SaveChanges` and prefer `fileStream.ReadAsync` to `fileStream.Read`. ==These changes free up the thread-pool threads to do other more useful work, allowing your program to process a higher volume of requests.==
 
 ### 10. `try` `catch` without `await`
 
