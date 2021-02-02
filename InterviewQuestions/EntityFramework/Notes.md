@@ -41,6 +41,24 @@ using (var context = new BloggingContext())
 **Code First Approach**: In the Code First approach, you focus on the domain of your application and start creating classes for your domain entity to match your database design.
 **Database First Approach**: In the Database First approach, you design your database and then generate the domain of your application by reversing engineering the database.
 
+<u>**Entity Framework and Multithreading:**</u>
+
+DataContext are threadsafe, Every thread should use its own DataContext instance.
+
+<u>**Guidelines when deciding on the lifetime of the context:**</u>
+
+When working with Web applications, use a context instance per request.
+When working with Windows Presentation Foundation (WPF) or Windows Forms, use a context instance per form. This lets you use change-tracking functionality that context provides.
+If the context instance is created by a dependency injection container, it is usually the responsibility of the container to dispose the context.
+If the context is created in application code, remember to dispose of the context when it is no longer required.
+When working with long-running context consider the following:
+As you load more objects and their references into memory, the memory consumption of the context may increase rapidly. This may cause performance issues.
+==The context is not thread-safe, therefore it should not be shared across multiple threads doing work on it concurrently.==
+If an exception causes the context to be in an unrecoverable state, the whole application may terminate.
+==The chances of running into concurrency-related issues increase as the gap between the time when the data is queried and updated grows.==
+
+
+
 ------
 
 **Introducing Entity Framework**
