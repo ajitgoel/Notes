@@ -44,3 +44,24 @@ Microsoft Key Vault
 Encryption in transient
 **TDE:** Transparent Data Encryption
 **HSM:** Hardware security solution
+
+
+
+**<u>Important Topics:</u>**
+
+Replication in Azure Storage
+
+Access Token
+
+Shared Access signature(SAS) Token
+
+Container
+
+Blob storage
+
+Container storage
+
+Egress
+
+Ingress
+

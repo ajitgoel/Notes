@@ -74,8 +74,7 @@ What has been your most significant achievement?
 Very dependable and honest
 Willing to go alone, take the path less travelled.
 Very high quality of work.
-Can be relied on to do the diagnose and resolve complex issues using innovative approaches, within the technical
-constraints imposed by the project.==
+Can be relied on to do the diagnose and resolve complex issues using innovative approaches, within the technical constraints imposed by the project.==
 
 **Why should we hire you?**
 • Have deep experience designing, coding, testing SQL Server databases

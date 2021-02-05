@@ -2,56 +2,14 @@ Why is Redis so popular?
 
 **Redis** is a data structure server. As a key-value data store, **Redis** is similar to Memcached, although it has two major advantages over that option: support of additional datatypes and persistence. ... All of the data is stored in RAM, **so** the speed of this system is phenomenal, often performing even better than Memcached.
 
-**Team Lead roles and responsibilies:**
-
-==Lead and mentor developers thru coaching and sharing of knowledge==
-
-- ==drives projects to completion==
-- works under pressure with constantly changing priorities and deadlines
-- ==Relies on good judgment to plan/accomplish goals==
-- identifies current operating procedures
-- clarifies program objectives
-- writes/reviews manuals for users to describe installation and operating procedures
-- ==keeps up to date with emerging applications, technologies, and standards in the field==
-- understands scope
-- thinks through process requirements
-- provides solutions to projects with a keen sense of creativity
-- addresses changing business requirements
-
-Involved Team Player:
-
-- directs development teams to achieve optimal performance
-- ==leads/coordinates development activities, solution elaboration, and implementation process==
-- issues resolution among developers
-- coordinates with DBA in creating stored procedures, functions and table designs
-- willing to provide hands-on support
-- delegates project tasks to offshore developers
-- ==communicates with (non) Technical Teams==
-
-Development of ASP.Net based web applications.
-
-Assist Technical Project Manager in updating and processing information.
-
-Assist Architecture and Standards team to validate designs and standards.
-
-==Perform coding, bug verification, unit testing and integration testing.==
-
-Support enterprise systems and applications.
-
-Set designs and standards and enforce across all applications.
-
-Implement software, technical applications and system changes.
-
-Conduct meetings on software designs and applications and code reviews.
-
-Develop enterprise coding standards and drive process improvements.
-
-Research, document and troubleshoot related technical problems.
-
-==Develop Enterprise Application Blocks and custom controls.==
-
-==Troubleshoot problems in security, remoting, threading, and serialization.==
-
-==Validate requirements of the business needs== and initiate processes.
-
-==Undertake major development initiatives.==
+<u>**Wells Fargo-Solution Architect-Interview Questions**:</u>
+Rest versus SOAP
+HTTP Methods in REST
+Use of PUT versus POST
+How does SQL Injection happen and how to remediate it?
+Active-Active configuration=> Production DR servers, how to deploy there. 
+Pub-Sub methodology
+improve performance when working with large dataset in an async operation=> Use Parallel processing
+Improve performance when inserting large amount of data into database
+Have you worked to externalize business Rules eg: Drools Engine
+Use of a messaging system like message queue wrt to system architecture. 

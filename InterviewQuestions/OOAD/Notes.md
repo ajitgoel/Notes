@@ -1,11 +1,11 @@
 **SOLID** is a term describing a collection of design principles for good code. It was invented by Robert C. Martin(Uncle Bob).
 
-**SOLID** means:
+==**SOLID** means:
 a. Single Responsibility Principle
 b. Open/Closed Principle
 c. Liskov Substitution Principle
 d. Interface Segregation Principle
-e. Dependency Inversion Principle
+e. Dependency Inversion Principle==
 
 **a. Single Responsibility Principle**
 Single Responsibility Principle states that every class should have a single responsibility. There should never be more than one reason for a class to change.
@@ -168,7 +168,7 @@ public class Manager
 ==Dependency Inversion Principle states that==
 
 1. ==High-level modules(Manager class) should not depend on low-level modules(Worker, SuperWorker classes). Both(Manager, Worker, SuperWorker classes) should depend on abstractions(IWorker).==
-2. ==Abstractions should not depend on details. Details should depend on abstractions.==
+2. Abstractions should not depend on details. Details should depend on abstractions.
 
 **Existing Design**
 Let’s assume we have to implement a new SuperWorker class in this design. If we do that then we will have to change the Manager.Manage() method also which introduces risk.
