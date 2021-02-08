@@ -617,19 +617,21 @@ designers of WCF, offers guidance to how to do SOA properly with WCF with hisSer
 **What is REST?**
 Ans. REST stands for Representational State Transfer. REST is an architectural style which treat each service as a
 resource and access data by HTTP protocol methods like GET, POST, PUT, and DELETE.
-What is difference between REST and SOAP?
+==**What is difference between REST and SOAP?**==
 Ans. The difference between REST and SOAP is given below:
-Performance is slow as compared to REST. REST is fast as compared to SOAP.
-SOAP has specifications for both stateless and stateful implementation whereas REST is completely stateless.
-SOAP enforces message format as XML whereas REST does not enforces message format as XML or JSON.
-SOAP has a defined standard specification. For example, WS-Security is the specification for implementing security. Rest
-has no defined standard specifications.
-The SOAP message consists of an envelope which includes SOAP headers and body to store the actual information you want
-to send. REST uses the HTTP build-in headers (with a variety of media-types) to carry meta information and use the GET,
-POST, PUT and DELETE verbs to perform CRUD operations.
-SOAP uses interfaces and named operations to expose your service. REST uses URI and methods like (GET, PUT, POST,
-DELETE) to expose resources.
-Why to choose Web API
+Performance
+specifications for State, security
+Message Format-xml\json, how information is passed
+how are services\resources exposed. 
+
+==Performance is slow as compared to REST. REST is fast as compared to SOAP.
+a. SOAP has specifications for both stateless and stateful implementation whereas REST is completely stateless.
+c. SOAP has a defined standard specification. For example, WS-Security is the specification for implementing security. Rest has no defined standard specifications.
+b. SOAP enforces message format as XML whereas REST does not enforces message format as XML or JSON.
+d. The SOAP message consists of an envelope which includes SOAP headers and body to store the actual information you want to send. REST uses the HTTP build-in headers (with a variety of media-types) to carry meta information and use the GET, POST, PUT and DELETE verbs to perform CRUD operations.
+e. SOAP uses interfaces and named operations to expose your service. REST uses URI and methods like (GET, PUT, POST, DELETE) to expose resources.==
+
+**Why to choose Web API**
 \6. It is light weight architecture and good for devices which have limited bandwidth like smart phones.
 \3. It doesn't have tedious and extensive configuration like WCF REST service.
 \7. It is open source.
@@ -637,6 +639,7 @@ Why to choose Web API
 \1. If we need a Web Service and don’t need SOAP, then ASP.Net Web API is best choice.
 \2. It is used to build simple, non-SOAP-based HTTP Services on top of existing WCF message pipeline.
 \4. Simple service creation with Web API. With WCF REST Services, service creation is difficult.
+
 Which one to choose between WCF and Web API?
 Ans. The following points help you to choose between WCF and Web API:
 \1. Choose WCF when you want to create a service that should support special scenarios such as one way messaging,
@@ -648,6 +651,7 @@ unavailable.
 (like URIs, request/response headers, caching, versioning, various content formats).
 \4. Choose Web API when you want to expose your service to a broad range of clients including browsers, mobiles, iphone
 and tablets.
+
 (I) what are the important principles of SOA (Service oriented Architecture)?
 Boundaries are well defined= > In SOA everything is formalized. The client who is consuming the service does not need to
 know how the implementation of the service is done. In SOA the rule is if you do enhancement you do not need to change

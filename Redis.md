@@ -10,6 +10,9 @@ How does SQL Injection happen and how to remediate it?
 Active-Active configuration=> Production DR servers, how to deploy there. 
 Pub-Sub methodology
 improve performance when working with large dataset in an async operation=> Use Parallel processing
-Improve performance when inserting large amount of data into database
+Improve performance when inserting large amount of data into database, 
+	batch insert, 
+	bulk inserts, 
+	turn off constraints
 Have you worked to externalize business Rules eg: Drools Engine
 Use of a messaging system like message queue wrt to system architecture. 
