@@ -74,4 +74,249 @@ You can automatically manage the movement between access tiers by implementing l
 **<u>access tiers:</u>**
 *Hot** You use this tier for data that you need to access more frequently. This is the default tier that you use when you create a new Storage Account.
 **Cool** You can use this tier for data that is less frequently accessed and is stored for at least 30 days.
-**Archive** You use this tier for storing data that is rarely accessed and is stored for at least 180 days. T
+**Archive** You use this tier for storing data that is rarely accessed and is stored for at least 180 days. 
+
+**<u>Chapter 3. Implement Azure security</u>**
+
+Authentication is the act of proving that a user is who he or she claims to be.
+
+A user authenticates by providing some information that the user only knows.
+
+There are several mechanisms of authentication that provide different levels of security.
+
+Some of the authentication mechanisms are form-based, token-based, or certificate-based.
+
+Using form-based authentication requires your application to store your users’ passwords.
+
+Form-based authentication requires HTTPS to make the authentication process more secure.
+
+Using token-based authentication, you can delegate the authorization to third-party authentication providers.
+
+You can add social logins to your application by using token-based authentication.
+
+Multifactor authentication is an authentication mechanism that requires the users to provide more than one piece of information that only the user knows.
+
+You can easily implement multifactor authentication by using Azure Active Directory.
+
+There are four main actors in OAuth authentication: client, resource server, resource owner, and authentication server.
+
+The resource owner needs to authenticate the client before sending the authorization grant.
+
+The access token grants access to the resource hosted on the resource server.
+
+The authorization grant or authorization code grants the client the needed rights to request an access token to the authorization server.
+
+The client uses the refresh token to get a new access token when it expires without needing to request a new authorization code.
+
+The JSON web token is the most extended implementation of OAuth tokens.
+
+Shared Access Signatures (SAS) is an authentication mechanism for granting access to Azure Storage Accounts without sharing account keys.
+
+Shared Access Signatures (SAS) tokens must be signed.
+
+There are three types of SAS token: user delegation, account, and service SAS.
+
+User delegation SAS tokens are signed using a key assigned to an Azure Active Directory user.
+
+Account and Service SAS are signed using the Azure Storage account key.
+
+You can hide the details of the SAS tokens from the URL by using Stored Access Policies.
+
+Shared access signature tokens provide fine-grained access control to your Azure storage accounts.
+
+You can create an SAS token for service, container, and item levels.
+
+You need to register applications in Azure Active Directory for being able to authenticate users using your tenant.
+
+There are three account types supported for authentication: accounts only in the organizational directory, accounts in any organizational directory, and Microsoft accounts.
+
+You need to provide a return URL for authenticating your application when requesting user authentication.
+
+You need to configure a secret or a certificate when your application needs to access information in other APIs.
+
+Role-Based Access Control (RBAC) authorization provides fine-grained access control to the resources.
+
+A security principal is an entity to which you can grant privileges.
+
+Security principals are users, groups, service principals, and managed identities.
+
+A permission is an action that a security principal can make with a resource.
+
+A role definition, or role, is a group of permissions.
+
+A scope is a level where you can assign a role.
+
+A role association is a relationship between a security principal, a role, and a scope.
+
+There are four scopes: management groups, subscription, resource group, and resources.
+
+You can centralize the configuration of your distributed application using Azure App Configuration.
+
+Azure App Configuration stores the information using key-value pairs.
+
+Values in the Azure App Configuration are encrypted.
+
+Azure Key Vault provides better security than the Azure App Configuration service.
+
+The limit of size for an Azure App Configuration is 10,000, including the key, label, and value.
+
+You can create references from Azure App Configuration items to Azure Key Vault items.
+
+Azure Key Vault allows you to store three types of objects: keys, secrets, and certificates.
+
+You should use managed identities authentication for accessing the Azure Key Vault.
+
+You need to define a certificate policy before creating a certificate in the Azure Key Vault.
+
+If you import a certificate into the Azure Key Vault, a default certificate policy is automatically created for you.
+
+**<u>Chapter 4. Monitor, troubleshoot, and optimize Azure solutions</u>**
+
+Your application needs to be able to manage transient faults. You need to determine the type of fault before retrying the operation. You should not use immediate retry more than once. You should use random starting values for the retry periods. You should use the built-in SDK mechanism when available. You should test your retry count and interval strategy. You should log transient and nontransient faults.
+
+You can improve the performance of your application by adding a cache to your application. ==**Azure Cache for Redis** allows the caching of dynamic content.== Using Azure Cache for Redis, you can create in-memory databases to cache the most-used values.
+
+==**Azure Cache for Redis** allows you to use messaging queue patterns.==
+==**Content Delivery Networks (CDNs)** store and distribute static content in servers distributed across the globe== CDNs reduce the latency by serving the content from the server nearest to the user. You can invalidate the content of the cache by setting a low TTL (Time-To-Live). You can invalidate the content of the cache by removing all or part of the content from the cache.
+
+Application Insights gets information from your application and sends it to Azure. You can use Application Insights with different platforms and languages. **Application Insights** is part of the **Azure Monitor** service. Application Insights generates two types of information: **metrics** and **logs**. Application Insights allows you to create web tests to monitor the availability of your application. You can configure alerts and trigger different actions associated with web tests.
+
+**<u>Chapter 5. Connect to and consume Azure services and third-party services</u>**
+
+Azure App Service Logic Apps allows you to interconnect different services without needing to create specific code for the interconnection.
+
+Logic App Workflows define the steps needed to exchange information between applications.
+
+Microsoft provides connectors for getting and sending information to and from different services.
+
+Triggers are events fired on the source systems.
+
+Actions are each of the steps performed in a workflow.
+
+Azure Logic Apps provides a graphical editor that eases the process of creating workflows.
+
+You can create your custom connectors for connecting your application with Azure Logic Apps.
+
+A Custom Connector is a wrapper for a REST or SOAP API.
+
+You can create custom connectors for Azure Logic Apps, Microsoft Flow, and Microsoft PowerApps.
+
+You cannot reuse custom connectors created for Microsoft Flow or Microsoft PowerApps with Azure Logic Apps.
+
+You can export your Logic Apps as Azure Resource Manager templates.
+
+You can edit and modify the Logic Apps templates in Visual Studio.
+
+The API Management service allows you to publish your back-end REST or SOAP APIs using a common and secure front end.
+
+You need to create subscriptions in the APIM service for authenticating the access to the API.
+
+You need to create a product for publishing a back-end API.
+
+You can publish only some operations of your back-end APIs.
+
+APIM Policies allow you to modify the behavior of the APIM gateway.
+
+An event is a change in the state of an entity.
+
+In an event-driven architecture, the publisher doesn’t have the expectation that the event is processed or stored by a subscriber.
+
+Azure Event Grid is a service for implementing event-driven architectures.
+
+An Event Grid Topic is an endpoint where a publisher service can send events.
+
+Subscribers are services that read events from an Event Grid Topic.
+
+You can configure several types of services as event sources or event subscribers in Azure Event Grid.
+
+You can create custom events for sending them to the Event Grid.
+
+You can subscribe to your custom application with an Event Grid Topic by using WebHooks.
+
+The Azure Notification Hub is a service that unifies the push notifications on mobile platforms.
+
+You can connect the push notification services from the different manufacturers to the Azure Notification Hub.
+
+The Azure Event Hub is the entry point for Big Data event pipelines.
+
+Azure Event Hub is specialized in ingesting millions of events per second with low latency.
+
+You can use Azure Event Hub as an event source for the Event Grid service.
+
+You can use AMQP, Kafka, and HTTPS for connecting to Azure Event Hub.
+
+In a message-driven architecture, the publisher application has the expectation that the message is processed or stored by the subscriber.
+
+The subscriber needs to change the state once the message is processed.
+
+A message is raw data sent by a publisher that needs to be processed by a subscriber.
+
+Azure Service Bus and Azure Queue message are message broker services.Azure App Service Logic Apps allows you to interconnect different services without needing to create specific code for the interconnection.
+
+Logic App Workflows define the steps needed to exchange information between applications.
+
+Microsoft provides connectors for getting and sending information to and from different services.
+
+Triggers are events fired on the source systems.
+
+Actions are each of the steps performed in a workflow.
+
+Azure Logic Apps provides a graphical editor that eases the process of creating workflows.
+
+You can create your custom connectors for connecting your application with Azure Logic Apps.
+
+A Custom Connector is a wrapper for a REST or SOAP API.
+
+You can create custom connectors for Azure Logic Apps, Microsoft Flow, and Microsoft PowerApps.
+
+You cannot reuse custom connectors created for Microsoft Flow or Microsoft PowerApps with Azure Logic Apps.
+
+You can export your Logic Apps as Azure Resource Manager templates.
+
+You can edit and modify the Logic Apps templates in Visual Studio.
+
+The API Management service allows you to publish your back-end REST or SOAP APIs using a common and secure front end.
+
+You need to create subscriptions in the APIM service for authenticating the access to the API.
+
+You need to create a product for publishing a back-end API.
+
+You can publish only some operations of your back-end APIs.
+
+APIM Policies allow you to modify the behavior of the APIM gateway.
+
+An event is a change in the state of an entity.
+
+In an event-driven architecture, the publisher doesn’t have the expectation that the event is processed or stored by a subscriber.
+
+Azure Event Grid is a service for implementing event-driven architectures.
+
+An Event Grid Topic is an endpoint where a publisher service can send events.
+
+Subscribers are services that read events from an Event Grid Topic.
+
+You can configure several types of services as event sources or event subscribers in Azure Event Grid.
+
+You can create custom events for sending them to the Event Grid.
+
+You can subscribe to your custom application with an Event Grid Topic by using WebHooks.
+
+The Azure Notification Hub is a service that unifies the push notifications on mobile platforms.
+
+You can connect the push notification services from the different manufacturers to the Azure Notification Hub.
+
+The Azure Event Hub is the entry point for Big Data event pipelines.
+
+Azure Event Hub is specialized in ingesting millions of events per second with low latency.
+
+You can use Azure Event Hub as an event source for the Event Grid service.
+
+You can use AMQP, Kafka, and HTTPS for connecting to Azure Event Hub.
+
+In a message-driven architecture, the publisher application has the expectation that the message is processed or stored by the subscriber.
+
+The subscriber needs to change the state once the message is processed.
+
+A message is raw data sent by a publisher that needs to be processed by a subscriber.
+
+Azure Service Bus and Azure Queue message are message broker services.
