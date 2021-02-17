@@ -197,7 +197,7 @@ Azure Logic Apps provides a graphical editor that eases the process of creating 
 
 You can create your custom connectors for connecting your application with Azure Logic Apps.
 
-A Custom Connector is a wrapper for a REST or SOAP API.
+**A Custom Connector** is a wrapper for a REST or SOAP API.
 
 You can create custom connectors for Azure Logic Apps, Microsoft Flow, and Microsoft PowerApps.
 

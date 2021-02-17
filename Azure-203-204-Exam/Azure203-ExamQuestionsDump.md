@@ -141,7 +141,7 @@ Configure it with the credentials for the new AKS cluster. Example: az aks get-c
 References:
 https://docs.bitnami.com/azure/get-started-aks/
 
-Question #6*Topic 1*
+==Question #6*Topic 1*==
 
 DRAG DROP -
 You are preparing to deploy a medical records application to an Azure virtual machine (VM). The application will be deployed by using a VHD produced by an on- premises build server.
@@ -167,33 +167,33 @@ Not TPM: BitLocker can work with or without a TPM. A TPM is a tamper resistant s
 References:
 https://www.itprotoday.com/iaaspaas/use-existing-vhd-azurerm-vm
 
-Question #7*Topic 1*
+==~~Question #7*Topic 1*==~~
 
-DRAG DROP -
-You plan to create a Docker image that runs as ASP.NET Core application named ContosoApp. You have a setup script named setupScript.ps1 and a series of application files including ContosoApp.dll.
-You need to create a Dockerfile document that meets the following requirements:
-✑ Call setupScript.ps1 when the container is built.
-✑ Run ContosoApp.dll when the container starts.
-The Docker document must be created in the same folder where ContosoApp.dll and setupScript.ps1 are stored.
-Which four commands should you use to develop the solution? To answer, move the appropriate commands from the list of commands to the answer area and arrange them in the correct order.
-Select and Place:
+~~DRAG DROP -~~
+~~You plan to create a Docker image that runs as ASP.NET Core application named ContosoApp. You have a setup script named setupScript.ps1 and a series of application files including ContosoApp.dll.~~
+~~You need to create a Dockerfile document that meets the following requirements:~~
+~~✑ Call setupScript.ps1 when the container is built.~~
+~~✑ Run ContosoApp.dll when the container starts.~~
+~~The Docker document must be created in the same folder where ContosoApp.dll and setupScript.ps1 are stored.~~
+~~Which four commands should you use to develop the solution? To answer, move the appropriate commands from the list of commands to the answer area and arrange them in the correct order.~~
+~~Select and Place:~~
 
-[Hide Solution](https://www.examtopics.com/exams/microsoft/az-203/view/2/#) [  Discussion  **27**](https://www.examtopics.com/exams/microsoft/az-203/view/2/#)
+~~[Hide Solution](https://www.examtopics.com/exams/microsoft/az-203/view/2/#) [  Discussion  **27**](https://www.examtopics.com/exams/microsoft/az-203/view/2/#)~~
 
-**Correct Answer:** *Explanation*
-Step 1: WORKDIR /apps/ContosoApp
-Step 2: COPY ./-
-The Docker document must be created in the same folder where ContosoApp.dll and setupScript.ps1 are stored.
-Step 3: EXPOSE ./ContosApp/ /app/ContosoApp
-Step 4: CMD powershell ./setupScript.ps1
-ENTRYPOINT ["dotnet", "ContosoApp.dll"]
-You need to create a Dockerfile document that meets the following requirements:
-✑ Call setupScript.ps1 when the container is built.
-✑ Run ContosoApp.dll when the container starts.
-References:
-https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image
+~~**Correct Answer:** *Explanation*~~
+~~Step 1: WORKDIR /apps/ContosoApp~~
+~~Step 2: COPY ./-~~
+~~The Docker document must be created in the same folder where ContosoApp.dll and setupScript.ps1 are stored.~~
+~~Step 3: EXPOSE ./ContosApp/ /app/ContosoApp~~
+~~Step 4: CMD powershell ./setupScript.ps1~~
+~~ENTRYPOINT ["dotnet", "ContosoApp.dll"]~~
+~~You need to create a Dockerfile document that meets the following requirements:~~
+~~✑ Call setupScript.ps1 when the container is built.~~
+~~✑ Run ContosoApp.dll when the container starts.~~
+~~References:~~
+~~https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image~~
 
-Question #8*Topic 1*
+==Question #8*Topic 1*==
 
 DRAG DROP -
 You are creating a script that will run a large workload on an Azure Batch pool. Resources will be reused and do not need to be cleaned up after use.
@@ -229,7 +229,7 @@ Step 4: for i in {1..$numberOfJobs} do
 References:
 https://docs.microsoft.com/bs-latn-ba/azure/batch/scripts/batch-cli-sample-run-job
 
-Question #9*Topic 1*
+==Question #9*Topic 1*==
 
 HOTSPOT -
 You are developing an Azure Function App by using Visual Studio. The app will process orders input by an Azure Web App. The web app places the order information into Azure Queue Storage.
@@ -257,7 +257,7 @@ Box 4: Yes -
 References:
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue
 
-Question #10*Topic 1*
+==Question #10*Topic 1*==
 
 DRAG DROP -
 You are developing a Docker/Go using Azure App Service Web App for Containers. You plan to run the container in an App Service on Linux. You identify a
@@ -283,7 +283,7 @@ In the Cloud Shell, create a web app in the myAppServicePlan App Service plan wi
 References:
 https://docs.microsoft.com/mt-mt/azure/app-service/containers/quickstart-docker-go?view=sql-server-ver15
 
-Question #11*Topic 1*
+==Question #11*Topic 1*==
 
 DRAG DROP -
 You are preparing to deploy an Azure virtual machine (VM)-based application. The VMs that run the application have the following requirements:
@@ -330,7 +330,7 @@ In the Cloud Shell, follow the az webapp create command with az webapp config co
 References:
 https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image
 
-Question #2*Topic 2*
+==Question #2*Topic 2*==
 
 You develop a serverless application using several Azure Functions. These functions connect to data from within the code.
 You want to configure tracing for an Azure Function App project.
@@ -350,7 +350,7 @@ The function editor built into the Azure portal lets you update the function.jso
 References:
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference#fileupdate
 
-Question #3*Topic 2*
+==Question #3*Topic 2*==
 
 You are developing a mobile instant messaging app for a company.
 The mobile app must meet the following requirements:

@@ -1,8 +1,4 @@
-https://www.thomasmaurer.ch/2020/03/az-204-study-guide-developing-solutions-for-microsoft-azure/
-
-# AZ-204 STUDY GUIDE: DEVELOPING SOLUTIONS FOR MICROSOFT AZURE
-
-POSTED IN [CERTIFICATION](https://www.thomasmaurer.ch/category/microsoft/certification/), [CLOUD](https://www.thomasmaurer.ch/category/microsoft/cloud/), [MICROSOFT](https://www.thomasmaurer.ch/category/microsoft/), [MICROSOFT AZURE](https://www.thomasmaurer.ch/category/microsoft/microsoft-azure/)
+# AZ-204 Study Guide: Developing Solutions for Microsoft Azure
 
 Besides preparing for [AZ-104](https://www.thomasmaurer.ch/2020/03/az-104-study-guide-azure-administrator/), I am also preparing for the new[ AZ-204 Developing Solutions for Microsoft Azure exam](https://docs.microsoft.com/en-us/learn/certifications/exams/az-204?WT.mc_id=thomasmaurer-blog-thmaure), which was announced to replace the [AZ-203 Azure Developer exam](https://www.thomasmaurer.ch/2019/07/passed-az-203-microsoft-certified-azure-developer/). There are many great resources out there to prepare for the exam, that’s why I want to share my **AZ-204 Microsoft Developing Solutions for Microsoft Azure Certification Exam Study Guide** with you. To learn and prepare for the exam, I usually use a couple of online resources, mainly Microsoft Docs and Microsoft Learn, which I am going to share with you. You can find more information about how I prepare for a Microsoft Certification exam on my blog post: [How to prepare and pass Microsoft Certification Exam](https://www.thomasmaurer.ch/2019/09/how-to-prepare-and-pass-a-microsoft-azure-exam/).
 
@@ -60,8 +56,11 @@ One thing I always used to prepare for my Microsoft exams is Microsoft Docs. Her
   - [Quickstart: Create a Windows virtual machine in the Azure portal](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal?WT.mc_id=thomasmaurer-blog-thmaure)
   - [Tutorial: Create and Manage Windows VMs with Azure PowerShell](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/tutorial-manage-vm?WT.mc_id=thomasmaurer-blog-thmaure)
 - configure VMs for remote access
-  - [Connect to your Azure-based virtual machine](https://docs.microsoft.com/en-us/azure/marketplace/cloud-partner-portal/virtual-machine/cpp-connect-vm?WT.mc_id=thomasmaurer-blog-thmaure)
+  - [How to connect and sign on to an Azure virtual machine running Windows](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/connect-logon?WT.mc_id=thomasmaurer-blog-thmaure)
+  - [Quick steps: Create and use an SSH public-private key pair for Linux VMs in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys?WT.mc_id=thomasmaurer-blog-thmaure)
   - [Secure your management ports with just-in-time access](https://docs.microsoft.com/en-us/azure/security-center/security-center-just-in-time?WT.mc_id=thomasmaurer-blog-thmaure)
+  - [How to open ports to a virtual machine with the Azure portal](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/nsg-quickstart-portal?WT.mc_id=thomasmaurer-blog-thmaure)
+  - [Network security groups](https://docs.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview?WT.mc_id=thomasmaurer-blog-thmaure)
 - create ARM templates
   - [Extend Azure Resource Manager template functionality](https://docs.microsoft.com/en-us/azure/architecture/building-blocks/extending-templates?WT.mc_id=thomasmaurer-blog-thmaure)
   - [Azure Resource Manager templates overview](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview?WT.mc_id=thomasmaurer-blog-thmaure)
@@ -219,6 +218,9 @@ One thing I always used to prepare for my Microsoft exams is Microsoft Docs. Her
 - implement Application Insights Web Test and Alerts
   - [Creating an Application Insights Web Test and Alert Programmatically](https://azure.microsoft.com/en-us/blog/creating-a-web-test-alert-programmatically-with-application-insights?WT.mc_id=thomasmaurer-blog-thmaure)
   - [Monitor the availability of any website](https://docs.microsoft.com/en-us/azure/azure-monitor/app/monitor-web-app-availability?WT.mc_id=thomasmaurer-blog-thmaure)
+- implement code that handles transient faults
+  - [Transient fault handling](https://docs.microsoft.com/en-us/azure/architecture/best-practices/transient-faults?WT.mc_id=thomasmaurer-blog-thmaure)
+  - [Retry guidance for Azure services](https://docs.microsoft.com/en-us/azure/architecture/best-practices/retry-service-specific?WT.mc_id=thomasmaurer-blog-thmaure)
 
 ### Connect to and consume Azure services and third-party services (25-30%)
 
@@ -226,7 +228,7 @@ One thing I always used to prepare for my Microsoft exams is Microsoft Docs. Her
 
 - create a Logic App
   - [Quickstart: Create your first workflow by using Azure Logic Apps – Azure portal](https://docs.microsoft.com/en-us/azure/logic-apps/quickstart-create-first-logic-app-workflow?WT.mc_id=thomasmaurer-blog-thmaure)
-  - [Quickstart: Create automated tasks, processes, and workflows with Azure Logic Apps – Visual Studio](https://docs.microsoft.com/en-us/azure/logic-apps/quickstart-create-logic-apps-with-visual-studio?WT.mc_id=thomasmaurer-blog-thmaure)
+  - ==[Quickstart: Create automated tasks, processes, and workflows with Azure Logic Apps – Visual Studio](https://docs.microsoft.com/en-us/azure/logic-apps/quickstart-create-logic-apps-with-visual-studio?WT.mc_id=thomasmaurer-blog-thmaure)==
   - [Quickstart: Create and manage logic app workflow definitions by using Visual Studio Code](https://docs.microsoft.com/en-us/azure/logic-apps/quickstart-create-logic-apps-visual-studio-code?WT.mc_id=thomasmaurer-blog-thmaure)
 - create a custom connector for Logic Apps
   - [Create a custom connector in Azure Logic Apps](https://docs.microsoft.com/en-us/connectors/custom-connectors/create-logic-apps-connector?WT.mc_id=thomasmaurer-blog-thmaure)

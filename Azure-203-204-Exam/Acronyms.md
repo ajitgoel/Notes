@@ -65,3 +65,13 @@ Egress
 
 Ingress
 
+**<u>Important Topics for exam:</u>**
+
+Service Bus
+Event Grid
+App Service Plans
+Azure Functions bindings and triggers
+Logic Apps
+and the general idea of the Az CLI (especially managing VMs/VMSSs)
+Azure Search
+Cosmos DB.
