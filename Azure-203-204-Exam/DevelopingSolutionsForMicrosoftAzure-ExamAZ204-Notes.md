@@ -76,6 +76,18 @@ You can automatically manage the movement between access tiers by implementing l
 **Cool** You can use this tier for data that is less frequently accessed and is stored for at least 30 days.
 **Archive** You use this tier for storing data that is rarely accessed and is stored for at least 180 days. 
 
+**<u>Azure Storage redundancy:</u>**
+
+## Redundancy in the primary region
+
+Data in an Azure Storage account is always replicated three times in the primary region. Azure Storage offers two options for how your data is replicated in the primary region:
+
+==**Locally redundant storage (LRS)** copies your data synchronously three times within a single physical location in the primary region.== LRS is the least expensive replication option, but is not recommended for applications requiring high availability.
+
+==**Zone-redundant storage (ZRS)** copies your data synchronously across three Azure availability zones in the primary region.== For applications requiring high availability, Microsoft recommends using ZRS in the primary region, and also replicating to a secondary region.
+
+
+
 **<u>Chapter 3. Implement Azure security</u>**
 
 Authentication is the act of proving that a user is who he or she claims to be.

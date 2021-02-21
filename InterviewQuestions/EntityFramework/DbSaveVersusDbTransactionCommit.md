@@ -1,4 +1,4 @@
-# [EF: db.SaveChanges() vs dbTransaction.Commit](https://stackoverflow.com/questions/50844828/ef-db-savechanges-vs-dbtransaction-commit)
+# [db.SaveChanges() vs dbTransaction.Commit](https://stackoverflow.com/questions/50844828/ef-db-savechanges-vs-dbtransaction-commit)
 
 I am fairly new to entity framework and I have a doubt on EF's db.SaveChange. From some posts and MSDN I learned that `db.SaveChange` by default does all the changes in transaction. Also there is a way we can create a transaction of our own using `db.Database.BeginTransaction()` ,"db" being my context class object. So I have two questions:
 
