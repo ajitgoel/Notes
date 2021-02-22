@@ -76,8 +76,6 @@ Cumbersome to debug where userid='{BAE7DF4-DDF-3RG-5TY3E3RF456AS10}’
 The generated GUIDs should be partially sequential for best performance (eg, newsequentialid() on SQL 2005) and to
 enable use of clustered indexes
 
-------
-
 **Difference between View and materialized view**
 For a materialized view, data is persisted into a virtual table which is maintained by SQL Server itself.
 **Benefits:**
@@ -86,3 +84,39 @@ Aggregations can be precomputed and would also improve read performance
 **Drawbacks:**
 It will certainly impact write performance because with each DML operation, SQL Server will have to update view.
 When you’re indexing view, all objects used in view schema cannot be modified till indexed view exists.
+
+-------------------
+
+**EXAMPLE of Correlated Subqueries :** Find all the employees who earn more than the average salary in their department.
+
+SELECT last_name, salary, department_id FROM employees outer
+ WHERE salary >(SELECT AVG(salary) FROM employees WHERE department_id = outer.department_id);
+
+---------------------
+
+**<u>Window functions in SQL</u>** ==Window functions applies aggregate and ranking functions over a particular window (set of rows)== OVER clause is used with window functions to define that window. OVER clause does two things :
+
+- Partitions rows into form set of rows. (PARTITION BY clause is used)
+- Orders rows within those partitions into a particular order. (ORDER BY clause is used)
+
+<u>**For employee table having columns name, age, department, salary, Find average salary of employees for each department and order employees within a department by age.**</u>
+
+SELECT Name, Age, Department, Salary, ==AVERAGE(Salary) OVER( PARTITION BY Department ORDER BY Age) AS Avg_Salary==
+ FROM employee
+
+---------------------
+
+**difference between rank and dense rank** that in dense rank there is no gap between rank values while there is gap in rank values after repeated rank.
+
+Calculate row no., rank, dense rank of employees is employee table according to salary within each department.
+SELECT ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS emp_row_no, Name,  Department, Salary,
+==RANK() OVER(PARTITION BY Department ORDER BY Salary DESC) AS emp_rank,==
+==DENSE_RANK() OVER(PARTITION BY Department ORDER BY Salary DESC) AS emp_dense_rank,==
+FROM employee 
+
+----------------------
+
+**<u>Index seeks versus Index scans:</u>**
+==There are two different ways to access data in an index: a seek or a scan. A seek is used when a predicate present in the query matches the key(s) of an index. In this case, SQL Server can use the values of the predicate to limit the amount of data that must be searched by following the pointers within the index from the root to the leaf page to locate matching rows. If the predicate can't be used for some reason, then an index may be scanned. In this case, SQL Server starts at the root of the index and reads down to the leaf level, then reads all the leaf-level pages of the index, searching for the required rows to return.==  
+==As mentioned, this applies to both clustered and non-clustered indexes, the only difference is with a clustered index, the leaf level
+contains the actual data pages, while the non-clustered index contains index pages with pointers to the data pages.==

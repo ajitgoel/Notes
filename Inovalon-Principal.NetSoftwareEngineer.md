@@ -31,7 +31,7 @@ o LINQ or other Entity Framework
 o NET, MV, Dependency Injection
 o ==Cryptography==
 o Test-driven development
-o Message Queues
+o ==Message Queues==
 o Continuous Integration/Build Automation
 o SOAP and RESTful Services
 o ==Web Services Security (WSS frameworks)==

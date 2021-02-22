@@ -1,9 +1,5 @@
 # WS-Security
 
-From Wikipedia, the free encyclopedia
-
-[Jump to navigation](https://en.wikipedia.org/wiki/WS-Security#mw-head)[Jump to search](https://en.wikipedia.org/wiki/WS-Security#searchInput)
-
 ==**Web Services Security** (**WS-Security**, **WSS**) is an extension to [SOAP](https://en.wikipedia.org/wiki/SOAP_(protocol)) to apply security to [Web services](https://en.wikipedia.org/wiki/Web_service).== It is a member of the [Web service specifications](https://en.wikipedia.org/wiki/List_of_Web_service_specifications) and was published by [OASIS](https://en.wikipedia.org/wiki/OASIS_(organization)).
 
 ==The protocol specifies how integrity and confidentiality can be enforced on messages== and allows the communication of various security token formats, such as [Security Assertion Markup Language](https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language) (SAML), [Kerberos](https://en.wikipedia.org/wiki/Kerberos_(protocol)), and [X.509](https://en.wikipedia.org/wiki/X.509). Its main focus is the use of [XML Signature](https://en.wikipedia.org/wiki/XML_Signature) and [XML Encryption](https://en.wikipedia.org/wiki/XML_Encryption) to provide end-to-end security.
