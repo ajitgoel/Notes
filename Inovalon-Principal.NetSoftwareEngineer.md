@@ -16,7 +16,6 @@ Responsibilities
 • Adhere to all confidentiality and HIPAA requirements as outlined within Inovalon’s Operating Policies and Procedures in all ways and at all times with respect to any aspect of the data handled or services rendered in the undertaking of the position
 • Fulfill those responsibilities and/or duties that may be reasonably provided by Inovalon for the purpose of achieving operational and financial success of the Company
 • Uphold responsibilities relative to the separation of duties for applicable processes and procedures within your job function
-• We reserve the right to change this job description from time to time as business needs dictate and will provide notice of
 
 Qualifications
 • BS degree in Computer Science or Computer Engineering, Mathematics, or equivalent experience

@@ -33,7 +33,7 @@ It is used for branching the pipeline. It branches the ASP.NET Core pipeline bas
 
 ## How to enable Session in ASP.NET Core?
 
-The middleware for the session is provided by the package Microsoft.AspNetCore.Session. To use the session in ASP.NET Core application, we need to add this package to csproj file and add the Session middleware to ASP.NET Core request pipeline.
+The middleware for the session is provided by the ==package Microsoft.AspNetCore.Session==. To use the session in ASP.NET Core application, we need to add this package to csproj file and add the Session middleware to ASP.NET Core request pipeline.
 
 ```c
  public class Startup

@@ -1,9 +1,3 @@
-# DEVLEAD
-
-**Plano, TX**
-
-Reference No: 21724
-
 #### What's the role?
 
 The role of Software Development Lead will be part of a development team consisting of employees and external partners for Hilti. Project scope includes E-commerce sites, collaboration apps, digital catalog and learning systems to help Hilti clients learn about, and how to use, Hilti products. The Software Development Lead influences both internal and external stakeholders at all levels in developing or creating solutions for all platform applications.

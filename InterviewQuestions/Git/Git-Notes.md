@@ -24,7 +24,7 @@ Or, you can condense this to a one-liner:
  git merge feature master
 ```
 
-This creates a new “merge commit” in the `feature` branch that ties together the histories of both branches, giving you a branch structure that looks like this:
+==This creates a new “merge commit” in the `feature` branch that ties together the histories of both branches, giving you a branch structure that looks like this:==
 
 <img src="C:\Users\ajitg\Notes\InterviewQuestions\Git\Untitled.assets\02.svg" alt="Merging master into the feature branch" style="zoom:50%;" />
 
@@ -153,7 +153,7 @@ Check out the latest commit to this branch in the reflog, and then check it out 
 
 => **==How can you copy a commit made in one branch to another (e.g. a hot fix commit from released branch to current development branch)?==**
 
-You need to use the `cherry-pick` command. It provides the possibility to play back an existing commit to your current location/branch. So you need to switch to the target branch (e.g. `git checkout development`) and call `git cherry-pick {hash of that commit}`.
+==You need to use the `cherry-pick` command. It provides the possibility to play back an existing commit to your current location/branch. So you need to switch to the target branch (e.g. `git checkout development`) and call `git cherry-pick {hash of that commit}`.==
 
 In spite of applying the same changes, it will be a new commit with a new hash because the changes are applied to a different destination.
 
@@ -172,9 +172,8 @@ git cherry-pick -m 1 63ad84c
 
 => **==What is the difference between `git pull` and `git fetch`?==**
 
-`git fetch` only downloads new data from a remote repository, but it doesn’t integrate any of the downloaded data into your working files. All it does is provide a view of this data.
-
-`git pull` downloads as well as merges the data from a remote repository into your local working files. It may also lead to merge conflicts if your local changes are not yet committed. Use the `git stash` command to hide your local changes.
+==`git fetch` only downloads new data from a remote repository, but it doesn’t integrate any of the downloaded data into your working files. All it does is provide a view of this data.
+==`git pull` downloads as well as merges the data from a remote repository into your local working files. It may also lead to merge conflicts if your local changes are not yet committed.== Use the `git stash` command to hide your local changes.
 
 => **==What is a conflict in git and how can it be resolved?==**
 

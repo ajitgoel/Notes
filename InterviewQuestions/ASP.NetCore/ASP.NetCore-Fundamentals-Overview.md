@@ -4,8 +4,8 @@ This article provides an overview of key topics for understanding how to develop
 
 ## The Startup class
 
-==The `Startup` class is where: ==
-==Services required by the app are configured, ==
+==The `Startup` class is where:==
+==Services required by the app are configured,==
 ==The app's request handling pipeline is defined, as a series of middleware components.==
 
 Here's a sample `Startup` class:
@@ -17,20 +17,15 @@ public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddDbContext<RazorPagesMovieContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
-
+        services.AddDbContext<RazorPagesMovieContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
         services.AddControllersWithViews();
         services.AddRazorPages();
     }
-
     public void Configure(IApplicationBuilder app)
     {
         app.UseHttpsRedirection();
         app.UseStaticFiles();
-
         app.UseRouting();
-
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapDefaultControllerRoute();
@@ -44,18 +39,12 @@ For more information, see [App startup in ASP.NET Core](https://docs.microsoft.c
 
 ## Dependency injection (services)
 
-==ASP.NET Core includes a built-in dependency injection (DI) framework that makes configured services available throughout an app.== For example, a logging component is a service.
-
-Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method. For example:
-
-C#Copy
+==ASP.NET Core includes a built-in dependency injection (DI) framework that makes configured services available throughout an app.== For example, a logging component is a service.Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method. For example:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddDbContext<RazorPagesMovieContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
-
+    services.AddDbContext<RazorPagesMovieContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
     services.AddControllersWithViews();
     services.AddRazorPages();
 }
@@ -64,8 +53,6 @@ public void ConfigureServices(IServiceCollection services)
 Services are typically resolved from DI using constructor injection. With constructor injection, a class declares a constructor parameter of either the required type or an interface. The DI framework provides an instance of this service at runtime.
 
 The following example uses constructor injection to resolve a `RazorPagesMovieContext` from DI:
-
-C#Copy
 
 ```csharp
 public class IndexModel : PageModel
@@ -105,9 +92,7 @@ public void Configure(IApplicationBuilder app)
 {
     app.UseHttpsRedirection();
     app.UseStaticFiles();
-
     app.UseRouting();
-
     app.UseEndpoints(endpoints =>
     {
         endpoints.MapDefaultControllerRoute();
@@ -132,8 +117,6 @@ Configuration==
 ==There are two different hosts: .NET Generic Host, ASP.NET Core Web Host. The .NET Generic Host is recommended.== The ASP.NET Core Web Host is available only for backwards compatibility.
 
 The following example creates a .NET Generic Host:
-
-C#Copy
 
 ```csharp
 public class Program
@@ -195,8 +178,6 @@ Execution environments, such as `Development`, `Staging`, and `Production`, are 
 
 The following example configures the app to provide detailed error information when running in the `Development` environment:
 
-C#Copy
-
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
@@ -235,8 +216,6 @@ ASP.NET Core supports a logging API that works with a variety of built-in and th
 - Azure Application Insights
 
 To create logs, resolve an [ILogger](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger-1) service from dependency injection (DI) and call logging methods such as [LogInformation](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.loginformation). For example:
-
-C#Copy
 
 ```csharp
 public class TodoController : ControllerBase
