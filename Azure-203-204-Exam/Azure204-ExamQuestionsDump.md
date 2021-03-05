@@ -1,6 +1,6 @@
 ## Topic 1 - Question Set 1
 
-Question #1*Topic 1*
+==Question #1*Topic 1*==
 
 You are developing an application that uses Azure Blob storage.
 The application must read the transaction logs of all the changes that occur to the blobs and the blob metadata in the storage account for auditing purposes. The changes must be in the order in which they occurred, include only create, update, delete, and copy operations and be retained for compliance reasons.
@@ -8,7 +8,7 @@ You need to process the transaction logs asynchronously.
 What should you do?
 
 - A. Process all Azure Blob storage events by using Azure Event Grid with a subscriber Azure Function app.
-- B. Enable the change feed on the storage account and process all changes for available events.
+- ==B. Enable the change feed on the storage account and process all changes for available events.==
 - C. Process all Azure Storage Analytics logs for successful blob events.
 - D. Use the Azure Monitor HTTP Data Collector API and scan the request body for successful blob events.
 
@@ -28,11 +28,11 @@ A copy of your storage account must be created in another region. Data must be c
 You need to create a copy of the storage account in another region and copy the data.
 In which order should you perform the actions? To answer, move all actions from the list of actions to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0001800001.jpg)
+<img src="Azure204-ExamQuestionsDump.assets/0001800001.jpg" alt="img" style="zoom:67%;" />
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/#) [  Discussion  **8**](https://www.examtopics.com/exams/microsoft/az-204/view/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0001900001.jpg)*
+**Correct Answer:** *![img](Azure204-ExamQuestionsDump.assets/0001900001.jpg)*
 To move a storage account, create a copy of your storage account in another region. Then, move your data to that account by using AzCopy, or another tool of your choice.
 The steps are:
 ✑ Export a template.
@@ -51,16 +51,16 @@ Question #3*Topic 1*
 HOTSPOT -
 You are developing an ASP.NET Core web application. You plan to deploy the application to Azure Web App for Containers.
 The application needs to store runtime diagnostic data that must be persisted across application restarts. You have the following code:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0002000001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0002000001.jpg)
 You need to configure the application settings so that diagnostic data is stored as required.
 How should you configure the web app's settings? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0002000002.jpg)
+![img](Azure204-ExamQuestionsDump.assets/0002000002.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/#) [  Discussion  **2**](https://www.examtopics.com/exams/microsoft/az-204/view/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0002100001.jpg)*
+**Correct Answer:** *![img](Azure204-ExamQuestionsDump.assets/0002100001.jpg)*
 Box 1: If WEBSITES_ENABLE_APP_SERVICE_STORAGE
 If WEBSITES_ENABLE_APP_SERVICE_STORAGE setting is unspecified or set to true, the /home/ directory will be shared across scale instances, and files written will persist across restarts
 
@@ -68,19 +68,15 @@ Box 2: /home -
 Reference:
 https://docs.microsoft.com/en-us/azure/app-service/containers/app-service-linux-faq
 
-Question #4*Topic 1*
+==Question #4*Topic 1*==
 
-You are developing a web app that is protected by Azure Web Application Firewall (WAF). All traffic to the web app is routed through an Azure Application
-Gateway instance that is used by multiple web apps. The web app address is contoso.azurewebsites.net.
-All traffic must be secured with SSL. The Azure Application Gateway instance is used by multiple web apps.
-You need to configure the Azure Application Gateway for the web app.
-Which two actions should you perform? Each correct answer presents part of the solution.
+You are developing a web app that is protected by Azure Web Application Firewall (WAF). All traffic to the web app is routed through an Azure Application Gateway instance that is used by multiple web apps. The web app address is contoso.azurewebsites.net. All traffic must be secured with SSL. The Azure Application Gateway instance is used by multiple web apps. You need to configure the Azure Application Gateway for the web app. Which two actions should you perform? Each correct answer presents part of the solution.
 NOTE: Each correct selection is worth one point.
 
-- A. In the Azure Application Gateway's HTTP setting, enable the Use for App service setting.
+- ==A. In the Azure Application Gateway's HTTP setting, enable the Use for App service setting.==
 - B. Convert the web app to run in an Azure App service environment (ASE).
 - C. Add an authentication certificate for contoso.azurewebsites.net to the Azure Application Gateway.
-- D. In the Azure Application Gateway's HTTP setting, set the value of the Override backend path option to contoso22.azurewebsites.net.
+- ==D. In the Azure Application Gateway's HTTP setting, set the value of the Override backend path option to contoso.azurewebsites.net.==
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/#) [  Discussion  **8**](https://www.examtopics.com/exams/microsoft/az-204/view/#)
 
@@ -90,15 +86,14 @@ The ability to derive the host name from the IP or FQDN of the back-end pool mem
 A (not C): SSL termination and end to end SSL with multi-tenant services.
 In case of end to end SSL, trusted Azure services such as Azure App service web apps do not require whitelisting the backends in the application gateway.
 Therefore, there is no need to add any authentication certificates.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0002300001.jpg)
+<img src="Azure204-ExamQuestionsDump.assets/0002300001.jpg" alt="img" style="zoom:50%;" />
 Reference:
 https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-web-app-overview
 
-Question #5*Topic 1*
+==Question #5*Topic 1*==
 
 HOTSPOT -
-You are implementing a software as a service (SaaS) ASP.NET Core web service that will run as an Azure Web App. The web service will use an on-premises
-SQL Server database for storage. The web service also includes a WebJob that processes data updates. Four customers will use the web service.
+You are implementing a software as a service (SaaS) ASP.NET Core web service that will run as an Azure Web App. The web service will use an on-premises SQL Server database for storage. The web service also includes a WebJob that processes data updates. Four customers will use the web service.
 ✑ Each instance of the WebJob processes data for a single customer and must run as a singleton instance.
 ✑ Each deployment must be tested by using deployment slots prior to serving production data.
 ✑ Azure costs must be minimized.
@@ -107,34 +102,30 @@ You need to configure the App Service plan for the Web App.
 How should you configure the App Service plan? To answer, select the appropriate settings in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0002500001.jpg)
+<img src="Azure204-ExamQuestionsDump.assets/0002500001.jpg" alt="img" style="zoom: 80%;" />
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/2/#) [  Discussion  **5**](https://www.examtopics.com/exams/microsoft/az-204/view/2/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0002600001.jpg)*
+**Correct Answer:** *![img](Azure204-ExamQuestionsDump.assets/0002600001.jpg)*
 Number of VM instances: 4 -
 You are not charged extra for deployment slots.
 
 Pricing tier: Isolated -
-The App Service Environment (ASE) is a powerful feature offering of the Azure App Service that gives network isolation and improved scale capabilities. It is essentially a deployment of the Azure App Service into a subnet of a customer's Azure Virtual Network (VNet).
+==The App Service Environment (ASE) is a powerful feature offering of the Azure App Service that gives network isolation and improved scale capabilities. It is essentially a deployment of the Azure App Service into a subnet of a customer's Azure Virtual Network (VNet).==
 Reference:
 https://azure.microsoft.com/sv-se/blog/announcing-app-service-isolated-more-power-scale-and-ease-of-use/
 
 Question #6*Topic 1*
 
 DRAG DROP -
-You are a developer for a software as a service (SaaS) company that uses an Azure Function to process orders. The Azure Function currently runs on an Azure
-Function app that is triggered by an Azure Storage queue.
-You are preparing to migrate the Azure Function to Kubernetes using Kubernetes-based Event Driven Autoscaling (KEDA).
-You need to configure Kubernetes Custom Resource Definitions (CRD) for the Azure Function.
-Which CRDs should you configure? To answer, drag the appropriate CRD types to the correct locations. Each CRD type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
+You are a developer for a software as a service (SaaS) company that uses an Azure Function to process orders. The Azure Function currently runs on an Azure Function app that is triggered by an Azure Storage queue. You are preparing to migrate the Azure Function to Kubernetes using Kubernetes-based Event Driven Autoscaling (KEDA). You need to configure Kubernetes Custom Resource Definitions (CRD) for the Azure Function. Which CRDs should you configure? To answer, drag the appropriate CRD types to the correct locations. Each CRD type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0002700001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0002700001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/2/#) [  Discussion  **3**](https://www.examtopics.com/exams/microsoft/az-204/view/2/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0002800001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0002800001.jpg)*
 Box 1: Deployment -
 To deploy Azure Functions to Kubernetes use the func kubernetes deploy command has several attributes that directly control how our app scales, once it is deployed to Kubernetes.
 
@@ -179,16 +170,16 @@ Question #7*Topic 1*
 
 HOTSPOT -
 You are creating a CLI script that creates an Azure web app and related services in Azure App Service. The web app uses the following variables:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0002900001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0002900001.png)
 You need to automatically deploy code from GitHub to the newly created web app.
 How should you complete the script? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0003000001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0003000001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/2/#) [  Discussion  **2**](https://www.examtopics.com/exams/microsoft/az-204/view/2/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0003100001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0003100001.jpg)*
 Box 1: az appservice plan create
 The azure group creates command successfully returns JSON result. Now we can use resource group to create a azure app service plan
 
@@ -205,19 +196,17 @@ Box 5: --repo-url $gitrepo --branch master --manual-integration
 Reference:
 https://medium.com/@satish1v/devops-your-way-to-azure-web-apps-with-azure-cli-206ed4b3e9b1
 
-Question #8*Topic 1*
+==Question #8*Topic 1*==
 
 Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.
 After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.
-You develop a software as a service (SaaS) offering to manage photographs. Users upload photos to a web service which then stores the photos in Azure
-Storage Blob storage. The storage account type is General-purpose V2.
-When photos are uploaded, they must be processed to produce and save a mobile-friendly version of the image. The process to produce a mobile-friendly version of the image must start in less than one minute.
-You need to design the process that starts the photo processing.
+
+You develop a software as a service (SaaS) offering to manage photographs. Users upload photos to a web service which then stores the photos in Azure Storage Blob storage. The storage account type is General-purpose V2. When photos are uploaded, they must be processed to produce and save a mobile-friendly version of the image. The process to produce a mobile-friendly version of the image must start in less than one minute. You need to design the process that starts the photo processing.
 Solution: Trigger the photo processing from Blob storage events.
 Does the solution meet the goal?
 
 - A. Yes
-- B. No
+- ==B. No==
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/2/#) [  Discussion  **19**](https://www.examtopics.com/exams/microsoft/az-204/view/2/#)
 
@@ -229,7 +218,7 @@ Note: Only storage accounts of kind StorageV2 (general purpose v2) and BlobStora
 Reference:
 https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-event-overview
 
-Question #9*Topic 1*
+==Question #9*Topic 1*==
 
 Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.
 After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.
@@ -239,13 +228,13 @@ Solution: Update the web.config file to include the applicationInitialization co
 Does the solution meet the goal?
 
 - A. No
-- B. Yes
+- ==B. Yes==
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/3/#) [  Discussion  **10**](https://www.examtopics.com/exams/microsoft/az-204/view/3/#)
 
 **Correct Answer:** *A*
-Specify custom warm-up.
-Some apps might require custom warm-up actions before the swap. The applicationInitialization configuration element in web.config lets you specify custom initialization actions. The swap operation waits for this custom warm-up to finish before swapping with the target slot. Here's a sample web.config fragment.
+==Specify custom warm-up.
+Some apps might require custom warm-up actions before the swap. The applicationInitialization configuration element in web.config lets you specify custom initialization actions. The swap operation waits for this custom warm-up to finish before swapping with the target slot.== Here's a sample web.config fragment.
 <system.webServer>
 <applicationInitialization>
 <add initializationPage="/" hostName="[app hostname]" />
@@ -255,17 +244,18 @@ Some apps might require custom warm-up actions before the swap. The applicationI
 Reference:
 https://docs.microsoft.com/en-us/azure/app-service/deploy-staging-slots#troubleshoot-swaps
 
-Question #10*Topic 1*
+==Question #10*Topic 1*==
 
 Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.
 After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.
+
 You develop and deploy an Azure App Service API app to a Windows-hosted deployment slot named Development. You create additional deployment slots named Testing and Production. You enable auto swap on the Production deployment slot.
 You need to ensure that scripts run and resources are available before a swap operation occurs.
 Solution: Enable auto swap for the Testing slot. Deploy the app to the Testing slot.
 Does the solution meet the goal?
 
 - A. No
-- B. Yes
+- ==B. Yes==
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/3/#) [  Discussion  **7**](https://www.examtopics.com/exams/microsoft/az-204/view/3/#)
 
@@ -281,17 +271,18 @@ Note: Some apps might require custom warm-up actions before the swap. The applic
 Reference:
 https://docs.microsoft.com/en-us/azure/app-service/deploy-staging-slots#troubleshoot-swaps
 
-Question #11*Topic 1*
+==Question #11*Topic 1*==
 
 Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.
 After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.
+
 You develop and deploy an Azure App Service API app to a Windows-hosted deployment slot named Development. You create additional deployment slots named Testing and Production. You enable auto swap on the Production deployment slot.
 You need to ensure that scripts run and resources are available before a swap operation occurs.
 Solution: Disable auto swap. Update the app with a method named statuscheck to run the scripts. Re-enable auto swap and deploy the app to the Production slot.
 Does the solution meet the goal?
 
 - A. No
-- B. Yes
+- ==B. Yes==
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/3/#) [  Discussion  **7**](https://www.examtopics.com/exams/microsoft/az-204/view/3/#)
 
@@ -307,19 +298,18 @@ Note: Some apps might require custom warm-up actions before the swap. The applic
 Reference:
 https://docs.microsoft.com/en-us/azure/app-service/deploy-staging-slots#troubleshoot-swaps
 
-Question #12*Topic 1*
+==Question #12*Topic 1*==
 
 Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.
 After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.
-You develop a software as a service (SaaS) offering to manage photographs. Users upload photos to a web service which then stores the photos in Azure
-Storage Blob storage. The storage account type is General-purpose V2.
-When photos are uploaded, they must be processed to produce and save a mobile-friendly version of the image. The process to produce a mobile-friendly version of the image must start in less than one minute.
-You need to design the process that starts the photo processing.
+
+You develop a software as a service (SaaS) offering to manage photographs. Users upload photos to a web service which then stores the photos in Azure Storage Blob storage. The storage account type is General-purpose V2.
+When photos are uploaded, they must be processed to produce and save a mobile-friendly version of the image. The process to produce a mobile-friendly version of the image must start in less than one minute. You need to design the process that starts the photo processing.
 Solution: Convert the Azure Storage account to a BlockBlobStorage storage account.
 Does the solution meet the goal?
 
 - A. Yes
-- B. No
+- ==B. No==
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/3/#) [  Discussion  **5**](https://www.examtopics.com/exams/microsoft/az-204/view/3/#)
 
@@ -337,11 +327,11 @@ You are developing an Azure Web App. You configure TLS mutual authentication for
 You need to validate the client certificate in the web app. To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0003700001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0003700001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/4/#) [  Discussion  **2**](https://www.examtopics.com/exams/microsoft/az-204/view/4/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0003800001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0003800001.jpg)*
 Accessing the client certificate from App Service.
 If you are using ASP.NET and configure your app to use client certificate authentication, the certificate will be available through the HttpRequest.ClientCertificate property. For other application stacks, the client cert will be available in your app through a base64 encoded value in the "X-ARR-ClientCert" request header. Your application can create a certificate from this value and then use it for authentication and authorization purposes in your application.
 Reference:
@@ -356,11 +346,11 @@ None of your current resource groups reside in a location that supports Linux. Y
 You need to create the application and perform an initial deployment.
 Which three Azure CLI commands should you use to develop the solution? To answer, move the appropriate commands from the list of commands to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0003900001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0003900001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/4/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/4/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004000001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004000001.png)*
 You can host native Linux applications in the cloud by using Azure Web Apps. To create a Web App for Containers, you must run Azure CLI commands that create a group, then a service plan, and finally the web app itself.
 
 Step 1: az group create -
@@ -383,11 +373,11 @@ A resource group named FourthCoffeePublicWebResourceGroup has been created in th
 AppServiceLinuxDockerPlan.
 Which order should the CLI commands be used to develop the solution? To answer, move all of the Azure CLI commands from the list of commands to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004200001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004200001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/4/#) [  Discussion  **10**](https://www.examtopics.com/exams/microsoft/az-204/view/4/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004300001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004300001.jpg)*
 Step 1: #bin/bash -
 The appName is used when the webapp-name is created in step 2.
 Step 2: az webapp config hostname add
@@ -414,7 +404,7 @@ The application must meet the following requirements:
 You need to grant the Azure Functions application access to the Azure Key Vault.
 Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004500001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004500001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/4/#) [  Discussion  **11**](https://www.examtopics.com/exams/microsoft/az-204/view/4/#)
 
@@ -461,11 +451,11 @@ You need to create the web app and deploy the code.
 How should you complete the commands? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004800001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004800001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/5/#) [  Discussion  **5**](https://www.examtopics.com/exams/microsoft/az-204/view/5/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004900001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004900001.png)*
 Box 1: group -
 \# Create a resource group.
 az group create --location westeurope --name myResourceGroup
@@ -499,11 +489,11 @@ There are many existing websites and mobile apps that use the web service that w
 How should you complete the trigger?
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0005100001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0005100001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/5/#) [  Discussion  **8**](https://www.examtopics.com/exams/microsoft/az-204/view/5/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0005200001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0005200001.png)*
 
 Question #20*Topic 1*
 
@@ -625,18 +615,18 @@ https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-get-started
 
 DRAG DROP -
 You are developing a new page for a website that uses Azure Cosmos DB for data storage. The feature uses documents that have the following format:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007600001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0007600001.png)
 You must display data for the new page in a specific order. You create the following query for the page:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007600002.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0007600002.png)
 You need to configure a Cosmos DB policy to the support the query.
 How should you configure the policy? To answer, drag the appropriate JSON segments to the correct locations. Each JSON segment may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-<img src="C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007700001.png" alt="img" style="zoom: 67%;" />
+<img src="C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0007700001.png" alt="img" style="zoom: 67%;" />
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/7/#) [  Discussion  **7**](https://www.examtopics.com/exams/microsoft/az-204/view/7/#)
 
-**Correct Answer:** *<img src="C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007800001.png" alt="img" style="zoom:67%;" />*
+**Correct Answer:** *<img src="C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0007800001.png" alt="img" style="zoom:67%;" />*
 Box 1: compositeIndexes -
 You can order by multiple properties. A query that orders by multiple properties requires a composite index.
 
@@ -675,11 +665,11 @@ You need to implement the Azure Event Hub.
 Which settings should you use? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008000001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008000001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/7/#) [  Discussion  **10**](https://www.examtopics.com/exams/microsoft/az-204/view/7/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008100001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008100001.png)*
 Box 1: 6 -
 The number of partitions is specified at creation and must be between 2 and 32.
 There are 6 highways.
@@ -699,11 +689,11 @@ You need to deploy a solution that includes the following features:
 Which components should you use? To answer, drag the appropriate components to the correct requirements. Each component may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008200004.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008200004.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/7/#) [  Discussion  **2**](https://www.examtopics.com/exams/microsoft/az-204/view/7/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008300001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008300001.jpg)*
 Box 1: Helm -
 To create the ingress controller, use Helm to install nginx-ingress.
 
@@ -723,18 +713,18 @@ Question #5*Topic 2*
 
 DRAG DROP -
 You are implementing an order processing system. A point of sale application publishes orders to topics in an Azure Service Bus queue. The Label property for the topic includes the following data:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008400001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008400001.png)
 The system has the following requirements for subscriptions:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008400002.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008400002.png)
 You need to implement filtering and maximize throughput while evaluating filters.
 Which filter types should you implement? To answer, drag the appropriate filter types to the correct subscriptions. Each filter type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008500001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008500001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/7/#) [  Discussion  **14**](https://www.examtopics.com/exams/microsoft/az-204/view/7/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008600001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008600001.png)*
 FutureOrders: SQLFilter -
 HighPriortyOrders: CorrelationFilter
 
@@ -762,11 +752,11 @@ Your company has several websites that use a company logo image. You use Azure C
 You need to determine the correct process of how the CDN and the Point of Presence (POP) server will distribute the image and list the items in the correct order.
 In which order do the actions occur? To answer, move all actions from the list of actions to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008800001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008800001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/8/#) [  Discussion  **1**](https://www.examtopics.com/exams/microsoft/az-204/view/8/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008800002.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008800002.jpg)*
 Step 1: A user requests the image..
 A user requests a file (also called an asset) by using a URL with a special domain name, such as <endpoint name>.azureedge.net. This name can be an endpoint hostname or a custom domain. The DNS routes the request to the best performing POP location, which is usually the POP that is geographically closest to the user.
 Step 2: If no edge servers in the POP have the..
@@ -814,19 +804,19 @@ You have the following requirements:
 ✑ When users reach a new high score, the system will save the new score using the SaveScore function below.
 ✑ Each game is assigned an Id based on the series title.
 You plan to store customer information in Azure Cosmos DB. The following data already exists in the database:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009100001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009100001.png)
 You develop the following code to save scores in the data store. (Line numbers are included for reference only.)
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009100002.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009100002.png)
 You develop the following code to query the database. (Line numbers are included for reference only.)
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009100003.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009100003.jpg)
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009200001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009200001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/8/#) [  Discussion  **8**](https://www.examtopics.com/exams/microsoft/az-204/view/8/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009200002.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009200002.png)*
 Box 1: Yes -
 Create a table.
 A CloudTableClient object lets you get reference objects for tables and entities. The following code creates a CloudTableClient object and uses it to create a new
@@ -852,15 +842,15 @@ Question #9*Topic 2*
 
 HOTSPOT -
 You are developing a solution that uses the Azure Storage Client library for .NET. You have the following code: (Line numbers are included for reference only.)
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009400001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009400001.jpg)
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009400002.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009400002.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/8/#) [  Discussion  **5**](https://www.examtopics.com/exams/microsoft/az-204/view/8/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009500001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009500001.png)*
 Box 1: Yes -
 AcquireLeaseAsync does not specify leaseTime.
 leaseTime is a TimeSpan representing the span of time for which to acquire the lease, which will be rounded down to seconds. If null, an infinite lease will be acquired. If not null, this must be 15 to 60 seconds.
@@ -906,11 +896,11 @@ You need to provision a SQL API Cosmos DB account to support the app.
 How should you complete the Azure CLI commands? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009800001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009800001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/9/#) [  Discussion  **6**](https://www.examtopics.com/exams/microsoft/az-204/view/9/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0010000001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0010000001.jpg)*
 Box 1: BoundedStaleness -
 Bounded staleness: The reads are guaranteed to honor the consistent-prefix guarantee. The reads might lag behind writes by at most "K" versions (that is,
 "updates") of an item or by "T" time interval. In other words, when you choose bounded staleness, the "staleness" can be configured in two ways:
@@ -964,11 +954,11 @@ You are developing an application. You have an Azure user account that has acces
 You need to retrieve a storage account key secret from Azure Key Vault.
 In which order should you arrange the PowerShell commands to develop the solution? To answer, move all commands from the list of commands to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0013300001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0013300001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/9/#) [  Discussion  ](https://www.examtopics.com/exams/microsoft/az-204/view/9/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0013400001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0013400001.png)*
 Step 1: Get-AzSubscription -
 If you have multiple subscriptions, you might have to specify the one that was used to create your key vault. Enter the following to see the subscriptions for your account:
 
@@ -1068,11 +1058,11 @@ You need to configure the application's manifest to meet the authentication requ
 How should you configure the manifest? To answer, select the appropriate configuration in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0013800003.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0013800003.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/10/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/10/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0013900001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0013900001.png)*
 Box 1: groupMembershipClaims -
 Scenario: Personalization of the website must be based on membership in Active Directory groups.
 Group claims can also be configured in the Optional Claims section of the Application Manifest.
@@ -1141,7 +1131,7 @@ Question #9*Topic 3*
 Your company is developing an Azure API.
 You need to implement authentication for the Azure API. You have the following requirements:
 All API calls must be secure.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0014100004.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0014100004.png)
 ✑ Callers to the API must not send credentials to the API.
 Which authentication mechanism should you use?
 
@@ -1196,7 +1186,7 @@ You need to add the following policies to the policies file:
 To which policy section should you add the policies? To answer, drag the appropriate sections to the correct policies. Each section may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0014400001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0014400001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/12/#) [  Discussion  **10**](https://www.examtopics.com/exams/microsoft/az-204/view/12/#)
 
@@ -1209,11 +1199,11 @@ You develop a web application.
 You need to register the application with an active Azure Active Directory (Azure AD) tenant.
 Which three actions should you perform in sequence? To answer, move all actions from the list of actions to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0014700001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0014700001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/12/#) [  Discussion  **3**](https://www.examtopics.com/exams/microsoft/az-204/view/12/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0014800001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0014800001.jpg)*
 Register a new application using the Azure portal
 \1. Sign in to the Azure portal using either a work or school account or a personal Microsoft account.
 \2. If your account gives you access to more than one tenant, select your account in the upper right corner. Set your portal session to the Azure AD tenant that you want.
@@ -1236,11 +1226,11 @@ You need to determine the root cause for the issue.
 To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016200001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016200001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/12/#) [  Discussion  **7**](https://www.examtopics.com/exams/microsoft/az-204/view/12/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016300001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016300001.jpg)*
 Box 1: No -
 Front Door can dynamically compress content on the edge, resulting in a smaller and faster response to your clients. All files are eligible for compression.
 However, a file must be of a MIME type that is eligible for compression list.
@@ -1264,11 +1254,11 @@ You need to configure Azure CDN caching rules.
 Which options should you use? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016500001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016500001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/12/#) [  Discussion  ](https://www.examtopics.com/exams/microsoft/az-204/view/12/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016600001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016600001.jpg)*
 Box 1: Override -
 Override: Ignore origin-provided cache duration; use the provided cache duration instead. This will not override cache-control: no-cache.
 Set if missing: Honor origin-provided cache-directive headers, if they exist; otherwise, use the provided cache duration.
@@ -1295,11 +1285,11 @@ You need to ensure that the web app automatically scales when CPU load is about 
 Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 NOTE: More than one order of answer choices is correct. You will receive credit for any of the correct orders you select.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016800001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016800001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/13/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/13/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016900001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016900001.jpg)*
 Step 1: Configure the web app to the Standard App Service Tier
 The Standard tier supports auto-scaling, and we should minimize the cost.
 Step 2: Enable autoscaling on the web app
@@ -1362,7 +1352,7 @@ Note: This question is part of a series of questions that present the same scena
 You are developing and deploying several ASP.NET web applications to Azure App Service. You plan to save session state information and HTML output.
 You must use a storage mechanism with the following requirements:
 Share session state across all ASP.NET web applications.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0017100004.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0017100004.png)
 ✑ Support controlled, concurrent access to the same session state data for multiple readers and a single writer.
 ✑ Save full HTTP responses for concurrent requests.
 You need to store the information.
@@ -1394,11 +1384,11 @@ You need to determine on which virtual machines (VMs) the errors are occurring.
 How should you complete the Azure Monitor query? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0017400001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0017400001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/14/#) [  Discussion  ](https://www.examtopics.com/exams/microsoft/az-204/view/14/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0017600001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0017600001.png)*
 Box 1: ago(1d)
 
 Box 2: distinct containerID -
@@ -1417,11 +1407,11 @@ You need to access the console logs generated from inside the container in real-
 How should you complete the Azure CLI command? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0017800001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0017800001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/14/#) [  Discussion  **11**](https://www.examtopics.com/exams/microsoft/az-204/view/14/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0017800002.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0017800002.png)*
 Box 1: config -
 To Configure logging for a web app use the command:
 az webapp log config
@@ -1470,17 +1460,17 @@ API calls must be cached. Customers must not be able to view cached data for oth
 You need to configure API Management policies for caching.
 How should you complete the policy statement?
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0018100001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0018100001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/14/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/14/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0018100002.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0018100002.jpg)*
 Box 1: internal -
 caching-type
 Choose between the following values of the attribute:
 ✑ internal to use the built-in API Management cache,
 ✑ external to use the external cache as Azure Cache for Redis prefer-external to use external cache if configured or internal cache otherwise.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0018100005.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0018100005.png)
 
 Box 2: private -
 downstream-caching-type
@@ -1702,11 +1692,11 @@ You need to change definitions, add new logic, and optimize these apps on a regu
 What should you use? To answer, drag the appropriate tools to the correct functionalities. Each tool may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0019900001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0019900001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/16/#) [  Discussion  ](https://www.examtopics.com/exams/microsoft/az-204/view/16/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0019900002.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0019900002.jpg)*
 Box 1: Enterprise Integration Pack
 For business-to-business (B2B) solutions and seamless communication between organizations, you can build automated scalable enterprise integration workflows by using the Enterprise Integration Pack (EIP) with Azure Logic Apps.
 
@@ -1729,13 +1719,13 @@ The solution must receive and store messages until they can be processed. You cr
 You need to complete the configuration.
 Which Azure CLI or PowerShell command should you run?
 A.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020000001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020000001.png)
 B.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020000002.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020000002.png)
 C.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020100001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020100001.png)
 D.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020100002.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020100002.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/16/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/16/#)
 
@@ -1760,15 +1750,15 @@ Question #6*Topic 5*
 HOTSPOT -
 You are developing an application that uses Azure Storage Queues.
 You have the following code:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020200001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020200001.jpg)
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020300001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020300001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/16/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/16/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020300002.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020300002.jpg)*
 Box 1: No -
 The QueueDescription.LockDuration property gets or sets the duration of a peek lock; that is, the amount of time that the message is locked for other receivers.
 The maximum value for LockDuration is 5 minutes; the default value is 1 minute.
@@ -1785,15 +1775,15 @@ Question #7*Topic 5*
 HOTSPOT -
 You are working for Contoso, Ltd.
 You define an API Policy object by using the following XML markup:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020400001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020400001.png)
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020500001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020500001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/16/#) [  Discussion  **1**](https://www.examtopics.com/exams/microsoft/az-204/view/16/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020500002.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020500002.png)*
 Box 1: Yes -
 Use the set-backend-service policy to redirect an incoming request to a different backend than the one specified in the API settings for that operation. Syntax:
 <set-backend-service base-url="base URL of the backend service" />
@@ -1903,11 +1893,11 @@ You must change the behavior of the API to meet the following requirements:
 Which types of policies should you implement? To answer, drag the policy types to the correct scenarios. Each policy type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0021000001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0021000001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/18/#) [  Discussion  **12**](https://www.examtopics.com/exams/microsoft/az-204/view/18/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0021000002.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0021000002.png)*
 
 Question #13*Topic 5*
 
@@ -1936,15 +1926,15 @@ You must automatically move blobs to Archive tier after they have not been modif
 How should you configure the Logic App? To answer, drag the appropriate triggers or action blocks to the correct trigger or action slots. Each trigger or action block may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0021200001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0021200001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/18/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/18/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0021300001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0021300001.jpg)*
 Box 1: Reoccurance..
 To regularly run tasks, processes, or jobs on specific schedule, you can start your logic app workflow with the built-in Recurrence - Schedule trigger. You can set a date and time as well as a time zone for starting the workflow and a recurrence for repeating that workflow.
 Set the interval and frequency for the recurrence. In this example, set these properties to run your workflow every week.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0021400001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0021400001.jpg)
 Box 2: Condition..
 To run specific actions in your logic app only after passing a specified condition, add a conditional statement. This control structure compares the data in your workflow against specific values or fields. You can then specify different actions that run based on whether or not the data meets the condition.
 
@@ -1988,11 +1978,11 @@ You are developing an Azure Web App. You configure TLS mutual authentication for
 You need to validate the client certificate in the web app. To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0003700001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0003700001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/4/#) [  Discussion  **2**](https://www.examtopics.com/exams/microsoft/az-204/view/4/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0003800001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0003800001.jpg)*
 Accessing the client certificate from App Service.
 If you are using ASP.NET and configure your app to use client certificate authentication, the certificate will be available through the HttpRequest.ClientCertificate property. For other application stacks, the client cert will be available in your app through a base64 encoded value in the "X-ARR-ClientCert" request header. Your application can create a certificate from this value and then use it for authentication and authorization purposes in your application.
 Reference:
@@ -2007,11 +1997,11 @@ None of your current resource groups reside in a location that supports Linux. Y
 You need to create the application and perform an initial deployment.
 Which three Azure CLI commands should you use to develop the solution? To answer, move the appropriate commands from the list of commands to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0003900001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0003900001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/4/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/4/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004000001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004000001.png)*
 You can host native Linux applications in the cloud by using Azure Web Apps. To create a Web App for Containers, you must run Azure CLI commands that create a group, then a service plan, and finally the web app itself.
 
 Step 1: az group create -
@@ -2034,11 +2024,11 @@ A resource group named FourthCoffeePublicWebResourceGroup has been created in th
 AppServiceLinuxDockerPlan.
 Which order should the CLI commands be used to develop the solution? To answer, move all of the Azure CLI commands from the list of commands to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004200001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004200001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/4/#) [  Discussion  **10**](https://www.examtopics.com/exams/microsoft/az-204/view/4/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004300001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004300001.jpg)*
 Step 1: #bin/bash -
 The appName is used when the webapp-name is created in step 2.
 Step 2: az webapp config hostname add
@@ -2065,11 +2055,11 @@ The application must meet the following requirements:
 You need to grant the Azure Functions application access to the Azure Key Vault.
 Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004500001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004500001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/4/#) [  Discussion  **11**](https://www.examtopics.com/exams/microsoft/az-204/view/4/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004600001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004600001.png)*
 Step 1: Create the Azure Functions app with a Consumption plan type.
 Use the Consumption plan for serverless.
 Step 2: Create a system-assigned managed identity for the application.
@@ -2112,11 +2102,11 @@ You need to create the web app and deploy the code.
 How should you complete the commands? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004800001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004800001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/5/#) [  Discussion  **5**](https://www.examtopics.com/exams/microsoft/az-204/view/5/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0004900001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0004900001.png)*
 Box 1: group -
 \# Create a resource group.
 az group create --location westeurope --name myResourceGroup
@@ -2150,11 +2140,11 @@ There are many existing websites and mobile apps that use the web service that w
 How should you complete the trigger?
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0005100001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0005100001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/5/#) [  Discussion  **8**](https://www.examtopics.com/exams/microsoft/az-204/view/5/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0005200001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0005200001.png)*
 
 Question #20*Topic 1*
 
@@ -2276,18 +2266,18 @@ Question #2*Topic 2*
 
 DRAG DROP -
 You are developing a new page for a website that uses Azure Cosmos DB for data storage. The feature uses documents that have the following format:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007600001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0007600001.png)
 You must display data for the new page in a specific order. You create the following query for the page:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007600002.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0007600002.png)
 You need to configure a Cosmos DB policy to the support the query.
 How should you configure the policy? To answer, drag the appropriate JSON segments to the correct locations. Each JSON segment may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007700001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0007700001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/7/#) [  Discussion  **7**](https://www.examtopics.com/exams/microsoft/az-204/view/7/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0007800001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0007800001.png)*
 Box 1: compositeIndexes -
 You can order by multiple properties. A query that orders by multiple properties requires a composite index.
 
@@ -2326,11 +2316,11 @@ You need to implement the Azure Event Hub.
 Which settings should you use? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008000001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008000001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/7/#) [  Discussion  **10**](https://www.examtopics.com/exams/microsoft/az-204/view/7/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008100001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008100001.png)*
 Box 1: 6 -
 The number of partitions is specified at creation and must be between 2 and 32.
 There are 6 highways.
@@ -2350,11 +2340,11 @@ You need to deploy a solution that includes the following features:
 Which components should you use? To answer, drag the appropriate components to the correct requirements. Each component may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008200004.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008200004.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/7/#) [  Discussion  **2**](https://www.examtopics.com/exams/microsoft/az-204/view/7/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008300001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008300001.jpg)*
 Box 1: Helm -
 To create the ingress controller, use Helm to install nginx-ingress.
 
@@ -2374,18 +2364,18 @@ Question #5*Topic 2*
 
 DRAG DROP -
 You are implementing an order processing system. A point of sale application publishes orders to topics in an Azure Service Bus queue. The Label property for the topic includes the following data:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008400001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008400001.png)
 The system has the following requirements for subscriptions:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008400002.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008400002.png)
 You need to implement filtering and maximize throughput while evaluating filters.
 Which filter types should you implement? To answer, drag the appropriate filter types to the correct subscriptions. Each filter type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008500001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008500001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/7/#) [  Discussion  **14**](https://www.examtopics.com/exams/microsoft/az-204/view/7/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008600001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008600001.png)*
 FutureOrders: SQLFilter -
 HighPriortyOrders: CorrelationFilter
 
@@ -2413,11 +2403,11 @@ Your company has several websites that use a company logo image. You use Azure C
 You need to determine the correct process of how the CDN and the Point of Presence (POP) server will distribute the image and list the items in the correct order.
 In which order do the actions occur? To answer, move all actions from the list of actions to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008800001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008800001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/8/#) [  Discussion  **1**](https://www.examtopics.com/exams/microsoft/az-204/view/8/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0008800002.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0008800002.jpg)*
 Step 1: A user requests the image..
 A user requests a file (also called an asset) by using a URL with a special domain name, such as <endpoint name>.azureedge.net. This name can be an endpoint hostname or a custom domain. The DNS routes the request to the best performing POP location, which is usually the POP that is geographically closest to the user.
 Step 2: If no edge servers in the POP have the..
@@ -2465,19 +2455,19 @@ You have the following requirements:
 â When users reach a new high score, the system will save the new score using the SaveScore function below.
 â Each game is assigned an Id based on the series title.
 You plan to store customer information in Azure Cosmos DB. The following data already exists in the database:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009100001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009100001.png)
 You develop the following code to save scores in the data store. (Line numbers are included for reference only.)
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009100002.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009100002.png)
 You develop the following code to query the database. (Line numbers are included for reference only.)
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009100003.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009100003.jpg)
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009200001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009200001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/8/#) [  Discussion  **8**](https://www.examtopics.com/exams/microsoft/az-204/view/8/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009200002.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009200002.png)*
 Box 1: Yes -
 Create a table.
 A CloudTableClient object lets you get reference objects for tables and entities. The following code creates a CloudTableClient object and uses it to create a new
@@ -2505,15 +2495,15 @@ Question #9*Topic 2*
 
 HOTSPOT -
 You are developing a solution that uses the Azure Storage Client library for .NET. You have the following code: (Line numbers are included for reference only.)
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009400001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009400001.jpg)
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009400002.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009400002.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/8/#) [  Discussion  **5**](https://www.examtopics.com/exams/microsoft/az-204/view/8/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009500001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009500001.png)*
 Box 1: Yes -
 AcquireLeaseAsync does not specify leaseTime.
 leaseTime is a TimeSpan representing the span of time for which to acquire the lease, which will be rounded down to seconds. If null, an infinite lease will be acquired. If not null, this must be 15 to 60 seconds.
@@ -2559,11 +2549,11 @@ You need to provision a SQL API Cosmos DB account to support the app.
 How should you complete the Azure CLI commands? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0009800001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0009800001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/9/#) [  Discussion  **6**](https://www.examtopics.com/exams/microsoft/az-204/view/9/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0010000001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0010000001.jpg)*
 Box 1: BoundedStaleness -
 Bounded staleness: The reads are guaranteed to honor the consistent-prefix guarantee. The reads might lag behind writes by at most "K" versions (that is,
 "updates") of an item or by "T" time interval. In other words, when you choose bounded staleness, the "staleness" can be configured in two ways:
@@ -2617,11 +2607,11 @@ You are developing an application. You have an Azure user account that has acces
 You need to retrieve a storage account key secret from Azure Key Vault.
 In which order should you arrange the PowerShell commands to develop the solution? To answer, move all commands from the list of commands to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0013300001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0013300001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/9/#) [  Discussion  ](https://www.examtopics.com/exams/microsoft/az-204/view/9/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0013400001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0013400001.png)*
 Step 1: Get-AzSubscription -
 If you have multiple subscriptions, you might have to specify the one that was used to create your key vault. Enter the following to see the subscriptions for your account:
 
@@ -2721,11 +2711,11 @@ You need to configure the application's manifest to meet the authentication requ
 How should you configure the manifest? To answer, select the appropriate configuration in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0013800003.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0013800003.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/10/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/10/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0013900001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0013900001.png)*
 Box 1: groupMembershipClaims -
 Scenario: Personalization of the website must be based on membership in Active Directory groups.
 Group claims can also be configured in the Optional Claims section of the Application Manifest.
@@ -2794,7 +2784,7 @@ Question #9*Topic 3*
 Your company is developing an Azure API.
 You need to implement authentication for the Azure API. You have the following requirements:
 All API calls must be secure.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0014100004.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0014100004.png)
 â Callers to the API must not send credentials to the API.
 Which authentication mechanism should you use?
 
@@ -2849,7 +2839,7 @@ You need to add the following policies to the policies file:
 To which policy section should you add the policies? To answer, drag the appropriate sections to the correct policies. Each section may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0014400001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0014400001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/12/#) [  Discussion  **10**](https://www.examtopics.com/exams/microsoft/az-204/view/12/#)
 
@@ -2862,11 +2852,11 @@ You develop a web application.
 You need to register the application with an active Azure Active Directory (Azure AD) tenant.
 Which three actions should you perform in sequence? To answer, move all actions from the list of actions to the answer area and arrange them in the correct order.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0014700001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0014700001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/12/#) [  Discussion  **3**](https://www.examtopics.com/exams/microsoft/az-204/view/12/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0014800001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0014800001.jpg)*
 Register a new application using the Azure portal
 \1. Sign in to the Azure portal using either a work or school account or a personal Microsoft account.
 \2. If your account gives you access to more than one tenant, select your account in the upper right corner. Set your portal session to the Azure AD tenant that you want.
@@ -2889,11 +2879,11 @@ You need to determine the root cause for the issue.
 To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016200001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016200001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/12/#) [  Discussion  **7**](https://www.examtopics.com/exams/microsoft/az-204/view/12/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016300001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016300001.jpg)*
 Box 1: No -
 Front Door can dynamically compress content on the edge, resulting in a smaller and faster response to your clients. All files are eligible for compression.
 However, a file must be of a MIME type that is eligible for compression list.
@@ -2917,11 +2907,11 @@ You need to configure Azure CDN caching rules.
 Which options should you use? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016500001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016500001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/12/#) [  Discussion  ](https://www.examtopics.com/exams/microsoft/az-204/view/12/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016600001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016600001.jpg)*
 Box 1: Override -
 Override: Ignore origin-provided cache duration; use the provided cache duration instead. This will not override cache-control: no-cache.
 Set if missing: Honor origin-provided cache-directive headers, if they exist; otherwise, use the provided cache duration.
@@ -2948,11 +2938,11 @@ You need to ensure that the web app automatically scales when CPU load is about 
 Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 NOTE: More than one order of answer choices is correct. You will receive credit for any of the correct orders you select.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016800001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016800001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/13/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/13/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0016900001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0016900001.jpg)*
 Step 1: Configure the web app to the Standard App Service Tier
 The Standard tier supports auto-scaling, and we should minimize the cost.
 Step 2: Enable autoscaling on the web app
@@ -3015,7 +3005,7 @@ Note: This question is part of a series of questions that present the same scena
 You are developing and deploying several ASP.NET web applications to Azure App Service. You plan to save session state information and HTML output.
 You must use a storage mechanism with the following requirements:
 Share session state across all ASP.NET web applications.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0017100004.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0017100004.png)
 â Support controlled, concurrent access to the same session state data for multiple readers and a single writer.
 â Save full HTTP responses for concurrent requests.
 You need to store the information.
@@ -3047,11 +3037,11 @@ You need to determine on which virtual machines (VMs) the errors are occurring.
 How should you complete the Azure Monitor query? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0017400001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0017400001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/14/#) [  Discussion  ](https://www.examtopics.com/exams/microsoft/az-204/view/14/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0017600001.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0017600001.png)*
 Box 1: ago(1d)
 
 Box 2: distinct containerID -
@@ -3070,11 +3060,11 @@ You need to access the console logs generated from inside the container in real-
 How should you complete the Azure CLI command? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0017800001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0017800001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/14/#) [  Discussion  **11**](https://www.examtopics.com/exams/microsoft/az-204/view/14/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0017800002.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0017800002.png)*
 Box 1: config -
 To Configure logging for a web app use the command:
 az webapp log config
@@ -3123,17 +3113,17 @@ API calls must be cached. Customers must not be able to view cached data for oth
 You need to configure API Management policies for caching.
 How should you complete the policy statement?
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0018100001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0018100001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/14/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/14/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0018100002.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0018100002.jpg)*
 Box 1: internal -
 caching-type
 Choose between the following values of the attribute:
 â internal to use the built-in API Management cache,
 â external to use the external cache as Azure Cache for Redis prefer-external to use external cache if configured or internal cache otherwise.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0018100005.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0018100005.png)
 
 Box 2: private -
 downstream-caching-type
@@ -3355,11 +3345,11 @@ You need to change definitions, add new logic, and optimize these apps on a regu
 What should you use? To answer, drag the appropriate tools to the correct functionalities. Each tool may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0019900001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0019900001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/16/#) [  Discussion  ](https://www.examtopics.com/exams/microsoft/az-204/view/16/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0019900002.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0019900002.jpg)*
 Box 1: Enterprise Integration Pack
 For business-to-business (B2B) solutions and seamless communication between organizations, you can build automated scalable enterprise integration workflows by using the Enterprise Integration Pack (EIP) with Azure Logic Apps.
 
@@ -3382,13 +3372,13 @@ The solution must receive and store messages until they can be processed. You cr
 You need to complete the configuration.
 Which Azure CLI or PowerShell command should you run?
 A.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020000001.png)
+![img](Azure204-ExamQuestionsDump.assets/0020000001.png)
 B.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020000002.png)
+![img](Azure204-ExamQuestionsDump.assets/0020000002.png)
 C.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020100001.png)
+![img](Azure204-ExamQuestionsDump.assets/0020100001.png)
 D.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020100002.png)
+![img](Azure204-ExamQuestionsDump.assets/0020100002.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/16/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/16/#)
 
@@ -3413,15 +3403,15 @@ Question #6*Topic 5*
 HOTSPOT -
 You are developing an application that uses Azure Storage Queues.
 You have the following code:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020200001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020200001.jpg)
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020300001.jpg)
+![img](Azure204-ExamQuestionsDump.assets/0020300001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/16/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/16/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020300002.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020300002.jpg)*
 Box 1: No -
 The QueueDescription.LockDuration property gets or sets the duration of a peek lock; that is, the amount of time that the message is locked for other receivers.
 The maximum value for LockDuration is 5 minutes; the default value is 1 minute.
@@ -3438,15 +3428,15 @@ Question #7*Topic 5*
 HOTSPOT -
 You are working for Contoso, Ltd.
 You define an API Policy object by using the following XML markup:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020400001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020400001.png)
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 Hot Area:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020500001.png)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020500001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/16/#) [  Discussion  **1**](https://www.examtopics.com/exams/microsoft/az-204/view/16/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0020500002.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0020500002.png)*
 Box 1: Yes -
 Use the set-backend-service policy to redirect an incoming request to a different backend than the one specified in the API settings for that operation. Syntax:
 <set-backend-service base-url="base URL of the backend service" />
@@ -3556,11 +3546,11 @@ You must change the behavior of the API to meet the following requirements:
 Which types of policies should you implement? To answer, drag the policy types to the correct scenarios. Each policy type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0021000001.png)
+![img](Azure204-ExamQuestionsDump.assets/0021000001.png)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/18/#) [  Discussion  **12**](https://www.examtopics.com/exams/microsoft/az-204/view/18/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0021000002.png)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0021000002.png)*
 
 Question #13*Topic 5*
 
@@ -3589,15 +3579,15 @@ You must automatically move blobs to Archive tier after they have not been modif
 How should you configure the Logic App? To answer, drag the appropriate triggers or action blocks to the correct trigger or action slots. Each trigger or action block may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 Select and Place:
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0021200001.jpg)
+![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0021200001.jpg)
 
 [Hide Solution](https://www.examtopics.com/exams/microsoft/az-204/view/18/#) [  Discussion  **4**](https://www.examtopics.com/exams/microsoft/az-204/view/18/#)
 
-**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0021300001.jpg)*
+**Correct Answer:** *![img](C:\Users\ajitg\Notes\Azure-203-204-Exam\ExamQuestionsDump.assets\0021300001.jpg)*
 Box 1: Reoccurance..
 To regularly run tasks, processes, or jobs on specific schedule, you can start your logic app workflow with the built-in Recurrence - Schedule trigger. You can set a date and time as well as a time zone for starting the workflow and a recurrence for repeating that workflow.
 Set the interval and frequency for the recurrence. In this example, set these properties to run your workflow every week.
-![img](C:\Users\ajitg\Notes\Azure-203Exam\ExamQuestionsDump.assets\0021400001.jpg)
+![img](Azure204-ExamQuestionsDump.assets/0021400001.jpg)
 Box 2: Condition..
 To run specific actions in your logic app only after passing a specified condition, add a conditional statement. This control structure compares the data in your workflow against specific values or fields. You can then specify different actions that run based on whether or not the data meets the condition.
 

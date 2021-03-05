@@ -26,16 +26,16 @@ Core(SQL) API
 IoT: Internet of Things
 
 AzCopy tool
-
 Storage Account Access Tiers
-
 Lifecycle management policy
+Azure Web Application Firewall 
+Azure Application Gateway instance
+Azure App service environment (ASE)
+
 
 Storage Account
-
-​	Blob storage account generation1: 
-
-​	Blob storage account Generation2: 
+	Blob storage account generation1: 
+	Blob storage account Generation2: 
 
 **<u>Secure Data:</u>**
 

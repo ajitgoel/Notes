@@ -32,3 +32,23 @@
 • You can add additional claims to a user using the UserManager<TUser>.AddClaimAsync(TUser user, Claim claim) method. These claims are added to the HttpContext.User object when the user logs in to your app.
 • Claims consist of a type and a value. Both values are strings. You can use standard values for types exposed on the ClaimTypes class, such as ClaimTypes .GivenName and ClaimTypes.FirstName, or you can use a custom string, such as "FullName".  
 
+**<u>Authorization: Securing your web application:</u>**
+
+Authentication is the process of determining who a user is. It’s distinct from authorization, the process of determining what a user can do. Authentication typically occurs before authorization.
+• You can use the authorization services in any part of your application, but it’s typically applied using the AuthorizationMiddleware by calling UseAuthorization(). This should be placed after the calls to UseRouting() and UseAuthentication(), and before the call to UseEndpoints() for correct operation.
+• You can protect Razor Pages and MVC actions by applying the [Authorize] attribute. The routing middleware records the presence of the attribute as metadata with the selected endpoint. The authorization middleware uses this metadata to determine how to authorize the request.
+• The simplest form of authorization requires that a user is authenticated before executing an action. You can achieve this by applying the [Authorize] attribute to a Razor Page, action, controller, or globally. You can also apply attributes conventionally to a sub-set of Razor Pages.
+• Claims-based authorization uses the current user’s claims to determine whether they’re authorized to execute an action. You define the claims needed to execute an action in a policy.
+• Policies have a name and are configured in Startup.cs as part of the call to AddAuthorization() in ConfigureServices. You define the policy using AddPolicy(), passing in a name and a lambda that defines the claims needed.
+• You can apply a policy to an action or Razor Page by specifying the policy in the authorize attribute, for example [Authorize("CanAccessLounge")]. This policy will be used by the AuthorizationMiddleware to determine if the user is allowed to execute
+the selected endpoint.
+• In a Razor Pages app, if an unauthenticated user attempts to execute a protected action, they’ll be redirected to the login page for your app. If they’re already authenticated, but don’t have the required claims, they’ll be shown an Access Denied page instead.
+• For complex authorization policies, you can build a custom policy. A custom policy consists of one or more requirements, and a requirement can have one or more handlers. You can combine requirements and handlers to create policies of arbitrary complexity.
+• For a policy to be authorized, every requirement must be satisfied. For a requirement to be satisfied, one or more of the associated handlers must indicate success, and none must indicate explicit failure.
+• AuthorizationHandler<T> contains the logic that determines whether a requirement is satisfied. For example, if a requirement requires that users be over 18, the handler could look for a DateOfBirth claim and calculate the user’s age.
+• Handlers can mark a requirement as satisfied by calling context.Succeed(requirement). If a handler can’t satisfy the requirement, then it
+shouldn’t call anything on the context, as a different handler could call Succeed() and satisfy the requirement.
+• If a handler calls context.Fail(), then the requirement will fail, even if a different handler marked it as a success using Succeed(). Only use this method if you want to override any calls to Succeed() from other handlers, to ensure the authorization policy will fail authorization.
+• Resource-based authorization uses details of the resource being protected to determine whether the current user is authorized. For example, if a user is only allowed to edit their own documents, then you need to know the author of the document before you can determine whether they’re authorized.
+• Resource-based authorization uses the same policy, requirements, and handler system as before. Instead of applying authorization with the [Authorize] attribute, you must manually call IAuthorizationService and provide the resource you’re protecting.
+• You can modify the user interface to account for user authorization by adding additional properties to your PageModel. If a user isn’t authorized to execute an action, you can remove or disable the link to that action method in the UI. You should always authorize on the server, even if you’ve removed links from the UI.  
