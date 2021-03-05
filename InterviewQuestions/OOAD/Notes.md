@@ -20,7 +20,7 @@ public interface IDatabase
 }
 
 **Refactored code to follow Single Responsibility Principle and Open\closed principle:**
-==Database class has now been refactored into two classes. ==
+==Database class has now been refactored into two classes.==
 ==The IDataManager class deals with data communication.==
 ==The IConnectionManager class deals with opening \ closing connections. These classes now follow the Single Responsibility Principle.==
 public interface IDataManager

@@ -10,8 +10,6 @@ This article provides an overview of key topics for understanding how to develop
 
 Here's a sample `Startup` class:
 
-C#Copy
-
 ```csharp
 public class Startup
 {
