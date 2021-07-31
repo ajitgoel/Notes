@@ -13,17 +13,15 @@ You have reached 5 of 15 point(s), (33.33%)
 1. CSAA – Design Cost-Optimized Architectures33.33%
 2. CSAA – Design High-Performing Architectures40%
 3. CSAA – Design Resilient Architectures25%
-4. CSAA – Design Secure Applications and Architectures33.33%
+4. CSAA – Design Secure Applications and Architectures33.33% 
 
-- Sorry, you failed the test. Carefully read our detailed explanations including the references and [cheat sheets](https://tutorialsdojo.com/links-to-all-aws-cheat-sheets/) then try again. ![🙂](https://s.w.org/images/core/emoji/13.0.1/svg/1f642.svg) 
+To further increase your chances of passing the exam, we highly recommend that you enroll in the **premium version** of this course – our [AWS Certified Solutions Architect Associate Practice Exams](https://portal.tutorialsdojo.com/courses/aws-certified-solutions-architect-associate-practice-exams/).
 
-  To further increase your chances of passing the exam, we highly recommend that you enroll in the **premium version** of this course – our [AWS Certified Solutions Architect Associate Practice Exams](https://portal.tutorialsdojo.com/courses/aws-certified-solutions-architect-associate-practice-exams/).
+To view your record of all previous attempts:
 
-  To view your record of all previous attempts:
+![img](https://w7e4q5w4.stackpathcdn.com/wp-content/uploads/2020/10/tutorialsdojo-view-results.gif)
 
-  ![img](https://w7e4q5w4.stackpathcdn.com/wp-content/uploads/2020/10/tutorialsdojo-view-results.gif)
-
-  Visit our [FAQ page](https://portal.tutorialsdojo.com/faqs/) for more information on the site’s features.
+Visit our [FAQ page](https://portal.tutorialsdojo.com/faqs/) for more information on the site’s features.
 
  						View All Questions 						View Incorrect Answers 						View Correct Answers 					
 
@@ -98,40 +96,26 @@ You have reached 5 of 15 point(s), (33.33%)
 
    The option that says: ***\*Ideal to use for data archiving\**** is incorrect because this statement refers to Amazon S3 Glacier. Glacier is a secure, durable, and extremely low-cost cloud storage service for data archiving and long-term backup.
 
-    
-
    **References:**
 
    https://aws.amazon.com/s3/storage-classes/
 
    https://aws.amazon.com/s3/faqs
 
-    
-
    **Check out this Amazon S3 Cheat Sheet:**
 
    https://tutorialsdojo.com/amazon-s3/
-
-   
-
-   
 
 2. ##### 2. QUESTION
 
    A Solutions Architect is working for a large global media company with multiple office locations all around the world. The Architect is instructed to build a system to distribute training videos to all employees. Using CloudFront, what method would be used to serve content that is stored in S3, but not publicly accessible from S3 directly?
 
-   
-
    - Add the CloudFront account security group.
-   - ==Create an Origin Access Identity (OAI) for CloudFront and grant access to the objects in your S3 bucket to that OAI.==
+- ==Create an Origin Access Identity (OAI) for CloudFront and grant access to the objects in your S3 bucket to that OAI.==
    - Create an Identity and Access Management (IAM) user for CloudFront and grant access to the objects in your S3 bucket to that IAM user.
    - Create an S3 bucket policy that lists the CloudFront distribution ID as the principal and the target bucket as the Amazon Resource Name (ARN).
-
    
-
    **Correct**
-
-   
 
    When you create or update a distribution in CloudFront, you can add an origin access identity (OAI) and automatically update the bucket policy to give the origin access identity permission to access your bucket. Alternatively, you can choose to manually change the bucket policy or change ACLs, which control permissions on individual objects in your bucket.
 
@@ -586,23 +570,15 @@ You have reached 5 of 15 point(s), (33.33%)
 
     The option that says: ***\*The EC2 instance is running in an Availability Zone that is not connected to an Internet gateway\**** is incorrect because there is no relationship between the Availability Zone and the Internet Gateway (IGW) that may have caused the issue.
 
-     
-
     **References:**
 
     http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario1.html
 
      https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet
 
-     
-
     **Check out this Amazon VPC Cheat Sheet:**
 
     https://tutorialsdojo.com/amazon-vpc/
-
-    
-
-    
 
 11. ##### 11. QUESTION
 
@@ -635,23 +611,15 @@ You have reached 5 of 15 point(s), (33.33%)
 
     The option that says: ***\*The access of the Kinesis stream to the S3 bucket is insufficient\**** is incorrect because having insufficient access is highly unlikely since you are able to access the bucket and view the contents of the previous day’s data collected by Kinesis.
 
-     
-
     **Reference:** 
 
     https://aws.amazon.com/kinesis/data-streams/faqs/
 
     https://docs.aws.amazon.com/AmazonS3/latest/dev/DataDurability.html
 
-     
-
     **Check out this Amazon Kinesis Cheat Sheet:**
 
     https://tutorialsdojo.com/amazon-kinesis/
-
-    
-
-    
 
 12. ##### 12. QUESTION
 
@@ -659,19 +627,13 @@ You have reached 5 of 15 point(s), (33.33%)
 
     Which of the following options are not suitable to be implemented in this scenario? (Select TWO.)
 
-    
-
     - Add multiple Elastic Fabric Adapters (EFA) to each EC2 instance to increase the network bandwidth.
-    - Use an Application Load Balancer with Auto Scaling groups for your EC2 instances. Prevent direct Internet traffic to your Amazon RDS database by deploying it to a new private subnet.
+- Use an Application Load Balancer with Auto Scaling groups for your EC2 instances. Prevent direct Internet traffic to your Amazon RDS database by deploying it to a new private subnet.
     - Use Dedicated EC2 instances to ensure that each instance has the maximum performance possible.
     - Use AWS Shield and AWS WAF.
     - Use an Amazon CloudFront service for distributing both static and dynamic content.
-
     
-
     **Incorrect**
-
-    
 
     Take note that the question asks about the viable mitigation techniques that are **NOT** suitable to prevent Distributed Denial of Service (DDoS) attack.
 
@@ -778,20 +740,14 @@ You have reached 5 of 15 point(s), (33.33%)
 
     To improve the game’s performance, which AWS service can you use to reduce DynamoDB response times from milliseconds to microseconds?
 
-    
-
-    - Amazon DynamoDB Accelerator (DAX)
-    - Amazon ElastiCache
+    - ==Amazon DynamoDB Accelerator (DAX)==
+- Amazon ElastiCache
     - AWS Device Farm
     - DynamoDB Auto Scaling
-
     
-
     **Incorrect**
 
-    
-
-    Amazon DynamoDB Accelerator (DAX) is a fully managed, highly available, in-memory cache that can reduce Amazon DynamoDB response times from milliseconds to microseconds, even at millions of requests per second.
+    ==Amazon DynamoDB Accelerator (DAX) is a fully managed, highly available, in-memory cache that can reduce Amazon DynamoDB response times from milliseconds to microseconds, even at millions of requests per second.==
 
     ![img](https://d2908q01vomqb2.cloudfront.net/887309d048beef83ad3eabf2a79a64a389ab1c9f/2017/06/28/ReadThroughCache-1.png)
 
@@ -801,23 +757,15 @@ You have reached 5 of 15 point(s), (33.33%)
 
     ***\*DynamoDB Auto Scaling\**** is incorrect because this is primarily used to automate capacity management for your tables and global secondary indexes.
 
-     
-
     **References:**
 
     https://aws.amazon.com/dynamodb/dax
 
     https://aws.amazon.com/device-farm
 
-     
-
     **Check out this Amazon DynamoDB Cheat Sheet:**
 
     https://tutorialsdojo.com/amazon-dynamodb/
-
-    
-
-    
 
 15. ##### 15. QUESTION
 
