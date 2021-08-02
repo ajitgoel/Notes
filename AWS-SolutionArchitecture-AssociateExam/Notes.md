@@ -1,3 +1,23 @@
+**<u>AWS Lambda:</u>**
+	Function Policy
+	Execution Policy
+	Lambda Runtime API
+	Lambda Container Image
+	ECS
+	Fargate
+	CloudWatch Events EventBridge
+	Execution Role
+	Log Stream
+	Execution Limits
+	Deployment Limits
+	<img src="Notes.assets/image-20210731224421062.png" alt="image-20210731224421062" style="zoom: 50%;" />
+
+​	Lambda Edge
+
+​	<img src="Notes.assets/image-20210731224801071.png" alt="image-20210731224801071" style="zoom: 50%;" />	
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
 **Introduction to Cloud Computing and AWS**  
 
 ![image-20210729170930883](Notes.assets/image-20210729170930883.png)
