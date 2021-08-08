@@ -10,11 +10,120 @@
 	Log Stream
 	Execution Limits
 	Deployment Limits
-	<img src="Notes.assets/image-20210731224421062.png" alt="image-20210731224421062" style="zoom: 50%;" />
+	SAM: Serverless application model
+	**function policy** simply specifies which AWS resources are allowed to invoke your function. If I added an S3 as a trigger, and so Lambda automatically added the following function policy. The Function policy defines which AWS resources are allowed to invoke your function. 
+	**role execution policies** determine what resources the function role has access to when the function is being run. 
+	**Lambda: Networking section**: by default, AWS Lambda is only allowed to access resources that are accessible over the internet. For example, S3. Therefore, any resources that can only be accessed directly from within your VPC requires additional configuration. So this network section provides you with the capability of allowing your function to access your resources via your VPC. When configured, AWS Lambda assigns ENIs, which are Elastic Network Interfaces, to your resources using a private IP address. When this is configured like this, it's important to note that the previous default ability of accessing publicly accessible resources over the internet is removed.
+And to overcome this you must attach the function to a private subnet which has access to a NAT instance or a NAT Gateway. Do not attach it to a public subnet. It should be within a private subnet for greater security and reduced exposure to external threats. Also, in addition to this, Lambda only assigns it a private ENI and not a public address. The network section allows you to add the following. VPC, so from here you can select the VPC that the function will need to access resources within. You could look at the subnets. And here you can select at least one subnet that the function can operate in within your VPC. For high availability and scalability, you really should add an additional subnet. Under security groups, here you can specify the security group for your function to use as a part of the VPC configuration. Once this information is added to your function, Lambda can then set up and configure ENIs as required to securely connect your VPC resources. 
+You should also be aware of your limits on your selected subnets, as Functions will fail if those subnets run out of IP addresses or ENIs. An important point to be made aware of is that the execution role of Lambda will need to have specific permissions that allow it to operate within a VPC. And these include permissions that are required to configure the required ENIs, such as ec2:CreateNetworkInterface, ec2:DescribeNetworkInterfaces, and also ec2:DeleteNetworkInterface. 
+
+​		
+
+​		<img src="Notes.assets/image-20210731224421062.png" alt="image-20210731224421062" style="zoom: 50%;" />
 
 ​	Lambda Edge
 
 ​	<img src="Notes.assets/image-20210731224801071.png" alt="image-20210731224801071" style="zoom: 50%;" />	
+
+**DynamoDB:**
+**A Global Secondary Index** is an index with a partition and sort key that can be different from those in the table. It is considered "global" because queries on the index can span all of the data in a table, across all partitions.
+DynamoDB provides two commands for searching data on the table: scan and query. **A scan operation** examines every item on the table and returns all the data attributes for each one of them. When you initially navigate to the **Items** tab for a table, a scan is performed by default. 
+
+**RDS subnet Group:** Amazon Relational Database Service (Amazon RDS) makes it easy to set up, operate, and scale a relational database in the cloud. Before launching actual RDS instances, you need to configure a DB Subnet Group.
+==Subnets are segments of a VPC's IP address range that allow you to group your resources based on security and operational needs.== A DB Subnet Group is a collection of subnets (typically private) that you create in a VPC and designate for your DB instances. Each DB subnet group should have subnets in at least two Availability Zones in a given region. Note that SQL Server Mirroring with a SQL Server DB instance requires at least 3 subnets in distinct Availability Zones.
+When creating a DB instance in a VPC, you must select a DB subnet group. Amazon RDS uses that DB subnet group and your preferred Availability Zone to select a subnet and an IP address within that subnet to associate with your DB instance. When Amazon RDS creates a DB instance in a VPC, it assigns a network interface to your DB instance by using an IP address selected from your DB Subnet Group. If the primary DB instance of a Multi-AZ deployment fails, Amazon RDS can promote the corresponding standby and subsequently create a new standby using an IP address from an assigned subnet in one of the other Availability Zones.
+You can create an RDS Subnet Group using the RDS launch wizard.
+
+**<u>Amazon Neptune:</u>** Used in Fraud Detection, Recommendation engine
+	Database cluster volume
+	Instances
+	Storage
+	Neptune Storage Auto Repair
+	Cluster endpoint, Reader endpoint, Instance Endpoint
+
+**Redshift:**
+	Cluster
+	Redshift engine
+	Leader node
+	Compute Node
+		Node slice
+		**<u>types:</u>** RA3-high performance nodes, Dense-legacy node types
+	Massively Parallel processing(MPP)
+	Columnar Data storage
+	Result caching
+
+**Quantum Ledger Database (QLDB):**
+	
+
+**DocumentDB:**
+**Keyspaces:**
+
+**Setting up Security Group Rules for Connecting to the RDS Instance:** You will use an EC2 instance to run queries against the RDS database in upcoming Lab Steps. In order to allow incoming traffic from EC2 instances to the RDS instance inside the same VPC. ==The rules of a Security Group control the inbound traffic that's allowed to reach the instances that are associated with the security group and the outbound traffic that's allowed to leave them. By default, security groups allow all outbound traffic and deny all inbound traffic.== You can add new rules to a VPC Security Group using the AWS Management Console.
+
+**RDS Storage type:** 
+***General Purpose (SSD)*** storage is suitable for a broad range of database workloads. Provides baseline of 3 IOPS/GiB and ability to burst to 3,000 IOPS.
+***Provisioned IOPS (SSD)*** storage is suitable for I/O-intensive database workloads. Provides flexibility to provision I/O ranging from 1,000 to 80,000 IOPS.
+
+**Starting an AWS Systems Manager Session Manager Browser Shell Session:** Session Manager is part of AWS Systems Manager suite of tools for gaining operational insights and taking action on AWS resources. Session Manager gives you browser-based shell access to EC2 instances running the Systems Manager agent. Both Windows and Linux instances are supported. Session manager provides secure access to instances without the need to distribute passwords or SSH keys. Session Manager also allows you to connect to instances without having to open any inbound ports. All communication is encrypted and IAM policies can restrict access to sessions running in Session Manager.
+
+You will use Session Manager to start a session on an EC2 instance running in your Cloud Academy Lab environment in this Lab Step.
+
+**Fan-Out Orders using Amazon SNS and SQS:** Fanning-out messages is a common technique to increase the scalability of background processing tasks. It involves publishing a message which is then consumed by multiple endpoints asynchronously. In AWS this can easily be achieved by combining the Amazon Simple Notification Service (Amazon SNS) with the Amazon Simple Queue Service (Amazon SQS). Learning how to implement a fan-out scenario will increase your ability to build scalable and resilient solutions using Amazon Web Services.
+
+**Configuring a Static Website With S3 And CloudFront:** AWS doesn't recommend serving websites directly from Amazon S3. Instead, they recommend using Amazon S3 as an origin for a Content Delivery Network (CDN). A CDN pulls copies of the site from the origin and stores them in multiple global locations. The main benefit of using a CDN is lower latency for users when they access the site.
+**Amazon CloudFront** is a global Content Delivery Network (CDN) that delivers data securely and efficiently. CloudFront pulls your website out to the edge of the network, reducing latency when accessed from different global locations. ==There are two main types of origin that Amazon CloudFront supports, Amazon S3 buckets, and custom origins.== A custom origin could be a website being served by an EC2 instance, or it could be a web server outside of AWS.
+
+<u>**Key Management Service (KMS) terms:**</u> 
+==**Customer Master Keys (CMK)**== - The primary resources in AWS KMS are customer master keys (CMKs). Typically ==you use CMKs to protect data encryption keys (or data keys) which are then used to encrypt or decrypt larger amounts of data outside of the service.== CMKs never leave AWS KMS unencrypted, but data keys can. AWS KMS does not store, manage, or track your data keys. There is one AWS-managed CMK for each service that is integrated with AWS KMS. When you create an encrypted resource in these services, you can choose to protect that resource under the AWS-managed CMK for that service. This CMK is unique to your AWS account and the AWS region in which it is used, and it protects the data keys used by the AWS services to protect your data.
+
+==**Data keys** - Data keys are used encrypt large data objects within an application outside AWS KMS.== In the context of S3 server-side encryption using KMS keys, the application is S3 itself.
+
+**Key rotation and Backing Keys** - When you create a customer master key (CMK) in AWS KMS, the service creates a key ID for the CMK and key material referred to as a backing key that is tied to the key ID of the CMK. If you choose to enable key rotation for a given CMK, AWS KMS will create a new version of the backing key for each rotation. It is the backing key that is used to perform cryptographic operations such as encryption and decryption. Automated key rotation currently retains all prior backing keys so that decryption of encrypted data can take place transparently. CMK is simply a logical resource that does not change regardless of whether or of how many times the underlying backing keys have been rotated.
+
+**<u>Key Types:</u>** 
+==**Symmetric:** A single encryption key that is used for both encrypt and decrypt operations==
+==**Asymmetric:** A public and private key pair that can be used for encrypt/decrypt or sign/verify operations==
+
+**<u>Server-Side Encryption with KMS Managed Keys (SSE-KMS):</u>** With your own CMK created and enabled you are now able to use it for server-side encryption of data in S3 in the same region as the CMK. This is referred to as ==server-side encryption with customer master keys (CMKs) stored in AWS Key Management Service or more simply SSE-KMS.== ==In SSE-KMS, the CMK generates data keys that S3 uses to encrypt objects.== Not only do users need to have access to the S3 bucket and object with SSE-KMS users must also have permission to use the CMK. In comparison to the other server-side encryption option for S3, server-side encryption with Amazon S3-managed keys (SSE-S3), the user only needs permission to access the object and does not require separate permission to use S3's underlying key. SSE-KMS provides a higher degree of control, although it requires additional charges for the key and for performing operations with the key. SSE-KMS also provides an additional audit trail showing when the CMK was used and by who.
+
+If you do not create your own CMK, S3 can still use an AWS managed KMS CMK that is created by default in your account in the S3 bucket's region. This key is visible in the KMS console under AWS Managed Keys and is named aws/s3. However, because the key is managed by AWS you don't have the same degree of access control over key as you do with a customer managed key.
+
+==**<u>Bucket policies</u>** are IAM policies applied to a bucket rather than to a user or role as is conventionally done with IAM policies.==
+
+==**<u>AWS CloudTrail</u>** is a service that enables you to log, monitor, and capture API-related events across your AWS infrastructure and most AWS services.== Events that CloudTrail captures get delivered to an S3 bucket, and are also available for viewing from the CloudTrail console. CloudTrail captures, creates, modifies, and deletes API calls triggered from the console, API, command line tools, or even other AWS services. Optionally, CloudTrail can be configured to send events to CloudWatch as well (and this Lab does indeed tackle that, too). Typical use cases for CloudTrail, operating with CloudWatch, are monitoring, auditing, and security (governance, compliance, analysis).
+
+It is important to know that CloudTrail is not a replacement for CloudWatch. It simply adds to the monitoring capabilities offered by AWS. Notice the focus for each service:
+
+- ==CloudTrail focuses on API activity==
+- ==CloudWatch focuses on performance monitoring and overall system health==
+
+==**<u>AWS Identity and Access Management (IAM)</u>** enables you to securely control access to AWS services and resources for your users.== With IAM, you can centrally manage users, security credentials such as access keys, and permissions that control which AWS resources users can access.
+==**<u>An IAM role**</u> is an IAM entity that has specific permissions.== An IAM role is similar to an IAM user in that you can manage its access to AWS resources using policies. IAM roles are attachable to other IAM services like AWS EC2 and AWS Lambda, to manage resource access for those services.
+==In AWS, you can designate an IAM role to attach to an EC2 instance when launching the instance, or any time after. Attaching an IAM role to an instance allows you to manage permissions for instances centrally with IAM.==
+==Instead of creating and distributing your AWS credentials,  you can use IAM roles to delegate permission for making API requests.== 
+==**A security group** is a set of firewall rules that control the traffic for your instance.== On this page, you can add rules to allow specific traffic to reach your instance. For example, if you want to set up a web server and allow Internet traffic to reach your instance, add rules that allow unrestricted access to the HTTP and HTTPS ports. You can create a new security group or select from an existing one below 
+==Amazon Linux AMIs typically use `ec2-user` as a username. Other popular Linux distributions use the following user names:==
+
+- ==Debian: admin==
+- ==RedHat: ec2-user==
+- ==Ubuntu: ubuntu==
+
+**<u>Auto Scaling Group,</u>**
+
+==**Groups** Your EC2 instances are organized into groups so that they can be treated as a logical unit for the purposes of scaling and management.== When you create a group, you can specify its minimum, maximum, and desired number of EC2 instances. 
+**Launch configurations** Your group uses a launch configuration as a template for its EC2 instances. When you create a launch configuration, you can specify information such as the AMI ID, instance type, key pair, security groups, and block device mapping for your instances. 
+**Launch template** A launch template is similar to a launch configuration, in that it specifies instance configuration information. ... However, defining a launch template instead of a launch configuration allows you to have multiple versions of a template. With versioning, you can create a subset of the full set of parameters and then reuse it to create other templates or template versions.
+==**Elastic Load Balancing (ELB)** automatically distributes incoming application traffic across multiple Amazon EC2 instances.== They enable you to achieve greater fault tolerance in your applications and seamlessly provide the correct amount of load balancing capacity needed in response to incoming application requests. ELB detects unhealthy instances within a pool and automatically reroutes traffic to healthy instances until the unhealthy instances have been restored. Elastic Load Balancers can be enabled within a single Availability Zone or across multiple zones for greater consistent application performance. The **network load balancer** is a network layer (layer-4) load balancer operating on TCP connections and UDP. It can scale to millions of requests per second. With a network load balancer, backend targets are organized into *target groups* which the network load balancer distributes traffic across. 
+
+**<u>Types of Load Balancers:</u>**
+**Application Load Balancer** when you need a flexible feature set for your web applications with HTTP and HTTPS traffic. Operating at the request level, Application Load Balancers provide advanced routing and visibility features targeted at application architectures, including microservices and containers.
+**Network Load Balancer** when you need ultra-high performance, TLS offloading at scale, centralized certificate deployment, support for UDP, and static IP addresses for your application. Operating at the connection level, Network Load Balancers are capable of handling millions of requests per second securely while maintaining ultra-low latencies.
+**Gateway Load Balancer** when you need to deploy and manage a fleet of third-party virtual appliances that support GENEVE. These appliances enable you to improve security, compliance, and policy controls.
+**Classic Load Balancer** when you have an existing application running in the EC2-Classic network.
+
+==**<u>Cross-Zone Load Balancing</u>** allows every load balancer node to distribute requests across all availability zones,== although for the Network Load Balancer there are data transfer charges when this feature is enabled. (There are no data charges for other types of load balancers)
+
+
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
