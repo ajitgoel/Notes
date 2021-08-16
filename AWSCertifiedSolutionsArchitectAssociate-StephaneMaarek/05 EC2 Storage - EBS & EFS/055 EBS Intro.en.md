@@ -34,7 +34,7 @@ and attached to another one very quickly,
 as long as they're in the same AZ.
 That's because it's a network drive,
 because it's just mapped over the network.
-It's locked to an AZ, so by default a volume
+==It's locked to an AZ==, so by default a volume
 that will be created in us-east-1a
 will not be able to be attached to a us-east-1b.
 Now you can play around and you can move a volume across,
