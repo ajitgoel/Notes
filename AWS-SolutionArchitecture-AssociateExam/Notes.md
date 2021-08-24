@@ -482,23 +482,18 @@ One final note before I finish this lecture, please ensure that you check all th
 <u>**==08 High Availability and Scalability_ ELB(Elastic load balancer) & ASG(Auto scaling group)==**</u>
 Health checks ensure your ELB won't send traffic to unhealthy (crashed) instances
 Elastic load balancer
-    **Network load balancer**
-        Operates at connection level(layer 4 of OSI model)
-        Routes traffic to targets within VPC
-		supports TCP
-		exposes a public static IP address 
 
-​    **Application load balancer**
-​        operates at request level, 
-​		supports http, https, websocket, does not support TCP
-​		can route to different target groups based on hostname, request path, source ip but not geography. 
-​		exposes a static DNS(URL)
+| Elastic Load Balancing types | Network load balancer                                        | **Application load balancer**                                | Gateway load balancer                         | Classic load balancer                                        |
+| ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ |
+|                              | Operates at connection level(layer 4 of OSI model)<br />Supports TCP health check | operates at request level<br />operates at the application layer(layer 4 of the OSI model)<br />Supports http, https health checks |                                               | operates at both connection and request level<br />Supports TCP health check |
+| Protocol supported           | TCP                                                          | http, https, websocket, does not support TCP                 |                                               |                                                              |
+|                              | does not support path-based routing and host-based routing   | ==support path-based routing, host-based routing==, and support for containerized applications |                                               | does not support path-based routing and host-based routing   |
+|                              | Routes traffic to targets within VPC<br />exposes a public static IP address | can route to different target groups based on hostname, request path, source ip but not geography. <br />exposes a static DNS(URL) |                                               | exposes a static DNA(URL)                                    |
+| Used when                    | ==extreme performance and static IP is needed for your application== | you need flexible application management and TLS termination |                                               | your application is built within the EC2 Classic network     |
+| Protocol listeners           | TCP\UDP\TLS                                                  | ==HTTP\HTTPS\gRPC==                                          | IP                                            | HTTP\HTTPS\TCP\SSL\TLS                                       |
+| Use cases                    | ==Handling millions of requests per second while maintaining ultra low latencies== | For web apps, microservices and containers                   | Running third party virtual appliances in AWS | For legacy applications in AWS, for implementing custom security policies and TCP passthrough configuration |
 
-​	**Classic load balancer**
-​        operates at both connection and request level
-​		exposes a static DNA(URL)
-
-​	**Gateway load balancer**
+****
 ​    **Cross-Zone Load Balancing**
 ​        allows every load balancer node to distribute requests across all 
 ​        availability zones, although for the Network Load Balancer 
@@ -511,14 +506,43 @@ You can create a CloudWatch custom metric and build an alarm on this to scale yo
 ==**SNI (Server Name Indication)** is a feature allowing you to expose multiple SSL certs if the client supports it.== Read more here: https://aws.amazon.com/blogs/aws/new-application-load-balancer-sni/
 ==The Default Termination Policy for ASG is that it tries to balance across AZ first, and then delete based on the age of the launch configuration.==
 **Cross Zone Load Balancing**
-**Scaling Policies:**
-**Simple Scaling Policy**
-**Step Scaling Policy**
-**Target Tracking**
-**Scheduled Scaling**
+
+| Scaling Policies | Simple Scaling Policy                                        | Step Scaling Policy                                          | Target Tracking                                              | Scheduled Scaling                                           |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------------------------------------- |
+|                  | you need to wait for the cooldown period to complete before initiating additional scaling activities. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | this policy is mainly used for predictable traffic patterns |
+|                  | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. |                                                              |                                                             |
 
 <u>**09 AWS Fundamentals_ RDS + Aurora + ElastiCache**</u>
-<u>**10 Route 53**</u>
+==<u>**10 Route 53**</u>:== managed DNS(domain name system). DNS is a collection of rules and records which helps clients understand how to search server through its domain name. 
+	Records:
+	**<u>A:</u>** 
+		hostname to IPV4
+		simple routing policy
+		Weighted Routing Policy
+		Latency Routing Policy
+		Failover routing policy: Failover record type=>Primary, Secondary
+		Geolocation routing policy
+		Geoproximity routing policy
+		**<u>Multi Value Routing Policy:</u>** not alternative to ELB		
+
+​	**<u>AAA:</u>** hostname to IPv6
+​	==**<u>CName:</u>**== 
+​		==hostname to hostname,== 
+​		====works only for non-root domain eg:something.mydomain.com==
+​		==costs money==
+
+​	==**<u>Alias:</u>**== 
+​		==hostname to AWS resource,==
+​		==works for root domain and non-root domain eg:something.mydomain.com==
+​		==free of charge==
+​	native health check
+nslookup
+TTL
+Health check
+Route 53 Traffic Flow
+Domain Registrar
+**3rd Party Domains & Route 53**: Hosted Zone, Named servers
+
 <u>**11 Classic Solutions Architecture Discussions**</u>
 <u>**12 Amazon S3 Introduction**</u>
 <u>**13 AWS CLI, SDK, IAM Roles & Policies**</u>
@@ -536,8 +560,19 @@ You can create a CloudWatch custom metric and build an alarm on this to scale yo
 
 <u>**17 Decoupling applications_ SQS, SNS, Kinesis, Active MQ**</u>
 <u>**18 Containers on AWS_ ECS, Fargate, ECR & EKS**</u>
+	Amazon ECS: 
+		ECS launch type, 
+		Elastic container service, 
+		ECS Agent, 
+		ECS Task, 
+		EC2 Instance Profile: used by ECS Agent
+		ECS Task Role
+	AWS Fargate: 
+		Fargate launch type
+	Amazon EKS
+
 <u>**==19 Serverless Overviews from a Solution Architect Perspective==**</u>
-<u>**20 Serverless Solution Architecture Discussions**</u>
+<u>**==20 Serverless Solution Architecture Discussions==**</u>
 <u>**21 Databases in AWS**</u>
 <u>**22 AWS Monitoring & Audit_ CloudWatch, CloudTrail & Config**</u>
 
