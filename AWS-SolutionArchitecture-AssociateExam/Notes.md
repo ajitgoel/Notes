@@ -602,7 +602,55 @@ DynamoDB global tables are ideal for massively scaled applications with globally
 
 ------
 
+==**deny access for any object uploads if the objects do not have SSE encryption enabled:**==
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1629772802863",
+    "Statement": [
+        {
+            "Sid": "Stmt1629772771486",
+            =="Effect": "Deny",==
+            "Principal": "*",
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::calabs-bucket-1974/*",
+            =="Condition": {==
+                =="StringNotEquals": {==
+                    "s3:x-amz-server-side-encryption": "AES256"
+                }
+            }
+        }
+    ]
+}
 
+**==actions on your S3 bucket from anyone other than Source IP of 1.2.3.4 will be denied==**
+{
+  "Id": "Policy1629772551722",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1629772545073",
+      "Action": [
+        "s3:PutObject"
+      ],
+      =="Effect": "Deny",==
+      "Resource": "arn:aws:s3:::calabs-bucket-1974/*",
+      =="Condition": {==
+        =="NotIpAddress": {==
+          "aws:SourceIp": "1.2.3.4"
+        }
+      },
+      "Principal": "*"
+    }
+  ]
+}
+
+~~~gfm
+```sequence
+Alice->Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+Bob-->Alice: I am good thanks!
+```
+~~~
 
 ------
 

@@ -9,9 +9,9 @@ You want to have an external source
 of truth for users and allowing them
 through that source of truth to access
 your AWS resources.
-So federation let's users outside
-of AWS assume temporary roles
-for accessing AWS resources.
+==So federation let's users outside==
+==of AWS assume temporary roles==
+==for accessing AWS resources.==
 And these users assume identity provided access roles.
 So, there's so many ways to do federation in AWS.
 There's SAML 2.0, Custom Identity Broker,
@@ -21,14 +21,14 @@ And, we'll see them all in this section.
 And using user federation, you don't need to create
 IAM users as I said.
 The user management is outside of AWS.
-So, at a very very high level.
-We have our user and we have a 3rd party source
-for our users.
-And, so AWS is going to trust that 3rd party source
-for managing our users.
-And, the users will login to a 3rd party,
-get credentials from it and be able to access
-AWS this way.
+So, ==at a very very high level.==
+==We have our user and we have a 3rd party source==
+==for our users.==
+==And, so AWS is going to trust that 3rd party source==
+==for managing our users.==
+==And, the users will login to a 3rd party,==
+==get credentials from it and be able to access==
+==AWS this way.==
 This is a very high level overview,
 where as we can see here,
 the user management is outside of our AWS account,
@@ -56,27 +56,27 @@ wants to get access to an Amazon S3 buckets
 within AWS.
 But, the user management is done outside is done
 within premise in your organization.
-So, the first thing your client app will do,
-will be a request to your identity provider
-to authenticate and your identity provider
-will check with LDAP, maybe your identity store,
-could be whatever you want,
-that you're correctly authenticated.
-Then, it will return back what's called a SAML assertion.
-So, we'll retrieve a SAML 2.0 assertion
-and the client has it.
-And, we are going to exchange that SAML assertion
-for some AWS credentials.
-So, we are going to call the AssumeRole with SAML
-STS API that we've seen from before.
-And, STS will look at the SAML assertion,
-will make sure that its correct
-in compliance with the trust it has.
-Then, it will return as
-temporary security credentials,
-and we can use these temporary security credentials
-to access the Amazon S3 Bucket, for example,
-that we have been trying to access.
+==So, the first thing your client app will do,==
+==will be a request to your identity provider==
+==to authenticate and your identity provider==
+==will check with LDAP, maybe your identity store,==
+==could be whatever you want,==
+==that you're correctly authenticated.==
+==Then, it will return back what's called a SAML assertion.==
+==So, we'll retrieve a SAML 2.0 assertion==
+==and the client has it.==
+==And, we are going to exchange that SAML assertion==
+==for some AWS credentials.==
+==So, we are going to call the AssumeRole with SAML==
+==STS API that we've seen from before.==
+==And, STS will look at the SAML assertion,==
+==will make sure that its correct==
+==in compliance with the trust it has.==
+==Then, it will return as==
+==temporary security credentials,==
+==and we can use these temporary security credentials==
+==to access the Amazon S3 Bucket, for example,==
+==that we have been trying to access.==
 Similarly, we have the exact same process happening
 when we want to access the console.
 So, the browser again will authenticate
@@ -119,24 +119,24 @@ and with these credentials we can either access
 the management console or we can access some resources
 within AWS specifically.
 So, hopefully by now you understand
-SAML 2.0 Federation.
+==**SAML 2.0 Federation.**==
 And to trust, you need to setup a trust
 between IAM and SAML, both ways.
 SAML will enable web based, cross domain SSO.
 And, it will use the API AssumeRoleWithSAML.
-Note that SAML federation is the "old way"
-of doing things and there is a new service
-that I will be describing later on called
-Amazon single sign on or SSO.
+==Note that SAML federation is the "old way"==
+==of doing things and there is a new service==
+==that I will be describing later on called==
+==Amazon single sign on or SSO.==
 Which is going to be the new way
 to create this federation and there is a blog
 if you want to read about it, but don't worry
 I will describe SSO in detail in a future lecture.
 Okay.
-So, what if our current on premise store
-is not compatible with SAML 2.0?
-Then, we have to write our own
-Custom Identity Broker Application.
+==So, what if our current on premise store==
+==is not compatible with SAML 2.0?==
+==Then, we have to write our own==
+==Custom Identity Broker Application.==
 And this is only if you don't have compatibility
 with SAML 2.0.
 In which case, the identity broker you have to create
@@ -170,12 +170,12 @@ access AWS through Identity Federation.
 But, what about if we want to have users of our
 applications access AWS?
 Then, we have to use
-Web Identity Federation.
-And, let me start right away by saying
-that this is today not the recommended way
-to correctly do Web Identity Federation.
-AWS recommends we now use Cognito
-instead of this method I am going to show you
+====Web Identity Federation.==
+==And, let me start right away by saying==
+==that this is today not the recommended way==
+==to correctly do Web Identity Federation.==
+==AWS recommends we now use Cognito==
+instead of this method== I am going to show you
 right now.
 And, the reason is, Cognito will have
 allowing access for anonymous users,

@@ -1,4 +1,3 @@
-
 <v Instructor>Okay, so let's get into</v>
 some advanced concepts for IAM.
 The first thing I wanna talk to you about is IAM conditions.
@@ -108,25 +107,25 @@ using a role as a proxy to access the S3 bucket.
 So let's assume the user is in Account A
 and the Amazon S3 bucket is in Accounts B
 and we want to access it.
-Option number one is to create a role in the Account B,
-assume that role using STS and then by assuming that role
-in Account B we will be able to issue API calls against
-the Amazon S3 bucket in Account B.
-The other option is to use the same bucket
-and create an S3 bucket policy that allows directly
-the user accounts from account A to access
-the Amazon S3 Bucket.
+==Option number one is to create a role in the Account B,==
+==assume that role using STS and then by assuming that role==
+==in Account B we will be able to issue API calls against==
+==the Amazon S3 bucket in Account B.==
+==The other option is to use the same bucket==
+==and create an S3 bucket policy that allows directly==
+==the user accounts from account A to access==
+==the Amazon S3 Bucket.==
 So they look similar but they're actually
 a little bit different.
-When you assume a role, would be a user, an application
-or a service, you are going to give up
-your original permissions and you're going
-to take the permissions assigned to the role.
-And when using a resource based policy,
-your principal doesn't have to give up his permissions
-and he can just use, go through that resource bucket policy
-and not loose their permissions,
-so you can do both actions in Account A and Account B.
+==When you assume a role, would be a user, an application==
+==or a service, you are going to give up==
+==your original permissions and you're going==
+==to take the permissions assigned to the role.==
+==And when using a resource based policy,==
+==your principal doesn't have to give up his permissions==
+==and he can just use, go through that resource bucket policy==
+==and not loose their permissions,==
+==so you can do both actions in Account A and Account B.==
 So for example, if user in Account A
 needs to scan a DynamoDB table in Account A
 and then dump it into an S3 bucket in Account B

@@ -1,4 +1,3 @@
-
 <v ->Let's get into IAM Permission Boundaries.</v>
 And so these Permission Boundaries
 are supported for users and roles
@@ -172,10 +171,10 @@ So very important to know.
 And finally, can you perform ec2:DescribeInstances?
 So as we can see, there's nothing on EC2 in this vein.
 And this is an IAM policy.
-And so because there is no explicit Deny,
-but also there is no explicit Allow,
-then you cannot perform ec2:DescribeInstances
-with this IAM policy.
+And so because ==there is no explicit Deny,==
+==but also there is no explicit Allow,==
+==then you cannot perform ec2:DescribeInstances==
+==with this IAM policy.==
 All right, hope that makes sense.
 So that's it for this lecture.
 Hopefully you understand IAM better.

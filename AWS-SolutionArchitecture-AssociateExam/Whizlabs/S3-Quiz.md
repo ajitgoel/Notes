@@ -122,11 +122,11 @@ Amazon S3 provides read-after-write consistency for PUTS of new objects in your 
 
 Option A is not true. Eventual consistency is for overwrite PUTS and DELETES. Option C is not true. EFS provides read-after-write consistency.
 
-![img](https://whizlabs.com/learn/media/2019/01/22/questions_i4yoqf.png) 
+<img src="https://whizlabs.com/learn/media/2019/01/22/questions_i4yoqf.png" alt="img" style="zoom:67%;" /> 
 
 For option D, AWS provides strong consistency for DynamoDB, not for S3.
 
-![img](https://whizlabs.com/learn/media/2019/01/22/questions_i4r4hd.png)
+<img src="https://whizlabs.com/learn/media/2019/01/22/questions_i4r4hd.png" alt="img" style="zoom:67%;" />
 
 ==Question 5In Correct==
 
