@@ -528,7 +528,7 @@ You can create a CloudWatch custom metric and build an alarm on this to scale yo
 ​	**<u>AAA:</u>** hostname to IPv6
 ​	==**<u>CName:</u>**== 
 ​		==hostname to hostname,== 
-​		====works only for non-root domain eg:something.mydomain.com==
+​		==works only for non-root domain eg:something.mydomain.com==
 ​		==costs money==
 
 ​	==**<u>Alias:</u>**== 
