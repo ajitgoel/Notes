@@ -11,21 +11,19 @@ Which is the most cost-efficient Amazon EC2 Pricing type that is most appropriat
 -  Spot instances
 -  Dedicated Hosts
 
-**Reserved Instances** provide you with a significant discount (up to 75%) compared to On-Demand instance pricing. In addition, when Reserved Instances are assigned to a specific Availability Zone, they provide a capacity reservation, giving you additional confidence in your ability to launch instances when you need them.
+==**Reserved Instances** provide you with a significant discount (up to 75%) compared to On-Demand instance pricing.== In addition, when Reserved Instances are assigned to a specific Availability Zone, they provide a capacity reservation, giving you additional confidence in your ability to launch instances when you need them.
 
 ![img](TutorialsDojo-ReviewMode-3.assets/ri_purchase_with_zone_benefit_1.png)
 
 For applications that have steady state or predictable usage, Reserved Instances can provide significant savings compared to using On-Demand instances.
 
-Reserved Instances are recommended for:
+==Reserved Instances are recommended for:==
 
-\- Applications with steady state usage
+==\- Applications with steady state usage==
 
-\- Applications that may require reserved capacity
+==\- Applications that may require reserved capacity==
 
-\- Customers that can commit to using EC2 over a 1 or 3 year term to reduce their total computing costs
-
- 
+==\- Customers that can commit to using EC2 over a 1 or 3 year term to reduce their total computing costs==
 
 **References:** 
 
@@ -68,7 +66,7 @@ The option that says: **Use an EC2 instance and a scheduled job to transfer the 
 
 The option that says: **Use Amazon SQS** is incorrect as SQS is not a storage service. Amazon SQS is primarily used to decouple your applications by queueing the incoming requests of your application.
 
-The option that says: **Use CloudEndure Migration** is incorrect because this service is just a highly automated lift-and-shift (rehost) solution that simplifies, expedites, and reduces the cost of migrating applications to AWS. You cannot use this to automatically transition your S3 objects to a cheaper storage class.
+The option that says: ==**Use CloudEndure Migration** is incorrect because this service is just a highly automated lift-and-shift (rehost) solution that simplifies, expedites, and reduces the cost of migrating applications to AWS.== You cannot use this to automatically transition your S3 objects to a cheaper storage class.
 
  
 
@@ -103,9 +101,9 @@ What is the best instance purchasing option which can be applied to your EC2 ins
 -  ==Spot Instances==
 -  Scheduled Reserved Instances
 
-Amazon EC2 Spot instances are spare compute capacity in the AWS cloud available to you at steep discounts compared to On-Demand prices. It can be interrupted by AWS EC2 with two minutes of notification when the EC2 needs the capacity back.
+==Amazon EC2 Spot instances are spare compute capacity in the AWS cloud available to you at steep discounts compared to On-Demand prices. It can be interrupted by AWS EC2 with two minutes of notification when the EC2 needs the capacity back.==
 
-To use Spot Instances, you create a Spot Instance request that includes the number of instances, the instance type, the Availability Zone, and the maximum price that you are willing to pay per instance hour. If your maximum price exceeds the current Spot price, Amazon EC2 fulfills your request immediately if capacity is available. Otherwise, Amazon EC2 waits until your request can be fulfilled or until you cancel the request.![img](TutorialsDojo-ReviewMode-3.assets/spot_lifecycle.png)
+To use Spot Instances, you create a Spot Instance request that includes the number of instances, the instance type, the Availability Zone, and the maximum price that you are willing to pay per instance hour. If your maximum price exceeds the current Spot price, Amazon EC2 fulfills your request immediately if capacity is available. Otherwise, Amazon EC2 waits until your request can be fulfilled or until you cancel the request.<img src="TutorialsDojo-ReviewMode-3.assets/spot_lifecycle.png" alt="img" style="zoom:67%;" />
 
 **References:**
 
@@ -128,13 +126,13 @@ In this scenario, which type of Amazon EC2 instance is the most cost-effective t
 [(view)](https://portal.tutorialsdojo.com/my-dashboard/#)11000:00:23
 
 -  Reserved instances
--  Spot instances
+-  ==Spot instances==
 -  Dedicated instances
 -  On-demand instances
 
 You require an instance that will be used not as a primary server but as a spare compute resource to augment the transcoding process of your application. These instances should also be terminated once the backlog has been significantly reduced. In addition, the scenario mentions that if the current process is interrupted, the video can be transcoded by another instance based on the queuing system. This means that the application can gracefully handle an unexpected termination of an EC2 instance, like in the event of a Spot instance termination when the Spot price is greater than your set maximum price. Hence, an Amazon EC2 Spot instance is the best and cost-effective option for this scenario.
 
-![img](TutorialsDojo-ReviewMode-3.assets/spot_lifecycle.png)
+<img src="TutorialsDojo-ReviewMode-3.assets/spot_lifecycle.png" alt="img" style="zoom:67%;" />
 
 Amazon EC2 Spot instances are **spare** compute capacity in the AWS cloud available to you at steep discounts compared to On-Demand prices. EC2 Spot enables you to optimize your costs on the AWS cloud and scale your application's throughput up to 10X for the same budget. By simply selecting Spot when launching EC2 instances, you can save up-to 90% on On-Demand prices. The only difference between On-Demand instances and Spot Instances is that Spot instances can be interrupted by EC2 with two minutes of notification when the EC2 needs the capacity back.
 
@@ -146,8 +144,6 @@ Take note that there is no *"bid price"* anymore for Spot EC2 instances **since 
 
 **On-demand instances** is a valid option but a Spot instance is much cheaper than On-Demand.
 
- 
-
 **References:** 
 
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html
@@ -155,8 +151,6 @@ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html
 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-spot-instances-work.html
 
 https://aws.amazon.com/blogs/compute/new-amazon-ec2-spot-pricing
-
- 
 
 **Check out this Amazon EC2 Cheat Sheet:**
 
@@ -171,7 +165,7 @@ What should you do to accomplish this requirement?
 [(view)](https://portal.tutorialsdojo.com/my-dashboard/#)11000:00:57
 
 -  Add a new bucket policy on the Amazon S3 bucket.
--  Configure the lifecycle configuration rules on the Amazon S3 bucket to purge the transaction logs after a month
+-  ==Configure the lifecycle configuration rules on the Amazon S3 bucket to purge the transaction logs after a month==
 -  Create a new IAM policy for the Amazon S3 bucket that automatically deletes the logs after a month
 -  Enable CORS on the Amazon S3 bucket which will enable the automatic monthly deletion of data
 
@@ -193,21 +187,15 @@ The option that says: **Create a new IAM policy for the Amazon S3 bucket that au
 
 The option that says: **Enable CORS on the Amazon S3 bucket which will enable the automatic monthly deletion of data** is incorrect. CORS allows client web applications that are loaded in one domain to interact with resources in a different domain.
 
- 
-
 **References:**
 
 https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
 
 https://docs.amazonaws.cn/en_us/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html
 
- 
-
 **Check out this Amazon S3 Cheat Sheet:**
 
 https://tutorialsdojo.com/amazon-s3/
-
- 
 
 **Tutorials Dojo's AWS Certified Solutions Architect Associate Exam Study Guide:**
 
@@ -260,7 +248,7 @@ http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html
 
 https://tutorialsdojo.com/amazon-elastic-compute-cloud-amazon-ec2/
 
-===> 7==
+7
 
 A company has established a dedicated network connection from its on-premises data center to AWS Cloud using AWS Direct Connect (DX). The core network services, such as the Domain Name System (DNS) service and Active Directory services, are all hosted on-premises. The company has new AWS accounts that will also require consistent and dedicated access to these network services.
 
@@ -277,15 +265,15 @@ Which of the following can satisfy this requirement with the LEAST amount of ope
 
 ![img](TutorialsDojo-ReviewMode-3.assets/image11.png)
 
-By attaching a transit gateway to a Direct Connect gateway using a transit virtual interface, you can manage a single connection for multiple VPCs or VPNs that are in the same AWS Region. You can also advertise prefixes from on-premises to AWS and from AWS to on-premises.
+==By attaching a transit gateway to a Direct Connect gateway using a transit virtual interface, you can manage a single connection for multiple VPCs or VPNs that are in the same AWS Region.== You can also advertise prefixes from on-premises to AWS and from AWS to on-premises.
 
-The AWS Transit Gateway and AWS Direct Connect solution simplify the management of connections between an Amazon VPC and your networks over a private connection. It can also minimize network costs, improve bandwidth throughput, and provide a more reliable network experience than Internet-based connections.
+The AWS Transit Gateway and AWS Direct Connect solution ==simplify the management of connections between an Amazon VPC and your networks over a private connection. It can also minimize network costs, improve bandwidth throughput, and provide a more reliable network experience than Internet-based connections.==
 
 Hence, the correct answer is: **Create a new Direct Connect gateway and integrate it with the existing Direct Connect connection.** **Set up a Transit Gateway between AWS accounts and associate it with the Direct Connect gateway.**
 
 The option that says: **Set up another Direct Connect connection for each and every new AWS account that will be added** is incorrect because this solution entails a significant amount of additional cost. Setting up a single DX connection requires a substantial budget and takes a lot of time to establish. It also has high management overhead since you will need to manage all of the Direct Connect connections for all AWS accounts.
 
-The option that says: **Create a new AWS VPN CloudHub. Set up a Virtual Private Network (VPN) connection for additional AWS accounts** is incorrect because a VPN connection is not capable of providing consistent and dedicated access to the on-premises network services. Take note that a VPN connection traverses the public Internet and doesn't use a dedicated connection.
+The option that says: **Create a new AWS VPN CloudHub. Set up a Virtual Private Network (VPN) connection for additional AWS accounts** is incorrect because a VPN connection is not capable of providing consistent and dedicated access to the on-premises network services. Take note that a ==VPN connection traverses the public Internet and doesn't use a dedicated connection.==
 
 The option that says: **Set up a new Direct Connect gateway and integrate it with the existing Direct Connect connection. Configure a VPC peering connection between AWS accounts and associate it with Direct Connect gateway** is incorrect because VPC peering is not supported in a Direct Connect connection. VPC peering does not support transitive peering relationships.
 
@@ -301,7 +289,7 @@ https://aws.amazon.com/blogs/networking-and-content-delivery/integrating-sub-1-g
 
 https://tutorialsdojo.com/aws-transit-gateway/
 
-===> 8==
+8
 
 A company is hosting an application on EC2 instances that regularly pushes and fetches data in Amazon S3. Due to a change in compliance, the instances need to be moved on a private subnet. Along with this change, the company wants to lower the data transfer costs by configuring its AWS resources.
 
@@ -324,21 +312,17 @@ There is no additional charge for using gateway endpoints. However, standard cha
 
 Hence, the correct answer is: **Create an Amazon S3 gateway endpoint to enable a connection between the instances and Amazon S3.**
 
-The option that says: **Set up a NAT Gateway in the public subnet to connect to Amazon S3** is incorrect. This will enable a connection between the private EC2 instances and Amazon S3 but it is not the most cost-efficient solution. NAT Gateways are charged on an hourly basis even for idle time.
+The option that says: **Set up a NAT Gateway in the public subnet to connect to Amazon S3** is incorrect. This will enable a connection between the private EC2 instances and Amazon S3 but it is not the most cost-efficient solution. ==NAT Gateways are charged on an hourly basis even for idle time.==
 
 The option that says: **Create an Amazon S3 interface endpoint to enable a connection between the instances and Amazon S3** is incorrect. This is also a possible solution but it's not the most cost-effective solution. You pay an hourly rate for every provisioned Interface endpoint.
 
-The option that says: **Set up an AWS Transit Gateway to access Amazon S3** is incorrect because this service is mainly used for connecting VPCs and on-premises networks through a central hub.
-
- 
+The option that says: **Set up an ==AWS Transit Gateway== to access Amazon S3** is incorrect because this service is mainly ==used for connecting VPCs and on-premises networks through a central hub.==
 
 **References:**
 
 https://docs.aws.amazon.com/AmazonS3/latest/userguide/privatelink-interface-endpoints.html
 
 https://docs.aws.amazon.com/vpc/latest/privatelink/vpce-gateway.html
-
- 
 
 **Check out this Amazon S3 Cheat Sheet:**
 
@@ -352,22 +336,20 @@ Which of the following combination of services should the architect use to meet 
 
 [(view)](https://portal.tutorialsdojo.com/my-dashboard/#)11000:00:57
 
--  Amazon DynamoDB and AWS AppSync
+-  ==Amazon DynamoDB and AWS AppSync==
 -  Amazon Redshift and AWS Mobile Hub
 -  Amazon Relational Database Service (RDS) and Amazon MQ
 -  Amazon Aurora and Amazon Cognito
 
-When the word durability pops out, the first service that should come to your mind is Amazon S3. Since this service is not available in the answer options, we can look at the other data store available which is Amazon DynamoDB.
+==When the word durability pops out, the first service that should come to your mind is Amazon S3==. Since this service is not available in the answer options, we can look at the other data store available which is Amazon DynamoDB.
 
 ![img](TutorialsDojo-ReviewMode-3.assets/Untitled1-1024x467.png)
 
-**DynamoDB** is durable, scalable, and highly available data store which can be used for real-time tabulation. You can also use **AppSync** with DynamoDB to make it easy for you to build collaborative apps that keep shared data updated in real time. You just specify the data for your app with simple code statements and AWS AppSync manages everything needed to keep the app data updated in real time. This will allow your app to access data in Amazon DynamoDB, trigger AWS Lambda functions, or run Amazon Elasticsearch queries and combine data from these services to provide the exact data you need for your app.
+**DynamoDB** is durable, scalable, and highly available data store which can be used for real-time tabulation. You can also ==use **AppSync** with DynamoDB to make it easy for you to build collaborative apps that keep shared data updated in real time.== You just specify the data for your app with simple code statements and AWS AppSync manages everything needed to keep the app data updated in real time. This will allow your app to access data in Amazon DynamoDB, trigger AWS Lambda functions, or run Amazon Elasticsearch queries and combine data from these services to provide the exact data you need for your app.
 
 **Amazon Redshift and AWS Mobile Hub** are incorrect as Amazon Redshift is mainly used as a data warehouse and for online analytic processing (*OLAP*). Although this service can be used for this scenario, DynamoDB is still the top choice given its better durability and scalability.
 
 **Amazon Relational Database Service (RDS) and Amazon MQ** and **Amazon Aurora and Amazon Cognito** are possible answers in this scenario, however, DynamoDB is much more suitable for simple mobile apps that do not have complicated data relationships compared with enterprise web applications. It is stated in the scenario that the mobile app will be used from around the world, which is why you need a data storage service which can be supported globally. It would be a management overhead to implement multi-region deployment for your RDS and Aurora database instances compared to using the Global table feature of DynamoDB.
-
- 
 
 **References:** 
 
@@ -375,23 +357,15 @@ https://aws.amazon.com/dynamodb/faqs/
 
 https://aws.amazon.com/appsync/
 
- 
-
 **Amazon DynamoDB Overview:**
 
-
-
-<iframe title="YouTube video player" src="https://www.youtube.com/embed/3ZOyUNIeorU" frameborder="0" allowfullscreen="allowfullscreen" data-mce-fragment="1" name="fitvid0" style="box-sizing: border-box; margin: 0px; max-width: 100%; width: 2129.76px; line-height: 1; border: none; position: absolute; top: 0px; left: 0px; height: 1197.99px;"></iframe>
-
-
+https://www.youtube.com/embed/3ZOyUNIeorU
 
 **Check out this Amazon DynamoDB Cheat Sheet:**
 
 https://tutorialsdojo.com/amazon-dynamodb/
 
- 
-
-**Tutorials Dojo's AWS Certified Solutions Architect Associate Exam Study Guide:**
+ **Tutorials Dojo's AWS Certified Solutions Architect Associate Exam Study Guide:**
 
 https://tutorialsdojo.com/aws-certified-solutions-architect-associate/
 
@@ -406,15 +380,15 @@ Which is the MOST suitable solution that the Solutions Architect should implemen
 -  Set up a spread placement group across multiple Availability Zones in multiple AWS Regions.
 -  Set up AWS Direct Connect connections across multiple Availability Zones for increased bandwidth throughput and more consistent network experience.
 -  Use EC2 Dedicated Instances.
--  Set up a cluster placement group within a single Availability Zone in the same AWS Region.
+-  ==Set up a cluster placement group within a single Availability Zone in the same AWS Region.==
 
-When you launch a new EC2 instance, the EC2 service attempts to place the instance in such a way that all of your instances are spread out across underlying hardware to minimize correlated failures. You can use *placement groups* to influence the placement of a group of *interdependent* instances to meet the needs of your workload. Depending on the type of workload, you can create a placement group using one of the following placement strategies:
+When you launch a new EC2 instance, the EC2 service attempts to place the instance in such a way that all of your instances are spread out across underlying hardware to minimize correlated failures. You can use *placement groups* to influence the placement of a group of *interdependent* instances to meet the needs of your workload. Depending on the type of workload, you can create a placement group using one of the following ==placement strategies:==
 
-***Cluster\*** – packs instances close together inside an Availability Zone. This strategy enables workloads to achieve the low-latency network performance necessary for tightly-coupled node-to-node communication that is typical of HPC applications.
+==***Cluster\*** – packs instances close together inside an Availability Zone. This strategy enables workloads to achieve the low-latency network performance necessary for tightly-coupled node-to-node communication that is typical of HPC applications.==
 
-***Partition\*** – spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. This strategy is typically used by large distributed and replicated workloads, such as Hadoop, Cassandra, and Kafka.
+==***Partition\*** – spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. This strategy is typically used by large distributed and replicated workloads, such as Hadoop, Cassandra, and Kafka.==
 
-***Spread\*** – strictly places a small group of instances across distinct underlying hardware to reduce correlated failures.
+==***Spread\*** – strictly places a small group of instances across distinct underlying hardware to reduce correlated failures.==
 
 Cluster placement groups are recommended for applications that benefit from low network latency, high network throughput, or both. They are also recommended when the majority of the network traffic is between the instances in the group. To provide the lowest latency and the highest packet-per-second network performance for your placement group, choose an instance type that supports enhanced networking.
 
@@ -448,15 +422,11 @@ The option that says: **Set up AWS Direct Connect connections across multiple Av
 
 The option that says: **Use EC2 Dedicated Instances** is incorrect because these are EC2 instances that run in a VPC on hardware that is dedicated to a single customer and are physically isolated at the host hardware level from instances that belong to other AWS accounts. It is not used for reducing latency.
 
- 
-
 **References:**
 
 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html
 
 https://aws.amazon.com/hpc/
-
- 
 
 **Check out this Amazon EC2 Cheat Sheet:**
 
@@ -509,12 +479,12 @@ In this scenario, which Amazon EBS volume type can you use that will meet the pe
 
 [(view)](https://portal.tutorialsdojo.com/my-dashboard/#)11000:00:25
 
--  EBS Provisioned IOPS SSD (io1)
+-  ==EBS Provisioned IOPS SSD (io1)==
 -  EBS Throughput Optimized HDD (st1)
 -  EBS General Purpose SSD (gp2)
 -  EBS Cold HDD (sc1)
 
-The scenario requires a storage type for a relational database with a high IOPS performance. For these scenarios, SSD volumes are more suitable to use instead of HDD volumes. Remember that the dominant performance attribute of SSD is **IOPS** while HDD is **Throughput**.
+The scenario requires a storage type for a relational database with a ==high IOPS performance.== For these scenarios, ==SSD volumes are more suitable to use instead of HDD volumes==. Remember that the dominant performance attribute of SSD is **IOPS** while HDD is **Throughput**.
 
 In the exam, always consider the difference between SSD and HDD as shown on the table below. This will allow you to easily eliminate specific EBS-types in the options which are not SSD or not HDD, depending on whether the question asks for a storage type which has ***small, random\*** I/O operations or ***large, sequential\*** I/O operations.
 
@@ -549,11 +519,11 @@ In this scenario, what is the best way for the application to upload the large f
 -  Use a single PUT request to upload the large file
 -  Use AWS Snowball
 -  Use AWS Import/Export
--  Use Multipart Upload
+-  ==Use Multipart Upload==
 
-The total volume of data and number of objects you can store are unlimited. Individual Amazon S3 objects can range in size from a minimum of 0 bytes to a maximum of 5 terabytes. The largest object that can be uploaded in a single PUT is 5 gigabytes. For objects larger than 100 megabytes, customers should consider using the Multipart Upload capability.
+The total volume of data and number of objects you can store are unlimited. Individual Amazon S3 objects can range in size from a minimum of 0 bytes to a maximum of 5 terabytes. ==The largest object that can be uploaded in a single PUT is 5 gigabytes. For objects larger than 100 megabytes, customers should consider using the Multipart Upload capability.==
 
-The Multipart upload API enables you to upload large objects in parts. You can use this API to upload new large objects or make a copy of an existing object. Multipart uploading is a three-step process: you initiate the upload, you upload the object parts, and after you have uploaded all the parts, you complete the multipart upload. Upon receiving the complete multipart upload request, Amazon S3 constructs the object from the uploaded parts and you can then access the object just as you would any other object in your bucket.
+==The Multipart upload API enables you to upload large objects in parts.== You can use this API to upload new large objects or make a copy of an existing object. Multipart uploading is a three-step process: you initiate the upload, you upload the object parts, and after you have uploaded all the parts, you complete the multipart upload. Upon receiving the complete multipart upload request, Amazon S3 constructs the object from the uploaded parts and you can then access the object just as you would any other object in your bucket.
 
 **Using a single PUT request to upload the large file** is incorrect because the largest file size you can upload using a single PUT request is 5 GB. Files larger than this will fail to be uploaded.
 
@@ -681,15 +651,11 @@ Hence, the correct answers are:
 
 **Going to the Amazon.com online shopping website and selling the Reserved instances** is incorrect as you have to use AWS Reserved Instance Marketplace to sell your instances.
 
- 
-
 **References:**
 
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html
 
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html
-
- 
 
 **Check out this Amazon EC2 Cheat Sheet:**
 
@@ -705,10 +671,10 @@ What AWS feature should you use in your present system to improve throughput and
 
 -  FTP
 -  AWS Direct Connect
--  Amazon S3 Transfer Acceleration
+-  ==Amazon S3 Transfer Acceleration==
 -  Use CloudFront Origin Access Identity
 
-**Amazon S3 Transfer Acceleration** enables fast, easy, and secure transfers of files over long distances between your client and your Amazon S3 bucket. Transfer Acceleration leverages Amazon CloudFront’s globally distributed AWS Edge Locations. As data arrives at an AWS Edge Location, data is routed to your Amazon S3 bucket over an optimized network path.
+==**Amazon S3 Transfer Acceleration** enables fast, easy, and secure transfers of files over long distances between your client and your Amazon S3 bucket.== Transfer Acceleration leverages Amazon CloudFront’s globally distributed AWS Edge Locations. As data arrives at an AWS Edge Location, data is routed to your Amazon S3 bucket over an optimized network path.
 
 ![img](TutorialsDojo-ReviewMode-3.assets/Data-Migration_Thumbnail.feca76e59885394411e50c92bcda19c4d05b733d.jpg)
 
@@ -718,25 +684,17 @@ What AWS feature should you use in your present system to improve throughput and
 
 **Using CloudFront Origin Access Identity** is incorrect because this is a feature which ensures that only CloudFront can serve S3 content. It does not increase throughput and ensure fast delivery of content to your customers.
 
- 
-
 **Reference:**
 
 http://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html
-
- 
 
 **Check out this Amazon S3 Cheat Sheet:**
 
 https://tutorialsdojo.com/amazon-s3/
 
- 
-
 **S3 Transfer Acceleration vs Direct Connect vs VPN vs Snowball vs Snowmobile:**
 
 https://tutorialsdojo.com/s3-transfer-acceleration-vs-direct-connect-vs-vpn-vs-snowball-vs-snowmobile/
-
- 
 
 **Comparison of AWS Services Cheat Sheets:**
 
@@ -750,35 +708,35 @@ Which of the following options are not suitable to be implemented in this scenar
 
 [(view)](https://portal.tutorialsdojo.com/my-dashboard/#)11000:00:55
 
--  Use Dedicated EC2 instances to ensure that each instance has the maximum performance possible.
--  Add multiple Elastic Fabric Adapters (EFA) to each EC2 instance to increase the network bandwidth.
+-  ==Use Dedicated EC2 instances to ensure that each instance has the maximum performance possible.==
+-  ==Add multiple Elastic Fabric Adapters (EFA) to each EC2 instance to increase the network bandwidth.==
 -  Use an Amazon CloudFront service for distributing both static and dynamic content.
 -  Use an Application Load Balancer with Auto Scaling groups for your EC2 instances. Prevent direct Internet traffic to your Amazon RDS database by deploying it to a new private subnet.
 -  Use AWS Shield and AWS WAF.
 
 Take note that the question asks about the viable mitigation techniques that are **NOT** suitable to prevent Distributed Denial of Service (DDoS) attack.
 
-A Denial of Service (DoS) attack is an attack that can make your website or application unavailable to end users. To achieve this, attackers use a variety of techniques that consume network or other resources, disrupting access for legitimate end users.
+==A Denial of Service (DoS) attack is an attack that can make your website or application unavailable to end users.== To achieve this, attackers use a variety of techniques that consume network or other resources, disrupting access for legitimate end users.
 
-To protect your system from DDoS attack, you can do the following:
+==To protect your system from DDoS attack, you can do the following:==
 
-\- Use an Amazon CloudFront service for distributing both static and dynamic content.
+==\- Use an Amazon CloudFront service for distributing both static and dynamic content.==
 
-\- Use an Application Load Balancer with Auto Scaling groups for your EC2 instances. Prevent direct Internet traffic to your Amazon RDS database by deploying it to a new private subnet.
+==\- Use an Application Load Balancer with Auto Scaling groups for your EC2 instances. Prevent direct Internet traffic to your Amazon RDS database by deploying it to a new private subnet.==
 
-\- Set up alerts in Amazon CloudWatch to look for high **`Network In`** and CPU utilization metrics.
+==\- Set up alerts in Amazon CloudWatch to look for high **`Network In`** and CPU utilization metrics.==
 
 Services that are available within AWS Regions, like Elastic Load Balancing and Amazon Elastic Compute Cloud (EC2), allow you to build Distributed Denial of Service resiliency and scale to handle unexpected volumes of traffic within a given region. Services that are available in AWS edge locations, like Amazon CloudFront, AWS WAF, Amazon Route53, and Amazon API Gateway, allow you to take advantage of a global network of edge locations that can provide your application with greater fault tolerance and increased scale for managing larger volumes of traffic.
 
-In addition, you can also use **AWS Shield** and **AWS WAF** to fortify your cloud network. AWS Shield is a managed DDoS protection service that is available in two tiers: Standard and Advanced. AWS Shield Standard applies always-on detection and inline mitigation techniques, such as deterministic packet filtering and priority-based traffic shaping, to minimize application downtime and latency.
+In addition, you can also use **AWS Shield** and **AWS WAF** to fortify your cloud network. ==AWS Shield is a managed DDoS protection service that is available in two tiers: Standard and Advanced. AWS Shield Standard applies always-on detection and inline mitigation techniques, such as deterministic packet filtering and priority-based traffic shaping, to minimize application downtime and latency.==
 
-**AWS WAF** is a web application firewall that helps protect web applications from common web exploits that could affect application availability, compromise security, or consume excessive resources. You can use AWS WAF to define customizable web security rules that control which traffic accesses your web applications. If you use AWS Shield Advanced, you can use AWS WAF at no extra cost for those protected resources and can engage the DRT to create WAF rules.
+==**AWS WAF** is a web application firewall that helps protect web applications from common web exploits that could affect application availability, compromise security, or consume excessive resources.== You can use AWS WAF to define customizable web security rules that control which traffic accesses your web applications. If you use AWS Shield Advanced, you can use AWS WAF at no extra cost for those protected resources and can engage the DRT to create WAF rules.
 
 ![img](TutorialsDojo-ReviewMode-3.assets/lb-app-ddos-mitigation.5fd8c473963ad36250ce5b01e631aaa6f657aff4.png)
 
 **Using Dedicated EC2 instances to ensure that each instance has the maximum performance possible** is not a viable mitigation technique because Dedicated EC2 instances are just an instance billing option. Although it may ensure that each instance gives the maximum performance, that by itself is not enough to mitigate a DDoS attack.
 
-**Adding multiple Elastic Fabric Adapters (EFA) to each EC2 instance to increase the network bandwidth** is also not a viable option as this is mainly done for performance improvement, and not for DDoS attack mitigation. Moreover, you can attach only one EFA per EC2 instance. An Elastic Fabric Adapter (EFA) is a network device that you can attach to your Amazon EC2 instance to accelerate High-Performance Computing (HPC) and machine learning applications.
+**Adding multiple Elastic Fabric Adapters (EFA) to each EC2 instance to increase the network bandwidth** is also not a viable option as this is mainly done for performance improvement, and not for DDoS attack mitigation. Moreover, ==you can attach only one EFA per EC2 instance. An Elastic Fabric Adapter (EFA) is a network device that you can attach to your Amazon EC2 instance to accelerate High-Performance Computing (HPC) and machine learning applications.==
 
 The following options are valid mitigation techniques that can be used to prevent DDoS:
 
@@ -788,23 +746,15 @@ The following options are valid mitigation techniques that can be used to preven
 
 **- Use AWS Shield and AWS WAF.**
 
- 
-
-**References**:
+ **References**:
 
 https://aws.amazon.com/answers/networking/aws-ddos-attack-mitigation/
 
 https://d0.awsstatic.com/whitepapers/DDoS_White_Paper_June2015.pdf
 
- 
+ **Best practices on DDoS Attack Mitigation:**
 
-**Best practices on DDoS Attack Mitigation:**
-
-
-
-<iframe src="https://www.youtube.com/embed/HnoZS5jj7pk" frameborder="0" allowfullscreen="allowfullscreen" name="fitvid2" style="box-sizing: border-box; margin: 0px; max-width: 100%; width: 2129.76px; line-height: 1; border: none; position: absolute; top: 0px; left: 0px; height: 1197.99px;"></iframe>
-
-
+https://www.youtube.com/embed/HnoZS5jj7pk
 
 11
 
@@ -814,10 +764,10 @@ How would you design the application to improve its overall performance and make
 
 [(view)](https://portal.tutorialsdojo.com/my-dashboard/#)11000:02:27
 
--  Enable DynamoDB Accelerator (DAX) and ensure that the Auto Scaling is enabled and increase the maximum provisioned read and write capacity.
+-  ==Enable DynamoDB Accelerator (DAX) and ensure that the Auto Scaling is enabled and increase the maximum provisioned read and write capacity.==
 -  Configure CloudFront with DynamoDB as the origin; cache frequently accessed data on the client device using ElastiCache.
 -  Use AWS SSO and Cognito to authenticate users and have them directly access DynamoDB using single-sign on. Manually set the provisioned read and write capacity to a higher RCU and WCU.
--  Use API Gateway in conjunction with Lambda and turn on the caching on frequently accessed data and enable DynamoDB global replication.
+-  ==Use API Gateway in conjunction with Lambda and turn on the caching on frequently accessed data and enable DynamoDB global replication.==
 -  Since Auto Scaling is enabled by default, the provisioned read and write capacity will adjust automatically. Also enable DynamoDB Accelerator (DAX) to improve the performance from milliseconds to microseconds.
 
 The correct answers are the options that say:
@@ -826,7 +776,7 @@ The correct answers are the options that say:
 
 **- Use API Gateway in conjunction with Lambda and turn on the caching on frequently accessed data and enable DynamoDB global replication.**
 
-**Amazon DynamoDB Accelerator (DAX)** is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement – from milliseconds to microseconds – even at millions of requests per second. DAX does all the heavy lifting required to add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management.
+==**Amazon DynamoDB Accelerator (DAX)** is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement – from milliseconds to microseconds – even at millions of requests per second. DAX does all the heavy lifting required to add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management.==
 
 ![img](TutorialsDojo-ReviewMode-3.assets/ddb_as_set_read_1.png)
 
@@ -836,13 +786,11 @@ The correct answers are the options that say:
 
 The option that says: **Configure CloudFront with DynamoDB as the origin; cache frequently accessed data on the client device using ElastiCache** is incorrect. Although CloudFront delivers content faster to your users using edge locations, you still cannot integrate DynamoDB table with CloudFront as these two are incompatible.
 
-The option that says: **Use AWS SSO and Cognito to authenticate users and have them directly access DynamoDB using single-sign on. Manually set the provisioned read and write capacity to a higher RCU and WCU** is incorrect because AWS Single Sign-On (SSO) is a cloud SSO service that just makes it easy to centrally manage SSO access to multiple AWS accounts and business applications. This will not be of much help on the scalability and performance of the application. It is costly to manually set the provisioned read and write capacity to a higher RCU and WCU because this capacity will run round the clock and will still be the same even if the incoming traffic is stable and there is no need to scale.
+The option that says: **Use AWS SSO and Cognito to authenticate users and have them directly access DynamoDB using single-sign on. Manually set the provisioned read and write capacity to a higher RCU and WCU** is incorrect because ==AWS Single Sign-On (SSO) is a cloud SSO service that just makes it easy to centrally manage SSO access to multiple AWS accounts and business applications.== This will not be of much help on the scalability and performance of the application. It is costly to manually set the provisioned read and write capacity to a higher RCU and WCU because this capacity will run round the clock and will still be the same even if the incoming traffic is stable and there is no need to scale.
 
 The option that says: **Since Auto Scaling is enabled by default, the provisioned read and write capacity will adjust automatically. Also enable DynamoDB Accelerator (DAX) to improve the performance from milliseconds to microseconds** is incorrect because, by default, Auto Scaling is not enabled in a DynamoDB table which is created using the AWS CLI.
 
- 
-
-**References:**
+ **References:**
 
 https://aws.amazon.com/lambda/faqs/
 
@@ -850,9 +798,7 @@ https://aws.amazon.com/api-gateway/faqs/
 
 https://aws.amazon.com/dynamodb/dax/
 
- 
-
-**Tutorials Dojo's AWS Certified Solutions Architect Associate Exam Study Guide:**
+ **Tutorials Dojo's AWS Certified Solutions Architect Associate Exam Study Guide:**
 
 https://tutorialsdojo.com/aws-certified-solutions-architect-associate/
 
@@ -1604,15 +1550,9 @@ https://aws.amazon.com/redshift/
 
 https://tutorialsdojo.com/amazon-redshift/
 
- 
+ **Here is a case study on finding the most suitable analytical tool - Kinesis vs EMR vs Athena vs Redshift:**
 
-**Here is a case study on finding the most suitable analytical tool - Kinesis vs EMR vs Athena vs Redshift:**
-
-
-
-<iframe src="https://www.youtube.com/embed/wEOm6aiN4ww" frameborder="0" allowfullscreen="allowfullscreen" name="fitvid7" style="box-sizing: border-box; margin: 0px; max-width: 100%; width: 2129.76px; line-height: 1; border: none; position: absolute; top: 0px; left: 0px; height: 1197.99px;"></iframe>
-
-
+https://www.youtube.com/embed/wEOm6aiN4ww
 
 7
 
@@ -1631,7 +1571,7 @@ Which type of storage service should the Architect use to meet this requirement?
 
 Hence, **Amazon S3** is the correct answer.
 
-![img](TutorialsDojo-ReviewMode-3.assets/2019-01-27_08-08-30-95c0c6fa077cd4d2c0dc4dd23c98ef09.png)
+<img src="TutorialsDojo-ReviewMode-3.assets/2019-01-27_08-08-30-95c0c6fa077cd4d2c0dc4dd23c98ef09.png" alt="img" style="zoom:67%;" />
 
 **Amazon EBS volume** is incorrect because this is not as durable compared with S3. In addition, it is best to store the static contents in S3 rather than EBS.
 
@@ -1639,21 +1579,17 @@ Hence, **Amazon S3** is the correct answer.
 
 **Amazon RDS instance** is incorrect because an RDS instance is just a database and not suitable for storing static content. By default, RDS is not durable, unless you launch it to be in Multi-AZ deployments configuration.
 
- 
-
 **Reference:** 
 
 https://aws.amazon.com/s3/faqs/
 
 [https://d1.awsstatic.com/whitepapers/Storage/AWS%20Storage%20Services%20Whitepaper-v9.pdf#page=24](https://d1.awsstatic.com/whitepapers/Storage/AWS Storage Services Whitepaper-v9.pdf#page=24)
 
- 
-
 **Check out this Amazon S3 Cheat Sheet:**
 
 https://tutorialsdojo.com/amazon-s3/
 
-===> 8==
+8
 
 An online stocks trading application that stores financial data in an S3 bucket has a lifecycle policy that moves older data to Glacier every month. There is a strict compliance requirement where a surprise audit can happen at anytime and you should be able to retrieve the required data in under 15 minutes under all circumstances. Your manager instructed you to ensure that retrieval capacity is available when you need it and should handle up to 150 MB/s of retrieval throughput.
 
@@ -1731,8 +1667,6 @@ The option that says: **The associated security group of your function does not 
 
 The option that says: **The attached IAM execution role of your function does not have the necessary permissions to access the resources of your VPC** is incorrect because just as what is explained above, the issue is intermittent and thus, the IAM execution role of the function does have the necessary permissions to access the resources of the VPC since it works at those specific times. In case the issue is indeed caused by a permission problem then an `EC2AccessDeniedException` the error would most likely be returned and not an `EC2ThrottledException` error.
 
- 
-
 **References:**
 
 https://docs.aws.amazon.com/lambda/latest/dg/vpc.html
@@ -1740,8 +1674,6 @@ https://docs.aws.amazon.com/lambda/latest/dg/vpc.html
 https://aws.amazon.com/premiumsupport/knowledge-center/internet-access-lambda-function/
 
 https://aws.amazon.com/premiumsupport/knowledge-center/lambda-troubleshoot-invoke-error-502-500/
-
- 
 
 **Check out this AWS Lambda Cheat Sheet:**
 
@@ -1760,7 +1692,7 @@ A tech company is currently using Auto Scaling for their web application. A new 
 
 A launch configuration is a template that an Auto Scaling group uses to launch EC2 instances. When you create a launch configuration, you specify information for the instances such as the ID of the Amazon Machine Image (AMI), the instance type, a key pair, one or more security groups, and a block device mapping. If you've launched an EC2 instance before, you specified the same information in order to launch the instance.
 
-![img](TutorialsDojo-ReviewMode-3.assets/aws-auto-scaling-how-it-works-diagram.d42779c774d634883bdcd0463de7bd86f6e2231d.png)
+<img src="TutorialsDojo-ReviewMode-3.assets/aws-auto-scaling-how-it-works-diagram.d42779c774d634883bdcd0463de7bd86f6e2231d.png" alt="img" style="zoom:67%;" />
 
 You can specify your launch configuration with multiple Auto Scaling groups. However, you can only specify one launch configuration for an Auto Scaling group at a time, and you can't modify a launch configuration after you've created it. Therefore, if you want to change the launch configuration for an Auto Scaling group, you must create a launch configuration and then update your Auto Scaling group with the new launch configuration.
 
@@ -1801,7 +1733,7 @@ Which of the following is the most fault-tolerant routing configuration that the
 
 You can use **Route 53 health checking** to configure active-active and active-passive failover configurations. You configure active-active failover using any routing policy (or combination of routing policies) other than failover, and you configure active-passive failover using the failover routing policy.
 
-![img](TutorialsDojo-ReviewMode-3.assets/AWS-Route53-Weighted.PNG)
+<img src="TutorialsDojo-ReviewMode-3.assets/AWS-Route53-Weighted.PNG" alt="img" style="zoom:67%;" />
 
 **Active-Active Failover**
 
@@ -1848,7 +1780,7 @@ Which of the following options will meet this requirement?
 
 **File Gateway** presents a file-based interface to Amazon S3, which appears as a network file share. It enables you to store and retrieve Amazon S3 objects through standard file storage protocols. File Gateway allows your existing file-based applications or devices to use secure and durable cloud storage without needing to be modified. With File Gateway, your configured S3 buckets will be available as Network File System (NFS) mount points or Server Message Block (SMB) file shares.
 
-![How File Gateway works](TutorialsDojo-ReviewMode-3.assets/File-Gateway-How-it-Works.6a5ce3c54688864e5b951df9cb8732fc4f2926b4.png)
+<img src="TutorialsDojo-ReviewMode-3.assets/File-Gateway-How-it-Works.6a5ce3c54688864e5b951df9cb8732fc4f2926b4.png" alt="How File Gateway works" style="zoom:67%;" />
 
 To store the backup data from on-premises to a durable cloud storage service, you can use File Gateway to store and retrieve objects through standard file storage protocols (SMB or NFS). File Gateway enables your existing file-based applications, devices, and workflows to use Amazon S3, without modification. File Gateway securely and durably stores both file contents and metadata as objects while providing your on-premises applications low-latency access to cached data.
 
@@ -1893,7 +1825,7 @@ The primary purpose of an in-memory key-value store is to provide ultra-fast (su
 
 By caching such query results, you pay the price of the query once and then are able to quickly retrieve the data multiple times without having to re-execute the query.
 
-![img](TutorialsDojo-ReviewMode-3.assets/ElastiCache-Caching.png)
+<img src="TutorialsDojo-ReviewMode-3.assets/ElastiCache-Caching.png" alt="img" style="zoom:67%;" />
 
 The option that says: **It securely delivers data to customers globally with low latency and high transfer speeds** is incorrect because this option describes what CloudFront does and not ElastiCache.
 
@@ -1975,23 +1907,19 @@ To create a bastion host, you can create a new EC2 instance which should only ha
 
 **Setting up a large EC2 instance and a security group which only allows access on port 22 via your IP address** is incorrect because you don't need to provision a large EC2 instance to run a single bastion host. At the same time, you are looking for the cheapest solution possible.
 
-The options that say: **Set up a large EC2 instance and a security group which only allows access on port 22** and **Set up a small EC2 instance and a security group which only allows access on port 22** are both incorrect because you did not set your specific IP address to the security group rules, which possibly means that you publicly allow traffic from all sources in your security group. This is wrong as you should only be the one to have access to the bastion host.
-
- 
+The options that say: **Set up a large EC2 instance and a security group which only allows access on port 22** and **Set up a small EC2 instance and a security group which only allows access on port 22** are both incorrect because you did not set your specific IP address to the security group rules, which possibly means that you publicly allow traffic from all sources in your security group. This is wrong as you should only be the one to have access to the bastion host. 
 
 **References:**
 
 https://docs.aws.amazon.com/quickstart/latest/linux-bastion/architecture.html
 
-https://aws.amazon.com/blogs/security/how-to-record-ssh-sessions-established-through-a-bastion-host/
-
- 
+https://aws.amazon.com/blogs/security/how-to-record-ssh-sessions-established-through-a-bastion-host/ 
 
 **Check out this Amazon EC2 Cheat Sheet:**
 
 https://tutorialsdojo.com/amazon-elastic-compute-cloud-amazon-ec2/
 
-===> 16==
+16
 
 A FinTech startup deployed an application on an Amazon EC2 instance with attached Instance Store volumes and an Elastic IP address. The server is only accessed from 8 AM to 6 PM and can be stopped from 6 PM to 8 AM for cost efficiency using Lambda with the script that automates this based on tags.
 
@@ -2027,21 +1955,15 @@ The option that says: **The Elastic IP address is disassociated with the instanc
 
 The option that says: **There will be no changes** is incorrect because there will be a lot of possible changes in your EC2 instance once you stop and start it again. AWS may move the virtualized EC2 instance to another host computer; the instance may get a new public IP address, and the data in your attached instance store volumes will be deleted.
 
- 
-
 **References:**
 
 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html
 
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device
 
- 
-
 **Check out this Amazon EC2 Cheat Sheet:**
 
 https://tutorialsdojo.com/amazon-elastic-compute-cloud-amazon-ec2/
-
- 
 
 **Tutorials Dojo's AWS Certified Solutions Architect Associate Exam Study Guide:**
 
@@ -2274,8 +2196,6 @@ Hence, the correct answer is the option that says: **Upload all SSL certificates
 
 The option that says: **Create a new CloudFront web distribution and configure it to serve HTTPS requests using dedicated IP addresses in order to associate your alternate domain names with a dedicated IP address in each CloudFront edge location** is incorrect because although it is valid to use dedicated IP addresses to meet this requirement, this solution is not cost-effective. Remember that if you configure CloudFront to serve HTTPS requests using dedicated IP addresses, you incur an additional monthly charge. The charge begins when you associate your SSL/TLS certificate with your CloudFront distribution. You can just simply upload the certificates to the ALB and use SNI to handle multiple domains in a cost-effective manner.
 
- 
-
 **References:**
 
 https://aws.amazon.com/blogs/aws/new-application-load-balancer-sni/
@@ -2284,25 +2204,19 @@ https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-https-
 
 https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html
 
- 
-
 **Check out this Amazon CloudFront Cheat Sheet:**
 
 https://tutorialsdojo.com/amazon-cloudfront/
-
- 
 
 **SNI Custom SSL vs Dedicated IP Custom SSL:**
 
 https://tutorialsdojo.com/sni-custom-ssl-vs-dedicated-ip-custom-ssl/
 
- 
-
 **Comparison of AWS Services Cheat Sheets:**
 
 https://tutorialsdojo.com/comparison-of-aws-services/
 
-===> 2==
+2
 
 A company has an existing VPC which is quite unutilized for the past few months. The Business Manager instructed the Solutions Architect to integrate the company’s on-premises data center and its VPC. The architect explained the list of tasks that he’ll be doing and discussed the Virtual Private Network (VPN) connection. The Business Manager is not tech-savvy but he is interested to know what a VPN is and its benefits.
 
@@ -2317,15 +2231,15 @@ What is one of the major advantages of having a VPN in AWS?
 
 **Amazon VPC** offers you the flexibility to fully manage both sides of your Amazon VPC connectivity by creating a VPN connection between your remote network and a software VPN appliance running in your Amazon VPC network. This option is recommended if you must manage both ends of the VPN connection either for compliance purposes or for leveraging gateway devices that are not currently supported by Amazon VPC’s VPN solution.
 
-You can connect your Amazon VPC to remote networks and users using the following VPN connectivity options:
+==You can connect your Amazon VPC to remote networks and users using the following VPN connectivity options:==
 
-**AWS Site-to-Site VPN** - creates an IPsec VPN connection between your VPC and your remote network. On the AWS side of the Site-to-Site VPN connection, a virtual private gateway or transit gateway provides two VPN endpoints (tunnels) for automatic failover.
+==**AWS Site-to-Site VPN** - creates an IPsec VPN connection between your VPC and your remote network. On the AWS side of the Site-to-Site VPN connection, a virtual private gateway or transit gateway provides two VPN endpoints (tunnels) for automatic failover.==
 
-**AWS Client VPN -** a managed client-based VPN service that provides secure TLS VPN connections between your AWS resources and on-premises networks.
+==**AWS Client VPN -** a managed client-based VPN service that provides secure TLS VPN connections between your AWS resources and on-premises networks.==
 
-**AWS VPN CloudHub -** capable of wiring multiple AWS Site-to-Site VPN connections together on a virtual private gateway. This is useful if you want to enable communication between different remote networks that uses a Site-to-Site VPN connection.
+==**AWS VPN CloudHub -** capable of wiring multiple AWS Site-to-Site VPN connections together on a virtual private gateway. This is useful if you want to enable communication between different remote networks that uses a Site-to-Site VPN connection.==
 
-**Third-party software VPN appliance -** You can create a VPN connection to your remote network by using an Amazon EC2 instance in your VPC that's running a third party software VPN appliance.
+==**Third-party software VPN appliance -** You can create a VPN connection to your remote network by using an Amazon EC2 instance in your VPC that's running a third party software VPN appliance.==
 
 ![img](TutorialsDojo-ReviewMode-3.assets/site-to-site-vpn-scenarios-tgw-1.png)
 
@@ -2670,10 +2584,10 @@ If a computer with an IP address of 110.238.109.37 sends a request to the VPC, w
 
 -  Initially, it will be allowed and then after a while, the connection will be denied.
 -  Initially, it will be denied and then after a while, the connection will be allowed.
--  It will be allowed.
+-  ==It will be allowed.==
 -  It will be denied.
 
-Rules are evaluated starting with the lowest numbered rule. As soon as a rule matches traffic, it's applied immediately regardless of any higher-numbered rule that may contradict it.
+==Rules are evaluated starting with the lowest numbered rule. As soon as a rule matches traffic, it's applied immediately regardless of any higher-numbered rule that may contradict it.==
 
 ![img](TutorialsDojo-ReviewMode-3.assets/SGNCL-latest.jpg)
 
@@ -2687,15 +2601,11 @@ We have 3 rules here:
 
 The Rule 100 will first be evaluated. If there is a match then it will allow the request. Otherwise, it will then go to Rule 101 to repeat the same process until it goes to the default rule. In this case, when there is a request from 110.238.109.37, it will go through Rule 100 first. As Rule 100 says it will permit all traffic from any source, it will allow this request and will not further evaluate Rule 101 (which denies 110.238.109.37) nor the default rule.
 
- 
-
-**Reference:**
+ **Reference:**
 
 http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html
 
- 
-
-**Check out this Amazon VPC Cheat Sheet:**
+ **Check out this Amazon VPC Cheat Sheet:**
 
 https://tutorialsdojo.com/amazon-vpc/
 
@@ -2794,17 +2704,13 @@ In Amazon S3, data protection refers to protecting data while in-transit (as it 
 
 **Using AWS Shield and WAF** is incorrect because these protect you from common security threats for your web applications. However, what you are trying to achieve is securing and encrypting your data inside EBS and S3.
 
- 
-
-**References:**
+ **References:**
 
 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html
 
 http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html
 
- 
-
-**Check out this Amazon EBS Cheat Sheet:**
+ **Check out this Amazon EBS Cheat Sheet:**
 
 https://tutorialsdojo.com/amazon-ebs/
 
@@ -2816,7 +2722,7 @@ Which of the following is the most suitable storage solution in this scenario?
 
 [(view)](https://portal.tutorialsdojo.com/my-dashboard/#)10100:00:24
 
--  Encrypted Amazon EBS volume using AWS KMS.
+-  ==Encrypted Amazon EBS volume using AWS KMS.==
 -  Amazon EC2 Instance Store with SSL encryption.
 -  Amazon EBS volume with server-side encryption (SSE) enabled.
 -  Encrypted Amazon EC2 Instance Store using AWS KMS.
