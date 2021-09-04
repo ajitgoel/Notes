@@ -25,7 +25,11 @@ Definitions:
 	d. provide a more reliable network experience than Internet-based connections.
 	e. **Transit Gateway** mainly used for connecting VPCs and on-premises networks through a central hub.
 	
-<img src="Definations.assets/image-20210902211108581.png" alt="image-20210902211108581" style="zoom:67%;" />
+<img src="Definations.assets/image-20210902211108581.png" alt="image-20210902211108581"  />
+
+**AWS DataSync**
+	does not work with Amazon EBS volumes. 
+	can copy data between Network File System (NFS) shares, Server Message Block (SMB) shares, self-managed object storage, AWS Snowcone, Amazon Simple Storage Service (Amazon S3) buckets, Amazon Elastic File System (Amazon EFS) file systems, and Amazon FSx for Windows File Server file systems.
 
 **VPN connection** 
 	a. traverses the public Internet
@@ -47,8 +51,12 @@ You can connect your Amazon VPC to remote networks and users using the following
 **RAID (Redundant Array of Independent Disks):** data storage virtualization technology that combines multiple storage devices to achieve higher performance or data durability. 
 **RAID 0:** can stripe multiple volumes together for greater I/O performance than you can achieve with a single volume. 
 **RAID 1** can mirror two volumes together to achieve on-instance redundancy.
-**Amazon EBS:** 
-    a. block-level storage device that you can attach to a single EC2 instance. 
+
+**Private Virtual Interface** 
+	allows you to connect to your VPC resources on your private IP address or endpoint.
+
+==**Amazon EBS:**== 
+    a. block-level ==storage device that you can attach to a single EC2 instance.== 
     b. Is not a concurrently accessible storage
 	c. EBS volumes behave like raw, unformatted block devices. 
 	d. EBS volumes that are attached to an instance are exposed as storage volumes that persist independently from the life of the instance.
@@ -58,6 +66,7 @@ You can connect your Amazon VPC to remote networks and users using the following
 	h. for high IOPS performance, SSD volumes are more suitable to use instead of HDD volumes.
 	i. SSD's are best for workloads with small, random I/O operations
 	j. HDD's are best for large, sequential I/O operations.
+	==k. provides lowest latency access compared to EFS==
 
  **EBS type of Provisioned IOPS SSD** 
  	provides sustained performance for mission-critical low-latency workloads.
@@ -72,11 +81,11 @@ You can connect your Amazon VPC to remote networks and users using the following
     file storage service for use with Amazon EC2. 
     provides a file system interface, file system access semantics (such as strong consistency and file locking), and concurrently-accessible storage for up to thousands of Amazon EC2 instances. 
 
-**Amazon VPC**:
+==**Amazon VPC**:==
 **Network Access Control List(NACL)**:
 	a. Rules are evaluated starting with the lowest numbered rule. As soon as a rule matches traffic, it's applied immediately regardless of any higher-numbered rule that may contradict it.
 
-**Amazon S3:** 
+==**Amazon S3:**== 
 	a. an object storage service.
 	b. supports SNS topic, SQS queue, AWS Lambda destinations where it can publish events.	
 	c. `s3:ObjectRemoved:DeleteMarkerCreated` type is triggered when a delete marker is created for a versioned object and not when an object is deleted or a versioned object is permanently deleted.
@@ -89,11 +98,20 @@ You can connect your Amazon VPC to remote networks and users using the following
 	a. Require that your users access your private content by using special CloudFront signed URLs or signed cookies.
 	b. Require that your users access your Amazon S3 content by using CloudFront URLs, not Amazon S3 URLs. This prevents users from bypassing the restrictions that you specify in signed URLs or signed cookies. You can do this by setting up an origin access identity (OAI) for your Amazon S3 bucket. You can also configure the custom headers for a private HTTP server or an Amazon S3 bucket configured as a website endpoint.	
 **Amazon S3 Transfer Acceleration** enables fast, & secure transfers of files over long distances between your client and your Amazon S3 bucket. 
-
 **Pre-signed URLs**: 
 	a. are useful if you want your user/customer to be able to upload a specific object to your bucket, but you don't require them to have AWS security credentials or permissions.
+**S3 payments:** You pay for all bandwidth into and out of Amazon S3, except when:
+\- Data transferred in from the Internet.
+\- Data transferred out to an Amazon EC2 instance, when the instance is in the same AWS Region as the S3 bucket (including to a different account in the same AWS region).
+\- Data transferred out to Amazon CloudFront.
+**Multipart Upload** 
+	allows you to upload a single object as a set of parts. 
+	You can upload these object parts independently and in any order. 
+	If transmission of any part fails, you can retransmit that part without affecting other parts. 
+	After all parts of your object are uploaded, Amazon S3 assembles these parts and creates the object. 
+	In general, when your object size reaches 100 MB, you should consider using multipart uploads instead of uploading the object in a single operation.
 
-**Amazon Glacier** 
+==**Amazon Glacier**== 
 **Amazon Glacier Select** 
 	a. is not an archive retrieval option 
 	b. is primarily used to perform filtering operations using simple Structured Query Language (SQL) statements directly on your data archive in Glacier.
@@ -107,7 +125,7 @@ You can connect your Amazon VPC to remote networks and users using the following
 	a. typically complete within 5–12 hours
 	b. The provisioned capacity option is also not compatible with Bulk retrievals.
 
-**EC2** 	
+==**Amazon EC2**== 	
 **When EC2 instance is stopped and started**
 	The underlying host for the instance is possibly changed.
 	All data on the attached instance-store devices will be lost.
@@ -120,14 +138,26 @@ You can connect your Amazon VPC to remote networks and users using the following
 	a. when a Reserved Instance expires, any instances that were covered by the Reserved Instance are billed at the on-demand price
 	b. provide you with a significant discount (up to 75%) compared to On-Demand instance pricing.
 	c. are recommended for:
-	- Applications with steady state usage
-	- Applications that may require reserved capacity
-	- Customers that can commit to using EC2 over a 1 or 3 year term to reduce their total computing costs
+	Applications with steady state usage
+	Applications that may require reserved capacity
+	Customers that can commit to using EC2 over a 1 or 3 year term to reduce their total computing costs
 **Reserved Instance Marketplace** is a platform that supports the sale of third-party and AWS customers' unused Standard Reserved Instances, which vary in terms of lengths and pricing options
 **Spot instances** are spare compute capacity in the AWS cloud available to you at steep discounts compared to On-Demand prices. It can be interrupted by AWS EC2 with two minutes of notification when the EC2 needs the capacity back.
+
+**CloudWatch agent:** To collect logs from your Amazon EC2 instances and on-premises servers into **CloudWatch Logs**, AWS offers both a new unified **CloudWatch agent**, and an **older CloudWatch Logs agent**.
+
 **EC2 Billing**:
-	You will be billed when your On-Demand instance is preparing to hibernate with a `stopping` state
-	You will be billed when your Reserved instance is in `terminated` state
+	when your On-Demand instance is preparing to hibernate with a `stopping` state
+	when your Reserved instance is in `terminated` state
+	a running EC2 Instance
+	EBS Volumes attached to stopped EC2 Instances
+	no charge for using Amazon VPC
+
+==**Import SSL\TLS certificate of application:**==
+	**Amazon Certificate manager**: lets you import third-party certificates. 
+	If ACM is not available in your region, use AWS CLI to upload your third-party certificate to the **IAM certificate store**.
+
+
 
 **placement strategies**
 **Cluster** – packs instances close together inside an Availability Zone. This strategy enables workloads to achieve the low-latency network performance necessary for tightly-coupled node-to-node communication that is typical of HPC applications.
@@ -135,7 +165,11 @@ You can connect your Amazon VPC to remote networks and users using the following
 **Spread** – strictly places a small group of instances across distinct underlying hardware to reduce correlated failures.
 
 **Amazon Data Lifecycle Manager (Amazon DLM)** to automate the creation, retention, and deletion of snapshots taken to back up your Amazon EBS volumes. 
-**Amazon Storage Gateway** is used only for creating a backup of data from your on-premises server
+**Amazon Storage Gateway** 
+	a. connects an on-premises software appliance with cloud-based storage to provide seamless integration with data security features between your on-premises IT environment and the AWS storage infrastructure. You can use the service to store data in the AWS Cloud for scalable and cost-effective storage that helps maintain data security.
+	b. is used only for creating a backup of data from your on-premises server
+
+<img src="Definations.assets/aws-storage-gateway-stored-diagram.png" alt="img"  />
 **NAT Gateway** is a highly available, managed Network Address Translation (NAT) service for your resources in a private subnet to access the Internet. 
 **AWS Security Token Service (AWS STS)** is the service that you can use to create and provide trusted users with temporary security credentials that can control access to your AWS resources. 
 **AWS Single Sign-On (SSO)** is a cloud SSO service that makes it easy to centrally manage SSO access to multiple AWS accounts and business applications.
@@ -162,18 +196,21 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	b. still entails a lot of administrative overhead, unlike Amazon Kinesis. 
 	c. doesn't have a built-in enhanced fan-out feature
 
-
 **Databases**
-**Amazon RDS** 
+==**Amazon RDS**== 
 	a. is a "managed" service and not "fully managed"
 	b. one still have to manually scale up your resources and create Read Replicas to improve scalability
-**DynamoDB** 
+
+==**DynamoDB**== 
 	a. is a "fully managed" service.
+	b. cannot be added to auto scaling group.
+**DynamoDB auto scaling** uses the AWS Application Auto Scaling service to dynamically adjust provisioned throughput capacity on your behalf, in response to actual traffic patterns. This enables a table or a global secondary index to increase its provisioned read and write capacity to handle sudden increases in traffic, without throttling. When the workload decreases, Application Auto Scaling decreases the throughput so that you don’t pay for unused provisioned capacity.
 **AppSync** use appsync with DynamoDB to make it easy for you to build collaborative apps that keep shared data updated in real time.
 **Amazon DynamoDB Accelerator (DAX)** 
 	a. fully managed, highly available, in-memory cache for DynamoDB. 
 	b. add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management.
-**Amazon API Gateway** 
+
+==**Amazon API Gateway**== 
 	lets you create an API that acts as a "front door" for applications to access data, business logic, or functionality from your back-end services, such as code running on AWS Lambda. 
 	handles all of the tasks involved in accepting and processing API calls, including traffic management, authorization and access control, monitoring, and API version management. 
 	has no minimum fees or startup costs.
@@ -194,9 +231,7 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 **AWS Import/Export** 
 	is similar to AWS Snowball.
 	is used as a migration tool.
-**AWS DataSync**
-	does not work with Amazon EBS volumes. 
-	can copy data between Network File System (NFS) shares, Server Message Block (SMB) shares, self-managed object storage, AWS Snowcone, Amazon Simple Storage Service (Amazon S3) buckets, Amazon Elastic File System (Amazon EFS) file systems, and Amazon FSx for Windows File Server file systems.
+
 **To protect your system from DDoS attack, you can:**
 	a. Use an Amazon CloudFront service for distributing both static and dynamic content.
 	b. Use an Application Load Balancer with Auto Scaling groups for your EC2 instances. 
@@ -210,8 +245,45 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 **AWS Web application firewall(WAF)** 
 	a. web application firewall that helps protect web applications from common web exploits
 	b. You can use AWS WAF to define customizable web security rules that control which traffic accesses your web applications. 
-	c. If you use AWS Shield Advanced, you can use AWS WAF at no extra cost for those protected resources.	
+	c. If you use AWS Shield Advanced, you can use AWS WAF at no extra cost for those protected resources.
+**Amazon GuardDuty** is an intelligent threat detection service to protect your AWS accounts and workloads. 	
  **Elastic Fabric Adapter (EFA)** 
  	a. network device that you can attach to your Amazon EC2 instance to accelerate High-Performance Computing (HPC) and machine learning applications.
 	b. you can attach only one EFA per EC2 instance.
+	c. It has OS-bypass capabilities that allow the HPC to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality.
+
+**Elastic Network Interface (ENI)** 
+	is a logical networking component in a VPC that represents a virtual network card. 
+	It doesn’t have OS-bypass capabilities that allow the HPC to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality.
+**Elastic Network Adapter (ENA)** 	
+	It doesn’t have OS-bypass capabilities that allow the HPC to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality.
+
 **AWS Single Sign-On (SSO)** is a cloud SSO service that just makes it easy to centrally manage SSO access to multiple AWS accounts and business applications. 	
+***\*AWS Firewall Manager\**** simplifies your AWS WAF administration and maintenance tasks across multiple accounts and resources.
+***\*AWS Global Accelerator\**** is primarily used to optimize the path from your users to your applications which improves the performance of your TCP and UDP traffic.
+***\*Cross-Region Replication\**** enables you to automatically copy S3 objects from one bucket to another bucket that is placed in a different AWS Region or within the same Region.
+
+
+==**AWS Config**== 
+	is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. 
+	continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations. 
+
+**==AWS Lambda:==**
+**Lambda@Edge** 
+	a. is a feature of Amazon CloudFront that lets you run code closer to users of your application, which improves performance and reduces latency.
+	b. runs your code in response to events generated by the Amazon CloudFront content delivery network (CDN).
+	c. You pay only for the compute time you consume – there is no charge when your code is not running.
+	d. By using Lambda@Edge and Kinesis together, you can process real-time streaming data 
+
+**AWS Inspector** is simply a security assessments service which only helps you in checking for unintended network accessibility of your EC2 instances and for vulnerabilities on those EC2 instances.
+
+**==Amazon CloudWatch==**
+**CloudWatch agent** enables you to collect both system metrics and log files from Amazon EC2 instances and on-premises servers. 
+By default, CloudWatch doesn't monitor memory usage but only the CPU utilization, Network utilization, Disk performance, and Disk Reads/Writes.
+**CloudWatch Logs Insights** enables you to interactively search and analyze your log data in Amazon CloudWatch Logs. You can perform queries to help you quickly and effectively respond to operational issues. If an issue occurs, you can use CloudWatch Logs Insights to identify potential causes and validate deployed fixes.
+
+**AWS Batch** is primarily used to efficiently run hundreds of thousands of batch computing jobs in AWS.
+
+**AWS Step Functions** provides serverless orchestration for modern applications.
+
+**SWF** is a fully-managed state tracker and task coordinator service. It does not provide serverless orchestration to multiple AWS resources.
