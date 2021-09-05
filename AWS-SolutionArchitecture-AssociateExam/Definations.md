@@ -202,7 +202,7 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 **Amazon Kinesis** is the streaming data platform of AWS and has four distinct services under it: Kinesis Data Firehose, Kinesis Data Streams, Kinesis Video Streams, and Amazon Kinesis Data Analytics.
 **Amazon Kinesis Data Firehose** allows you to load streaming data into data stores and analytics tools. It can capture, transform, and load streaming data, enabling near real-time analytics with existing business intelligence tools and dashboards you are already using today. It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security. You can use Amazon Kinesis Data Firehose in conjunction with Amazon Kinesis Data Streams if you need to implement real-time processing of streaming big data. 
 **Kinesis Data Streams** 
-	a. provides an ordering of records, as well as the ability to read and/or replay records in the same order to multiple Amazon Kinesis Applications.
+	a. ==enables real-time processing of streaming big data.== provides an ordering of records, as well as the ability to read and/or replay records in the same order to multiple Amazon Kinesis Applications.
 	b. is used to collect and process large streams of data records in real-time. 
 	c. can be used for rapid and continuous data intake and aggregation.
 	d. has a built-in enhanced fan-out feature
@@ -260,12 +260,13 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 
 ==**AWS SQS**:==
 	**Standard Queue:**
-		supports unlimited no of tx's per second per API action
-		==a message is delivered at least once. occasionally more than one copy of message is delivered==
-		==occasionally messages might be delivered in an order different from which they were send==
+		a. supports unlimited no of tx's per second per API action
+		b. ==a message is delivered at least once. occasionally more than one copy of message is delivered==
+		c. ==occasionally messages might be delivered in an order different from which they were send==
+		d. ==by default queue is standard queue.==
 
 ​	**FIFO Queue:**
-​		by default FIFO queues support  upto 3000 messages per second per API action through batching
+​		support  upto 3000 messages per second per API action through batching
 ​		==a mesage is delivered once and remains available until a consumer processses and deletes it. duplicates are not introduced into the queue.==
 ​		==the order in which messages are send and received is strickly preserved.== 
 
@@ -393,12 +394,11 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 
 **AWS Step Functions** provides serverless orchestration for modern applications.
 
-
-
 **AWS PrivateLink** provides private connectivity between VPCs, AWS services, and on-premises applications, securely on the Amazon network.
 **Amazon Athena** 
 	is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL expressions. 
 	Athena is serverless. 
+**AWS Data Pipeline ** is primarily used as a cloud-based data workflow service that helps you process and move data between different AWS services and on-premises data sources. 
 
 **<u>==Questions to review:==</u>**
 
