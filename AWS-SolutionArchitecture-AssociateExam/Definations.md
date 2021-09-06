@@ -1,12 +1,19 @@
-Definitions:
 **VPC endpoint**:
     a. enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an Internet gateway, NAT device, VPN connection, or AWS Direct Connect connection. 
     b. Instances in your VPC do not require public IP addresses to communicate with resources in the service. 
 	c. Traffic between your VPC and the other services does not leave the Amazon network.
-	d. **gateway endpoint** is a gateway that you specify in your route table to access Amazon S3 from your VPC over the AWS network. There is no additional charge for using gateway endpoints. However, standard charges for data transfer and resource usage still apply.
-	e. **Interface endpoints** extend the functionality of gateway endpoints by using private IP addresses to route requests to Amazon S3 from within your VPC, on-premises, or from a different AWS Region. 
-	f. Interface endpoints are compatible with gateway endpoints. 
-	g. If you have an existing gateway endpoint in the VPC, you can use both types of endpoints in the same VPC.
+	d. **gateway endpoint** 
+			is a gateway that you specify in your route table to access AWS S3\DynamoDB from your VPC over the AWS network. 
+			==There is no additional charge for using gateway endpoints==. However, standard charges for data transfer and resource usage still apply.
+			for S3 and DynamoDB service, you have to use a **Gateway** VPC Endpoint 
+
+​		e. **Interface endpoints** 
+​		extend the functionality of gateway endpoints by using private IP addresses to route requests to AWS S3\DynamoDB from within your VPC, on-premises, or from a different AWS Region. 
+​		==you still get billed for the time your interface endpoint is running== and the GB data it has processed. 
+​		for S3 and DynamoDB service, you <u>should not use</u> a **Interface** VPC Endpoint 
+
+​	f. Interface endpoints are compatible with gateway endpoints. 
+​	g. If you have an existing gateway endpoint in the VPC, you can use both types of endpoints in the same VPC.
 
 <img src="Definations.assets/image-20210902220825087.png" alt="image-20210902220825087"  />
 
@@ -38,8 +45,12 @@ Definitions:
 **VPC Flow Logs** is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your entire VPC. 
 
 **AWS DataSync**
+	simplifies, automates, and ==accelerates copying large amounts of data to and from AWS storage services over the internet or AWS Direct Connect.==
+	You deploy an AWS DataSync agent to your on-premises hypervisor or in Amazon EC2. ==To connect programmatically to an AWS service, you will need to use an **AWS Direct Connect service endpoint**.==
 	does not work with Amazon EBS volumes. 
 	can copy data between Network File System (NFS) shares, Server Message Block (SMB) shares, self-managed object storage, AWS Snowcone, Amazon Simple Storage Service (Amazon S3) buckets, Amazon Elastic File System (Amazon EFS) file systems, and Amazon FSx for Windows File Server file systems.
+
+<img src="Definations.assets/AWS-DataSync-How-it-Works-Diagram.d27ec6f14be8ca9c2d434f94dd4a98c3fdf5c88c.png" alt="img" style="zoom: 33%;" />
 
 **VPN connection** 
 	a. traverses the public Internet
@@ -55,9 +66,59 @@ You can connect your Amazon VPC to remote networks and users using the following
 
 <img src="Definations.assets/image-20210902221907043.png" alt="image-20210902221907043"  />
 
+------
+
+**AWS security group** 
+	acts as a virtual firewall for your instance to control inbound and outbound traffic. 
+	When you launch an instance in a VPC, you can assign up to five security groups to the instance. 
+	Security groups act at the instance level, not the subnet level. Therefore, each instance in a subnet in your VPC can be assigned to a different set of security groups.
+	If you launch an instance and you don't specify a security group, the instance is automatically assigned to the default security group for the VPC. 
+	For each security group, you add *rules* that control the inbound traffic to instances, and a separate set of rules that control the outbound traffic.
+	Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (`169.254.0.0/16`) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). Similarly, flow logs do not capture IP traffic to or from these addresses.
+	====The FTP protocol uses TCP via ports 20 and 21.==
+	==The **/32** in the the CIDR notation denotes one IP address and the **/0** refers to the entire network.==
+
+<img src="Definations.assets/2020-01-11_09-55-33-102a3438068e9bb4c45fa670155c2044.png" alt="img" style="zoom:67%;" />
+
+------
+
 **NAT Gateway:** 
 	a. allows instances in the private subnet to gain access to the Internet
 	b. are charged on an hourly basis even for idle time.
+	c. is created in a specific Availability Zone and implemented with redundancy in that zone. You have a limit on the number of NAT gateways you can create in an Availability Zone.
+
+------
+
+**web and application tiers need to access the Internet to fetch data from public APIs. However, these servers should be inaccessible from the Internet.**
+
+a. create a NAT gateway, by specifing the public subnet in which the NAT gateway should reside. You must also specify an Elastic IP address to associate with the NAT gateway when you create it. The Elastic IP address cannot be changed once you associate it with the NAT Gateway.
+b. After you've created a NAT gateway, you must update the route table associated with one or more of your private subnets to point Internet-bound traffic to the NAT gateway. This enables instances in your private subnets to communicate with the internet. 
+
+![img](Definations.assets/nat-gateway-diagram.png)
+
+------
+
+**AWS IAM:**
+
+​	Every AWS resource is owned by an AWS account
+​	permissions to create or access the AWS resources are governed by permissions policies. 
+​	permissions policies can be attached to IAM identities (that is, users, groups, and roles)
+​	services such as AWS Lambda also support attaching permissions policies to AWS resources.
+
+------
+
+**Integrate the directory service(which is not compatible with SAML) from the on-premises data center to the AWS VPC using IAM:**
+
+If your identity store is not compatible with SAML 2.0 then you can build a custom identity broker application to perform a similar function. The broker application authenticates users, requests temporary credentials for users from AWS, and then provides them to the user to access AWS resources.
+The application verifies that employees are signed into the existing corporate network's identity and authentication system, which might use LDAP, Active Directory, or another system. The identity broker application then obtains temporary security credentials for the employees.
+To get temporary security credentials, the identity broker application calls either **`AssumeRole`** or **`GetFederationToken`** to obtain temporary security credentials. The call returns temporary security credentials consisting of an AWS access key ID, a secret access key, and a session token. The identity broker application makes these temporary security credentials available to the internal company application. The app can then use the temporary credentials to make calls to AWS directly. The app caches the credentials until they expire, and then requests a new set of temporary credentials.
+
+![img](Definations.assets/enterprise-authentication-with-identity-broker-application.diagram.png)
+
+
+
+------
+
 **RAID (Redundant Array of Independent Disks):** data storage virtualization technology that combines multiple storage devices to achieve higher performance or data durability. 
 ==**RAID 0:**==
 	==enables you to improve your storage volumes' performance by distributing the I/O across the volumes in a stripe.==
@@ -65,6 +126,9 @@ You can connect your Amazon VPC to remote networks and users using the following
 
 **Private Virtual Interface** 
 	allows you to connect to your VPC resources on your private IP address or endpoint.
+**AWS CloudFormation:** You can create a template that describes all the AWS resources that you want (like Amazon EC2 instances or Amazon RDS DB instances), and AWS CloudFormation takes care of provisioning and configuring those resources for you. With this, you can deploy an exact copy of your AWS architecture, along with all of the AWS resources which are hosted in one region to another.
+
+------
 
 ==**Amazon EBS:**== 
     a. block-level ==storage device that you can attach to a single EC2 instance.== 
@@ -78,23 +142,33 @@ You can connect your Amazon VPC to remote networks and users using the following
 	i. SSD's are best for workloads with small, random I/O operations
 	j. HDD's are best for large, sequential I/O operations.
 	==k. provides lowest latency access compared to EFS==
+	l. ==does not store data redundantly across multiple AZs by default, unlike EFS.==
+	m. multi-attach feature  on EBS Provisioned IOPS io2 or io1 volumes, allows an EBS volume to be attached on multiple instances **within** an availability zone.
 
- **EBS type of Provisioned IOPS SSD** 
- 	provides sustained performance for mission-critical low-latency workloads.
+ **EBS type of Provisioned IOPS SSD(io1)**
+ 	provides sustained performance for ==mission-critical== low-latency workloads.
+	offer storage with consistent and low-latency performance and are designed for I/O intensive applications such as large relational or NoSQL databases.
+**EBS General Purpose SSD (gp2)** 
+	it does not provide the high IOPS required by the application, unlike the Provisioned IOPS SSD volume.
+	are suitable for a broad range of workloads, including small to medium sized databases, development, and test environments, and boot volumes.
 **EBS Throughput Optimized HDD (st1)**
 	these are HDD volumes which are more suitable for large streaming workloads rather than transactional database workloads.
 **EBS Cold HDD (sc1)** 
 	these are HDD volumes which are more suitable for large streaming workloads rather than transactional database workloads	
-**EBS General Purpose SSD (gp2)** 
-	it does not provide the high IOPS required by the application, unlike the Provisioned IOPS SSD volume.
+**Magnetic volumes:**
+	are ideal for workloads where data are accessed infrequently, and applications where the lowest storage cost is important. 
+	this is a Previous Generation Volume. 
 
 **Amazon EFS:**
     file storage service for use with Amazon EC2. 
     provides a file system interface, file system access semantics (such as strong consistency and file locking), and concurrently-accessible storage for up to thousands of Amazon EC2 instances. 
+	stores data redundantly across multiple AZs by default
 
 ==**Amazon VPC**:==
 **Network Access Control List(NACL)**:
 	a. Rules are evaluated starting with the lowest numbered rule. As soon as a rule matches traffic, it's applied immediately regardless of any higher-numbered rule that may contradict it.
+
+------
 
 ==**AWS S3:**== 
 	a. an object storage service.
@@ -110,6 +184,11 @@ You can connect your Amazon VPC to remote networks and users using the following
 	i. Objects can be encrypted using Server-side encryption (SSE).
 	j. ==**Server Access Logging feature of Amazon S3**: provides more detailed information about every access request sent to the S3 bucket including the referrer and turn-around time information compared to **CloudTrail Logging feature of Amazon S3.**==
 	k. **CORS** will only allow objects from one domain (travel.cebu.com) to be loaded and accessible to a different domain (palawan.com). 
+	l. does not provide low-latency file operations as it does not reside within your VPC by default, which means the data will traverse the public Internet that may result to higher latency. You can set up a VPC Endpoint for S3 yet still, its latency is greater than that of EBS.
+m. **Cross-Region Replication**(CRR) 
+		When you upload your data in S3, your objects are redundantly stored on multiple devices across multiple facilities within the region only, where you created the bucket.
+		enables you to automatically copy S3 objects from one bucket to another bucket that is placed in a different AWS Region or within the same Region.
+n. **Cross-Account Access** is primarily used if you want to grant access to your objects to another AWS account. eg: Account `MANILA` can grant another AWS account (Account `CEBU)` permission to access its resources such as buckets and objects
 
 **Amazon S3 notification** feature enables you to receive notifications when certain events happen in your bucket.	
 **S3 Batch Operations** runs multiple S3 operations in a single request. 
@@ -118,7 +197,10 @@ You can connect your Amazon VPC to remote networks and users using the following
 **To securely serve private content in S3 by using CloudFront**:
 	a. Require that your users access your private content by using special CloudFront signed URLs or signed cookies.
 	b. Require that your users access your Amazon S3 content by using CloudFront URLs, not Amazon S3 URLs. This prevents users from bypassing the restrictions that you specify in signed URLs or signed cookies. You can do this by setting up an origin access identity (OAI) for your Amazon S3 bucket. You can also configure the custom headers for a private HTTP server or an Amazon S3 bucket configured as a website endpoint.	
-==**AWS S3 Transfer Acceleration**== ==enables fast,== & secure ==transfers of files== over long distances ==between your client and your Amazon S3 bucket.== 
+==**AWS S3 Transfer Acceleration**== 
+	==enables fast,== & secure ==transfers of files== over long distances ==between your client and your Amazon S3 bucket.== 
+	leverages Amazon CloudFront's globally distributed AWS Edge Locations. As data arrives at an AWS Edge Location, data is routed to your Amazon S3 bucket over an optimized network path.
+
 **Pre-signed URLs**: 
 	a. are useful if you want your user/customer to be able to upload a specific object to your bucket, but you don't require them to have AWS security credentials or permissions.
 **S3 payments:** you dont pay for bandwidth into\out of S3 when 
@@ -137,8 +219,13 @@ in all other cases you pay for all bandwidth into and out of Amazon S3.
 
 **Amazon S3 Select** help analyze and process data within an object in Amazon S3 buckets
 
-==**Amazon Glacier**== 
-**Amazon Glacier Select** 
+------
+
+**AWS Glacier** 
+An **Amazon S3 Glacier (Glacier) vault** can have one resource-based vault access policy and one Vault Lock policy attached to it. A ***Vault Lock policy*** is a vault access policy that you can lock. Using a Vault Lock policy can help you enforce regulatory and compliance requirements.
+Amazon S3 Glacier supports the following archive operations: Upload, Download, and Delete. Archives are immutable and cannot be modified.
+
+**AWS Glacier Select** 
 	a. is not an archive retrieval option 
 	b. is primarily used to perform filtering operations using simple Structured Query Language (SQL) statements directly on your data archive in Glacier.
 **Expedited retrievals** 
@@ -150,8 +237,20 @@ in all other cases you pay for all bandwidth into and out of Amazon S3.
 **Bulk Retrieval** 
 	a. typically complete within 5–12 hours
 	b. The provisioned capacity option is also not compatible with Bulk retrievals.
+**AWS S3 Glacier Deep Archive** has long retrieval time.
 
-==**Amazon EC2**== 	
+**Elastic IP(EIP) address** is just a static, public IPv4 address.
+**AWS ParallelCluster** 
+	is just an AWS-supported open-source cluster management tool that makes it easy for you to deploy and manage High-Performance Computing (HPC) clusters on AWS. 
+	uses a simple text file to model and provision all the resources needed for your HPC applications in an automated and secure manner.
+
+------
+
+**AWS EC2** 	
+	root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3. The data on instance store volumes persist only during the life of the instance which means that if the instance is terminated, the data will be automatically deleted.
+	Instance metadata is data about your EC2 instance that you can use to configure or manage the running instance. 
+	To view the private IPv4 address, public IPv4 address, and all other categories of instance metadata from within a running instance, use the http://169.254.169.254/latest/meta-data/ URL
+
 **When EC2 instance is stopped and started**
 	The underlying host for the instance is possibly changed.
 	All data on the attached instance-store devices will be lost.
@@ -187,7 +286,25 @@ in all other cases you pay for all bandwidth into and out of Amazon S3.
 **Spread** – strictly places a small group of instances across distinct underlying hardware to reduce correlated failures.
 
 **Amazon Data Lifecycle Manager (Amazon DLM)** to automate the creation, retention, and deletion of snapshots taken to back up your Amazon EBS volumes. 
-**==Amazon Storage Gateway==** 
+
+------
+
+**Storage Instance Types:**
+====**storage optimized instance**== 
+	==is designed for workloads that require high, sequential read and write access to very large data sets on local storage.== 
+	You can join multiple volumes together in a RAID 0 configuration to use the available bandwidth for these instances.
+**Memory optimized instances with EBS volume** 
+	this type of instance is suitable for a NoSQL database
+	it is not designed for workloads that require high, sequential read and write access to very large data sets on local storage.
+
+**General purpose instances with EBS volume** 
+	this instance provides a balance of computing, memory, and networking resources. 
+
+<img src="Definations.assets/AWS-Instance-Types.png" alt="img" style="zoom:67%;" />
+
+------
+
+**==AWS Storage Gateway==** 
 	==a. connects an on-premises software appliance with cloud-based storage== to provide seamless integration with data security features between your on-premises IT environment and the AWS storage infrastructure. ==You can use the service to store data in the AWS Cloud for scalable and cost-effective storage that helps maintain data security.==
 	b. ==is used only for creating a backup of data from your on-premises server==
 
@@ -270,6 +387,11 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 ​		==a mesage is delivered once and remains available until a consumer processses and deletes it. duplicates are not introduced into the queue.==
 ​		==the order in which messages are send and received is strickly preserved.== 
 
+**Amazon MQ** 
+	is a managed message broker service for Apache ActiveMQ that makes it easy to set up and operate message brokers in the cloud. 
+	If you're using messaging with existing applications and want to move your messaging service to the cloud quickly and easily, it is recommended that you consider Amazon MQ. 
+	It supports industry-standard APIs and protocols so you can switch from any standards-based message broker to Amazon MQ without rewriting the messaging code in your applications.
+
 ==**AWS SWF**== 
 	is a fully-managed state tracker and task coordinator service. 
 	does not provide serverless orchestration to multiple AWS resources.
@@ -290,6 +412,8 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 ==**DynamoDB**== 
 	a. is a "fully managed" service.
 	b. cannot be added to auto scaling group.
+	**DynamoDB Streams:** If you enable DynamoDB Streams on a table, you can associate the stream ARN with a Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table's stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records.
+
 **DynamoDB auto scaling** uses the AWS Application Auto Scaling service to dynamically adjust provisioned throughput capacity on your behalf, in response to actual traffic patterns. This enables a table or a global secondary index to increase its provisioned read and write capacity to handle sudden increases in traffic, without throttling. When the workload decreases, Application Auto Scaling decreases the throughput so that you don’t pay for unused provisioned capacity.
 **AppSync** use appsync with DynamoDB to make it easy for you to build collaborative apps that keep shared data updated in real time.
 **Amazon DynamoDB Accelerator (DAX)** 
@@ -314,7 +438,7 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 
 **AWS Inspector** is simply a security assessments service which only helps you in checking for unintended network accessibility of your EC2 instances and for vulnerabilities on those EC2 instances.
 
-**==Amazon CloudWatch==**
+**Amazon CloudWatch**
 ==**CloudWatch agent** enables you to collect both system metrics and log files from Amazon EC2 instances== and on-premises servers. 
 ==By default, CloudWatch doesn't monitor memory usage but only the CPU utilization, Network utilization, Disk performance, and Disk Reads/Writes.==
 To collect logs from your Amazon EC2 instances and on-premises servers into **CloudWatch Logs**, AWS offers both a new unified **CloudWatch agent**, and an **older CloudWatch Logs agent**.
@@ -322,13 +446,22 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 **CloudWatch Logs Insights** enables you to interactively search and analyze your log data in Amazon CloudWatch Logs. You can perform queries to help you quickly and effectively respond to operational issues. If an issue occurs, you can use CloudWatch Logs Insights to identify potential causes and validate deployed fixes.
 **AWS Systems Manager Agent (SSM Agent):** can be installed on each EC2 instance. This will automatically collect and push data to CloudWatch Logs. Less efficient than using Cloudwatch agent. 
 
-==**AWS CloudFront**==
+**Amazon ElastiCache** use for the website's in-memory data store or cache.
+
+**AWS CloudFront**
 	a. improves performance for both cacheable content (such as images and videos) and dynamic content (such as API acceleration and dynamic site delivery). 
 	b. use the AWS global network and its edge locations around the world.	
 	c. integrate with AWS Shield for DDoS protection.
+**Using CloudFront, serve content that is stored in S3, but not publicly accessible from S3 directly:**
+	\- Grant the CloudFront **origin access identity(OAI)** the applicable permissions on the bucket.
+	\- Deny access to anyone that you don't want to have access using Amazon S3 URLs.
+
 **AWS CloudTrail** 
 	is primarily used for IT audits and API logging of all of your AWS resources. 
 	It does not have the capability to trace and analyze user requests as they travel through your Amazon API Gateway APIs, unlike AWS X-Ray.
+	When activity occurs in your AWS account, that activity is recorded in a CloudTrail event. You can easily view events in the CloudTrail console by going to **Event history**. Event history allows you to view, search, and download the past 90 days of supported activity in your AWS account. In addition, you can create a CloudTrail trail to further archive, analyze, and respond to changes in your AWS resources. 
+	A **AWS CloudTrail trail** is a configuration that enables delivery of events to an Amazon S3 bucket that you specify.
+
 **AWS X-Ray** 
 	used to trace and analyze user requests as they travel through your Amazon API Gateway APIs to the underlying services. 
 	gives you an end-to-end view of an entire request, so you can analyze latencies in your APIs and their backend services. 
@@ -342,8 +475,49 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	e. is a good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses or deterministic, fast regional failover. 
 	f. integrate with AWS Shield for DDoS protection.
 
-**Elastic Load Balancer(ELB)** 
+**AWS Route53**
+	**Route 53 with Failover routing policy:** is primarily used if you want to configure active-passive failover to your application architecture.
+	can use **Route 53 with Weighted routing policy** to divert the a percentage of traffic between the on-premises and AWS-hosted application. 
+
+------
+
+**AWS Elastic Load Balancer(ELB)** 
 	is designed to only run in one region and not across multiple regions.	
+	Health checks ensure your ELB won't send traffic to unhealthy (crashed) instances
+
+| Elastic Load Balancing types | Network load balancer                                        | **Application load balancer**                                | Gateway load balancer                         | Classic load balancer                                        |
+| ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ |
+|                              | Operates at connection level(layer 4 of OSI model)<br />Supports TCP health check | operates at request level<br />operates at the application layer(layer 4 of the OSI model)<br />Supports http, https health checks |                                               | operates at both connection and request level<br />Supports TCP health check |
+| Protocol supported           | TCP, ==UDP==                                                 | http, https, websocket, does not support TCP                 |                                               |                                                              |
+|                              | does not support path-based routing and host-based routing   | ==support path-based routing, host-based routing==, and support for containerized applications |                                               | does not support path-based routing and host-based routing   |
+|                              | Routes traffic to targets within VPC<br />exposes a public static IP address | can route to different target groups based on hostname, request path, source ip but not geography. <br />exposes a static DNS(URL) |                                               | exposes a static DNA(URL)                                    |
+| Used when                    | ==extreme performance and static IP is needed for your application== | you need flexible application management and TLS termination |                                               | your application is built within the EC2 Classic network     |
+| Protocol listeners           | TCP\UDP\TLS                                                  | ==HTTP\HTTPS\gRPC==                                          | IP                                            | HTTP\HTTPS\TCP\SSL\TLS                                       |
+| Use cases                    | ==Handling millions of requests per second while maintaining ultra low latencies== | For web apps, microservices and containers                   | Running third party virtual appliances in AWS | For legacy applications in AWS, for implementing custom security policies and TCP passthrough configuration |
+|                              | Cannot use an Network Load balancer with Weighted Target Groups to divert and proportion the traffic between different application. | can use an Application Elastic Load balancer with Weighted Target Groups to divert and proportion the traffic between different application. |                                               |                                                              |
+
+
+
+| Scaling Policies | Simple Scaling Policy                                        | Step Scaling Policy                                          | Target Tracking scaling                                      | Scheduled Scaling                                           |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------------------------------------- |
+|                  | Increase or decrease the current capacity of the group based on a single scaling adjustment. | Increase or decrease the current capacity of the group based on a set of scaling adjustments, known as *step adjustments*, that vary based on the size of the alarm breach. | Increase or decrease the current capacity of the group based on a target value for a specific metric. This is similar to the way that your thermostat maintains the temperature of your home – you select a temperature and the thermostat does the rest. |                                                             |
+| Recommendation   |                                                              | If you are **<u>not</u>** scaling based on a utilization metric that increases or decreases proportionally to the number of instances in an Auto Scaling group | If you are scaling based on a utilization metric that increases or decreases proportionally to the number of instances in an Auto Scaling group |                                                             |
+|                  | you need to wait for the cooldown period to complete before initiating additional scaling activities. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | this policy is mainly used for predictable traffic patterns |
+|                  | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. |                                                              |                                                             |
+
+ **Cross-Zone Load Balancing**
+        allows every load balancer node to distribute requests across all  availability zones, although for the Network Load Balancer there are data transfer charges when this feature is enabled.
+
+**AWS Auto Scaling Group(ASG)**
+	a. The capacity of your ASG cannot go over the maximum capacity you have allocated during scale out events
+	b. If the ASG has been configured to leverage the ALB health checks, unhealthy instances will be terminated
+	c. You can create a CloudWatch custom metric and build an alarm on this to scale your ASG
+	d. ==If you have a web application hosted in EC2 and managed by an ASG and you are exposing this application through an Application Load Balancer, you would configure the EC2 instance security group to ensure only the ALB can access the port 80 by opening EC2 security on port 80 to ALB's security group.==
+	e.  ==The Default Termination Policy for ASG is that it tries to balance across AZ first, and then delete based on the age of the launch configuration.==
+
+==**SNI (Server Name Indication)** is a feature allowing you to expose multiple SSL certs if the client supports it.== 
+
+------
 
 **AWS Backup** 
 	a. is a centralized backup service to backup your application data across AWS services in the AWS Cloud.
@@ -368,16 +542,20 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	f. Services that are available in AWS edge locations(CloudFront, AWS WAF, Amazon Route53, and Amazon API Gateway) allow you to take advantage of a global network of edge locations that can provide your application with greater fault tolerance and increased scale for managing larger volumes of traffic.
 **AWS Shield** 
 	a. is a managed DDoS protection service that is available in two tiers: Standard and Advanced. 
-	b. **AWS Shield Standard** applies always-on detection and inline mitigation techniques, such as deterministic packet filtering and priority-based traffic shaping, to minimize application downtime and latency.
+	b. **AWS Shield Standard** applies always-on detection and inline mitigation techniques, such as deterministic packet filtering and priority-based traffic shaping, to minimize application downtime and latency. you receive comprehensive availability protection against all known infrastructure (Layer 3 and 4) attacks.
+
+------
+
 **AWS Web application firewall(WAF)** 
 	a. web application firewall that helps protect web applications from common web exploits
 	b. You can use AWS WAF to define customizable web security rules that control which traffic accesses your web applications. 
 	c. If you use **AWS Shield Advanced**, you can use AWS WAF at no extra cost for those protected resources.
 **AWS GuardDuty** is an intelligent threat detection service to protect your AWS accounts and workloads. 	
- **Elastic Fabric Adapter (EFA)** 
+ **AWS EFA(Elastic Fabric Adapter)** 
  	a. network device that you can attach to your Amazon EC2 instance to accelerate High-Performance Computing (HPC) and machine learning applications.
 	b. you can attach only one EFA per EC2 instance.
 	c. It has OS-bypass capabilities that allow the HPC to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality.
+	d. The OS-bypass capabilities of EFAs are not supported on Windows instances. If you attach an EFA to a Windows instance, the instance functions as an Elastic Network Adapter, without the added EFA capabilities.
 
 **Elastic Network Interface (ENI)** 
 	is a logical networking component in a VPC that represents a virtual network card. 
@@ -385,10 +563,12 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 **Elastic Network Adapter (ENA)** 	
 	It doesn’t have OS-bypass capabilities that allow the HPC to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality.
 
+**Amazon Elastic MapReduce(EMR)** ==is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark, on AWS to process and analyze vast amounts of data.== By using these frameworks and related open-source projects such as Apache Hive and Apache Pig, you can process data for analytics purposes and business intelligence workloads. Additionally, you can use Amazon EMR to transform and move large amounts of data into and out of other AWS data stores and databases such as Amazon Simple Storage Service (Amazon S3) and Amazon DynamoDB.
+<img src="Definations.assets/Big-Data-Redesign_Diagram_Enterprise-Data-Warehouse.52d3e98fc79bf05e60c0f8278f067de595d5d3b2.png" alt="img" style="zoom: 80%;" />
+
 **AWS Single Sign-On (SSO)** is a cloud SSO service that just makes it easy to centrally manage SSO access to multiple AWS accounts and business applications. 	
 **AWS Firewall Manager** simplifies your AWS WAF administration and maintenance tasks across multiple accounts and resources.
 **AWS Global Accelerator** is primarily used to optimize the path from your users to your applications which improves the performance of your TCP and UDP traffic.
-**Cross-Region Replication** enables you to automatically copy S3 objects from one bucket to another bucket that is placed in a different AWS Region or within the same Region.
 
 **AWS Batch** is primarily used to efficiently run hundreds of thousands of batch computing jobs in AWS.
 
@@ -399,7 +579,16 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL expressions. 
 	Athena is serverless. 
 **AWS Data Pipeline ** is primarily used as a cloud-based data workflow service that helps you process and move data between different AWS services and on-premises data sources. 
+**AWS Auto Scaling group:** 
+	You ==can only specify one launch configuration for an Auto Scaling group at a time==, and you can't modify a launch configuration after you've created it. Therefore, if you want to change the launch configuration for an Auto Scaling group, you must create a launch configuration and then update your Auto Scaling group with the new launch configuration.
+**Systems Manager Automation service** is primarily used to simplify common maintenance and deployment tasks of Amazon EC2 instances and other AWS resources. 
+
+==**AWS Trusted Advisor**== is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices. It ==inspects your AWS environment and makes recommendations for saving money, improving system performance and reliability, or closing security gaps.==
+==***\*AWS Cost Explorer\**** enables you to view and analyze your costs and usage.== You can explore your usage and costs using the main graph, the Cost Explorer cost and usage reports, or the Cost Explorer RI reports. It has an easy-to-use interface that lets you visualize, understand, and manage your AWS costs and usage over time.
+==***\*AWS Budgets\**** gives you the ability to set custom budgets that alert you when your costs or usage exceed (or are forecasted to exceed) your budgeted amount.== You can also use AWS Budgets to set reservation utilization or coverage targets and receive alerts when your utilization drops below the threshold you define.
+==***\*Amazon Inspector\**** is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.== Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices.
 
 **<u>==Questions to review:==</u>**
 
-Review Mode-4: Incorrect questions=> Question 18(EC2), 24(EBS), **CSAA - Design Resilient Architectures**=>9, 15
+Review Mode-4: Incorrect questions=> Question 24(EBS), **CSAA - Design Resilient Architectures**=>9, 15, 
+Review Mode-5: **CSAA - Design High-Performing Architectures**=> 8, 

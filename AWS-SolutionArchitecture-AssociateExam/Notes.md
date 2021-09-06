@@ -480,38 +480,6 @@ One final note before I finish this lecture, please ensure that you check all th
 ==Update the ownership of the efs folder to the ec2-user using the following command: sudo chown ec2-user efs/==
 
 <u>**==08 High Availability and Scalability_ ELB(Elastic load balancer) & ASG(Auto scaling group)==**</u>
-Health checks ensure your ELB won't send traffic to unhealthy (crashed) instances
-Elastic load balancer
-
-| Elastic Load Balancing types | Network load balancer                                        | **Application load balancer**                                | Gateway load balancer                         | Classic load balancer                                        |
-| ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ |
-|                              | Operates at connection level(layer 4 of OSI model)<br />Supports TCP health check | operates at request level<br />operates at the application layer(layer 4 of the OSI model)<br />Supports http, https health checks |                                               | operates at both connection and request level<br />Supports TCP health check |
-| Protocol supported           | TCP                                                          | http, https, websocket, does not support TCP                 |                                               |                                                              |
-|                              | does not support path-based routing and host-based routing   | ==support path-based routing, host-based routing==, and support for containerized applications |                                               | does not support path-based routing and host-based routing   |
-|                              | Routes traffic to targets within VPC<br />exposes a public static IP address | can route to different target groups based on hostname, request path, source ip but not geography. <br />exposes a static DNS(URL) |                                               | exposes a static DNA(URL)                                    |
-| Used when                    | ==extreme performance and static IP is needed for your application== | you need flexible application management and TLS termination |                                               | your application is built within the EC2 Classic network     |
-| Protocol listeners           | TCP\UDP\TLS                                                  | ==HTTP\HTTPS\gRPC==                                          | IP                                            | HTTP\HTTPS\TCP\SSL\TLS                                       |
-| Use cases                    | ==Handling millions of requests per second while maintaining ultra low latencies== | For web apps, microservices and containers                   | Running third party virtual appliances in AWS | For legacy applications in AWS, for implementing custom security policies and TCP passthrough configuration |
-
-****
-​    **Cross-Zone Load Balancing**
-​        allows every load balancer node to distribute requests across all 
-​        availability zones, although for the Network Load Balancer 
-​        there are data transfer charges when this feature is enabled.
-
-The capacity of your ASG cannot go over the maximum capacity you have allocated during scale out events
-If the ASG has been configured to leverage the ALB health checks, unhealthy instances will be terminated
-You can create a CloudWatch custom metric and build an alarm on this to scale your ASG
-==If you have a web application hosted in EC2 and managed by an ASG and you are exposing this application through an Application Load Balancer, you would configure the EC2 instance security group to ensure only the ALB can access the port 80 by opening EC2 security on port 80 to ALB's security group.==
-==**SNI (Server Name Indication)** is a feature allowing you to expose multiple SSL certs if the client supports it.== Read more here: https://aws.amazon.com/blogs/aws/new-application-load-balancer-sni/
-==The Default Termination Policy for ASG is that it tries to balance across AZ first, and then delete based on the age of the launch configuration.==
-**Cross Zone Load Balancing**
-
-| Scaling Policies | Simple Scaling Policy                                        | Step Scaling Policy                                          | Target Tracking                                              | Scheduled Scaling                                           |
-| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------------------------------------- |
-|                  | you need to wait for the cooldown period to complete before initiating additional scaling activities. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | this policy is mainly used for predictable traffic patterns |
-|                  | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. |                                                              |                                                             |
-
 <u>**09 AWS Fundamentals_ RDS + Aurora + ElastiCache**</u>
 ==<u>**10 Route 53**</u>:== managed DNS(domain name system). DNS is a collection of rules and records which helps clients understand how to search server through its domain name. 
 	Records:
