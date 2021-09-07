@@ -5,15 +5,14 @@
 	d. **gateway endpoint** 
 			is a gateway that you specify in your route table to access AWS S3\DynamoDB from your VPC over the AWS network. 
 			==There is no additional charge for using gateway endpoints==. However, standard charges for data transfer and resource usage still apply.
-			for S3 and DynamoDB service, you have to use a **Gateway** VPC Endpoint 
-
-​		e. **Interface endpoints** 
-​		extend the functionality of gateway endpoints by using private IP addresses to route requests to AWS S3\DynamoDB from within your VPC, on-premises, or from a different AWS Region. 
-​		==you still get billed for the time your interface endpoint is running== and the GB data it has processed. 
-​		for S3 and DynamoDB service, you <u>should not use</u> a **Interface** VPC Endpoint 
-
-​	f. Interface endpoints are compatible with gateway endpoints. 
-​	g. If you have an existing gateway endpoint in the VPC, you can use both types of endpoints in the same VPC.
+			==for S3 and DynamoDB service, you have to use a **Gateway** VPC Endpoint== 
+	e. **Interface endpoints** 
+			is an elastic network interface with a private IP address that serves as an entry point for traffic destined to a supported service
+			extend the functionality of gateway endpoints by using private IP addresses to route requests to AWS services from within your VPC, on-premises, or from a different AWS Region. 
+			==you still get billed for the time your interface endpoint is running== and the GB data it has processed. 
+			==for all AWS services other than S3 and DynamoDB service, you use a **Interface** VPC Endpoint== 
+	f. Interface endpoints are compatible with gateway endpoints. 
+	g. If you have an existing gateway endpoint in the VPC, you can use both types of endpoints in the same VPC.
 
 <img src="Definations.assets/image-20210902220825087.png" alt="image-20210902220825087"  />
 
@@ -75,10 +74,18 @@ You can connect your Amazon VPC to remote networks and users using the following
 	If you launch an instance and you don't specify a security group, the instance is automatically assigned to the default security group for the VPC. 
 	For each security group, you add *rules* that control the inbound traffic to instances, and a separate set of rules that control the outbound traffic.
 	Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (`169.254.0.0/16`) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). Similarly, flow logs do not capture IP traffic to or from these addresses.
-	====The FTP protocol uses TCP via ports 20 and 21.==
+	==The FTP protocol uses TCP via ports 20 and 21.==
 	==The **/32** in the the CIDR notation denotes one IP address and the **/0** refers to the entire network.==
 
 <img src="Definations.assets/2020-01-11_09-55-33-102a3438068e9bb4c45fa670155c2044.png" alt="img" style="zoom:67%;" />
+
+------
+
+**In order for you to establish an SSH connection from your home computer to your EC2 instance, you need to**
+\- On the Security Group, add an Inbound Rule to allow SSH traffic to your EC2 instance.
+\- On the NACL, add both an Inbound and Outbound Rule to allow SSH traffic to your EC2 instance.
+The reason why you have to add both Inbound and Outbound SSH rule is due to the fact that ==Network ACLs are stateless which means that responses to allow inbound traffic are subject to the rules for outbound traffic (and vice versa)==. In other words, ==if you only enabled an Inbound rule in NACL, the traffic can only go in but the SSH response will not go out since there is no Outbound rule.==
+==Security groups are stateful which means that if an incoming request is granted, then the outgoing traffic will be automatically granted as well, regardless of the outbound rules.==
 
 ------
 
@@ -130,20 +137,26 @@ To get temporary security credentials, the identity broker application calls eit
 
 ------
 
-==**Amazon EBS:**== 
+==**AWS EBS:**== 
     a. block-level ==storage device that you can attach to a single EC2 instance.== 
     b. Is not a concurrently accessible storage
 	c. EBS volumes behave like raw, unformatted block devices. 
 	d. EBS volumes that are attached to an instance are exposed as storage volumes that persist independently from the life of the instance.
 	e. is the persistent block storage volume. 
 	f. It is mainly used as the root volume to store the OS of an EC2 instance. 
-	g. To encrypt an EBS volume at rest, you can use AWS KMS customer master keys for the encryption of both the boot and data volumes of an EC2 instance.
+	g. To encrypt an EBS volume at rest, you can use AWS KMS customer master keys(or Amazon managed keys) for the encryption of both the boot and data volumes of an EC2 instance
 	h. for high IOPS performance, SSD volumes are more suitable to use instead of HDD volumes.
 	i. SSD's are best for workloads with small, random I/O operations
 	j. HDD's are best for large, sequential I/O operations.
 	==k. provides lowest latency access compared to EFS==
 	l. ==does not store data redundantly across multiple AZs by default, unlike EFS.==
 	m. multi-attach feature  on EBS Provisioned IOPS io2 or io1 volumes, allows an EBS volume to be attached on multiple instances **within** an availability zone.
+	n. When you create an encrypted EBS volume and attach it to a supported instance type, 
+		Data at rest inside the volume, 
+		All data moving between the volume and the instance, 
+		All snapshots created from the volume, 
+		All volumes created from those snapshots are encrypted.
+	o. Snapshots occur asynchronously. The EBS volume can be used while the snapshot is in progress.
 
  **EBS type of Provisioned IOPS SSD(io1)**
  	provides sustained performance for ==mission-critical== low-latency workloads.
@@ -171,24 +184,27 @@ To get temporary security credentials, the identity broker application calls eit
 ------
 
 ==**AWS S3:**== 
-	a. an object storage service.
-	b. supports SNS topic, SQS queue, AWS Lambda destinations where it can publish events.	
-	c. `s3:ObjectRemoved:DeleteMarkerCreated` type is triggered when a delete marker is created for a versioned object and not when an object is deleted or a versioned object is permanently deleted.
-	d. `s3:ObjectRemoved:Delete` type is triggered when an object is deleted or a versioned object is permanently deleted.
-	e. All objects and buckets by default are private which means that only the AWS account holder (resource owner) that created it has access to the resource. The resource owner can optionally grant access permissions to others by writing an access policy. 
-	f. you also set the permissions of the object during upload to make it public.
-	g. Under ***Manage public permissions**,* you can grant read access to your objects to everyone in the world, for all of the files that you're uploading. eg: when buckets are used for websites. in this case, the S3 bucket policy is configured to set all objects to public read.
-	h. You may choose to use resource-based policies, user policies, or some combination of these to manage permissions to your Amazon S3 resources.
+	\-an object storage service.
+	\-supports SNS topic, SQS queue, AWS Lambda destinations where it can publish events.	
+	\-`s3:ObjectRemoved:DeleteMarkerCreated` type is triggered when a delete marker is created for a versioned object and not when an object is deleted or a versioned object is permanently deleted.
+	\-`s3:ObjectRemoved:Delete` type is triggered when an object is deleted or a versioned object is permanently deleted.
+	\-All objects and buckets by default are private which means that only the AWS account holder (resource owner) that created it has access to the resource. The resource owner can optionally grant access permissions to others by writing an access policy. 
+	\-you also set the permissions of the object during upload to make it public.
+	\-Under ***Manage public permissions**,* you can grant read access to your objects to everyone in the world, for all of the files that you're uploading. eg: when buckets are used for websites. in this case, the S3 bucket policy is configured to set all objects to public read.
+	\-You may choose to use resource-based policies, user policies, or some combination of these to manage permissions to your Amazon S3 resources.
 	h.1.  **resource-based policies** and user policies. Access policies you attach to your resources (buckets and objects) are referred to as resource-based policies. eg: bucket policies and access control lists (ACLs) are resource-based policies. 
 	h.2. **user policies:** You can also attach access policies to users in your account.
-	i. Objects can be encrypted using Server-side encryption (SSE).
-	j. ==**Server Access Logging feature of Amazon S3**: provides more detailed information about every access request sent to the S3 bucket including the referrer and turn-around time information compared to **CloudTrail Logging feature of Amazon S3.**==
-	k. **CORS** will only allow objects from one domain (travel.cebu.com) to be loaded and accessible to a different domain (palawan.com). 
-	l. does not provide low-latency file operations as it does not reside within your VPC by default, which means the data will traverse the public Internet that may result to higher latency. You can set up a VPC Endpoint for S3 yet still, its latency is greater than that of EBS.
-m. **Cross-Region Replication**(CRR) 
+	\-Objects can be encrypted using Server-side encryption (SSE).
+	\-S3 supports at least 3,500 requests per second to add data and 5,500 requests per second to retrieve data
+	\-==If you are transitioning noncurrent objects (in versioned buckets), you can transition only objects that are at least 30 days noncurrent to STANDARD_IA or ONEZONE_IA storage.==
+	\-**expedited retrievals in Glacier** allow you to quickly access your data (within 1–5 minutes).
+	\-==**Server Access Logging feature of Amazon S3**: provides more detailed information about every access request sent to the S3 bucket including the referrer and turn-around time information compared to **CloudTrail Logging feature of Amazon S3.**==
+	\-**CORS** will only allow objects from one domain (travel.cebu.com) to be loaded and accessible to a different domain (palawan.com). 
+	\-does not provide low-latency file operations as it does not reside within your VPC by default, which means the data will traverse the public Internet that may result to higher latency. You can set up a VPC Endpoint for S3 yet still, its latency is greater than that of EBS.
+	\-**Cross-Region Replication**(CRR) 
 		When you upload your data in S3, your objects are redundantly stored on multiple devices across multiple facilities within the region only, where you created the bucket.
 		enables you to automatically copy S3 objects from one bucket to another bucket that is placed in a different AWS Region or within the same Region.
-n. **Cross-Account Access** is primarily used if you want to grant access to your objects to another AWS account. eg: Account `MANILA` can grant another AWS account (Account `CEBU)` permission to access its resources such as buckets and objects
+	\-**Cross-Account Access** is primarily used if you want to grant access to your objects to another AWS account. eg: Account `MANILA` can grant another AWS account (Account `CEBU)` permission to access 		its resources such as buckets and objects
 
 **Amazon S3 notification** feature enables you to receive notifications when certain events happen in your bucket.	
 **S3 Batch Operations** runs multiple S3 operations in a single request. 
@@ -266,6 +282,8 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 	Applications with steady state usage
 	Applications that may require reserved capacity
 	need to commit to using EC2 over a 1 or 3 year term
+	==cost less than on demand price==. 
+
 **Reserved Instance Marketplace** is a platform that supports the sale of third-party and AWS customers' unused Standard Reserved Instances, which vary in terms of lengths and pricing options
 **Spot instances** are spare compute capacity in the AWS cloud available to you at steep discounts compared to On-Demand prices. It can be interrupted by AWS EC2 with two minutes of notification when the EC2 needs the capacity back.
 
@@ -309,6 +327,12 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 	b. ==is used only for creating a backup of data from your on-premises server==
 
 <img src="Definations.assets/aws-storage-gateway-stored-diagram.png" alt="img"  />
+
+| AWS Storage Gateway-File gateway                             | **Amazon FSx for Windows File Server**                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| can be used as a shared file system for Windows <br />can also be integrated with Microsoft Active Directory,<br />has lower level of throughput and IOPS compared with Amazon FSx for Windows File Server | can be used as a shared file system for Windows <br />can also be integrated with Microsoft Active Directory,<br />has higher level of throughput and IOPS compared with AWS Storage Gateway. |
+|                                                              | provides fully managed, highly reliable, and ==scalable file storage accessible over Service Message Block (SMB) protocol.== |
+
 **NAT Gateway** is a highly available, managed Network Address Translation (NAT) service for your resources in a private subnet to access the Internet. 
 **AWS Security Token Service (AWS STS)** is the service that you can use to create and provide trusted users with temporary security credentials that can control access to your AWS resources. 
 **AWS Single Sign-On (SSO)** is a cloud SSO service that makes it easy to centrally manage SSO access to multiple AWS accounts and business applications.
@@ -397,8 +421,10 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	does not provide serverless orchestration to multiple AWS resources.
 	==ensures that a task is never duplicated and is assigned only once.== 
 
+------
+
 **Databases**
-==**AWS RDS**== 
+**AWS RDS** 
 	a. is a "managed" service and not "fully managed"
 	b. one still have to manually scale up your resources and create Read Replicas to improve scalability
 	c. provides metrics in real time for the OS that your DB instance runs on. You can view the metrics for your DB instance using the console, or consume the Enhanced Monitoring JSON output from CloudWatch Logs in a monitoring system of your choice.
@@ -409,7 +435,13 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	==**RDS processes**== – Shows a summary of the resources used by the RDS management agent, diagnostics monitoring processes, and other AWS processes that are required to support RDS DB instances.
 	==**OS processes**== – Shows a summary of the kernel and system processes, which generally have minimal impact on performance.
 
-==**DynamoDB**== 
+**AWS Database Migration Service** 
+	helps you migrate databases to AWS . 
+	The source database remains fully operational during the migration. 
+	can migrate your data to and from most widely used commercial and open-source databases.
+	**AWS Schema Conversion Tool** is used to convert the source schema and code to match that of the target database
+
+**DynamoDB** 
 	a. is a "fully managed" service.
 	b. cannot be added to auto scaling group.
 	**DynamoDB Streams:** If you enable DynamoDB Streams on a table, you can associate the stream ARN with a Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table's stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records.
@@ -419,6 +451,19 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 **Amazon DynamoDB Accelerator (DAX)** 
 	a. fully managed, highly available, in-memory cache for DynamoDB. 
 	b. add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management.
+
+**AWS Aurora:**
+	**Failover:** 
+	Failover is automatically handled by Amazon Aurora so that your applications can resume database operations as quickly as possible without manual administrative intervention.
+	==If you have an Amazon Aurora Replica in the same or a different Availability Zone, when failing over, Amazon Aurora flips the canonical name record (CNAME) for your DB Instance to point at the healthy replica, which in turn is promoted to become the new primary==. Start-to-finish, failover typically completes within 30 seconds.
+	If you are running Aurora Serverless and the DB instance or AZ become unavailable, Aurora will automatically recreate the DB instance in a different AZ.
+	If you do not have an Amazon Aurora Replica (i.e. single instance) and are not running Aurora Serverless, Aurora will attempt to create a new DB Instance in the same Availability Zone as the original instance. This replacement of the original instance is done on a best-effort basis and may not succeed, for example, if there is an issue that is broadly affecting the Availability Zone.
+
+![img](Definations.assets/Aurora-Arch.jpg)
+
+
+
+------
 
 ==**Amazon API Gateway**== 
 	lets you create an API that acts as a "front door" for applications to access data, business logic, or functionality from your back-end services, such as code running on AWS Lambda. 
@@ -444,7 +489,16 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 To collect logs from your Amazon EC2 instances and on-premises servers into **CloudWatch Logs**, AWS offers both a new unified **CloudWatch agent**, and an **older CloudWatch Logs agent**.
 
 **CloudWatch Logs Insights** enables you to interactively search and analyze your log data in Amazon CloudWatch Logs. You can perform queries to help you quickly and effectively respond to operational issues. If an issue occurs, you can use CloudWatch Logs Insights to identify potential causes and validate deployed fixes.
-**AWS Systems Manager Agent (SSM Agent):** can be installed on each EC2 instance. This will automatically collect and push data to CloudWatch Logs. Less efficient than using Cloudwatch agent. 
+
+------
+
+**AWS Systems Manager**
+**managed instance** is any Amazon EC2 instance or on-premises machine in your hybrid environment that has been configured for Systems Manager.
+**AWS Systems Manager Agent (SSM Agent)**
+	can be installed on each EC2 instance. This will automatically collect and push data to CloudWatch Logs. Less efficient than using Cloudwatch agent. 
+**AWS Systems Manager Run Command** lets you remotely and securely manage the configuration of your managed instances.  
+
+------
 
 **Amazon ElastiCache** use for the website's in-memory data store or cache.
 
@@ -461,6 +515,7 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	It does not have the capability to trace and analyze user requests as they travel through your Amazon API Gateway APIs, unlike AWS X-Ray.
 	When activity occurs in your AWS account, that activity is recorded in a CloudTrail event. You can easily view events in the CloudTrail console by going to **Event history**. Event history allows you to view, search, and download the past 90 days of supported activity in your AWS account. In addition, you can create a CloudTrail trail to further archive, analyze, and respond to changes in your AWS resources. 
 	A **AWS CloudTrail trail** is a configuration that enables delivery of events to an Amazon S3 bucket that you specify.
+	By default, CloudTrail event log files are encrypted using Amazon S3 server-side encryption (SSE). 
 
 **AWS X-Ray** 
 	used to trace and analyze user requests as they travel through your Amazon API Gateway APIs to the underlying services. 
@@ -484,6 +539,7 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 **AWS Elastic Load Balancer(ELB)** 
 	is designed to only run in one region and not across multiple regions.	
 	Health checks ensure your ELB won't send traffic to unhealthy (crashed) instances
+	provides access logs that capture detailed information about requests sent to your load balancer, disabled by default. logs are stored in the Amazon S3 bucket that you specify as compressed files. You can disable access logging at any time.
 
 | Elastic Load Balancing types | Network load balancer                                        | **Application load balancer**                                | Gateway load balancer                         | Classic load balancer                                        |
 | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ |
@@ -587,8 +643,15 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 ==***\*AWS Cost Explorer\**** enables you to view and analyze your costs and usage.== You can explore your usage and costs using the main graph, the Cost Explorer cost and usage reports, or the Cost Explorer RI reports. It has an easy-to-use interface that lets you visualize, understand, and manage your AWS costs and usage over time.
 ==***\*AWS Budgets\**** gives you the ability to set custom budgets that alert you when your costs or usage exceed (or are forecasted to exceed) your budgeted amount.== You can also use AWS Budgets to set reservation utilization or coverage targets and receive alerts when your utilization drops below the threshold you define.
 ==***\*Amazon Inspector\**** is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.== Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices.
+**AWS Workspace** is used to create the needed virtual desktops in your VPC.
+**AWS Certificate Manager (ACM)** provides SSL certificates.
+**AWS CloudHSM** you only store keys in CloudHSM. 
+	Attempting to log in as the administrator more than twice with the wrong password zeroizes your HSM appliance. When an HSM is zeroized, all keys, certificates, and other data on the HSM is destroyed. You can use your cluster's security group to prevent an unauthenticated user from zeroizing your HSM.
+	Amazon does not have access to your keys nor to the credentials of your Hardware Security Module (HSM) and therefore has no way to recover your keys if you lose your credentials. It is strongly recommends that you use two or more HSMs in separate Availability Zones in any production CloudHSM Cluster to avoid loss of cryptographic keys.
 
 **<u>==Questions to review:==</u>**
 
 Review Mode-4: Incorrect questions=> Question 24(EBS), **CSAA - Design Resilient Architectures**=>9, 15, 
-Review Mode-5: **CSAA - Design High-Performing Architectures**=> 8, 
+Review Mode-5: **CSAA - Design High-Performing Architectures**=> 8, 16,18,19 
+**CSAA - Design Resilient Architectures**=> 13
+**CSAA - Design Secure Applications and Architectures**=> 2, 11
