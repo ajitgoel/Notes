@@ -1,5 +1,16 @@
+==**AWS VPC**:==
+**Network Access Control List(NACL)**:
+	\- is an optional layer of security for your VPC that acts as a firewall for ==controlling traffic in and out of one or more subnets==. You might set up network ACLs with rules similar to your security groups in order to add an additional layer of security to your VPC.
+	\- ==Rules are evaluated starting with the lowest numbered rule. As soon as a rule matches traffic, it's applied immediately regardless of any higher-numbered rule that may contradict it==.IT is recommend that rules are created in increments (for example, increments of 10 or 100) so that you can insert new rules where you need to later on.
+	 \- Your VPC automatically comes with a modifiable default network ACL. By default, it allows all inbound and outbound IPv4 traffic and, if applicable, IPv6 traffic.
+ 	\- You can create a custom network ACL and associate it with a subnet. By default, each custom network ACL denies all inbound and outbound traffic until you add rules.
+ 	\- Each subnet in your VPC must be associated with a network ACL. If you don't explicitly associate a subnet with a network ACL, the subnet is automatically associated with the default network ACL.
+	 \- You can associate a network ACL with multiple subnets; however, a subnet can be associated with only one network ACL at a time. When you associate a network ACL with a subnet, the previous association is removed.
+	 \- has separate inbound and outbound rules, and each rule can either allow or deny traffic.
+	 \- ==are stateless; responses to allowed inbound traffic are subject to the rules for outbound traffic== (and vice versa).
+
 **VPC endpoint**:
-    a. enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an Internet gateway, NAT device, VPN connection, or AWS Direct Connect connection. 
+    a. enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an Internet gateway, NAT device, VPN connection, or AWS Direct Connect connection, by creating a entry in VPC route table to direct data to the AWS service. 
     b. Instances in your VPC do not require public IP addresses to communicate with resources in the service. 
 	c. Traffic between your VPC and the other services does not leave the Amazon network.
 	d. **gateway endpoint** 
@@ -124,6 +135,7 @@ b. After you've created a NAT gateway, you must update the route table associate
 ​	permissions to create or access the AWS resources are governed by permissions policies. 
 ​	permissions policies can be attached to IAM identities (that is, users, groups, and roles)
 ​	services such as AWS Lambda also support attaching permissions policies to AWS resources.
+​	**IAM roles** are global services that are available to all regions
 
 ------
 
@@ -203,10 +215,6 @@ To get temporary security credentials, the identity broker application calls eit
     provides a file system interface, file system access semantics (such as strong consistency and file locking), and concurrently-accessible storage for up to thousands of Amazon EC2 instances. 
 	stores data redundantly across multiple AZs by default
 	provides the same level of high availability and high scalability like S3 however, ==EFS is more suitable for scenarios where it is required to have a POSIX-compatible file system or if you are storing rapidly changing data. It offers strong consistency and file locking which the S3 service lacks..==
-
-==**Amazon VPC**:==
-**Network Access Control List(NACL)**:
-	a. Rules are evaluated starting with the lowest numbered rule. As soon as a rule matches traffic, it's applied immediately regardless of any higher-numbered rule that may contradict it.
 
 ------
 
@@ -359,6 +367,7 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 	==a. connects an on-premises software appliance with cloud-based storage== to provide seamless integration with data security features between your on-premises IT environment and the AWS storage infrastructure. ==You can use the service to store data in the AWS Cloud for scalable and cost-effective storage that helps maintain data security.==
 	b. ==is used only for creating a backup of data from your on-premises server==
 	**AWS Storage Gateway - Cached Volumes:** data is stored in AWS S3 and you retain a copy of frequently accessed data subsets locally in your on-premises network. Cached volumes offer substantial cost savings on primary storage and minimize the need to scale your storage on-premises. You also retain low-latency access to your frequently accessed data. 
+	**AWS Storage Gateway - Stored Volumes:** are used if you need low-latency access to your entire dataset.
 
 <img src="Definations.assets/aws-storage-gateway-stored-diagram.png" alt="img"  />
 
@@ -438,7 +447,7 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 ==**AWS SQS**:==
 	\- When a consumer receives and processes a message from a queue, the message remains in the queue. the consumer must delete the message from the queue after receiving and processing it. 
 	\- The default message retention period is 4 days. you can increase the message retention period to a maximum of 14 days using the [SetQueueAttributes](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SetQueueAttributes.html) action.
-	\- To prevent other consumers from processing the message again, Amazon SQS sets a *visibility timeout*, a period of time during which Amazon SQS prevents other consumers from receiving and processing the message. The default visibility timeout for a message is 30 seconds. The maximum is 12 hours.
+	\- To prevent other consumers from processing the message again, Amazon SQS sets a **visibility timeout**, a period of time during which Amazon SQS prevents other consumers from receiving and processing the message. The default visibility timeout for a message is 30 seconds. The maximum is 12 hours.
 
 | Short Polling                                                | Long Polling                                                 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -477,12 +486,14 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	a. is a "managed" service and not "fully managed"
 	b. one still have to manually scale up your resources and create Read Replicas to improve scalability
 	c. provides metrics in real time for the OS that your DB instance runs on. You can view the metrics for your DB instance using the console, or consume the Enhanced Monitoring JSON output from CloudWatch Logs in a monitoring system of your choice.
-	d. **CloudWatch** gathers metrics about CPU utilization from the hypervisor for a DB instance, and Enhanced Monitoring gathers its metrics from an agent on the instance.  ==**Enhanced Monitoring** metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.==
-	e. ==**Regular items provided by Amazon RDS Metrics in CloudWatch:** CPU Utilization, Database Connections, and Freeable Memory== 
-	f. **==Enhanced Monitoring metrics:==**
-	==**RDS child processes**== – Shows a summary of the RDS processes that support the DB instance, for example `aurora` for Amazon Aurora DB clusters and `mysqld` for MySQL DB instances. Process threads appear nested beneath the parent process. Process threads show CPU utilization only as other metrics are the same for all threads for the process. The console displays a maximum of 100 processes and threads. The results are a combination of the top CPU consuming and memory consuming processes and threads. If there are more than 50 processes and more than 50 threads, the console displays the top 50 consumers in each category. This display helps you identify which processes are having the greatest impact on performance.
-	==**RDS processes**== – Shows a summary of the resources used by the RDS management agent, diagnostics monitoring processes, and other AWS processes that are required to support RDS DB instances.
-	==**OS processes**== – Shows a summary of the kernel and system processes, which generally have minimal impact on performance.
+	 IAM database authentication works with MySQL and PostgreSQL. Authentication is handled by `AWSAuthenticationPlugin`—an AWS-provided plugin that works seamlessly with IAM to authenticate your IAM users. **Benefits:** Network traffic to and from the database is encrypted using Secure Sockets Layer (SSL) You can use IAM to centrally manage access to your database resources, instead of managing access individually on each DB instance. For applications running on Amazon EC2, you can use profile credentials specific to your EC2 instance to access your database instead of a password, for greater security
+
+​	d. **CloudWatch** gathers metrics about CPU utilization from the hypervisor for a DB instance, and Enhanced Monitoring gathers its metrics from an agent on the instance.  ==**Enhanced Monitoring** metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.==
+​	e. ==**Regular items provided by Amazon RDS Metrics in CloudWatch:** CPU Utilization, Database Connections, and Freeable Memory== 
+​	f. **==Enhanced Monitoring metrics:==**
+​	==**RDS child processes**== – Shows a summary of the RDS processes that support the DB instance, for example `aurora` for Amazon Aurora DB clusters and `mysqld` for MySQL DB instances. Process threads appear nested beneath the parent process. Process threads show CPU utilization only as other metrics are the same for all threads for the process. The console displays a maximum of 100 processes and threads. The results are a combination of the top CPU consuming and memory consuming processes and threads. If there are more than 50 processes and more than 50 threads, the console displays the top 50 consumers in each category. This display helps you identify which processes are having the greatest impact on performance.
+​	==**RDS processes**== – Shows a summary of the resources used by the RDS management agent, diagnostics monitoring processes, and other AWS processes that are required to support RDS DB instances.
+​	==**OS processes**== – Shows a summary of the kernel and system processes, which generally have minimal impact on performance.
 
 **AWS Database Migration Service** 
 	helps you migrate databases to AWS . 
@@ -502,11 +513,15 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	b. add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management.
 
 **AWS Aurora:**
-	**Failover:** 
-	Failover is automatically handled by Amazon Aurora so that your applications can resume database operations as quickly as possible without manual administrative intervention.
-	==If you have an Amazon Aurora Replica in the same or a different Availability Zone, when failing over, Amazon Aurora flips the canonical name record (CNAME) for your DB Instance to point at the healthy replica, which in turn is promoted to become the new primary==. Start-to-finish, failover typically completes within 30 seconds.
-	If you are running Aurora Serverless and the DB instance or AZ become unavailable, Aurora will automatically recreate the DB instance in a different AZ.
-	If you do not have an Amazon Aurora Replica (i.e. single instance) and are not running Aurora Serverless, Aurora will attempt to create a new DB Instance in the same Availability Zone as the original instance. This replacement of the original instance is done on a best-effort basis and may not succeed, for example, if there is an issue that is broadly affecting the Availability Zone.
+	 is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. 
+	can deliver up to five times the throughput of MySQL and up to three times the throughput of PostgreSQL 
+	its underlying storage can grow automatically as needed.
+
+​	**Failover:** 
+​	Failover is automatically handled by Amazon Aurora so that your applications can resume database operations as quickly as possible without manual administrative intervention.
+​	==If you have an Amazon Aurora Replica in the same or a different Availability Zone, when failing over, Amazon Aurora flips the canonical name record (CNAME) for your DB Instance to point at the healthy replica, which in turn is promoted to become the new primary==. Start-to-finish, failover typically completes within 30 seconds.
+​	If you are running Aurora Serverless and the DB instance or AZ become unavailable, Aurora will automatically recreate the DB instance in a different AZ.
+​	If you do not have an Amazon Aurora Replica (i.e. single instance) and are not running Aurora Serverless, Aurora will attempt to create a new DB Instance in the same Availability Zone as the original instance. This replacement of the original instance is done on a best-effort basis and may not succeed, for example, if there is an issue that is broadly affecting the Availability Zone.
 
 ![img](Definations.assets/Aurora-Arch.jpg)
 
@@ -548,6 +563,9 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 **AWS Systems Manager Run Command** lets you remotely and securely manage the configuration of your managed instances.  
 
 ------
+
+**AWS Cloudformation**: 
+	**Outputs** is an optional section of the CloudFormation template that describes the values that are returned whenever you view your stack's properties.
 
 **Amazon ElastiCache** use for the website's in-memory data store or cache.
 
@@ -601,7 +619,7 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 
 | Elastic Load Balancing types | Network load balancer                                        | **Application load balancer**                                | Gateway load balancer                         | Classic load balancer                                        |
 | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ |
-|                              | Operates at connection level(layer 4 of OSI model)<br />Supports TCP health check | operates at request level<br />operates at the application layer(layer 4 of the OSI model)<br />Supports http, https health checks<br />periodically sends requests to its registered targets to test their status. These tests are called *health checks*. Each load balancer node routes requests only to the healthy targets in the enabled Availability Zones for the load balancer. |                                               | operates at both connection and request level<br />Supports TCP health check |
+|                              | Operates at connection level(layer 4 of OSI model)<br />Supports TCP health check | operates at request level<br />operates at the application layer(layer 4 of the OSI model)<br />Supports http, https health checks<br /> **health check:** periodically sends requests to its registered targets to test their status. Each load balancer node routes requests only to the healthy targets in the enabled Availability Zones for the load balancer.<br />If the load balancer uses an encrypted connection to communicate with the instances, you can optionally enable authentication of the instances. This ensures that the load balancer communicates with an instance only if its public key matches the key that you specified to the load balancer for this purpose. |                                               | operates at both connection and request level<br />Supports TCP health check |
 | Protocol supported           | TCP, ==UDP==                                                 | http, https, websocket, does not support TCP                 |                                               |                                                              |
 |                              | does not support path-based routing and host-based routing   | ==support path-based routing, host-based routing==, and support for containerized applications |                                               | does not support path-based routing and host-based routing   |
 |                              | Routes traffic to targets within VPC<br />exposes a public static IP address | can route to different target groups based on hostname, request path, source ip but not geography. <br />exposes a static DNS(URL) |                                               | exposes a static DNA(URL)                                    |
@@ -720,4 +738,3 @@ Review Mode-4: Incorrect questions=> Question 24(EBS), **CSAA - Design Resilient
 Review Mode-5: **CSAA - Design High-Performing Architectures**=> 8, 16,18,19, 26
 **CSAA - Design Resilient Architectures**=> 13
 **CSAA - Design Secure Applications and Architectures**=> 2, 11
-currently on section 3=> question 23
