@@ -16,6 +16,18 @@
 
 <img src="Definations.assets/image-20210902220825087.png" alt="image-20210902220825087"  />
 
+
+
+**AWS Direct Connect** 
+	links your internal network to an AWS Direct Connect location over a standard Ethernet fiber-optic cable. One end of the cable is connected to your router, the other to an AWS Direct Connect router. 
+	With this connection, you can create virtual interfaces directly to public AWS services (for example, to Amazon S3) or to Amazon VPC, bypassing internet service providers in your network path. 
+	An AWS Direct Connect location provides access to AWS in the region with which it is associated. 
+	You can use a single connection in a public Region or AWS GovCloud (US) to access public AWS services in all other public Regions
+
+<img src="Definations.assets/aws-direct-connect-tutorialsdojo-saa-c02-aws.png" alt="img" style="zoom: 33%;" />
+
+
+
 **Endpoints** are virtual devices, that allow communication between instances in your VPC and services without imposing constraints on your network traffic.
 ==**VPC peering connection:**==
     a. ==networking connection between two VPCs that enables you to route traffic between them privately.== Instances in either VPC can communicate with each other as if they are within the same network. 
@@ -42,6 +54,7 @@
 	==its connections are not dedicated and highly available.== 
 	doesn't support the company's on-premises data centers in multiple AWS Regions.
 **VPC Flow Logs** is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your entire VPC. 
+**transit VPC** is primarily used to connect multiple VPCs and remote networks in order to create a global network transit center and not for establishing a dedicated connection to your on-premises network.
 
 **AWS DataSync**
 	simplifies, automates, and ==accelerates copying large amounts of data to and from AWS storage services over the internet or AWS Direct Connect.==
@@ -137,7 +150,7 @@ To get temporary security credentials, the identity broker application calls eit
 
 ------
 
-==**AWS EBS:**== 
+**AWS EBS:** 
     a. block-level ==storage device that you can attach to a single EC2 instance.== 
     b. Is not a concurrently accessible storage
 	c. EBS volumes behave like raw, unformatted block devices. 
@@ -172,10 +185,24 @@ To get temporary security credentials, the identity broker application calls eit
 	are ideal for workloads where data are accessed infrequently, and applications where the lowest storage cost is important. 
 	this is a Previous Generation Volume. 
 
-**Amazon EFS:**
+|                                | **EBS type of Provisioned IOPS SSD(io1)**                    | **EBS General Purpose SSD (gp2)**                            | EBS Throughput Optimized HDD (st1)                           | **EBS Cold HDD (sc1)**                                       | Magnetic volumes                                             |
+| ------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+|                                | provides sustained performance for ==mission-critical== low-latency workloads.<br/>offer storage with consistent and low-latency performance and are designed for I/O intensive applications such as large relational or NoSQL databases. | it does not provide the high IOPS required by the application, unlike the Provisioned IOPS SSD volume.<br/>are suitable for a broad range of workloads, including small to medium sized databases, development, and test environments, and boot volumes. | are more suitable for large streaming workloads rather than transactional database workloads. | are more suitable for large streaming workloads rather than transactional database workloads | are ideal for workloads where data are accessed infrequently, and applications where the lowest storage cost is important. <br/>this is a Previous Generation Volume. |
+| Best for workloads with        | small random I\O operations                                  | small random I\O operations                                  | large sequential I\O operations                              | large sequential I\O operations                              | large sequential I\O operations                              |
+| Can be used as bootable volume | Yes                                                          | Yes                                                          | No                                                           | No                                                           | No                                                           |
+| Cost                           | Moderate\high                                                | Moderate\high                                                | low                                                          | low                                                          | low                                                          |
+| Dominant Performance attribute | IOPS                                                         | IOPS                                                         | throughout(MiB/s)                                            | throughout(MiB/s)                                            | throughout(MiB/s)                                            |
+| Suitable use cases             | Best for transactional workloads                             | Best for transactional workloads                             | Best for large streaming workloads requiring consistent, fast throughput at low price | Best for large streaming workloads requiring consistent, fast throughput at low price | Best for large streaming workloads requiring consistent, fast throughput at low price |
+
+
+
+------
+
+**AWS EFS:**
     file storage service for use with Amazon EC2. 
     provides a file system interface, file system access semantics (such as strong consistency and file locking), and concurrently-accessible storage for up to thousands of Amazon EC2 instances. 
 	stores data redundantly across multiple AZs by default
+	provides the same level of high availability and high scalability like S3 however, ==EFS is more suitable for scenarios where it is required to have a POSIX-compatible file system or if you are storing rapidly changing data. It offers strong consistency and file locking which the S3 service lacks..==
 
 ==**Amazon VPC**:==
 **Network Access Control List(NACL)**:
@@ -197,14 +224,20 @@ To get temporary security credentials, the identity broker application calls eit
 	\-Objects can be encrypted using Server-side encryption (SSE).
 	\-S3 supports at least 3,500 requests per second to add data and 5,500 requests per second to retrieve data
 	\-==If you are transitioning noncurrent objects (in versioned buckets), you can transition only objects that are at least 30 days noncurrent to STANDARD_IA or ONEZONE_IA storage.==
-	\-**expedited retrievals in Glacier** allow you to quickly access your data (within 1–5 minutes).
 	\-==**Server Access Logging feature of Amazon S3**: provides more detailed information about every access request sent to the S3 bucket including the referrer and turn-around time information compared to **CloudTrail Logging feature of Amazon S3.**==
 	\-**CORS** will only allow objects from one domain (travel.cebu.com) to be loaded and accessible to a different domain (palawan.com). 
 	\-does not provide low-latency file operations as it does not reside within your VPC by default, which means the data will traverse the public Internet that may result to higher latency. You can set up a VPC Endpoint for S3 yet still, its latency is greater than that of EBS.
 	\-**Cross-Region Replication**(CRR) 
 		When you upload your data in S3, your objects are redundantly stored on multiple devices across multiple facilities within the region only, where you created the bucket.
 		enables you to automatically copy S3 objects from one bucket to another bucket that is placed in a different AWS Region or within the same Region.
-	\-**Cross-Account Access** is primarily used if you want to grant access to your objects to another AWS account. eg: Account `MANILA` can grant another AWS account (Account `CEBU)` permission to access 		its resources such as buckets and objects
+	\-**Cross-Account Access** is primarily used if you want to grant access to your objects to another AWS account. eg: Account `MANILA` can grant another AWS account (Account `CEBU)` permission to access its resources such as buckets and objects
+
+|      | S3 Standard                      | S3 Intelligent-Tiering              | S3 Standard-IA                                               | S3 One Zone-IA                      | S3 Glacier                                                   | S3 Deep Archive                                        |
+| ---- | -------------------------------- | ----------------------------------- | ------------------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------ |
+|      | active, frequently accessed data | Data with changing access patterns  | \-Infrequently accessed data<br />\-entails an additional fee for monitoring and automation of each object in your S3 bucket | Re-creatable less accessed data     | Data archiving<br />**expedited retrievals in Glacier** allow you to quickly access your data (within 1–5 minutes). | cheapest storage class for long term retention of data |
+|      |                                  | 30 days min storage duration charge | 30 days min storage duration charge                          | 30 days min storage duration charge | 90 days min storage duration charge                          | 180 days min storage duration charge                   |
+|      | milliseconds access              | milliseconds access                 | milliseconds access                                          | milliseconds access                 | retrievable within mins or hours                             | retrievable within  hours                              |
+|      | >=3 AZ's                         | >=3 AZ's                            | >=3 AZ's                                                     | 1 AZ's                              | >=3 AZ's                                                     | >=3 AZ's                                               |
 
 **Amazon S3 notification** feature enables you to receive notifications when certain events happen in your bucket.	
 **S3 Batch Operations** runs multiple S3 operations in a single request. 
@@ -325,6 +358,7 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 **==AWS Storage Gateway==** 
 	==a. connects an on-premises software appliance with cloud-based storage== to provide seamless integration with data security features between your on-premises IT environment and the AWS storage infrastructure. ==You can use the service to store data in the AWS Cloud for scalable and cost-effective storage that helps maintain data security.==
 	b. ==is used only for creating a backup of data from your on-premises server==
+	**AWS Storage Gateway - Cached Volumes:** data is stored in AWS S3 and you retain a copy of frequently accessed data subsets locally in your on-premises network. Cached volumes offer substantial cost savings on primary storage and minimize the need to scale your storage on-premises. You also retain low-latency access to your frequently accessed data. 
 
 <img src="Definations.assets/aws-storage-gateway-stored-diagram.png" alt="img"  />
 
@@ -342,6 +376,8 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 **Bastion host** is a special purpose computer on a network specifically designed and configured to withstand attacks. If you have a bastion host in AWS, it is basically just an EC2 instance. It should be in a public subnet with either a public or Elastic IP address with sufficient RDP or SSH access defined in the security group. Users log on to the bastion host via SSH or RDP and then use that session to manage other hosts in the private subnets
 **Amazon Kinesis** is the streaming data platform of AWS and has four distinct services under it: Kinesis Data Firehose, Kinesis Data Streams, Kinesis Video Streams, and Amazon Kinesis Data Analytics.
 **Amazon Kinesis Data Firehose** allows you to load streaming data into data stores and analytics tools. It can capture, transform, and load streaming data, enabling near real-time analytics with existing business intelligence tools and dashboards you are already using today. It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security. You can use Amazon Kinesis Data Firehose in conjunction with Amazon Kinesis Data Streams if you need to implement real-time processing of streaming big data. 
+	 can store their results using an AWS service such as Amazon DynamoDB, Amazon Redshift, or Amazon S3.
+
 **Kinesis Data Streams** 
 	a. ==enables real-time processing of streaming big data.== provides an ordering of records, as well as the ability to read and/or replay records in the same order to multiple Amazon Kinesis Applications.
 	b. is used to collect and process large streams of data records in real-time. 
@@ -400,11 +436,24 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	d. can configure automatic key rotation
 
 ==**AWS SQS**:==
-	**Standard Queue:**
-		a. supports unlimited no of tx's per second per API action
-		b. ==a message is delivered at least once. occasionally more than one copy of message is delivered==
-		c. ==occasionally messages might be delivered in an order different from which they were send==
-		d. ==by default queue is standard queue.==
+	\- When a consumer receives and processes a message from a queue, the message remains in the queue. the consumer must delete the message from the queue after receiving and processing it. 
+	\- The default message retention period is 4 days. you can increase the message retention period to a maximum of 14 days using the [SetQueueAttributes](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SetQueueAttributes.html) action.
+	\- To prevent other consumers from processing the message again, Amazon SQS sets a *visibility timeout*, a period of time during which Amazon SQS prevents other consumers from receiving and processing the message. The default visibility timeout for a message is 30 seconds. The maximum is 12 hours.
+
+| Short Polling                                                | Long Polling                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| queries only a subset of the servers to determine whether any messages are available for inclusion in the response | eliminates false empty responses by querying all (rather than a limited number) of the servers. Long polling returns messages as soon any message becomes available. |
+| works for scenarios that require higher throughput           | works for scenarios that require you to reduce cost          |
+|                                                              | reduces the number of empty responses by allowing Amazon SQS to wait until a message is available in the queue before sending a response. Unless the connection times out, the response to the `ReceiveMessage` request contains at least one of the available messages, up to the maximum number of messages specified in the `ReceiveMessage` action. |
+| if the **ReceiveMessageWaitTimeSeconds** queue attribute is zero it means that we are using Short polling. If it is set to a value greater than zero, then it is Long polling. | if the **ReceiveMessageWaitTimeSeconds** queue attribute is greater than zero it means that we are using Long polling. |
+
+​	\- **fanout pattern** is when an Amazon SNS message is sent to a topic and then replicated and pushed to multiple Amazon SQS queues, HTTP endpoints, or email addresses. This allows for parallel asynchronous processing. 
+
+​	**Standard Queue:**
+​		a. supports unlimited no of tx's per second per API action
+​		b. ==a message is delivered at least once. occasionally more than one copy of message is delivered==
+​		c. ==occasionally messages might be delivered in an order different from which they were send==
+​		d. ==by default queue is standard queue.==
 
 ​	**FIFO Queue:**
 ​		support  upto 3000 messages per second per API action through batching
@@ -523,16 +572,25 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	you can configure sampling rules to tell X-Ray which requests to record, at what sampling rates, according to criteria that you specif
 
 ==**AWS Global Accelerator**== 
-	a. provides static IP addresses that act as a fixed entry point to your application endpoints in a single or multiple AWS Regions, such as your Application Load Balancers, Network Load Balancers or Amazon EC2 instances.
-	b. uses the AWS global network to optimize the path from your users to your applications, improving the performance of your TCP and UDP traffic. 
-	c. continually monitors the health of your application endpoints and will detect an unhealthy endpoint and redirect traffic to healthy endpoints in less than 1 minute.
-	d. use the AWS global network and its edge locations around the world.
-	e. is a good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses or deterministic, fast regional failover. 
-	f. integrate with AWS Shield for DDoS protection.
+	\- is primarily used to optimize the path from your users to your applications which improves the performance of your TCP and UDP traffic.
+	\- provides static IP addresses that act as a fixed entry point to your application endpoints in a single or multiple AWS Regions, such as your Application Load Balancers, Network Load Balancers or Amazon EC2 instances.
+	\- uses the AWS global network to optimize the path from your users to your applications, improving the performance of your TCP and UDP traffic. 
+	\- continually monitors the health of your application endpoints and will detect an unhealthy endpoint and redirect traffic to healthy endpoints in less than 1 minute.
+	\- use the AWS global network and its edge locations around the world.
+	\- is a good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses or deterministic, fast regional failover. 
+	\- integrate with AWS Shield for DDoS protection.
+	\- can be used to divert and proportion the HTTP and HTTPS traffic between the on-premises and AWS-hosted application, by assigning weights across the endpoints.
 
 **AWS Route53**
 	**Route 53 with Failover routing policy:** is primarily used if you want to configure active-passive failover to your application architecture.
 	can use **Route 53 with Weighted routing policy** to divert the a percentage of traffic between the on-premises and AWS-hosted application. 
+
+| **Weighted routing** policy                                  | **Latency routing** policy                                   | Simple routing policy                                        | Geolocation routing policy                                   | **Geoproximity routing policy**                              | Failover routing policy                                      | **Multivalue answer routing policy**                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| lets you associate multiple resources with a single domain name (tutorialsdojo.com) or subdomain name (portal.tutorialsdojo.com) and choose how much traffic is routed to each resource. | Use when you have resources in multiple AWS Regions and you want to route traffic to the Region that provides the best latency with less round-trip time. | Use for a single resource that performs a given function for your domain, for example, a web server that serves content for the example.com website. | Use when you want to route traffic based on the location of your users. | Use when you want to route traffic based on the location of your resources and, optionally, shift traffic from resources in one location to resources in another. | is used if you want to configure active-passive failover to your application architecture. | Use when you want Route 53 to respond to DNS queries with up to eight healthy records selected at random. |
+| used for load balancing and testing new versions of software. |                                                              |                                                              |                                                              |                                                              |                                                              |                                                              |
+
+
 
 ------
 
@@ -543,33 +601,38 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 
 | Elastic Load Balancing types | Network load balancer                                        | **Application load balancer**                                | Gateway load balancer                         | Classic load balancer                                        |
 | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ |
-|                              | Operates at connection level(layer 4 of OSI model)<br />Supports TCP health check | operates at request level<br />operates at the application layer(layer 4 of the OSI model)<br />Supports http, https health checks |                                               | operates at both connection and request level<br />Supports TCP health check |
+|                              | Operates at connection level(layer 4 of OSI model)<br />Supports TCP health check | operates at request level<br />operates at the application layer(layer 4 of the OSI model)<br />Supports http, https health checks<br />periodically sends requests to its registered targets to test their status. These tests are called *health checks*. Each load balancer node routes requests only to the healthy targets in the enabled Availability Zones for the load balancer. |                                               | operates at both connection and request level<br />Supports TCP health check |
 | Protocol supported           | TCP, ==UDP==                                                 | http, https, websocket, does not support TCP                 |                                               |                                                              |
 |                              | does not support path-based routing and host-based routing   | ==support path-based routing, host-based routing==, and support for containerized applications |                                               | does not support path-based routing and host-based routing   |
 |                              | Routes traffic to targets within VPC<br />exposes a public static IP address | can route to different target groups based on hostname, request path, source ip but not geography. <br />exposes a static DNS(URL) |                                               | exposes a static DNA(URL)                                    |
 | Used when                    | ==extreme performance and static IP is needed for your application== | you need flexible application management and TLS termination |                                               | your application is built within the EC2 Classic network     |
 | Protocol listeners           | TCP\UDP\TLS                                                  | ==HTTP\HTTPS\gRPC==                                          | IP                                            | HTTP\HTTPS\TCP\SSL\TLS                                       |
 | Use cases                    | ==Handling millions of requests per second while maintaining ultra low latencies== | For web apps, microservices and containers                   | Running third party virtual appliances in AWS | For legacy applications in AWS, for implementing custom security policies and TCP passthrough configuration |
-|                              | Cannot use an Network Load balancer with Weighted Target Groups to divert and proportion the traffic between different application. | can use an Application Elastic Load balancer with Weighted Target Groups to divert and proportion the traffic between different application. |                                               |                                                              |
+|                              | **Cannot** use an Network Load balancer with Weighted Target Groups to divert and proportion the traffic between different application. | **can** use an Application Elastic Load balancer with **Weighted Target Groups** to divert and proportion the traffic between different application. |                                               |                                                              |
+| slow start mode              | does not support                                             | supported                                                    |                                               |                                                              |
 
 
 
-| Scaling Policies | Simple Scaling Policy                                        | Step Scaling Policy                                          | Target Tracking scaling                                      | Scheduled Scaling                                           |
-| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------------------------------------- |
-|                  | Increase or decrease the current capacity of the group based on a single scaling adjustment. | Increase or decrease the current capacity of the group based on a set of scaling adjustments, known as *step adjustments*, that vary based on the size of the alarm breach. | Increase or decrease the current capacity of the group based on a target value for a specific metric. This is similar to the way that your thermostat maintains the temperature of your home – you select a temperature and the thermostat does the rest. |                                                             |
-| Recommendation   |                                                              | If you are **<u>not</u>** scaling based on a utilization metric that increases or decreases proportionally to the number of instances in an Auto Scaling group | If you are scaling based on a utilization metric that increases or decreases proportionally to the number of instances in an Auto Scaling group |                                                             |
-|                  | you need to wait for the cooldown period to complete before initiating additional scaling activities. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | this policy is mainly used for predictable traffic patterns |
-|                  | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. |                                                              |                                                             |
+| Scaling Policies | Simple Scaling Policy                                        | Step Scaling Policy                                          | Target Tracking scaling Policy                               | Scheduled Scaling Policy                                     |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+|                  | Increase or decrease the current capacity of the group based on a single scaling adjustment. | Increase or decrease the current capacity of the group based on a set of scaling adjustments(*step adjustments*), that vary based on the size of the alarm breach.<br />When you create a step scaling policy, you can specify the number of seconds that it takes for a newly launched instance to warm up. | Increase or decrease the current capacity of the group **based on a target value for a specific metric**. This is similar to the way that your thermostat maintains the temperature of your home – you select a temperature and the thermostat does the rest. | is based on a schedule that allows you to set your own scaling schedule for **predictable** load changes. |
+| Recommendation   |                                                              | used If you are **<u>not</u>** scaling based on a utilization metric that increases or decreases proportionally to the number of instances in an Auto Scaling group | used if you are scaling based on a utilization metric that increases or decreases proportionally to the number of instances in an Auto Scaling group |                                                              |
+|                  | you need to wait for the cooldown period to complete before initiating additional scaling activities. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | this policy is mainly used for predictable traffic patterns  |
+|                  | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. |                                                              |                                                              |
 
  **Cross-Zone Load Balancing**
         allows every load balancer node to distribute requests across all  availability zones, although for the Network Load Balancer there are data transfer charges when this feature is enabled.
 
-**AWS Auto Scaling Group(ASG)**
-	a. The capacity of your ASG cannot go over the maximum capacity you have allocated during scale out events
-	b. If the ASG has been configured to leverage the ALB health checks, unhealthy instances will be terminated
-	c. You can create a CloudWatch custom metric and build an alarm on this to scale your ASG
-	d. ==If you have a web application hosted in EC2 and managed by an ASG and you are exposing this application through an Application Load Balancer, you would configure the EC2 instance security group to ensure only the ALB can access the port 80 by opening EC2 security on port 80 to ALB's security group.==
-	e.  ==The Default Termination Policy for ASG is that it tries to balance across AZ first, and then delete based on the age of the launch configuration.==
+**AWS ASG(Auto Scaling Group)**
+	\- The capacity of your ASG cannot go over the maximum capacity you have allocated during scale out events
+	\- If the ASG has been configured to leverage the ALB health checks, unhealthy instances will be terminated
+	\- You can create a CloudWatch custom metric and build an alarm on this to scale your ASG
+	\- ==If you have a web application hosted in EC2 and managed by an ASG and you are exposing this application through an Application Load Balancer, you would configure the EC2 instance security group to ensure only the ALB can access the port 80 by opening EC2 security on port 80 to ALB's security group.==
+	\- ==The Default Termination Policy for ASG is that it tries to balance across AZ first, and then delete based on the age of the launch configuration.==
+	\- **cooldown period** helps to ensure that it doesn't launch or terminate additional instances before the previous scaling activity takes effect. 
+
+**AWS ALB(Application Load Balancer)**: 
+	periodically sends requests to its registered targets to test their status. These tests are called *health checks*. Each load balancer node routes requests only to the healthy targets in the enabled Availability Zones for the load balancer.
 
 ==**SNI (Server Name Indication)** is a feature allowing you to expose multiple SSL certs if the client supports it.== 
 
@@ -608,24 +671,22 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	c. If you use **AWS Shield Advanced**, you can use AWS WAF at no extra cost for those protected resources.
 **AWS GuardDuty** is an intelligent threat detection service to protect your AWS accounts and workloads. 	
  **AWS EFA(Elastic Fabric Adapter)** 
- 	a. network device that you can attach to your Amazon EC2 instance to accelerate High-Performance Computing (HPC) and machine learning applications.
-	b. you can attach only one EFA per EC2 instance.
-	c. It has OS-bypass capabilities that allow the HPC to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality.
-	d. The OS-bypass capabilities of EFAs are not supported on Windows instances. If you attach an EFA to a Windows instance, the instance functions as an Elastic Network Adapter, without the added EFA capabilities.
+	 \- is simply an Elastic Network Adapter (ENA) with added OS-bypass capabilities. **OS-Bypass** is an access model that allow the HPC and machine learning applications to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality. The OS-bypass capabilities of EFAs are not supported on Windows instances. If you attach an EFA to a Windows instance, the instance functions as an Elastic Network Adapter, without the added EFA capabilities.
+	\- you can attach only one EFA per EC2 instance.	
 
 **Elastic Network Interface (ENI)** 
 	is a logical networking component in a VPC that represents a virtual network card. 
 	It doesn’t have OS-bypass capabilities that allow the HPC to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality.
-**Elastic Network Adapter (ENA)** 	
+**AWS ENA(Elastic Network Adapter)** 	
 	It doesn’t have OS-bypass capabilities that allow the HPC to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality.
+	provide traditional IP networking features that are required to support VPC networking.
+	**Enhanced networking** uses **single root I/O virtualization (SR-IOV)** to provide high-performance networking capabilities on supported instance types. ==SR-IOV is a method of device virtualization that provides higher I/O performance and lower CPU utilization when compared to traditional virtualized network interfaces.== Enhanced networking provides higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies. There is no additional charge for using enhanced networking. supports network speeds of up to 100 Gbps for supported instance types.
 
 **Amazon Elastic MapReduce(EMR)** ==is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark, on AWS to process and analyze vast amounts of data.== By using these frameworks and related open-source projects such as Apache Hive and Apache Pig, you can process data for analytics purposes and business intelligence workloads. Additionally, you can use Amazon EMR to transform and move large amounts of data into and out of other AWS data stores and databases such as Amazon Simple Storage Service (Amazon S3) and Amazon DynamoDB.
 <img src="Definations.assets/Big-Data-Redesign_Diagram_Enterprise-Data-Warehouse.52d3e98fc79bf05e60c0f8278f067de595d5d3b2.png" alt="img" style="zoom: 80%;" />
 
 **AWS Single Sign-On (SSO)** is a cloud SSO service that just makes it easy to centrally manage SSO access to multiple AWS accounts and business applications. 	
 **AWS Firewall Manager** simplifies your AWS WAF administration and maintenance tasks across multiple accounts and resources.
-**AWS Global Accelerator** is primarily used to optimize the path from your users to your applications which improves the performance of your TCP and UDP traffic.
-
 **AWS Batch** is primarily used to efficiently run hundreds of thousands of batch computing jobs in AWS.
 
 **AWS Step Functions** provides serverless orchestration for modern applications.
@@ -648,10 +709,15 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 **AWS CloudHSM** you only store keys in CloudHSM. 
 	Attempting to log in as the administrator more than twice with the wrong password zeroizes your HSM appliance. When an HSM is zeroized, all keys, certificates, and other data on the HSM is destroyed. You can use your cluster's security group to prevent an unauthenticated user from zeroizing your HSM.
 	Amazon does not have access to your keys nor to the credentials of your Hardware Security Module (HSM) and therefore has no way to recover your keys if you lose your credentials. It is strongly recommends that you use two or more HSMs in separate Availability Zones in any production CloudHSM Cluster to avoid loss of cryptographic keys.
+**AWS OpsWorks** 
+	configuration management service that provides managed instances of Chef and Puppet. Chef and Puppet are automation platforms that allow you to use code to automate the configurations of your servers.
+**AWS Glue** 
+	is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics. 
 
 **<u>==Questions to review:==</u>**
 
 Review Mode-4: Incorrect questions=> Question 24(EBS), **CSAA - Design Resilient Architectures**=>9, 15, 
-Review Mode-5: **CSAA - Design High-Performing Architectures**=> 8, 16,18,19 
+Review Mode-5: **CSAA - Design High-Performing Architectures**=> 8, 16,18,19, 26
 **CSAA - Design Resilient Architectures**=> 13
 **CSAA - Design Secure Applications and Architectures**=> 2, 11
+currently on section 3=> question 23
