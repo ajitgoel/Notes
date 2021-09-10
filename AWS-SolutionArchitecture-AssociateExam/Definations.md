@@ -44,7 +44,10 @@
     a. ==networking connection between two VPCs that enables you to route traffic between them privately.== Instances in either VPC can communicate with each other as if they are within the same network. 
     b. You can create a VPC peering connection between your own VPCs, with a VPC in another AWS account, or with a VPC in a different AWS Region.
     c. AWS uses the existing infrastructure of a VPC to create a VPC peering connection; it is neither a gateway nor a VPN connection and does not rely on a separate piece of physical hardware. 
-    b. There is no single point of failure for communication or a bandwidth bottleneck
+    d. There is no single point of failure for communication or a bandwidth bottleneck
+	e. the route table’s target and destination of the instances’ subnet has to be re-configured
+
+
 **Transit Gateway:** used for interconnecting VPCs and onpremises networks through a central hub
 **Direct Connect gateway** 
 	By attaching a transit gateway to a Direct Connect gateway using a transit virtual interface, you can manage a single connection for multiple VPCs or VPNs that are in the same AWS Region.
@@ -64,6 +67,10 @@
 	cost-effective way to share resources between regions or replicate data for geographic redundancy, 
 	==its connections are not dedicated and highly available.== 
 	doesn't support the company's on-premises data centers in multiple AWS Regions.
+
+to fix slow connectivity issues between AWS Site-to-Site VPN connections placed between their VPCs and their remote network, associate the VPCs to an **Equal Cost Multipath Routing (ECMR)-enabled transit gateway** and attach additional VPN tunnels.
+
+
 **VPC Flow Logs** is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your entire VPC. 
 **transit VPC** is primarily used to connect multiple VPCs and remote networks in order to create a global network transit center and not for establishing a dedicated connection to your on-premises network.
 
@@ -118,6 +125,8 @@ The reason why you have to add both Inbound and Outbound SSH rule is due to the 
 	b. are charged on an hourly basis even for idle time.
 	c. is created in a specific Availability Zone and implemented with redundancy in that zone. You have a limit on the number of NAT gateways you can create in an Availability Zone.
 
+![img](Definations.assets/Natcomparison.jpg)
+
 ------
 
 **web and application tiers need to access the Internet to fetch data from public APIs. However, these servers should be inaccessible from the Internet.**
@@ -136,6 +145,7 @@ b. After you've created a NAT gateway, you must update the route table associate
 ​	permissions policies can be attached to IAM identities (that is, users, groups, and roles)
 ​	services such as AWS Lambda also support attaching permissions policies to AWS resources.
 ​	**IAM roles** are global services that are available to all regions
+​	**web identity federation**, users of your app can sign in using a well-known identity provider (IdP) —such as Login with Amazon, Facebook, Google, or any other OpenID Connect (OIDC)-compatible IdP, receive an authentication token, and then exchange that token for temporary security credentials in AWS that map to an IAM role with permissions to use the resources in your AWS account. Using an IdP helps you keep your AWS account secure because you don’t have to embed and distribute long-term security credentials with your application.
 
 ------
 
@@ -240,12 +250,20 @@ To get temporary security credentials, the identity broker application calls eit
 		enables you to automatically copy S3 objects from one bucket to another bucket that is placed in a different AWS Region or within the same Region.
 	\-**Cross-Account Access** is primarily used if you want to grant access to your objects to another AWS account. eg: Account `MANILA` can grant another AWS account (Account `CEBU)` permission to access its resources such as buckets and objects
 
-|      | S3 Standard                      | S3 Intelligent-Tiering              | S3 Standard-IA                                               | S3 One Zone-IA                      | S3 Glacier                                                   | S3 Deep Archive                                        |
-| ---- | -------------------------------- | ----------------------------------- | ------------------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------ |
-|      | active, frequently accessed data | Data with changing access patterns  | \-Infrequently accessed data<br />\-entails an additional fee for monitoring and automation of each object in your S3 bucket | Re-creatable less accessed data     | Data archiving<br />**expedited retrievals in Glacier** allow you to quickly access your data (within 1–5 minutes). | cheapest storage class for long term retention of data |
-|      |                                  | 30 days min storage duration charge | 30 days min storage duration charge                          | 30 days min storage duration charge | 90 days min storage duration charge                          | 180 days min storage duration charge                   |
-|      | milliseconds access              | milliseconds access                 | milliseconds access                                          | milliseconds access                 | retrievable within mins or hours                             | retrievable within  hours                              |
-|      | >=3 AZ's                         | >=3 AZ's                            | >=3 AZ's                                                     | 1 AZ's                              | >=3 AZ's                                                     | >=3 AZ's                                               |
+|                                 | S3 Standard                      | S3 Intelligent-Tiering              | S3 Standard-IA                                               | S3 One Zone-IA                      | S3 Glacier                                                   | S3 Deep Archive                                        |
+| ------------------------------- | -------------------------------- | ----------------------------------- | ------------------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------ |
+|                                 | active, frequently accessed data | Data with changing access patterns  | \-Infrequently accessed data<br />\-entails an additional fee for monitoring and automation of each object in your S3 bucket | Re-creatable less accessed data     | Data archiving<br />**expedited retrievals in Glacier** allow you to quickly access your data (within 1–5 minutes). | cheapest storage class for long term retention of data |
+| Minimum storage duration charge | N\A                              | 30 days min storage duration charge | 30 days min storage duration charge                          | 30 days min storage duration charge | 90 days min storage duration charge                          | 180 days min storage duration charge                   |
+| First byte latency              | milliseconds access              | milliseconds access                 | milliseconds access                                          | milliseconds access                 | retrievable within mins or hours                             | retrievable within  hours                              |
+| A\Z                             | >=3 AZ's                         | >=3 AZ's                            | >=3 AZ's                                                     | 1 AZ's                              | >=3 AZ's                                                     | >=3 AZ's                                               |
+
+<img src="Definations.assets/s3-minimum-storage-duration.png" alt="img" style="zoom:67%;" />
+
+**S3 Object Lock** can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely.
+
+**Comparison between AWS cloudTrail S3 logging and S3 server logs:**
+
+<img src="Definations.assets/CloudTrail_vs_S3_server_access_logs.png" alt="img" style="zoom:200%;" />
 
 **Amazon S3 notification** feature enables you to receive notifications when certain events happen in your bucket.	
 **S3 Batch Operations** runs multiple S3 operations in a single request. 
@@ -315,6 +333,13 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 	if it is an EC2-Classic instance, its Elastic IP address is disassociated from the instance. 
 	if it is an EC2-VPC instance, the Elastic IP address remains associated.
 
+**add an existing EC2 instance to an Auto Scaling group**
+	 \- The instance is in the **`running`** state.
+	\- The AMI used to launch the instance must still exist.
+	\- The instance is not a member of another Auto Scaling group.
+	\- The instance is launched into one of the Availability Zones defined in your Auto Scaling group.
+	 \- If the Auto Scaling group has an attached load balancer, the instance and the load balancer must both be in EC2-Classic or the same VPC. If the Auto Scaling group has an attached target group, the instance and the load balancer must both be in the same VPC.
+
 **EC2 Instance Types** 	
 **Reserved Instance:** 
 	a. when a Reserved Instance expires, any instances that were covered by the Reserved Instance are billed at the on-demand price
@@ -340,8 +365,8 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 	If ACM is not available in your region, use AWS CLI to upload your third-party certificate to the **IAM certificate store**.
 
 **placement strategies**
-**Cluster** – packs instances close together inside an Availability Zone. This strategy enables workloads to achieve the low-latency network performance necessary for tightly-coupled node-to-node communication that is typical of HPC applications.
-**Partition** – spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. This strategy is typically used by large distributed and replicated workloads, such as Hadoop, Cassandra, and Kafka.
+**Cluster placement**– packs instances close together inside an Availability Zone. This strategy enables workloads to achieve the low-latency network performance necessary for tightly-coupled node-to-node communication that is typical of HPC applications.
+	recommended to launch the number of instances that is needed in the placement group in a single launch request and that you use the same instance type for all instances in the placement group. **Partition** – spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. This strategy is typically used by large distributed and replicated workloads, such as Hadoop, Cassandra, and Kafka.
 **Spread** – strictly places a small group of instances across distinct underlying hardware to reduce correlated failures.
 
 **Amazon Data Lifecycle Manager (Amazon DLM)** to automate the creation, retention, and deletion of snapshots taken to back up your Amazon EBS volumes. 
@@ -385,7 +410,7 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 **Bastion host** is a special purpose computer on a network specifically designed and configured to withstand attacks. If you have a bastion host in AWS, it is basically just an EC2 instance. It should be in a public subnet with either a public or Elastic IP address with sufficient RDP or SSH access defined in the security group. Users log on to the bastion host via SSH or RDP and then use that session to manage other hosts in the private subnets
 **Amazon Kinesis** is the streaming data platform of AWS and has four distinct services under it: Kinesis Data Firehose, Kinesis Data Streams, Kinesis Video Streams, and Amazon Kinesis Data Analytics.
 **Amazon Kinesis Data Firehose** allows you to load streaming data into data stores and analytics tools. It can capture, transform, and load streaming data, enabling near real-time analytics with existing business intelligence tools and dashboards you are already using today. It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security. You can use Amazon Kinesis Data Firehose in conjunction with Amazon Kinesis Data Streams if you need to implement real-time processing of streaming big data. 
-	 can store their results using an AWS service such as Amazon DynamoDB, Amazon Redshift, or Amazon S3.
+	 only supports AWS S3, AWS Redshift, AWS Elasticsearch, and an HTTP endpoint as the destination
 
 **Kinesis Data Streams** 
 	a. ==enables real-time processing of streaming big data.== provides an ordering of records, as well as the ability to read and/or replay records in the same order to multiple Amazon Kinesis Applications.
@@ -516,6 +541,7 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	 is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. 
 	can deliver up to five times the throughput of MySQL and up to three times the throughput of PostgreSQL 
 	its underlying storage can grow automatically as needed.
+	if we use Amazon Aurora replicas, we get read replication latency of less than 1 second, compared to RDS read replicas where it is more than 1 second. 
 
 ​	**Failover:** 
 ​	Failover is automatically handled by Amazon Aurora so that your applications can resume database operations as quickly as possible without manual administrative intervention.
@@ -547,7 +573,9 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 
 **AWS Inspector** is simply a security assessments service which only helps you in checking for unintended network accessibility of your EC2 instances and for vulnerabilities on those EC2 instances.
 
-**Amazon CloudWatch**
+------
+
+**AWS CloudWatch**
 ==**CloudWatch agent** enables you to collect both system metrics and log files from Amazon EC2 instances== and on-premises servers. 
 ==By default, CloudWatch doesn't monitor memory usage but only the CPU utilization, Network utilization, Disk performance, and Disk Reads/Writes.==
 To collect logs from your Amazon EC2 instances and on-premises servers into **CloudWatch Logs**, AWS offers both a new unified **CloudWatch agent**, and an **older CloudWatch Logs agent**.
@@ -583,6 +611,9 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	When activity occurs in your AWS account, that activity is recorded in a CloudTrail event. You can easily view events in the CloudTrail console by going to **Event history**. Event history allows you to view, search, and download the past 90 days of supported activity in your AWS account. In addition, you can create a CloudTrail trail to further archive, analyze, and respond to changes in your AWS resources. 
 	A **AWS CloudTrail trail** is a configuration that enables delivery of events to an Amazon S3 bucket that you specify.
 	By default, CloudTrail event log files are encrypted using Amazon S3 server-side encryption (SSE). 
+	**types of events that you configure your CloudTrail for:**
+	**Management Events** provide visibility into management operations that are performed on resources in your AWS account. 
+	**Data Events**, provide visibility into the resource operations performed on or within a resource
 
 **AWS X-Ray** 
 	used to trace and analyze user requests as they travel through your Amazon API Gateway APIs to the underlying services. 
@@ -608,12 +639,19 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 | lets you associate multiple resources with a single domain name (tutorialsdojo.com) or subdomain name (portal.tutorialsdojo.com) and choose how much traffic is routed to each resource. | Use when you have resources in multiple AWS Regions and you want to route traffic to the Region that provides the best latency with less round-trip time. | Use for a single resource that performs a given function for your domain, for example, a web server that serves content for the example.com website. | Use when you want to route traffic based on the location of your users. | Use when you want to route traffic based on the location of your resources and, optionally, shift traffic from resources in one location to resources in another. | is used if you want to configure active-passive failover to your application architecture. | Use when you want Route 53 to respond to DNS queries with up to eight healthy records selected at random. |
 | used for load balancing and testing new versions of software. |                                                              |                                                              |                                                              |                                                              |                                                              |                                                              |
 
+**configure the DNS zone apex record in Route53 to point to the ALB**
+
+Route 53's DNS implementation connects user requests to infrastructure running inside (and outside) of Amazon Web Services (AWS). For example, if you have multiple web servers running on EC2 instances behind an Elastic Load Balancing load balancer, Route 53 will route all traffic addressed to your website (e.g. `www.tutorialsdojo.com`) to the load balancer DNS name (e.g. `elbtutorialsdojo123.elb.amazonaws.com`).
+Additionally, ==Route 53 supports the alias resource record set, which lets you map your **zone apex (**e.g. `tutorialsdojo.com`) DNS name to your load balancer DNS name.== IP addresses associated with Elastic Load Balancing can change at any time due to scaling or software updates. Route 53 responds to each request for an Alias resource record set with one IP address for the load balancer. ==CNAME records cannot be created for your **zone** apex.==
+
+![img](Definations.assets/r53-cf-elb.png)
+
 
 
 ------
 
 **AWS Elastic Load Balancer(ELB)** 
-	is designed to only run in one region and not across multiple regions.	
+	==is designed to only run in one region and not across multiple regions==.	
 	Health checks ensure your ELB won't send traffic to unhealthy (crashed) instances
 	provides access logs that capture detailed information about requests sent to your load balancer, disabled by default. logs are stored in the Amazon S3 bucket that you specify as compressed files. You can disable access logging at any time.
 
@@ -639,7 +677,9 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 |                  | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. |                                                              |                                                              |
 
  **Cross-Zone Load Balancing**
-        allows every load balancer node to distribute requests across all  availability zones, although for the Network Load Balancer there are data transfer charges when this feature is enabled.
+	allows every load balancer node to distribute requests across all  availability zones, although for the Network Load Balancer there are data transfer charges when this feature is enabled.
+	reduces the need to maintain equivalent numbers of instances in each enabled Availability Zone, and improves your application's ability to handle the loss of one or more instances. 
+	still recommended that you maintain approximately equivalent numbers of instances in each enabled Availability Zone for higher fault tolerance.	
 
 **AWS ASG(Auto Scaling Group)**
 	\- The capacity of your ASG cannot go over the maximum capacity you have allocated during scale out events
@@ -648,6 +688,12 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	\- ==If you have a web application hosted in EC2 and managed by an ASG and you are exposing this application through an Application Load Balancer, you would configure the EC2 instance security group to ensure only the ALB can access the port 80 by opening EC2 security on port 80 to ALB's security group.==
 	\- ==The Default Termination Policy for ASG is that it tries to balance across AZ first, and then delete based on the age of the launch configuration.==
 	\- **cooldown period** helps to ensure that it doesn't launch or terminate additional instances before the previous scaling activity takes effect. 
+
+**automate the log collection for Auto Scaling group of Amazon EC2 instances across multiple AZ behind an ALB**
+
+​	Add a lifecycle hook to your Auto Scaling group to move instances in the `Terminating` state to the `Terminating:Wait` state to delay the termination of unhealthy Amazon EC2 instances. Configure a CloudWatch Events rule for the `EC2 Instance-terminate Lifecycle Action` Auto Scaling Event with an associated Lambda function. Trigger the CloudWatch agent to push the application logs and then resume the instance termination once all the logs are sent to CloudWatch Logs.
+
+![img](Definations.assets/auto_scaling_lifecycle.png)
 
 **AWS ALB(Application Load Balancer)**: 
 	periodically sends requests to its registered targets to test their status. These tests are called *health checks*. Each load balancer node routes requests only to the healthy targets in the enabled Availability Zones for the load balancer.
@@ -683,10 +729,14 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 
 ------
 
-**AWS Web application firewall(WAF)** 
+**AWS WAF(Web application firewall)** 
 	a. web application firewall that helps protect web applications from common web exploits
 	b. You can use AWS WAF to define customizable web security rules that control which traffic accesses your web applications. 
 	c. If you use **AWS Shield Advanced**, you can use AWS WAF at no extra cost for those protected resources.
+	d. **allows or blocks web requests based on the country that the requests originate from but still allow specific IP addresses from that country.**
+		\- Using AWS WAF, create a web ACL with a rule that explicitly allows requests from approved IP addresses declared in an IP Set.
+		\- Add another rule in the AWS WAF web ACL with a geo match condition that blocks requests that originate from a specific country.
+
 **AWS GuardDuty** is an intelligent threat detection service to protect your AWS accounts and workloads. 	
  **AWS EFA(Elastic Fabric Adapter)** 
 	 \- is simply an Elastic Network Adapter (ENA) with added OS-bypass capabilities. **OS-Bypass** is an access model that allow the HPC and machine learning applications to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality. The OS-bypass capabilities of EFAs are not supported on Windows instances. If you attach an EFA to a Windows instance, the instance functions as an Elastic Network Adapter, without the added EFA capabilities.
@@ -731,10 +781,24 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	configuration management service that provides managed instances of Chef and Puppet. Chef and Puppet are automation platforms that allow you to use code to automate the configurations of your servers.
 **AWS Glue** 
 	is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics. 
+**Horizontal scaling** means scaling by adding more machines to your pool of resources (also described as “scaling out”), whereas **vertical scaling** refers to scaling by adding more power (e.g. CPU, RAM) to an existing machine (also described as “scaling up”).
+**Ingress** refers to the right to enter a property, while **egress** refers to the right to exit a property.
+***\*Amazon Connect\**** is not a VPN connectivity option. It is actually a self-service, cloud-based contact center service in AWS that makes it easy for any business to deliver better customer service at a lower cost. Amazon Connect is based on the same contact center technology used by Amazon customer service associates around the world to power millions of customer conversations.
+**CodeDeploy** is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances, or serverless Lambda functions.
+**AWS Organizations** 
+	offers policy-based management for multiple AWS accounts. 
+	you can create groups of accounts, automate account creation, apply and manage policies for those groups. 
+	enables you to centrally manage policies across multiple accounts, without requiring custom scripts and manual processes. It allows you to create **Service Control Policies (SCPs)** that centrally control AWS service use across multiple AWS accounts.
+**AWS Elastic Beanstalk** 
+	supports the deployment of web applications from Docker containers. 
+	==By using Docker with Elastic Beanstalk, you have an infrastructure that automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.== 
+**AWS ECS(Elastic container service)**:
+	provides Service Auto Scaling, Service Load Balancing, and Monitoring with CloudWatch but it is not ***automatically\*** enabled by default unlike with Elastic Beanstalk. 
 
 **<u>==Questions to review:==</u>**
 
 Review Mode-4: Incorrect questions=> Question 24(EBS), **CSAA - Design Resilient Architectures**=>9, 15, 
-Review Mode-5: **CSAA - Design High-Performing Architectures**=> 8, 16,18,19, 26
-**CSAA - Design Resilient Architectures**=> 13
-**CSAA - Design Secure Applications and Architectures**=> 2, 11
+
+Review Mode-6: Incorrect questions=> 
+section 3=> 8, 14, 15, 17, 19, 
+section 4=> 2, 8, 9, 16 
