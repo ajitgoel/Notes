@@ -252,7 +252,7 @@ To get temporary security credentials, the identity broker application calls eit
 
 |                                 | S3 Standard                      | S3 Intelligent-Tiering              | S3 Standard-IA                                               | S3 One Zone-IA                      | S3 Glacier                                                   | S3 Deep Archive                                        |
 | ------------------------------- | -------------------------------- | ----------------------------------- | ------------------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------ |
-|                                 | active, frequently accessed data | Data with changing access patterns  | \-Infrequently accessed data<br />\-entails an additional fee for monitoring and automation of each object in your S3 bucket | Re-creatable less accessed data     | Data archiving<br />**expedited retrievals in Glacier** allow you to quickly access your data (within 1–5 minutes). | cheapest storage class for long term retention of data |
+|                                 | active, frequently accessed data | Data with changing access patterns  | \-Infrequently accessed data<br />\-entails an additional fee for monitoring and automation of each object in your S3 bucket | Re-creatable less accessed data     | Data archiving<br />For all but the largest archives (250 MB+), data accessed using **Expedited retrievals** are typically made available within 1–5 minutes. <br />**Provisioned Capacity** ensures that retrieval capacity for Expedited retrievals is available when you need it. | cheapest storage class for long term retention of data |
 | Minimum storage duration charge | N\A                              | 30 days min storage duration charge | 30 days min storage duration charge                          | 30 days min storage duration charge | 90 days min storage duration charge                          | 180 days min storage duration charge                   |
 | First byte latency              | milliseconds access              | milliseconds access                 | milliseconds access                                          | milliseconds access                 | retrievable within mins or hours                             | retrievable within  hours                              |
 | A\Z                             | >=3 AZ's                         | >=3 AZ's                            | >=3 AZ's                                                     | 1 AZ's                              | >=3 AZ's                                                     | >=3 AZ's                                               |
@@ -431,7 +431,7 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	a. can process streaming data in real-time with Amazon MSK, 
 	b. still entails a lot of administrative overhead, unlike Amazon Kinesis. 
 	c. doesn't have a built-in enhanced fan-out feature
-**Amazon Redshift Spectrum**, 
+**AWS Redshift Spectrum**, 
 	allowing you to directly run SQL queries against exabytes of unstructured data in Amazon S3. 
 	No loading or transformation is required, and you can use open data formats. 	
 	automatically scales query compute capacity based on the data being retrieved, so queries against Amazon S3 run fast, regardless of data set size.
@@ -508,17 +508,24 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 
 **Databases**
 **AWS RDS** 
-	a. is a "managed" service and not "fully managed"
-	b. one still have to manually scale up your resources and create Read Replicas to improve scalability
-	c. provides metrics in real time for the OS that your DB instance runs on. You can view the metrics for your DB instance using the console, or consume the Enhanced Monitoring JSON output from CloudWatch Logs in a monitoring system of your choice.
+	\- is a "managed" service and not "fully managed"
+	\- one still have to manually scale up your resources and create Read Replicas to improve scalability
+	\- provides metrics in real time for the OS that your DB instance runs on. You can view the metrics for your DB instance using the console, or consume the Enhanced Monitoring JSON output from CloudWatch Logs in a monitoring system of your choice.
 	 IAM database authentication works with MySQL and PostgreSQL. Authentication is handled by `AWSAuthenticationPlugin`—an AWS-provided plugin that works seamlessly with IAM to authenticate your IAM users. **Benefits:** Network traffic to and from the database is encrypted using Secure Sockets Layer (SSL) You can use IAM to centrally manage access to your database resources, instead of managing access individually on each DB instance. For applications running on Amazon EC2, you can use profile credentials specific to your EC2 instance to access your database instead of a password, for greater security
+	\- **transparent data encryption (TDE)** is primarily used to encrypt stored data on your DB instances running Microsoft SQL Server, and not the data that are in transit.
 
-​	d. **CloudWatch** gathers metrics about CPU utilization from the hypervisor for a DB instance, and Enhanced Monitoring gathers its metrics from an agent on the instance.  ==**Enhanced Monitoring** metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.==
+​	\- **CloudWatch** gathers metrics about CPU utilization from the hypervisor for a DB instance, and Enhanced Monitoring gathers its metrics from an agent on the instance.  ==**Enhanced Monitoring** metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.==
 ​	e. ==**Regular items provided by Amazon RDS Metrics in CloudWatch:** CPU Utilization, Database Connections, and Freeable Memory== 
 ​	f. **==Enhanced Monitoring metrics:==**
 ​	==**RDS child processes**== – Shows a summary of the RDS processes that support the DB instance, for example `aurora` for Amazon Aurora DB clusters and `mysqld` for MySQL DB instances. Process threads appear nested beneath the parent process. Process threads show CPU utilization only as other metrics are the same for all threads for the process. The console displays a maximum of 100 processes and threads. The results are a combination of the top CPU consuming and memory consuming processes and threads. If there are more than 50 processes and more than 50 threads, the console displays the top 50 consumers in each category. This display helps you identify which processes are having the greatest impact on performance.
 ​	==**RDS processes**== – Shows a summary of the resources used by the RDS management agent, diagnostics monitoring processes, and other AWS processes that are required to support RDS DB instances.
 ​	==**OS processes**== – Shows a summary of the kernel and system processes, which generally have minimal impact on performance.
+
+**securing in-flight data between your web servers and RDS, using SSL:**
+	\- Force SSL for all connections — this happens transparently to the client, and the client doesn't have to do any work to use SSL, by ==Force all connections to your DB instance to use SSL by setting the `rds.force_ssl` parameter to true. Once done, reboot your DB instance.==
+	\- Encrypt specific connections — this sets up an SSL connection from a specific client computer by ==download the Amazon RDS Root CA certificate, Import the certificate to your servers and configure your application to use SSL to encrypt the connection to RDS.==
+
+------
 
 **AWS Database Migration Service** 
 	helps you migrate databases to AWS . 
@@ -595,15 +602,30 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 **AWS Cloudformation**: 
 	**Outputs** is an optional section of the CloudFormation template that describes the values that are returned whenever you view your stack's properties.
 
-**Amazon ElastiCache** use for the website's in-memory data store or cache.
+**AWS ElastiCache** 
+	use for the website's in-memory data store or cache.
+	improves the performance of your database through caching query results.
+
+------
 
 **AWS CloudFront**
 	a. improves performance for both cacheable content (such as images and videos) and dynamic content (such as API acceleration and dynamic site delivery). 
 	b. use the AWS global network and its edge locations around the world.	
 	c. integrate with AWS Shield for DDoS protection.
-**Using CloudFront, serve content that is stored in S3, but not publicly accessible from S3 directly:**
+**Using CloudFront to serve content that is stored in S3, but not publicly accessible from S3 directly:**
 	\- Grant the CloudFront **origin access identity(OAI)** the applicable permissions on the bucket.
 	\- Deny access to anyone that you don't want to have access using Amazon S3 URLs.
+
+**Using CloudFront with origin failover for scenarios that require high availability:**
+	An **origin group** may contain two origins: a primary and a secondary. If the primary origin is unavailable or returns specific HTTP response status codes that indicate a failure, CloudFront automatically switches to the secondary origin. 
+	To set up origin failover, you must have a distribution with at least two origins. we can use an EC2 instance or a custom origin in configuring CloudFront. To achieve high availability in an EC2 instance, we need to deploy the instances in two or more Availability Zones. You also need to configure the instances to be part of the origin group to ensure that the application is highly available.
+
+**control the versions of files that are served from your distribution**, 
+	you can either invalidate files or give them versioned file names. 
+	If you want to update your files frequently, AWS recommends that you primarily use file versioning as Versioning is less expensive. 
+	You still have to pay for CloudFront to transfer new versions of your files to edge locations, but you don't have to pay for invalidating files.
+
+------
 
 **AWS CloudTrail** 
 	is primarily used for IT audits and API logging of all of your AWS resources. 
@@ -620,7 +642,7 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	gives you an end-to-end view of an entire request, so you can analyze latencies in your APIs and their backend services. 
 	you can configure sampling rules to tell X-Ray which requests to record, at what sampling rates, according to criteria that you specif
 
-==**AWS Global Accelerator**== 
+**AWS Global Accelerator** 
 	\- is primarily used to optimize the path from your users to your applications which improves the performance of your TCP and UDP traffic.
 	\- provides static IP addresses that act as a fixed entry point to your application endpoints in a single or multiple AWS Regions, such as your Application Load Balancers, Network Load Balancers or Amazon EC2 instances.
 	\- uses the AWS global network to optimize the path from your users to your applications, improving the performance of your TCP and UDP traffic. 
@@ -634,9 +656,9 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	**Route 53 with Failover routing policy:** is primarily used if you want to configure active-passive failover to your application architecture.
 	can use **Route 53 with Weighted routing policy** to divert the a percentage of traffic between the on-premises and AWS-hosted application. 
 
-| **Weighted routing** policy                                  | **Latency routing** policy                                   | Simple routing policy                                        | Geolocation routing policy                                   | **Geoproximity routing policy**                              | Failover routing policy                                      | **Multivalue answer routing policy**                         |
+| **Weighted routing** policy                                  | ==**Latency routing** policy==                               | Simple routing policy                                        | Geolocation routing policy                                   | **Geoproximity routing policy**                              | Failover routing policy                                      | **Multivalue answer routing policy**                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| lets you associate multiple resources with a single domain name (tutorialsdojo.com) or subdomain name (portal.tutorialsdojo.com) and choose how much traffic is routed to each resource. | Use when you have resources in multiple AWS Regions and you want to route traffic to the Region that provides the best latency with less round-trip time. | Use for a single resource that performs a given function for your domain, for example, a web server that serves content for the example.com website. | Use when you want to route traffic based on the location of your users. | Use when you want to route traffic based on the location of your resources and, optionally, shift traffic from resources in one location to resources in another. | is used if you want to configure active-passive failover to your application architecture. | Use when you want Route 53 to respond to DNS queries with up to eight healthy records selected at random. |
+| lets you associate multiple resources with a single domain name (tutorialsdojo.com) or subdomain name (portal.tutorialsdojo.com) and choose how much traffic is routed to each resource. | ==Use when you have resources in multiple AWS Regions and you want to route traffic to the Region that provides the best latency with less round-trip time.== | Use for a single resource that performs a given function for your domain, for example, a web server that serves content for the example.com website. | Use when you want to route traffic based on the location of your users. | Use when you want to route traffic based on the location of your resources and, optionally, shift traffic from resources in one location to resources in another. | is used if you want to configure active-passive failover to your application architecture. | Use when you want Route 53 to respond to DNS queries with up to eight healthy records selected at random. |
 | used for load balancing and testing new versions of software. |                                                              |                                                              |                                                              |                                                              |                                                              |                                                              |
 
 **configure the DNS zone apex record in Route53 to point to the ALB**
@@ -760,7 +782,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 **AWS Step Functions** provides serverless orchestration for modern applications.
 
 **AWS PrivateLink** provides private connectivity between VPCs, AWS services, and on-premises applications, securely on the Amazon network.
-**Amazon Athena** 
+**AWS Athena** 
 	is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL expressions. 
 	Athena is serverless. 
 **AWS Data Pipeline ** is primarily used as a cloud-based data workflow service that helps you process and move data between different AWS services and on-premises data sources. 
@@ -800,5 +822,5 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 Review Mode-4: Incorrect questions=> Question 24(EBS), **CSAA - Design Resilient Architectures**=>9, 15, 
 
 Review Mode-6: Incorrect questions=> 
-section 3=> 8, 14, 15, 17, 19, 
-section 4=> 2, 8, 9, 16 
+section 3=> 15, 17, 19, 
+section 4=> 16 
