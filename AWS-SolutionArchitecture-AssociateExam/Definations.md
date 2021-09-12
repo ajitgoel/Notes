@@ -120,10 +120,16 @@ The reason why you have to add both Inbound and Outbound SSH rule is due to the 
 
 ------
 
+**Internet Gateway** 
+	is used to provide Internet access to your instances in the public subnet of your VPC, and not for private subnets. 
+	traffic originating from the public Internet will also be able to reach your instances.
+**egress-only Internet gateway** 
+	allows outbound communication over IPv6 from instances in your VPC to the Internet, and prevents the Internet from initiating an IPv6 connection with your instances.
 **NAT Gateway:** 
-	a. allows instances in the private subnet to gain access to the Internet
-	b. are charged on an hourly basis even for idle time.
-	c. is created in a specific Availability Zone and implemented with redundancy in that zone. You have a limit on the number of NAT gateways you can create in an Availability Zone.
+	\- ==allows instances in the private subnet to gain access to the Internet over IPv4==
+	\- are charged on an hourly basis even for idle time.
+	\- ==is created in a specific AZ and implemented with redundancy in that zone.== 
+	\- there is a limit on the number of NAT gateways you can create in an AZ.
 
 ![img](Definations.assets/Natcomparison.jpg)
 
@@ -145,6 +151,32 @@ b. After you've created a NAT gateway, you must update the route table associate
 ​	permissions policies can be attached to IAM identities (that is, users, groups, and roles)
 ​	services such as AWS Lambda also support attaching permissions policies to AWS resources.
 ​	**IAM roles** are global services that are available to all regions
+​	**IAM role** is an AWS identity with permission policies that determine what the identity can and cannot do in AWS. However, instead of being uniquely associated with one person, a role is intended to be assumable by anyone who needs it. Also, a role does not have standard long-term credentials (password or access keys) associated with it. Instead, if a user assumes a role, temporary security credentials are created dynamically and provided to the user.
+​	==if an IAM policy has an **Allow Effect statement** followed by the **Deny Effect statement**, then the deny statement will take precedence.== eg:  this policy will not allow any actions on all DynamoDB tables of the AWS account.
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "TutorialsdojoTablePolicy1",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:PutItem",
+        "dynamodb:DeleteItem"
+      ],
+      "Resource": "arn:aws:dynamodb:us-east-1:1206189812061898:table/tutorialsdojo"
+    },
+    {
+      "Sid": "TutorialsdojoTablePolicy2",
+      "Effect": "Deny",
+      "Action": "dynamodb:*",
+      "Resource": "arn:aws:dynamodb:us-east-1:1206189812061898:table/*"
+    }
+  ]
+}
+```
+
 ​	**web identity federation**, users of your app can sign in using a well-known identity provider (IdP) —such as Login with Amazon, Facebook, Google, or any other OpenID Connect (OIDC)-compatible IdP, receive an authentication token, and then exchange that token for temporary security credentials in AWS that map to an IAM role with permissions to use the resources in your AWS account. Using an IdP helps you keep your AWS account secure because you don’t have to embed and distribute long-term security credentials with your application.
 
 ------
@@ -165,6 +197,7 @@ To get temporary security credentials, the identity broker application calls eit
 ==**RAID 0:**==
 	==enables you to improve your storage volumes' performance by distributing the I/O across the volumes in a stripe.==
 ==**RAID 1 configuration** can mirror two volumes together== to achieve on-instance redundancy.
+<img src="Definations.assets/SOAF5-RAID-0-vs.-RAID-1.png" alt="img" style="zoom:67%;" />
 
 **Private Virtual Interface** 
 	allows you to connect to your VPC resources on your private IP address or endpoint.
@@ -173,25 +206,31 @@ To get temporary security credentials, the identity broker application calls eit
 ------
 
 **AWS EBS:** 
-    a. block-level ==storage device that you can attach to a single EC2 instance.== 
-    b. Is not a concurrently accessible storage
-	c. EBS volumes behave like raw, unformatted block devices. 
-	d. EBS volumes that are attached to an instance are exposed as storage volumes that persist independently from the life of the instance.
-	e. is the persistent block storage volume. 
-	f. It is mainly used as the root volume to store the OS of an EC2 instance. 
-	g. To encrypt an EBS volume at rest, you can use AWS KMS customer master keys(or Amazon managed keys) for the encryption of both the boot and data volumes of an EC2 instance
-	h. for high IOPS performance, SSD volumes are more suitable to use instead of HDD volumes.
-	i. SSD's are best for workloads with small, random I/O operations
-	j. HDD's are best for large, sequential I/O operations.
-	==k. provides lowest latency access compared to EFS==
-	l. ==does not store data redundantly across multiple AZs by default, unlike EFS.==
-	m. multi-attach feature  on EBS Provisioned IOPS io2 or io1 volumes, allows an EBS volume to be attached on multiple instances **within** an availability zone.
-	n. When you create an encrypted EBS volume and attach it to a supported instance type, 
+    \- block-level ==storage device that you can attach to a single EC2 instance.== 
+    \- Is not a concurrently accessible storage
+	\- EBS volumes behave like raw, unformatted block devices. 
+	\- EBS volumes that are attached to an instance are exposed as storage volumes that persist independently from the life of the instance.
+	\- is the persistent block storage volume. 
+	\- It is mainly used as the root volume to store the OS of an EC2 instance. 
+	\- To encrypt an EBS volume at rest, you can use AWS KMS customer master keys(or Amazon managed keys) for the encryption of both the boot and data volumes of an EC2 instance
+	\- for high IOPS performance, SSD volumes are more suitable to use instead of HDD volumes.
+	\- SSD's are best for workloads with small, random I/O operations
+	\- HDD's are best for large, sequential I/O operations.
+	==\- provides lowest latency access compared to EFS==
+	\- ==does not store data redundantly across multiple AZs by default, unlike EFS.==
+	\- When you create an encrypted EBS volume and attach it to a supported instance type, 
 		Data at rest inside the volume, 
 		All data moving between the volume and the instance, 
 		All snapshots created from the volume, 
 		All volumes created from those snapshots are encrypted.
-	o. Snapshots occur asynchronously. The EBS volume can be used while the snapshot is in progress.
+	\- Snapshots occur asynchronously. The EBS volume can be used while the snapshot is in progress.
+	\- When you create an EBS volume in an Availability Zone, it is automatically replicated within that AZ.
+	\- After you create a volume, you can attach it to any EC2 instance in the same AZ
+	\- **AWS EBS Multi-Attach** enables you to attach a single Provisioned IOPS SSD (io1) volume to multiple Nitro-based instances that are ==**in the same AZ**==. However, other EBS types are not supported.
+	\- You can specify not to terminate the EBS volume when you terminate the EC2 instance during instance creation.
+	\- ==EBS volumes support live configuration changes while in production which means that you can modify the volume type, volume size, and IOPS capacity without service interruptions.==
+	\- Amazon EBS encryption uses 256-bit Advanced Encryption Standard algorithms (AES-256)
+	\- EBS Volumes offer 99.999% SLA.
 
  **EBS type of Provisioned IOPS SSD(io1)**
  	provides sustained performance for ==mission-critical== low-latency workloads.
@@ -228,7 +267,7 @@ To get temporary security credentials, the identity broker application calls eit
 
 ------
 
-==**AWS S3:**== 
+**AWS S3:** 
 	\-an object storage service.
 	\-supports SNS topic, SQS queue, AWS Lambda destinations where it can publish events.	
 	\-`s3:ObjectRemoved:DeleteMarkerCreated` type is triggered when a delete marker is created for a versioned object and not when an object is deleted or a versioned object is permanently deleted.
@@ -265,7 +304,7 @@ To get temporary security credentials, the identity broker application calls eit
 
 <img src="Definations.assets/CloudTrail_vs_S3_server_access_logs.png" alt="img" style="zoom:200%;" />
 
-**Amazon S3 notification** feature enables you to receive notifications when certain events happen in your bucket.	
+**AWS S3 event notification** feature enables you to receive notifications when certain events happen in your bucket. Supported S3 event notifications destination are Lambda, SQS, SNS Topic. 
 **S3 Batch Operations** runs multiple S3 operations in a single request. 
 
 **Amazon S3 access points** are named network endpoints that are attached to buckets that you can use to perform S3 object operations, such as uploading and retrieving objects.
@@ -396,14 +435,20 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 
 <img src="Definations.assets/aws-storage-gateway-stored-diagram.png" alt="img"  />
 
+**Tape Gateway** 
+	==is type of AWS storage gateway.==
+	enables you to replace using physical tapes on-premises with virtual tapes in AWS without changing existing backup workflows. 	
+	supports all leading backup applications and caches virtual tapes on-premises for low-latency data access. 
+	encrypts data between the gateway and AWS 
+	compresses data and transitions virtual tapes between ==Amazon S3 and Amazon S3 Glacier, or Amazon S3 Glacier Deep Archive==
+
 | AWS Storage Gateway-File gateway                             | **Amazon FSx for Windows File Server**                       |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | can be used as a shared file system for Windows <br />can also be integrated with Microsoft Active Directory,<br />has lower level of throughput and IOPS compared with Amazon FSx for Windows File Server | can be used as a shared file system for Windows <br />can also be integrated with Microsoft Active Directory,<br />has higher level of throughput and IOPS compared with AWS Storage Gateway. |
 |                                                              | provides fully managed, highly reliable, and ==scalable file storage accessible over Service Message Block (SMB) protocol.== |
 
-**NAT Gateway** is a highly available, managed Network Address Translation (NAT) service for your resources in a private subnet to access the Internet. 
-**AWS Security Token Service (AWS STS)** is the service that you can use to create and provide trusted users with temporary security credentials that can control access to your AWS resources. 
-**AWS Single Sign-On (SSO)** is a cloud SSO service that makes it easy to centrally manage SSO access to multiple AWS accounts and business applications.
+**AWS STS(Security Token Service)** is the service that you can use to create and provide trusted users with temporary security credentials that can control access to your AWS resources. 
+**AWS SSO(Single Sign-On)** is a cloud SSO service that makes it easy to centrally manage SSO access to multiple AWS accounts and business applications.
 Amazon Cognito service is primarily used for user authentication and not for providing access to your AWS resources. 
 **JSON Web Token (JWT)** is meant to be used for user authentication and session management.
 **Amazon WorkDocs** is a fully managed, secure content creation, storage, and collaboration service.
@@ -533,16 +578,23 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	can migrate your data to and from most widely used commercial and open-source databases.
 	**AWS Schema Conversion Tool** is used to convert the source schema and code to match that of the target database
 
-**DynamoDB** 
-	a. is a "fully managed" service.
-	b. cannot be added to auto scaling group.
-	**DynamoDB Streams:** If you enable DynamoDB Streams on a table, you can associate the stream ARN with a Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table's stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records.
+**AWS DynamoDB** 
+	\- is a "fully managed" service.
+	\- cannot be added to auto scaling group.
+	\- The partition key portion of a table’s primary key determines the logical partitions in which a table’s data is stored which in turn affects the underlying physical partitions. ==use partition keys which have a large number of distinct values for each item==
+	\- **composite primary key is composed of a partition key and a sort key**, will provide more partition for the table and in turn, improves the performance.
+
+​	**DynamoDB Streams:** If you enable DynamoDB Streams on a table, you can associate the stream ARN with a Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table's stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records.
 
 **DynamoDB auto scaling** uses the AWS Application Auto Scaling service to dynamically adjust provisioned throughput capacity on your behalf, in response to actual traffic patterns. This enables a table or a global secondary index to increase its provisioned read and write capacity to handle sudden increases in traffic, without throttling. When the workload decreases, Application Auto Scaling decreases the throughput so that you don’t pay for unused provisioned capacity.
 **AppSync** use appsync with DynamoDB to make it easy for you to build collaborative apps that keep shared data updated in real time.
 **Amazon DynamoDB Accelerator (DAX)** 
 	a. fully managed, highly available, in-memory cache for DynamoDB. 
 	b. add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management.
+![img](Definations.assets/SOAF13-Global-Secondary-Index-GSI-vs.-Local-Secondary-Index-LSI.png)
+
+**AWS Redis:**
+	authenticate the users using Redis AUTH by creating a new Redis Cluster with both the `--transit-encryption-enabled` and `--auth-token` parameters enabled. This will require the user to enter a password before they are granted permission to execute Redis commands on a password-protected Redis server.
 
 **AWS Aurora:**
 	 is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. 
@@ -562,16 +614,16 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 
 ------
 
-==**Amazon API Gateway**== 
+**AWS API Gateway** 
 	lets you create an API that acts as a "front door" for applications to access data, business logic, or functionality from your back-end services, such as code running on AWS Lambda. 
 	handles all of the tasks involved in accepting and processing API calls, including traffic management, authorization and access control, monitoring, and API version management. 
 	has no minimum fees or startup costs.
 
-==**AWS Config**== 
+**AWS Config** 
 	is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. 
 	continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations. 
 
-**==AWS Lambda:==**
+==**AWS Lambda:**==
 **Lambda@Edge** 
 	a. is a feature of Amazon CloudFront that lets you run code closer to users of your application, which improves performance and reduces latency.
 	b. runs your code in response to events generated by the Amazon CloudFront content delivery network (CDN).
@@ -628,14 +680,15 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 ------
 
 **AWS CloudTrail** 
-	is primarily used for IT audits and API logging of all of your AWS resources. 
-	It does not have the capability to trace and analyze user requests as they travel through your Amazon API Gateway APIs, unlike AWS X-Ray.
-	When activity occurs in your AWS account, that activity is recorded in a CloudTrail event. You can easily view events in the CloudTrail console by going to **Event history**. Event history allows you to view, search, and download the past 90 days of supported activity in your AWS account. In addition, you can create a CloudTrail trail to further archive, analyze, and respond to changes in your AWS resources. 
-	A **AWS CloudTrail trail** is a configuration that enables delivery of events to an Amazon S3 bucket that you specify.
-	By default, CloudTrail event log files are encrypted using Amazon S3 server-side encryption (SSE). 
-	**types of events that you configure your CloudTrail for:**
-	**Management Events** provide visibility into management operations that are performed on resources in your AWS account. 
-	**Data Events**, provide visibility into the resource operations performed on or within a resource
+	\- is primarily used for IT audits and API logging of all of your AWS resources. 
+	\- It does not have the capability to trace and analyze user requests as they travel through your Amazon API Gateway APIs, unlike AWS X-Ray.
+	\- When activity occurs in your AWS account, that activity is recorded in a CloudTrail event. You can easily view events in the CloudTrail console by going to **Event history**. Event history allows you to view, search, and download the past 90 days of supported activity in your AWS account. In addition, you can create a CloudTrail trail to further archive, analyze, and respond to changes in your AWS resources. 
+	\- A **AWS CloudTrail trail** is a configuration that enables delivery of events to an Amazon S3 bucket that you specify.
+	\- By default, CloudTrail event log files are encrypted using Amazon S3 server-side encryption (SSE). 
+	\- can be used for track all of the activities of all AWS resources(regional services like EC2, S3, RDS etc.) in all regions, with **multi-region trail** enabled(`--is-multi-region-trail` in your AWS CLI command). to track global services such as IAM, CloudFront, AWS WAF, and Route 53, add the `--include-global-service-events` parameter in your AWS CLI command.
+\- **types of events that you configure your CloudTrail for:**
+		**Management Events** provide visibility into management operations that are performed on resources in your AWS account. 
+		**Data Events**, provide visibility into the resource operations performed on or within a resource
 
 **AWS X-Ray** 
 	used to trace and analyze user requests as they travel through your Amazon API Gateway APIs to the underlying services. 
@@ -695,8 +748,10 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 | ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 |                  | Increase or decrease the current capacity of the group based on a single scaling adjustment. | Increase or decrease the current capacity of the group based on a set of scaling adjustments(*step adjustments*), that vary based on the size of the alarm breach.<br />When you create a step scaling policy, you can specify the number of seconds that it takes for a newly launched instance to warm up. | Increase or decrease the current capacity of the group **based on a target value for a specific metric**. This is similar to the way that your thermostat maintains the temperature of your home – you select a temperature and the thermostat does the rest. | is based on a schedule that allows you to set your own scaling schedule for **predictable** load changes. |
 | Recommendation   |                                                              | used If you are **<u>not</u>** scaling based on a utilization metric that increases or decreases proportionally to the number of instances in an Auto Scaling group | used if you are scaling based on a utilization metric that increases or decreases proportionally to the number of instances in an Auto Scaling group |                                                              |
-|                  | you need to wait for the cooldown period to complete before initiating additional scaling activities. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire. | this policy is mainly used for predictable traffic patterns  |
+|                  | ==you need to wait for the cooldown period to complete before initiating additional scaling activities.== | ==can trigger a scaling activity immediately without waiting for the cooldown period to expire.== | ==can trigger a scaling activity immediately without waiting for the cooldown period to expire.== | this policy is mainly used for predictable traffic patterns  |
 |                  | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. | Require you to create CloudWatch alarms for the scaling policies. <br />require you to specify the high and low thresholds for the alarms.<br />require you to define whether to add or remove instances, and how many, or set the group to an exact size. |                                                              |                                                              |
+
+**suspend and resume scaling** is used to temporarily pause scaling activities triggered by your scaling policies and scheduled actions.
 
  **Cross-Zone Load Balancing**
 	allows every load balancer node to distribute requests across all  availability zones, although for the Network Load Balancer there are data transfer charges when this feature is enabled.
@@ -704,12 +759,15 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 	still recommended that you maintain approximately equivalent numbers of instances in each enabled Availability Zone for higher fault tolerance.	
 
 **AWS ASG(Auto Scaling Group)**
+	\- monitors your applications and automatically adjusts capacity to maintain steady, predictable performance at the lowest possible cost. 
+	\- lets you build scaling plans for AWS EC2 instances and Spot Fleets, AWS ECS tasks, AWS DynamoDB tables and indexes, and AWS Aurora Replicas.
 	\- The capacity of your ASG cannot go over the maximum capacity you have allocated during scale out events
 	\- If the ASG has been configured to leverage the ALB health checks, unhealthy instances will be terminated
 	\- You can create a CloudWatch custom metric and build an alarm on this to scale your ASG
-	\- ==If you have a web application hosted in EC2 and managed by an ASG and you are exposing this application through an Application Load Balancer, you would configure the EC2 instance security group to ensure only the ALB can access the port 80 by opening EC2 security on port 80 to ALB's security group.==
+	\- ==If you have a web application hosted in EC2 and managed by an ASG and you are exposing this application through an ALB, you would configure the EC2 instance security group to ensure only the ALB can access the port 80 by opening EC2 security on port 80 to ALB's security group.==
 	\- ==The Default Termination Policy for ASG is that it tries to balance across AZ first, and then delete based on the age of the launch configuration.==
 	\- **cooldown period** helps to ensure that it doesn't launch or terminate additional instances before the previous scaling activity takes effect. 
+	\- You ==can only specify one launch configuration for an Auto Scaling group at a time==, and you can't modify a launch configuration after you've created it. Therefore, if you want to change the launch configuration for an Auto Scaling group, you must create a launch configuration and then update your Auto Scaling group with the new launch configuration.
 
 **automate the log collection for Auto Scaling group of Amazon EC2 instances across multiple AZ behind an ALB**
 
@@ -719,6 +777,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 
 **AWS ALB(Application Load Balancer)**: 
 	periodically sends requests to its registered targets to test their status. These tests are called *health checks*. Each load balancer node routes requests only to the healthy targets in the enabled Availability Zones for the load balancer.
+	is a managed resource. You cannot track nor view its resource utilization.
 
 ==**SNI (Server Name Indication)** is a feature allowing you to expose multiple SSL certs if the client supports it.== 
 
@@ -734,6 +793,8 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 **AWS Snowball** 
 	is a migration tool that lets you transfer large amounts of data from your on-premises data center to AWS S3 and vice versa. 
 	when you provision Snowball, you bear the responsibility of securing the device.
+	Snowball Edge can't directly integrate backups to S3 Glacier.
+
 **AWS Import/Export** 
 	is similar to AWS Snowball.
 	is used as a migration tool.
@@ -772,7 +833,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 	provide traditional IP networking features that are required to support VPC networking.
 	**Enhanced networking** uses **single root I/O virtualization (SR-IOV)** to provide high-performance networking capabilities on supported instance types. ==SR-IOV is a method of device virtualization that provides higher I/O performance and lower CPU utilization when compared to traditional virtualized network interfaces.== Enhanced networking provides higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies. There is no additional charge for using enhanced networking. supports network speeds of up to 100 Gbps for supported instance types.
 
-**Amazon Elastic MapReduce(EMR)** ==is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark, on AWS to process and analyze vast amounts of data.== By using these frameworks and related open-source projects such as Apache Hive and Apache Pig, you can process data for analytics purposes and business intelligence workloads. Additionally, you can use Amazon EMR to transform and move large amounts of data into and out of other AWS data stores and databases such as Amazon Simple Storage Service (Amazon S3) and Amazon DynamoDB.
+**AWS EMR(Elastic MapReduce)** ==is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark, on AWS to process and analyze vast amounts of data.== By using these frameworks and related open-source projects such as Apache Hive and Apache Pig, you can process data for analytics purposes and business intelligence workloads. Additionally, you can use Amazon EMR to transform and move large amounts of data into and out of other AWS data stores and databases such as Amazon Simple Storage Service (Amazon S3) and Amazon DynamoDB.
 <img src="Definations.assets/Big-Data-Redesign_Diagram_Enterprise-Data-Warehouse.52d3e98fc79bf05e60c0f8278f067de595d5d3b2.png" alt="img" style="zoom: 80%;" />
 
 **AWS Single Sign-On (SSO)** is a cloud SSO service that just makes it easy to centrally manage SSO access to multiple AWS accounts and business applications. 	
@@ -786,14 +847,12 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 	is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL expressions. 
 	Athena is serverless. 
 **AWS Data Pipeline ** is primarily used as a cloud-based data workflow service that helps you process and move data between different AWS services and on-premises data sources. 
-**AWS Auto Scaling group:** 
-	You ==can only specify one launch configuration for an Auto Scaling group at a time==, and you can't modify a launch configuration after you've created it. Therefore, if you want to change the launch configuration for an Auto Scaling group, you must create a launch configuration and then update your Auto Scaling group with the new launch configuration.
 **Systems Manager Automation service** is primarily used to simplify common maintenance and deployment tasks of Amazon EC2 instances and other AWS resources. 
 
 ==**AWS Trusted Advisor**== is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices. It ==inspects your AWS environment and makes recommendations for saving money, improving system performance and reliability, or closing security gaps.==
 ==***\*AWS Cost Explorer\**** enables you to view and analyze your costs and usage.== You can explore your usage and costs using the main graph, the Cost Explorer cost and usage reports, or the Cost Explorer RI reports. It has an easy-to-use interface that lets you visualize, understand, and manage your AWS costs and usage over time.
 ==***\*AWS Budgets\**** gives you the ability to set custom budgets that alert you when your costs or usage exceed (or are forecasted to exceed) your budgeted amount.== You can also use AWS Budgets to set reservation utilization or coverage targets and receive alerts when your utilization drops below the threshold you define.
-==***\*Amazon Inspector\**** is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.== Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices.
+==***\*AWS Inspector\**** is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.== Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices.
 **AWS Workspace** is used to create the needed virtual desktops in your VPC.
 **AWS Certificate Manager (ACM)** provides SSL certificates.
 **AWS CloudHSM** you only store keys in CloudHSM. 
@@ -806,21 +865,38 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 **Horizontal scaling** means scaling by adding more machines to your pool of resources (also described as “scaling out”), whereas **vertical scaling** refers to scaling by adding more power (e.g. CPU, RAM) to an existing machine (also described as “scaling up”).
 **Ingress** refers to the right to enter a property, while **egress** refers to the right to exit a property.
 ***\*Amazon Connect\**** is not a VPN connectivity option. It is actually a self-service, cloud-based contact center service in AWS that makes it easy for any business to deliver better customer service at a lower cost. Amazon Connect is based on the same contact center technology used by Amazon customer service associates around the world to power millions of customer conversations.
-**CodeDeploy** is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances, or serverless Lambda functions.
+**AWS CodeDeploy** is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances, or serverless Lambda functions.
 **AWS Organizations** 
+	is an account management service that lets you consolidate multiple AWS accounts into an organization that you create and centrally manage. You can organize those accounts into groups and attach policy-based controls.
 	offers policy-based management for multiple AWS accounts. 
 	you can create groups of accounts, automate account creation, apply and manage policies for those groups. 
-	enables you to centrally manage policies across multiple accounts, without requiring custom scripts and manual processes. It allows you to create **Service Control Policies (SCPs)** that centrally control AWS service use across multiple AWS accounts.
+	enables you to centrally manage policies across multiple accounts. It allows you to create **Service Control Policies (SCPs)** that centrally control AWS service use across multiple AWS accounts.
+**AWS RAM(Resource Access Manager)** 
+	is a service that enables you to easily and securely share AWS resources with any AWS account or within your AWS Organization. 
+	You can share AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with RAM.
+**AWS Control Tower** offers the easiest way to set up and govern a new, secure, multi-account AWS environment.
 **AWS Elastic Beanstalk** 
 	supports the deployment of web applications from Docker containers. 
 	==By using Docker with Elastic Beanstalk, you have an infrastructure that automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.== 
 **AWS ECS(Elastic container service)**:
 	provides Service Auto Scaling, Service Load Balancing, and Monitoring with CloudWatch but it is not ***automatically\*** enabled by default unlike with Elastic Beanstalk. 
+==**AWS Macie** is an ML-powered security service that== helps you prevent data loss by ==automatically discovering, classifying, and protecting sensitive data stored in Amazon S3==. Amazon Macie uses machine learning to recognize sensitive data such as personally identifiable information (PII) or intellectual property, assigns a business value, and provides visibility into where this data is stored and how it is being used in your organization. Amazon Macie ==continuously monitors data access activity== for anomalies, and ==delivers alerts when it detects== risk of unauthorized access or inadvertent data leaks. Amazon Macie has ability to detect global access permissions inadvertently being set on sensitive data, detect uploading of API keys inside source code, and verify sensitive customer data is being stored and accessed in a manner that meets their compliance standards.
+**Decoupled architecture** is a type of computing architecture that enables computing components or layers to execute independently while still interfacing with each other. eg: **AWS SQS** and **AWS SWF**. 
 
 **<u>==Questions to review:==</u>**
 
 Review Mode-4: Incorrect questions=> Question 24(EBS), **CSAA - Design Resilient Architectures**=>9, 15, 
 
 Review Mode-6: Incorrect questions=> 
-section 3=> 15, 17, 19, 
 section 4=> 16 
+
+**Correct questions:** 
+**Section 1:** 1, 2, 3 
+**Section 2:** 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 13, 14, 15, 16, 17, 19, 20, 21, 22, 25  
+**Section 3:** 2, 3, 5, 7, 9, 10, 11, 12, 13, 16, 18, 20  
+**Section 4:** 5, 6, 7, 10, 11, 12, 13, 14, 15
+
+**Timed Mode 1**: question 29, 51, 53, 
+**Timed Mode 2:** 
+**CSAA - Design High-Performing Architectures**: 11
+**CSAA - Design Resilient Architectures**: 3, 13, 19
