@@ -8,16 +8,18 @@
 	 \- You can associate a network ACL with multiple subnets; however, a subnet can be associated with only one network ACL at a time. When you associate a network ACL with a subnet, the previous association is removed.
 	 \- has separate inbound and outbound rules, and each rule can either allow or deny traffic.
 	 \- ==are stateless; responses to allowed inbound traffic are subject to the rules for outbound traffic== (and vice versa).
+	\- are not effective in blocking SQL injection and cross-site scripting attacks
+	\- new EC2 instance will not automatically get a DNS hostname if the **DNS resolution** and **DNS hostnames** attributes are disabled in the newly created VPC.
 
 **VPC endpoint**:
     a. enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an Internet gateway, NAT device, VPN connection, or AWS Direct Connect connection, by creating a entry in VPC route table to direct data to the AWS service. 
     b. Instances in your VPC do not require public IP addresses to communicate with resources in the service. 
 	c. Traffic between your VPC and the other services does not leave the Amazon network.
-	d. **gateway endpoint** 
+	d. **gateway VPC endpoint** 
 			is a gateway that you specify in your route table to access AWS S3\DynamoDB from your VPC over the AWS network. 
 			==There is no additional charge for using gateway endpoints==. However, standard charges for data transfer and resource usage still apply.
 			==for S3 and DynamoDB service, you have to use a **Gateway** VPC Endpoint== 
-	e. **Interface endpoints** 
+	e. **Interface VPC endpoints** 
 			is an elastic network interface with a private IP address that serves as an entry point for traffic destined to a supported service
 			extend the functionality of gateway endpoints by using private IP addresses to route requests to AWS services from within your VPC, on-premises, or from a different AWS Region. 
 			==you still get billed for the time your interface endpoint is running== and the GB data it has processed. 
@@ -30,10 +32,11 @@
 
 
 **AWS Direct Connect** 
-	links your internal network to an AWS Direct Connect location over a standard Ethernet fiber-optic cable. One end of the cable is connected to your router, the other to an AWS Direct Connect router. 
-	With this connection, you can create virtual interfaces directly to public AWS services (for example, to Amazon S3) or to Amazon VPC, bypassing internet service providers in your network path. 
-	An AWS Direct Connect location provides access to AWS in the region with which it is associated. 
-	You can use a single connection in a public Region or AWS GovCloud (US) to access public AWS services in all other public Regions
+	\- links your internal network to an AWS Direct Connect location over a standard Ethernet fiber-optic cable. One end of the cable is connected to your router, the other to an AWS Direct Connect router. 
+	\- With this connection, you can create virtual interfaces directly to public AWS services (for example, to Amazon S3) or to Amazon VPC, bypassing internet service providers in your network path. 
+	\- An AWS Direct Connect location provides access to AWS in the region with which it is associated. 
+	\- You can use a single connection in a public Region or AWS GovCloud (US) to access public AWS services in all other public Regions
+	\- To connect programmatically to an AWS service, you will need to use an **AWS Direct Connect service endpoint**
 
 <img src="Definations.assets/aws-direct-connect-tutorialsdojo-saa-c02-aws.png" alt="img" style="zoom: 33%;" />
 
@@ -46,7 +49,6 @@
     c. AWS uses the existing infrastructure of a VPC to create a VPC peering connection; it is neither a gateway nor a VPN connection and does not rely on a separate piece of physical hardware. 
     d. There is no single point of failure for communication or a bandwidth bottleneck
 	e. the route table’s target and destination of the instances’ subnet has to be re-configured
-
 
 **Transit Gateway:** used for interconnecting VPCs and onpremises networks through a central hub
 **Direct Connect gateway** 
@@ -70,12 +72,11 @@
 
 to fix slow connectivity issues between AWS Site-to-Site VPN connections placed between their VPCs and their remote network, associate the VPCs to an **Equal Cost Multipath Routing (ECMR)-enabled transit gateway** and attach additional VPN tunnels.
 
-
-**VPC Flow Logs** is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your entire VPC. 
+**VPC Flow Logs** enables you to capture information about the IP traffic going to and from network interfaces ==in your VPC.== 
 **transit VPC** is primarily used to connect multiple VPCs and remote networks in order to create a global network transit center and not for establishing a dedicated connection to your on-premises network.
 
 **AWS DataSync**
-	simplifies, automates, and ==accelerates copying large amounts of data to and from AWS storage services over the internet or AWS Direct Connect.==
+	simplifies, automates, and ==accelerates copying large amounts of data to(also long term storage like AWS Glacier or AWS Glacier Deep Archive) and from AWS storage services over the internet or AWS Direct Connect.==
 	You deploy an AWS DataSync agent to your on-premises hypervisor or in Amazon EC2. ==To connect programmatically to an AWS service, you will need to use an **AWS Direct Connect service endpoint**.==
 	does not work with Amazon EBS volumes. 
 	can copy data between Network File System (NFS) shares, Server Message Block (SMB) shares, self-managed object storage, AWS Snowcone, Amazon Simple Storage Service (Amazon S3) buckets, Amazon Elastic File System (Amazon EFS) file systems, and Amazon FSx for Windows File Server file systems.
@@ -95,6 +96,13 @@ You can connect your Amazon VPC to remote networks and users using the following
 **Third-party software VPN appliance -** You can create a VPN connection to your remote network by using an Amazon EC2 instance in your VPC that's running a third party software VPN appliance.
 
 <img src="Definations.assets/image-20210902221907043.png" alt="image-20210902221907043"  />
+
+
+
+**Integrate customer network with AWS VPC, using site to site VPN connection**
+
+
+![img](Definations.assets/2018-10-27_22-45-01-dbcb3de60063eaba73e8d2d12c61d6dc-16314775142933.png)
 
 ------
 
@@ -218,9 +226,10 @@ To get temporary security credentials, the identity broker application calls eit
 	\- HDD's are best for large, sequential I/O operations.
 	==\- provides lowest latency access compared to EFS==
 	\- ==does not store data redundantly across multiple AZs by default, unlike EFS.==
+	\- ==instance store volumes have greater I/O performance than EBS volumes.==
 	\- When you create an encrypted EBS volume and attach it to a supported instance type, 
 		Data at rest inside the volume, 
-		All data moving between the volume and the instance, 
+		==All data moving between the volume and the instance,== 
 		All snapshots created from the volume, 
 		All volumes created from those snapshots are encrypted.
 	\- Snapshots occur asynchronously. The EBS volume can be used while the snapshot is in progress.
@@ -248,7 +257,7 @@ To get temporary security credentials, the identity broker application calls eit
 
 |                                | **EBS type of Provisioned IOPS SSD(io1)**                    | **EBS General Purpose SSD (gp2)**                            | EBS Throughput Optimized HDD (st1)                           | **EBS Cold HDD (sc1)**                                       | Magnetic volumes                                             |
 | ------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-|                                | provides sustained performance for ==mission-critical== low-latency workloads.<br/>offer storage with consistent and low-latency performance and are designed for I/O intensive applications such as large relational or NoSQL databases. | it does not provide the high IOPS required by the application, unlike the Provisioned IOPS SSD volume.<br/>are suitable for a broad range of workloads, including small to medium sized databases, development, and test environments, and boot volumes. | are more suitable for large streaming workloads rather than transactional database workloads. | are more suitable for large streaming workloads rather than transactional database workloads | are ideal for workloads where data are accessed infrequently, and applications where the lowest storage cost is important. <br/>this is a Previous Generation Volume. |
+|                                | provides sustained performance for ==mission-critical== low-latency workloads.<br/>offer storage with consistent and low-latency performance and are designed for I/O intensive applications such as large relational or NoSQL databases.<br />==30,000 IOPS== | it does not provide the high IOPS required by the application, unlike the Provisioned IOPS SSD volume.<br/>are suitable for a broad range of workloads, including small to medium sized databases, development, and test environments, and boot volumes.<br />==less than 30,000 IOPS== | are more suitable for large streaming workloads rather than transactional database workloads. | are more suitable for large streaming workloads rather than transactional database workloads | are ideal for workloads where data are accessed infrequently, and applications where the lowest storage cost is important. <br/>this is a Previous Generation Volume. |
 | Best for workloads with        | small random I\O operations                                  | small random I\O operations                                  | large sequential I\O operations                              | large sequential I\O operations                              | large sequential I\O operations                              |
 | Can be used as bootable volume | Yes                                                          | Yes                                                          | No                                                           | No                                                           | No                                                           |
 | Cost                           | Moderate\high                                                | Moderate\high                                                | low                                                          | low                                                          | low                                                          |
@@ -282,9 +291,9 @@ To get temporary security credentials, the identity broker application calls eit
 	\-S3 supports at least 3,500 requests per second to add data and 5,500 requests per second to retrieve data
 	\-==If you are transitioning noncurrent objects (in versioned buckets), you can transition only objects that are at least 30 days noncurrent to STANDARD_IA or ONEZONE_IA storage.==
 	\-==**Server Access Logging feature of Amazon S3**: provides more detailed information about every access request sent to the S3 bucket including the referrer and turn-around time information compared to **CloudTrail Logging feature of Amazon S3.**==
-	\-**CORS** will only allow objects from one domain (travel.cebu.com) to be loaded and accessible to a different domain (palawan.com). 
+	\-**CORS(Cross Origin Resource Sharing)** will only allow objects from one domain (travel.cebu.com) to be loaded and accessible to a different domain (palawan.com). 
 	\-does not provide low-latency file operations as it does not reside within your VPC by default, which means the data will traverse the public Internet that may result to higher latency. You can set up a VPC Endpoint for S3 yet still, its latency is greater than that of EBS.
-	\-**Cross-Region Replication**(CRR) 
+	\-**CRR(Cross-Region Replication)** 
 		When you upload your data in S3, your objects are redundantly stored on multiple devices across multiple facilities within the region only, where you created the bucket.
 		enables you to automatically copy S3 objects from one bucket to another bucket that is placed in a different AWS Region or within the same Region.
 	\-**Cross-Account Access** is primarily used if you want to grant access to your objects to another AWS account. eg: Account `MANILA` can grant another AWS account (Account `CEBU)` permission to access its resources such as buckets and objects
@@ -304,7 +313,7 @@ To get temporary security credentials, the identity broker application calls eit
 
 <img src="Definations.assets/CloudTrail_vs_S3_server_access_logs.png" alt="img" style="zoom:200%;" />
 
-**AWS S3 event notification** feature enables you to receive notifications when certain events happen in your bucket. Supported S3 event notifications destination are Lambda, SQS, SNS Topic. 
+**AWS S3 event notification** feature enables you to receive notifications when certain events happen in your bucket. **Supported S3 event notifications destination are Lambda function, SQS queue, SNS Topic.** 
 **S3 Batch Operations** runs multiple S3 operations in a single request. 
 
 **Amazon S3 access points** are named network endpoints that are attached to buckets that you can use to perform S3 object operations, such as uploading and retrieving objects.
@@ -332,6 +341,18 @@ in all other cases you pay for all bandwidth into and out of Amazon S3.
 	In general, when your object size reaches 100 MB, you should consider using multipart uploads instead of uploading the object in a single operation.
 
 **Amazon S3 Select** help analyze and process data within an object in Amazon S3 buckets
+
+**options for protecting data at rest in Amazon S3:**
+**Use Server-Side Encryption** – You request Amazon S3 to encrypt your object before saving it on disks in its data centers and decrypt it when you download the objects.
+
+1. Use Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3)
+2. Use Server-Side Encryption with AWS KMS-Managed Keys (SSE-KMS)
+3. Use Server-Side Encryption with Customer-Provided Keys (SSE-C)
+
+**Use Client-Side Encryption** – You can encrypt data client-side and upload the encrypted data to Amazon S3. In this case, you manage the encryption process, the encryption keys, and related tools.
+
+1. Use Client-Side Encryption with AWS KMS–Managed Customer Master Key (CMK)
+2. Use Client-Side Encryption Using a Client-Side Master Key
 
 ------
 
@@ -371,6 +392,8 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 	Elastic IP address(EIP) will actually remain associated with your instance even after stopping it.
 	if it is an EC2-Classic instance, its Elastic IP address is disassociated from the instance. 
 	if it is an EC2-VPC instance, the Elastic IP address remains associated.
+	ENI will stay attached even if you stopped your EC2 instance.
+	
 
 **add an existing EC2 instance to an Auto Scaling group**
 	 \- The instance is in the **`running`** state.
@@ -428,10 +451,13 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 ------
 
 **==AWS Storage Gateway==** 
-	==a. connects an on-premises software appliance with cloud-based storage== to provide seamless integration with data security features between your on-premises IT environment and the AWS storage infrastructure. ==You can use the service to store data in the AWS Cloud for scalable and cost-effective storage that helps maintain data security.==
-	b. ==is used only for creating a backup of data from your on-premises server==
-	**AWS Storage Gateway - Cached Volumes:** data is stored in AWS S3 and you retain a copy of frequently accessed data subsets locally in your on-premises network. Cached volumes offer substantial cost savings on primary storage and minimize the need to scale your storage on-premises. You also retain low-latency access to your frequently accessed data. 
-	**AWS Storage Gateway - Stored Volumes:** are used if you need low-latency access to your entire dataset.
+	==\- connects an on-premises software appliance with cloud-based storage== to provide seamless integration with data security features between your on-premises IT environment and the AWS storage infrastructure. ==You can use the service to store data in the AWS Cloud.==
+	\-  ==is used only for creating a backup of data from your on-premises server==
+	\- is used in providing low-latency access to data by caching frequently accessed data on-premises while storing archive data in Amazon cloud storage services. 
+	\- optimizes data transfer to AWS by sending only changed data and compressing data.
+
+​	**AWS Storage Gateway - Cached Volumes:** data is stored in AWS S3 and you retain a copy of frequently accessed data subsets locally in your on-premises network. Cached volumes offer substantial cost savings on primary storage and minimize the need to scale your storage on-premises. You also retain low-latency access to your frequently accessed data. 
+​	**AWS Storage Gateway - Stored Volumes:** are used if you need low-latency access to your entire dataset.
 
 <img src="Definations.assets/aws-storage-gateway-stored-diagram.png" alt="img"  />
 
@@ -455,15 +481,17 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 **Bastion host** is a special purpose computer on a network specifically designed and configured to withstand attacks. If you have a bastion host in AWS, it is basically just an EC2 instance. It should be in a public subnet with either a public or Elastic IP address with sufficient RDP or SSH access defined in the security group. Users log on to the bastion host via SSH or RDP and then use that session to manage other hosts in the private subnets
 **Amazon Kinesis** is the streaming data platform of AWS and has four distinct services under it: Kinesis Data Firehose, Kinesis Data Streams, Kinesis Video Streams, and Amazon Kinesis Data Analytics.
 **Amazon Kinesis Data Firehose** allows you to load streaming data into data stores and analytics tools. It can capture, transform, and load streaming data, enabling near real-time analytics with existing business intelligence tools and dashboards you are already using today. It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security. You can use Amazon Kinesis Data Firehose in conjunction with Amazon Kinesis Data Streams if you need to implement real-time processing of streaming big data. 
-	 only supports AWS S3, AWS Redshift, AWS Elasticsearch, and an HTTP endpoint as the destination
+	 only supports AWS S3, AWS Redshift, AWS Elasticsearch, and an HTTP endpoint as the destination, ==does not support AWS Lambda as destination==
 
 **Kinesis Data Streams** 
-	a. ==enables real-time processing of streaming big data.== provides an ordering of records, as well as the ability to read and/or replay records in the same order to multiple Amazon Kinesis Applications.
-	b. is used to collect and process large streams of data records in real-time. 
-	c. can be used for rapid and continuous data intake and aggregation.
-	d. has a built-in enhanced fan-out feature
-**Amazon Kinesis Client Library (KCL)** delivers all records for a given partition key to the same record processor, making it easier to build multiple applications reading from the same Amazon Kinesis data stream
-**Amazon Redshift** 
+	\- ==enables real-time processing of streaming big data.== provides an ordering of records, as well as the ability to read and/or replay records in the same order to multiple Amazon Kinesis Applications.
+	\- is used to collect and process large streams of data records in real-time. 
+	\- can be used for rapid and continuous data intake and aggregation.
+	\- has a built-in enhanced fan-out feature
+	\- is a real-time data streaming service that requires the provisioning of shards.
+
+**AWS Kinesis Client Library (KCL)** delivers all records for a given partition key to the same record processor, making it easier to build multiple applications reading from the same Amazon Kinesis data stream
+**AWS Redshift** 
 	a. data warehouse that makes it simple and cost-effective to analyze all your data across your data warehouse and data lake. 
 	b. delivers ten times faster performance than other data warehouses by using machine learning, massively parallel query execution, and columnar storage on high-performance disk.
 	c. **Cross-Region snapshots:** You can configure Amazon Redshift to copy snapshots for a cluster to another region. 
@@ -542,7 +570,7 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 **Amazon MQ** 
 	is a managed message broker service for Apache ActiveMQ that makes it easy to set up and operate message brokers in the cloud. 
 	If you're using messaging with existing applications and want to move your messaging service to the cloud quickly and easily, it is recommended that you consider Amazon MQ. 
-	It supports industry-standard APIs and protocols so you can switch from any standards-based message broker to Amazon MQ without rewriting the messaging code in your applications.
+	It supports industry-standard APIs and protocols( NMS and MQTT messaging protocol) so you can switch from any standards-based message broker to Amazon MQ without rewriting the messaging code in your applications.
 
 ==**AWS SWF**== 
 	is a fully-managed state tracker and task coordinator service. 
@@ -581,8 +609,12 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 **AWS DynamoDB** 
 	\- is a "fully managed" service.
 	\- cannot be added to auto scaling group.
+	\- Autoscaling is not enabled by default
 	\- The partition key portion of a table’s primary key determines the logical partitions in which a table’s data is stored which in turn affects the underlying physical partitions. ==use partition keys which have a large number of distinct values for each item==
 	\- **composite primary key is composed of a partition key and a sort key**, will provide more partition for the table and in turn, improves the performance.
+    \- **Global Secondary Index** is an index with a partition and sort key that can be different from those in the table. It is considered "global" because queries on the index can span all of the data in a table, across all partitions.commands for searching data on the table
+    \- **A scan operation** examines every item on the table and returns all the data attributes for each one of them. When you initially navigate to the Items tab for a table, a scan is performed by default. 
+    \- query operation
 
 ​	**DynamoDB Streams:** If you enable DynamoDB Streams on a table, you can associate the stream ARN with a Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table's stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records.
 
@@ -601,6 +633,10 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	can deliver up to five times the throughput of MySQL and up to three times the throughput of PostgreSQL 
 	its underlying storage can grow automatically as needed.
 	if we use Amazon Aurora replicas, we get read replication latency of less than 1 second, compared to RDS read replicas where it is more than 1 second. 
+	typically involves a cluster of DB instances instead of a single instance. Each connection is handled by a specific DB instance. When you connect to an Aurora cluster, the hostname and port that you specify point to an intermediate handler called an ***endpoint***. 
+	**a cluster endpoint** (**writer endpoint**) simply connects to the current primary DB instance for that DB cluster. This endpoint can perform write operations in the database but not suitable for handling queries for reporting .
+	A ***reader endpoint*** for an Aurora DB cluster provides load-balancing support for read-only connections to the DB cluster. Each Aurora DB cluster has one reader endpoint. If the cluster contains one or more Aurora Replicas, the reader endpoint load-balances each connection request among the Aurora Replicas. If the cluster only contains a primary instance and no Aurora Replicas, the reader endpoint connects to the primary instance.
+	**AWS Aurora Parallel Query** enables Amazon Aurora to push down and distribute the computational load of a single query across thousands of CPUs in Aurora’s storage layer.
 
 ​	**Failover:** 
 ​	Failover is automatically handled by Amazon Aurora so that your applications can resume database operations as quickly as possible without manual administrative intervention.
@@ -636,7 +672,7 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 
 **AWS CloudWatch**
 ==**CloudWatch agent** enables you to collect both system metrics and log files from Amazon EC2 instances== and on-premises servers. 
-==By default, CloudWatch doesn't monitor memory usage but only the CPU utilization, Network utilization, Disk performance, and Disk Reads/Writes.==
+==**<u>By default, CloudWatch doesn't monitor memory usage</u>** but only the CPU utilization, Network utilization, Disk performance, and Disk Reads/Writes.==
 To collect logs from your Amazon EC2 instances and on-premises servers into **CloudWatch Logs**, AWS offers both a new unified **CloudWatch agent**, and an **older CloudWatch Logs agent**.
 
 **CloudWatch Logs Insights** enables you to interactively search and analyze your log data in Amazon CloudWatch Logs. You can perform queries to help you quickly and effectively respond to operational issues. If an issue occurs, you can use CloudWatch Logs Insights to identify potential causes and validate deployed fixes.
@@ -653,6 +689,10 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 
 **AWS Cloudformation**: 
 	**Outputs** is an optional section of the CloudFormation template that describes the values that are returned whenever you view your stack's properties.
+	`UpdateReplacePolicy` attribute is primarily used to retain or in some cases, back up the existing physical instance of a resource when it is replaced during a stack update operation.
+	`UpdatePolicy` attribute is primarily used for updating resources and for stack update rollback operations.
+	**cfn-init** helper script is not suitable to be used to signal another resource. You have to use **cfn-signal** instead. 
+	you can use the **DependsOn** attribute to ensure the creation of a specific resource follows another, it is still better to use the **CreationPolicy** attribute instead as it ensures that the applications are properly running before the stack creation proceeds.
 
 **AWS ElastiCache** 
 	use for the website's in-memory data store or cache.
@@ -708,6 +748,14 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 **AWS Route53**
 	**Route 53 with Failover routing policy:** is primarily used if you want to configure active-passive failover to your application architecture.
 	can use **Route 53 with Weighted routing policy** to divert the a percentage of traffic between the on-premises and AWS-hosted application. 
+	**Active-Active Failover configuration** 
+		\- when you want all of your resources to be available the majority of the time. When a resource becomes unavailable, Route 53 can detect that it's unhealthy and stop including it when responding to queries. 
+		\- In active-active failover, all the records that have the same name, the same type (such as A or AAAA), and the same routing policy (such as weighted or latency) are active
+
+​	**Active-Passive Failover configuration**
+​		\- when you want a primary resource or group of resources to be available the majority of the time and you want a secondary resource or group of resources to be on standby in case all the primary resources become unavailable. 
+​		\- When responding to queries, Route 53 includes only the healthy primary resources. 
+​		\- If all the primary resources are unhealthy, Route 53 begins to include only the healthy secondary resources in response to DNS queries.
 
 | **Weighted routing** policy                                  | ==**Latency routing** policy==                               | Simple routing policy                                        | Geolocation routing policy                                   | **Geoproximity routing policy**                              | Failover routing policy                                      | **Multivalue answer routing policy**                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -730,7 +778,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 	Health checks ensure your ELB won't send traffic to unhealthy (crashed) instances
 	provides access logs that capture detailed information about requests sent to your load balancer, disabled by default. logs are stored in the Amazon S3 bucket that you specify as compressed files. You can disable access logging at any time.
 
-| Elastic Load Balancing types | Network load balancer                                        | **Application load balancer**                                | Gateway load balancer                         | Classic load balancer                                        |
+| Elastic Load Balancing types | NLB(Network load balancer)                                   | **Application load balancer**                                | Gateway load balancer                         | Classic load balancer                                        |
 | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ |
 |                              | Operates at connection level(layer 4 of OSI model)<br />Supports TCP health check | operates at request level<br />operates at the application layer(layer 4 of the OSI model)<br />Supports http, https health checks<br /> **health check:** periodically sends requests to its registered targets to test their status. Each load balancer node routes requests only to the healthy targets in the enabled Availability Zones for the load balancer.<br />If the load balancer uses an encrypted connection to communicate with the instances, you can optionally enable authentication of the instances. This ensures that the load balancer communicates with an instance only if its public key matches the key that you specified to the load balancer for this purpose. |                                               | operates at both connection and request level<br />Supports TCP health check |
 | Protocol supported           | TCP, ==UDP==                                                 | http, https, websocket, does not support TCP                 |                                               |                                                              |
@@ -738,7 +786,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 |                              | Routes traffic to targets within VPC<br />exposes a public static IP address | can route to different target groups based on hostname, request path, source ip but not geography. <br />exposes a static DNS(URL) |                                               | exposes a static DNA(URL)                                    |
 | Used when                    | ==extreme performance and static IP is needed for your application== | you need flexible application management and TLS termination |                                               | your application is built within the EC2 Classic network     |
 | Protocol listeners           | TCP\UDP\TLS                                                  | ==HTTP\HTTPS\gRPC==                                          | IP                                            | HTTP\HTTPS\TCP\SSL\TLS                                       |
-| Use cases                    | ==Handling millions of requests per second while maintaining ultra low latencies== | For web apps, microservices and containers                   | Running third party virtual appliances in AWS | For legacy applications in AWS, for implementing custom security policies and TCP passthrough configuration |
+| Use cases                    | ==Handling millions of requests per second while maintaining ultra low latencies==<br />use the Bring Your Own IP (BYOIP) feature to use the trusted IPs as Elastic IP addresses (EIP) to a NLB. | For web apps, microservices and containers                   | Running third party virtual appliances in AWS | For legacy applications in AWS, for implementing custom security policies and TCP passthrough configuration |
 |                              | **Cannot** use an Network Load balancer with Weighted Target Groups to divert and proportion the traffic between different application. | **can** use an Application Elastic Load balancer with **Weighted Target Groups** to divert and proportion the traffic between different application. |                                               |                                                              |
 | slow start mode              | does not support                                             | supported                                                    |                                               |                                                              |
 
@@ -780,6 +828,11 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 	is a managed resource. You cannot track nor view its resource utilization.
 
 ==**SNI (Server Name Indication)** is a feature allowing you to expose multiple SSL certs if the client supports it.== 
+	 some older browsers do not support SNI and will not be able to establish a connection with CloudFront to load the HTTPS version of your content. 
+	If you need to support non-SNI compliant browsers for HTTPS content, it is recommended to use the **Dedicated IP Custom SSL feature**.
+	**to secure web application which is hosted in an ASG of EC2 instances behind a Classic Load Balancer, by allowing multiple domains to serve SSL traffic over the same IP address:** 
+		\- Generate an SSL certificate with AWS Certificate Manager and create a CloudFront web distribution. 
+		\- Associate the certificate with your web distribution and enable the support for Server Name Indication (SNI).
 
 ------
 
@@ -793,7 +846,8 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 **AWS Snowball** 
 	is a migration tool that lets you transfer large amounts of data from your on-premises data center to AWS S3 and vice versa. 
 	when you provision Snowball, you bear the responsibility of securing the device.
-	Snowball Edge can't directly integrate backups to S3 Glacier.
+	**Snowball Edge** Each Snowball Edge device can transport data at speeds faster than the internet. This transport is done by shipping the data in the appliances through a regional carrier. **The AWS Snowball Edge device differs from the standard Snowball because it can bring the power of the AWS Cloud to your on-premises location, with local storage and compute functionality**. can't directly integrate backups to S3 Glacier.
+	As a rule of thumb, if it takes more than one week to upload your data to AWS using the spare capacity of your existing Internet connection, then you should consider using Snowball. 
 
 **AWS Import/Export** 
 	is similar to AWS Snowball.
@@ -813,19 +867,26 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 ------
 
 **AWS WAF(Web application firewall)** 
-	a. web application firewall that helps protect web applications from common web exploits
-	b. You can use AWS WAF to define customizable web security rules that control which traffic accesses your web applications. 
-	c. If you use **AWS Shield Advanced**, you can use AWS WAF at no extra cost for those protected resources.
-	d. **allows or blocks web requests based on the country that the requests originate from but still allow specific IP addresses from that country.**
+	\- web application firewall that helps protect web applications from common web exploits
+	\- gives you control over how traffic reaches your applications by enabling you to create security rules that block common attack patterns, such as SQL injection or cross-site scripting, and rules that filter out specific traffic patterns you define. 
+	\- You can use AWS WAF to define customizable web security rules that control which traffic accesses your web applications. 
+	\- If you use **AWS Shield Advanced**, you can use AWS WAF at no extra cost for those protected resources.
+	\- **rate-based rule** counts the requests that arrive from any individual address in any five-minute period.
+	\- can deploy AWS WAF on:
+		\- AWS CloudFront as part of your CDN solution
+		\- the ALB that fronts your web servers or origin servers running on EC2
+		\- AWS API Gateway for your APIs.
+	\- **allows or blocks web requests based on the country that the requests originate from but still allow specific IP addresses from that country.**
 		\- Using AWS WAF, create a web ACL with a rule that explicitly allows requests from approved IP addresses declared in an IP Set.
 		\- Add another rule in the AWS WAF web ACL with a geo match condition that blocks requests that originate from a specific country.
+<img src="Definations.assets/product-page-diagram_AWS-WAF_How-it-Works@2x.452efa12b06cb5c87f07550286a771e20ca430b9.png" alt="img" style="zoom:50%;" />
 
-**AWS GuardDuty** is an intelligent threat detection service to protect your AWS accounts and workloads. 	
+**AWS GuardDuty** is an intelligent threat detection service	
  **AWS EFA(Elastic Fabric Adapter)** 
 	 \- is simply an Elastic Network Adapter (ENA) with added OS-bypass capabilities. **OS-Bypass** is an access model that allow the HPC and machine learning applications to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality. The OS-bypass capabilities of EFAs are not supported on Windows instances. If you attach an EFA to a Windows instance, the instance functions as an Elastic Network Adapter, without the added EFA capabilities.
 	\- you can attach only one EFA per EC2 instance.	
 
-**Elastic Network Interface (ENI)** 
+**AWS ENI(Elastic Network Interface)** 
 	is a logical networking component in a VPC that represents a virtual network card. 
 	It doesn’t have OS-bypass capabilities that allow the HPC to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality.
 **AWS ENA(Elastic Network Adapter)** 	
@@ -837,7 +898,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 <img src="Definations.assets/Big-Data-Redesign_Diagram_Enterprise-Data-Warehouse.52d3e98fc79bf05e60c0f8278f067de595d5d3b2.png" alt="img" style="zoom: 80%;" />
 
 **AWS Single Sign-On (SSO)** is a cloud SSO service that just makes it easy to centrally manage SSO access to multiple AWS accounts and business applications. 	
-**AWS Firewall Manager** simplifies your AWS WAF administration and maintenance tasks across multiple accounts and resources.
+**AWS Firewall Manager** simplifies your AWS WAF and AWS Shield Advanced administration and maintenance tasks across multiple accounts and resources.
 **AWS Batch** is primarily used to efficiently run hundreds of thousands of batch computing jobs in AWS.
 
 **AWS Step Functions** provides serverless orchestration for modern applications.
@@ -851,8 +912,8 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 
 ==**AWS Trusted Advisor**== is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices. It ==inspects your AWS environment and makes recommendations for saving money, improving system performance and reliability, or closing security gaps.==
 ==***\*AWS Cost Explorer\**** enables you to view and analyze your costs and usage.== You can explore your usage and costs using the main graph, the Cost Explorer cost and usage reports, or the Cost Explorer RI reports. It has an easy-to-use interface that lets you visualize, understand, and manage your AWS costs and usage over time.
-==***\*AWS Budgets\**** gives you the ability to set custom budgets that alert you when your costs or usage exceed (or are forecasted to exceed) your budgeted amount.== You can also use AWS Budgets to set reservation utilization or coverage targets and receive alerts when your utilization drops below the threshold you define.
-==***\*AWS Inspector\**** is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.== Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices.
+==**AWS Budgets** gives you the ability to set custom budgets that alert you when your costs or usage exceed (or are forecasted to exceed) your budgeted amount.== You can also use AWS Budgets to set reservation utilization or coverage targets and receive alerts when your utilization drops below the threshold you define.
+==**AWS Inspector** is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.== Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices.
 **AWS Workspace** is used to create the needed virtual desktops in your VPC.
 **AWS Certificate Manager (ACM)** provides SSL certificates.
 **AWS CloudHSM** you only store keys in CloudHSM. 
@@ -864,7 +925,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 	is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics. 
 **Horizontal scaling** means scaling by adding more machines to your pool of resources (also described as “scaling out”), whereas **vertical scaling** refers to scaling by adding more power (e.g. CPU, RAM) to an existing machine (also described as “scaling up”).
 **Ingress** refers to the right to enter a property, while **egress** refers to the right to exit a property.
-***\*Amazon Connect\**** is not a VPN connectivity option. It is actually a self-service, cloud-based contact center service in AWS that makes it easy for any business to deliver better customer service at a lower cost. Amazon Connect is based on the same contact center technology used by Amazon customer service associates around the world to power millions of customer conversations.
+**AWS Connect** is not a VPN connectivity option. It is actually a self-service, cloud-based contact center service in AWS that makes it easy for any business to deliver better customer service at a lower cost. Amazon Connect is based on the same contact center technology used by Amazon customer service associates around the world to power millions of customer conversations.
 **AWS CodeDeploy** is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances, or serverless Lambda functions.
 **AWS Organizations** 
 	is an account management service that lets you consolidate multiple AWS accounts into an organization that you create and centrally manage. You can organize those accounts into groups and attach policy-based controls.
@@ -898,5 +959,24 @@ section 4=> 16
 
 **Timed Mode 1**: question 29, 51, 53, 
 **Timed Mode 2:** 
-**CSAA - Design High-Performing Architectures**: 11
+<u>**Incorrect questions:**</u>
+**CSAA - Design High-Performing Architectures**:
 **CSAA - Design Resilient Architectures**: 3, 13, 19
+**CSAA - Design Secure Applications and Architectures**: 9
+**<u>Correct Questions:</u>**
+**CSAA - Design Cost-Optimized Architectures**: 
+**CSAA - Design High-Performing Architectures**: 1,2,3,4,6,7,8,9, 10,12, 13, 
+**CSAA - Design Resilient Architectures**: 1,2,4,5,6,7,8,9,10,11,12,14,15,16,17,20,21,23,24,25, 
+**CSAA - Design Secure Applications and Architectures**: 1,2,3,5,8,10,11,12,13,16,17
+
+**Timed Mode 3:** +review Correct answers
+**CSAA - Design Cost-Optimized Architectures**:
+**CSAA - Design High-Performing Architectures**: 
+**CSAA - Design Resilient Architectures**: 5
+**CSAA - Design Secure Applications and Architectures**: 
+
+**Timed Mode 4:** +review Correct answers
+**CSAA - Design Cost-Optimized Architectures**:
+**CSAA - Design High-Performing Architectures**: 24, 27
+**CSAA - Design Resilient Architectures**: 9
+**CSAA - Design Secure Applications and Architectures**: 
