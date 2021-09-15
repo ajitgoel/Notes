@@ -12,9 +12,9 @@
 	\- new EC2 instance will not automatically get a DNS hostname if the **DNS resolution** and **DNS hostnames** attributes are disabled in the newly created VPC.
 
 **VPC endpoint**:
-    a. enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an Internet gateway, NAT device, VPN connection, or AWS Direct Connect connection, by creating a entry in VPC route table to direct data to the AWS service. 
-    b. Instances in your VPC do not require public IP addresses to communicate with resources in the service. 
-	c. Traffic between your VPC and the other services does not leave the Amazon network.
+    \- enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an Internet gateway, NAT device, VPN connection, or AWS Direct Connect connection, by creating a entry in VPC route table to direct data to the AWS service. 
+    \- Instances in your VPC do not require public IP addresses to communicate with resources in the service. 
+	\- ==Traffic between your VPC and the other services does not leave the Amazon network. VPC endpoints do not support inter-region communication.==
 	d. **gateway VPC endpoint** 
 			is a gateway that you specify in your route table to access AWS S3\DynamoDB from your VPC over the AWS network. 
 			==There is no additional charge for using gateway endpoints==. However, standard charges for data transfer and resource usage still apply.
@@ -43,12 +43,18 @@
 
 
 **Endpoints** are virtual devices, that allow communication between instances in your VPC and services without imposing constraints on your network traffic.
+
+------
+
 ==**VPC peering connection:**==
     a. ==networking connection between two VPCs that enables you to route traffic between them privately.== Instances in either VPC can communicate with each other as if they are within the same network. 
     b. You can create a VPC peering connection between your own VPCs, with a VPC in another AWS account, or with a VPC in a different AWS Region.
     c. AWS uses the existing infrastructure of a VPC to create a VPC peering connection; it is neither a gateway nor a VPN connection and does not rely on a separate piece of physical hardware. 
     d. There is no single point of failure for communication or a bandwidth bottleneck
 	e. the route table’s target and destination of the instances’ subnet has to be re-configured
+![image-20210914195632813](Definations.assets/image-20210914195632813.png)
+
+------
 
 **Transit Gateway:** used for interconnecting VPCs and onpremises networks through a central hub
 **Direct Connect gateway** 
@@ -62,6 +68,15 @@
 	e. ==**Transit Gateway** mainly used for connecting VPCs and on-premises networks through a central hub.==
 	
 <img src="Definations.assets/image-20210902211108581.png" alt="image-20210902211108581"  />
+
+------
+
+**scale throughput of VPN connections where multiple AWS Site-to-Site VPN connections are placed between VPCs and their remote network.** 
+
+![image-20210914192931148](Definations.assets/image-20210914192931148.png)
+
+------
+
 ==**inter-region VPC peering**== 
 	==allows peering relationships to be established between VPCs across different AWS regions.== 
 	ensure that the traffic will always stay on the global AWS backbone and will never traverse the public Internet 
@@ -107,14 +122,15 @@ You can connect your Amazon VPC to remote networks and users using the following
 ------
 
 **AWS security group** 
-	acts as a virtual firewall for your instance to control inbound and outbound traffic. 
-	When you launch an instance in a VPC, you can assign up to five security groups to the instance. 
-	Security groups act at the instance level, not the subnet level. Therefore, each instance in a subnet in your VPC can be assigned to a different set of security groups.
-	If you launch an instance and you don't specify a security group, the instance is automatically assigned to the default security group for the VPC. 
-	For each security group, you add *rules* that control the inbound traffic to instances, and a separate set of rules that control the outbound traffic.
-	Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (`169.254.0.0/16`) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). Similarly, flow logs do not capture IP traffic to or from these addresses.
-	==The FTP protocol uses TCP via ports 20 and 21.==
-	==The **/32** in the the CIDR notation denotes one IP address and the **/0** refers to the entire network.==
+	\- acts as a virtual firewall for your instance to control inbound and outbound traffic. 
+	\- When you launch an instance in a VPC, you can assign up to five security groups to the instance. 
+	\- Security groups act at the instance level, not the subnet level. Therefore, each instance in a subnet in your VPC can be assigned to a different set of security groups.
+	\- If you launch an instance and you don't specify a security group, the instance is automatically assigned to the default security group for the VPC. 
+	\- For each security group, you add *rules* that control the inbound traffic to instances, and a separate set of rules that control the outbound traffic.
+	\- Security groups are stateful which means that if an incoming request is granted, then the outgoing traffic will be automatically granted as well, regardless of the outbound rules.
+	\- Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (`169.254.0.0/16`) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). Similarly, flow logs do not capture IP traffic to or from these addresses.
+	\- ==The FTP protocol uses TCP via ports 20 and 21.==
+	\- ==The **/32** in the the CIDR notation denotes one IP address and the **/0** refers to the entire network.==
 
 <img src="Definations.assets/2020-01-11_09-55-33-102a3438068e9bb4c45fa670155c2044.png" alt="img" style="zoom:67%;" />
 
@@ -245,8 +261,12 @@ To get temporary security credentials, the identity broker application calls eit
  	provides sustained performance for ==mission-critical== low-latency workloads.
 	offer storage with consistent and low-latency performance and are designed for I/O intensive applications such as large relational or NoSQL databases.
 **EBS General Purpose SSD (gp2)** 
-	it does not provide the high IOPS required by the application, unlike the Provisioned IOPS SSD volume.
-	are suitable for a broad range of workloads, including small to medium sized databases, development, and test environments, and boot volumes.
+	\- it does not provide the high IOPS required by the application, unlike the Provisioned IOPS SSD volume.
+	\- are suitable for a broad range of workloads, including small to medium sized databases, development, and test environments, and boot volumes.
+	\- deliver single-digit millisecond latencies 
+	\- can burst to 3,000 IOPS. 
+	\- can range in size from 1 GiB to 16 TiB.
+
 **EBS Throughput Optimized HDD (st1)**
 	these are HDD volumes which are more suitable for large streaming workloads rather than transactional database workloads.
 **EBS Cold HDD (sc1)** 
@@ -269,10 +289,20 @@ To get temporary security credentials, the identity broker application calls eit
 ------
 
 **AWS EFS:**
-    file storage service for use with Amazon EC2. 
-    provides a file system interface, file system access semantics (such as strong consistency and file locking), and concurrently-accessible storage for up to thousands of Amazon EC2 instances. 
-	stores data redundantly across multiple AZs by default
-	provides the same level of high availability and high scalability like S3 however, ==EFS is more suitable for scenarios where it is required to have a POSIX-compatible file system or if you are storing rapidly changing data. It offers strong consistency and file locking which the S3 service lacks..==
+    \- file storage service for use with Amazon EC2. 
+    \- provides a file system interface, file system access semantics (such as strong consistency and file locking), and concurrently-accessible storage for up to thousands of Amazon EC2 instances. 
+	\- stores data redundantly across multiple AZs by default
+	\- provides the same level of high availability and high scalability like S3 however, ==EFS is more suitable for scenarios where it is required to have a POSIX-compatible file system or if you are storing rapidly changing data. It offers strong consistency and file locking which the S3 service lacks.==
+	 \- can be used for HPC applications, ==it doesn't natively work with AWS S3==. 
+	\- It doesn't have the capability to easily process your S3 data with a high-performance POSIX interface, unlike Amazon FSx for Lustre.
+
+**AWS FSx for Lustre** provides a high-performance file system optimized for fast processing of workloads such as machine learning, high performance computing (HPC), video processing, financial modeling, and electronic design automation (EDA). These workloads commonly require data to be presented via a fast and scalable file system interface, and typically have data sets stored on long-term data stores like Amazon S3.
+![img](Definations.assets/FSx_Lustre_diagram.9f3f9ca4ea7827b296033b17f885543d4c3ca778-16316826957572.png)
+
+**Amazon FSx for Windows File Server** 
+	is a type of Amazon FSx, 
+	it does not work natively with Amazon S3. 
+	is a fully managed native Microsoft Windows file system that is primarily used for your Windows-based applications that require shared file storage to AWS.
 
 ------
 
@@ -306,6 +336,12 @@ To get temporary security credentials, the identity broker application calls eit
 | A\Z                             | >=3 AZ's                         | >=3 AZ's                            | >=3 AZ's                                                     | 1 AZ's                              | >=3 AZ's                                                     | >=3 AZ's                                               |
 
 <img src="Definations.assets/s3-minimum-storage-duration.png" alt="img" style="zoom:67%;" />
+
+**constraints when you want to transition from the STANDARD storage classes to either STANDARD_IA or ONEZONE_IA:**
+
+ – For larger objects, there is a cost benefit for transitioning to STANDARD_IA or ONEZONE_IA. Amazon S3 does not transition objects that are smaller than 128 KB to the STANDARD_IA or ONEZONE_IA storage classes because it’s not cost effective.
+– ==Objects must be stored **at least 30 days** in the current storage class before you can transition them to STANDARD_IA or ONEZONE_IA.== For example, you cannot create a lifecycle rule to transition objects to the STANDARD_IA storage class one day after you create them. Amazon S3 doesn’t transition objects within the first 30 days because newer objects are often accessed more frequently or deleted sooner than is suitable for STANDARD_IA or ONEZONE_IA storage.
+ – If you are transitioning noncurrent objects (in versioned buckets), ==you can transition only objects that are at least 30 days noncurrent to STANDARD_IA or ONEZONE_IA storage==.
 
 **S3 Object Lock** can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely.
 
@@ -376,7 +412,8 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 
 **Elastic IP(EIP) address** is just a static, public IPv4 address.
 **AWS ParallelCluster** 
-	is just an AWS-supported open-source cluster management tool that makes it easy for you to deploy and manage High-Performance Computing (HPC) clusters on AWS. 
+	is an AWS-supported open-source cluster management tool that makes it easy for you to deploy and manage High-Performance Computing (HPC) clusters on AWS. 
+	It does not provide higher bandwidth, higher packet per second (PPS) performance, and lower inter-instance latencies, unlike ENA or EFA.
 	uses a simple text file to model and provision all the resources needed for your HPC applications in an automated and secure manner.
 
 ------
@@ -428,7 +465,9 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 
 **placement strategies**
 **Cluster placement**– packs instances close together inside an Availability Zone. This strategy enables workloads to achieve the low-latency network performance necessary for tightly-coupled node-to-node communication that is typical of HPC applications.
-	recommended to launch the number of instances that is needed in the placement group in a single launch request and that you use the same instance type for all instances in the placement group. **Partition** – spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. This strategy is typically used by large distributed and replicated workloads, such as Hadoop, Cassandra, and Kafka.
+	recommended to launch the number of instances that is needed in the **placement group** in a single launch request and that you use the same instance type for all instances in the placement group. 
+	If we need to add another EC2 instance in a placement group then Stop and restart the instances in the Placement group and then try the launch again will allow AWS to move the instances to a hardware that has the capacity for all the requested instances.
+**Partition** – spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. This strategy is typically used by large distributed and replicated workloads, such as Hadoop, Cassandra, and Kafka.
 **Spread** – strictly places a small group of instances across distinct underlying hardware to reduce correlated failures.
 
 **Amazon Data Lifecycle Manager (Amazon DLM)** to automate the creation, retention, and deletion of snapshots taken to back up your Amazon EBS volumes. 
@@ -479,11 +518,11 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 **JSON Web Token (JWT)** is meant to be used for user authentication and session management.
 **Amazon WorkDocs** is a fully managed, secure content creation, storage, and collaboration service.
 **Bastion host** is a special purpose computer on a network specifically designed and configured to withstand attacks. If you have a bastion host in AWS, it is basically just an EC2 instance. It should be in a public subnet with either a public or Elastic IP address with sufficient RDP or SSH access defined in the security group. Users log on to the bastion host via SSH or RDP and then use that session to manage other hosts in the private subnets
-**Amazon Kinesis** is the streaming data platform of AWS and has four distinct services under it: Kinesis Data Firehose, Kinesis Data Streams, Kinesis Video Streams, and Amazon Kinesis Data Analytics.
-**Amazon Kinesis Data Firehose** allows you to load streaming data into data stores and analytics tools. It can capture, transform, and load streaming data, enabling near real-time analytics with existing business intelligence tools and dashboards you are already using today. It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security. You can use Amazon Kinesis Data Firehose in conjunction with Amazon Kinesis Data Streams if you need to implement real-time processing of streaming big data. 
+**AWS Kinesis** is the streaming data platform of AWS and has four distinct services under it: Kinesis Data Firehose, Kinesis Data Streams, Kinesis Video Streams, and Amazon Kinesis Data Analytics.
+**AWS Kinesis Data Firehose** allows you to load streaming data into data stores and analytics tools. It can capture, transform, and load streaming data, enabling near real-time analytics with existing business intelligence tools and dashboards you are already using today. It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security. You can use Amazon Kinesis Data Firehose in conjunction with Amazon Kinesis Data Streams if you need to implement real-time processing of streaming big data. 
 	 only supports AWS S3, AWS Redshift, AWS Elasticsearch, and an HTTP endpoint as the destination, ==does not support AWS Lambda as destination==
 
-**Kinesis Data Streams** 
+**AWS Kinesis Data Streams** 
 	\- ==enables real-time processing of streaming big data.== provides an ordering of records, as well as the ability to read and/or replay records in the same order to multiple Amazon Kinesis Applications.
 	\- is used to collect and process large streams of data records in real-time. 
 	\- can be used for rapid and continuous data intake and aggregation.
@@ -492,9 +531,10 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 
 **AWS Kinesis Client Library (KCL)** delivers all records for a given partition key to the same record processor, making it easier to build multiple applications reading from the same Amazon Kinesis data stream
 **AWS Redshift** 
-	a. data warehouse that makes it simple and cost-effective to analyze all your data across your data warehouse and data lake. 
-	b. delivers ten times faster performance than other data warehouses by using machine learning, massively parallel query execution, and columnar storage on high-performance disk.
-	c. **Cross-Region snapshots:** You can configure Amazon Redshift to copy snapshots for a cluster to another region. 
+	\- data warehouse that makes it simple and cost-effective to analyze all your data across your data warehouse and data lake. 
+	\- delivers ten times faster performance than other data warehouses by using machine learning, massively parallel query execution, and columnar storage on high-performance disk.
+	==\- delivers sub-second response times.== 
+	\- **Cross-Region snapshots:** You can configure Amazon Redshift to copy snapshots for a cluster to another region. 
 	To configure cross-region snapshot copy, you need to enable this copy feature for each cluster and configure where to copy snapshots and how long to keep copied automated snapshots in the destination region. 
 
 **Amazon Redshift with AWS Cloud Development Kit (AWS CDK)** 
@@ -773,10 +813,11 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 
 ------
 
-**AWS Elastic Load Balancer(ELB)** 
+**AWS ELB(Elastic Load Balancer)** 
 	==is designed to only run in one region and not across multiple regions==.	
 	Health checks ensure your ELB won't send traffic to unhealthy (crashed) instances
 	provides access logs that capture detailed information about requests sent to your load balancer, disabled by default. logs are stored in the Amazon S3 bucket that you specify as compressed files. You can disable access logging at any time.
+	provides access logs that capture detailed information about requests sent to your load balancer. contains information such as the time the request was received, the client’s IP address, latencies, request paths, and server responses. captures the logs and stores them in the AWS S3 bucket that you specify as compressed files. 
 
 | Elastic Load Balancing types | NLB(Network load balancer)                                   | **Application load balancer**                                | Gateway load balancer                         | Classic load balancer                                        |
 | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ |
@@ -890,7 +931,6 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 	is a logical networking component in a VPC that represents a virtual network card. 
 	It doesn’t have OS-bypass capabilities that allow the HPC to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality.
 **AWS ENA(Elastic Network Adapter)** 	
-	It doesn’t have OS-bypass capabilities that allow the HPC to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality.
 	provide traditional IP networking features that are required to support VPC networking.
 	**Enhanced networking** uses **single root I/O virtualization (SR-IOV)** to provide high-performance networking capabilities on supported instance types. ==SR-IOV is a method of device virtualization that provides higher I/O performance and lower CPU utilization when compared to traditional virtualized network interfaces.== Enhanced networking provides higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies. There is no additional charge for using enhanced networking. supports network speeds of up to 100 Gbps for supported instance types.
 
@@ -911,7 +951,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 **Systems Manager Automation service** is primarily used to simplify common maintenance and deployment tasks of Amazon EC2 instances and other AWS resources. 
 
 ==**AWS Trusted Advisor**== is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices. It ==inspects your AWS environment and makes recommendations for saving money, improving system performance and reliability, or closing security gaps.==
-==***\*AWS Cost Explorer\**** enables you to view and analyze your costs and usage.== You can explore your usage and costs using the main graph, the Cost Explorer cost and usage reports, or the Cost Explorer RI reports. It has an easy-to-use interface that lets you visualize, understand, and manage your AWS costs and usage over time.
+==**AWS Cost Explorer** enables you to view and analyze your costs and usage.== You can explore your usage and costs using the main graph, the Cost Explorer cost and usage reports, or the Cost Explorer RI reports. It has an easy-to-use interface that lets you visualize, understand, and manage your AWS costs and usage over time.
 ==**AWS Budgets** gives you the ability to set custom budgets that alert you when your costs or usage exceed (or are forecasted to exceed) your budgeted amount.== You can also use AWS Budgets to set reservation utilization or coverage targets and receive alerts when your utilization drops below the threshold you define.
 ==**AWS Inspector** is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.== Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices.
 **AWS Workspace** is used to create the needed virtual desktops in your VPC.
@@ -939,6 +979,9 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 **AWS Elastic Beanstalk** 
 	supports the deployment of web applications from Docker containers. 
 	==By using Docker with Elastic Beanstalk, you have an infrastructure that automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.== 
+	Application files are stored in S3. 
+	The server log files can be stored in the attached EBS volumes of the EC2 instances(which were launched by AWS Elastic Beanstalk) or S3 or CloudWatch Logs.
+
 **AWS ECS(Elastic container service)**:
 	provides Service Auto Scaling, Service Load Balancing, and Monitoring with CloudWatch but it is not ***automatically\*** enabled by default unlike with Elastic Beanstalk. 
 ==**AWS Macie** is an ML-powered security service that== helps you prevent data loss by ==automatically discovering, classifying, and protecting sensitive data stored in Amazon S3==. Amazon Macie uses machine learning to recognize sensitive data such as personally identifiable information (PII) or intellectual property, assigns a business value, and provides visibility into where this data is stored and how it is being used in your organization. Amazon Macie ==continuously monitors data access activity== for anomalies, and ==delivers alerts when it detects== risk of unauthorized access or inadvertent data leaks. Amazon Macie has ability to detect global access permissions inadvertently being set on sensitive data, detect uploading of API keys inside source code, and verify sensitive customer data is being stored and accessed in a manner that meets their compliance standards.
@@ -977,6 +1020,12 @@ section 4=> 16
 
 **Timed Mode 4:** +review Correct answers
 **CSAA - Design Cost-Optimized Architectures**:
-**CSAA - Design High-Performing Architectures**: 24, 27
-**CSAA - Design Resilient Architectures**: 9
+**CSAA - Design High-Performing Architectures**: 
+**CSAA - Design Resilient Architectures**: 
 **CSAA - Design Secure Applications and Architectures**: 
+
+**Timed Mode 6:** +review Correct answers
+**CSAA - Design Cost-Optimized Architectures**: 
+**CSAA - Design High-Performing Architectures**: 13, 22
+**CSAA - Design Resilient Architectures**: 9,17,19,20, 
+**CSAA - Design Secure Applications and Architectures**: 2,9,10, 12, 14, 

@@ -9,7 +9,7 @@
    - Add an Amazon CloudWatch Logs agent on the application load balancer.
    - Enable Amazon CloudWatch metrics on the application load balancer.
    - Enable AWS CloudTrail for their application load balancer.
-   - Enable access logs on the application load balancer.
+   - ==Enable access logs on the application load balancer.==
 
    
 
@@ -51,6 +51,32 @@
 
    
 
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
 2. ##### 2. QUESTION
 
    A multimedia company needs to deploy web services to an AWS region that they have never used before. The company currently has an IAM role for its Amazon EC2 instance that permits the instance to access Amazon DynamoDB. They want their EC2 instances in the new region to have the exact same privileges.
@@ -61,7 +87,7 @@
 
    - In the new Region, create a new IAM role and associated policies then assign it to the new instance.
    - Create an Amazon Machine Image (AMI) of the instance and copy it to the new region.
-   - Assign the existing IAM role to instances in the new region.
+   - ==Assign the existing IAM role to instances in the new region.==
    - Duplicate the IAM role and associated policies to the new region and attach it to the instances.
 
    
@@ -143,18 +169,12 @@
 
    Which of the following is the MOST appropriate service to use to satisfy this task?
 
-   
-
    - AWS Cost Explorer
-   - AWS Budgets
-   - AWS Trusted Advisor
+- AWS Budgets
+   - ==AWS Trusted Advisor==
    - Amazon Inspector
-
    
-
    **Incorrect**
-
-   
 
    **AWS Trusted Advisor** is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices. It inspects your AWS environment and makes recommendations for saving money, improving system performance and reliability, or closing security gaps.
 
@@ -676,13 +696,49 @@
 
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     **Check out this Amazon VPC Cheat Sheet:**
 
     https://tutorialsdojo.com/amazon-vpc/
-
-    
-
-    
 
 14. ##### 14. QUESTION
 
@@ -690,23 +746,17 @@
 
     Which combination of steps will achieve this? (Select TWO.)
 
-    
-
     - Create an Egress-only Internet Gateway.
-    - Launch a NAT Gateway in the public subnet of each VPC.
+- Launch a NAT Gateway in the public subnet of each VPC.
     - Deploy a VPC endpoint on each region to enable a private connection.
-    - Set up a VPC peering connection between the VPCs.
-    - Re-configure the route table’s target and destination of the instances’ subnet.
-
+    - ==Set up a VPC peering connection between the VPCs.==
+    - ==Re-configure the route table’s target and destination of the instances’ subnet.==
     
-
     **Incorrect**
-
-    
 
     A **VPC peering connection** is a networking connection between two VPCs that enables you to route traffic between them using private IPv4 addresses or IPv6 addresses. Instances in either VPC can communicate with each other as if they are within the same network. You can create a VPC peering connection between your own VPCs, or with a VPC in another AWS account. The VPCs can be in different regions (also known as an inter-region VPC peering connection).
 
-    ![img](https://docs.aws.amazon.com/vpc/latest/peering/images/peering-intro-diagram.png)
+    ![img](TutorialsDojo-TimedMode-5.assets/peering-intro-diagram.png)
 
     **Inter-Region VPC Peering** provides a simple and cost-effective way to share resources between regions or replicate data for geographic redundancy. Built on the same horizontally scaled, redundant, and highly available technology that powers VPC today, Inter-Region VPC Peering encrypts inter-region traffic with no single point of failure or bandwidth bottleneck. Traffic using Inter-Region VPC Peering always stays on the global AWS backbone and never traverses the public internet, thereby reducing threat vectors, such as common exploits and DDoS attacks.
 
@@ -722,23 +772,15 @@
 
     The option that says: ***\*Deploy a VPC endpoint on each region to enable private connection\**** is incorrect. VPC endpoints are region-specific only and do not support inter-region communication.
 
-     
-
     **References:**
 
     https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html
 
     https://aws.amazon.com/about-aws/whats-new/2017/11/announcing-support-for-inter-region-vpc-peering/
 
-     
-
     **Check out this Amazon VPC Cheat Sheet:**
 
     [https://tutorialsdojo.com/amazon-vpc/](https://tutorialsdojo.com/amazon-s3/)
-
-    
-
-    
 
 15. ##### 15. QUESTION
 
@@ -746,19 +788,13 @@
 
     Which of the following are valid options that the Solutions Architect can implement to meet the above requirement? (Select TWO.)
 
-    
-
     - Set a lifecycle policy in the bucket to transition the data to S3 – Standard IA storage class after one week (7 days).
-    - Set a lifecycle policy in the bucket to transition the data to S3 – One Zone-Infrequent Access storage class after one week (7 days).
+- Set a lifecycle policy in the bucket to transition the data to S3 – One Zone-Infrequent Access storage class after one week (7 days).
     - Set a lifecycle policy in the bucket to transition the data to S3 Glacier Deep Archive storage class after one week (7 days).
-    - Set a lifecycle policy in the bucket to transition the data from Standard storage class to Glacier after one week (7 days).
-    - Set a lifecycle policy in the bucket to transition to S3 – Standard IA after 30 days
-
+    - ==Set a lifecycle policy in the bucket to transition the data from Standard storage class to Glacier after one week (7 days).==
+    - ==Set a lifecycle policy in the bucket to transition to S3 – Standard IA after 30 days==
     
-
     **Incorrect**
-
-    
 
     You can add rules in a lifecycle configuration to tell Amazon S3 to transition objects to another Amazon S3 storage class. For example: When you know that objects are infrequently accessed, you might transition them to the STANDARD_IA storage class. Or transition your data to the GLACIER storage class in case you want to archive objects that you don’t need to access in real time.
 
@@ -1161,29 +1197,59 @@
 
     ***\*EBS Cold HDD (sc1)\**** is incorrect. Although this provides lower cost HDD volume compared to General Purpose SSD, it is much suitable for ***less\*** frequently accessed workloads.
 
-     
-
     **Reference:**
 
     https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html#EBSVolumeTypes_st1
 
-     
-
     **Amazon EBS Overview – SSD vs HDD:**
-
-    
 
     <iframe title="YouTube video player" src="https://www.youtube.com/embed/LW7x8wyLFvw" frameborder="0" allowfullscreen="allowfullscreen" name="fitvid4" style="box-sizing: border-box; margin: 0px; position: absolute; top: 0px; left: 0px; width: 966px; height: 543.375px;"></iframe>
 
     
 
-     
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     **Check out this Amazon EBS Cheat Sheet:**
 
     https://tutorialsdojo.com/amazon-ebs/
-
-    
 
     
 
@@ -1226,8 +1292,6 @@
 
     ***\*AWS CloudFormation – Templates, Stacks, Change Sets:\****
 
-    
-
     <iframe title="YouTube video player" src="https://www.youtube.com/embed/9Xpuprxg7aY" frameborder="0" allowfullscreen="allowfullscreen" data-mce-fragment="1" name="fitvid5" style="box-sizing: border-box; margin: 0px; position: absolute; top: 0px; left: 0px; width: 966px; height: 543.375px;"></iframe>
 
     
@@ -1236,28 +1300,60 @@
 
     
 
-23. ##### 23. QUESTION
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+23. ##### ==23. QUESTION==
 
     A company has multiple AWS Site-to-Site VPN connections placed between their VPCs and their remote network. During peak hours, many employees are experiencing slow connectivity issues, which limits their productivity. The company has asked a solutions architect to scale the throughput of the VPN connections.
 
     Which solution should the architect carry out?
 
-    
-
     - Add more virtual private gateways to a VPC and enable Equal Cost Multipath Routing (ECMR) to get higher VPN bandwidth.
-    - Modify the VPN configuration by increasing the number of tunnels to scale the throughput.
+- Modify the VPN configuration by increasing the number of tunnels to scale the throughput.
     - Re-route some of the VPN connections to a secondary customer gateway device on the remote network’s end.
-    - Associate the VPCs to an Equal Cost Multipath Routing (ECMR)-enabled transit gateway and attach additional VPN tunnels.
-
+    - ==Associate the VPCs to an Equal Cost Multipath Routing (ECMR)-enabled transit gateway and attach additional VPN tunnels.==
     
-
     **Incorrect**
-
-    
 
     With AWS Transit Gateway, you can simplify the connectivity between multiple VPCs and also connect to any VPC attached to AWS Transit Gateway with a single VPN connection.
 
-    ![img](https://d2908q01vomqb2.cloudfront.net/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8/2020/02/02/Multiple-Tunnels.png)
+    ![img](TutorialsDojo-TimedMode-5.assets/Multiple-Tunnels.png)
 
     AWS Transit Gateway also enables you to scale the IPsec VPN throughput with equal-cost multi-path (ECMP) routing support over multiple VPN tunnels. A single VPN tunnel still has a maximum throughput of 1.25 Gbps. If you establish multiple VPN tunnels to an ECMP-enabled transit gateway, it can scale beyond the default limit of 1.25 Gbps.
 
@@ -1269,23 +1365,15 @@
 
     The option that says: ***\*Re-route some of the VPN connections to a secondary customer gateway device on the remote network’s end\**** is incorrect. This would only increase connection redundancy and won’t increase throughput. For example, connections can failover to the secondary customer gateway device in case the primary customer gateway device becomes unavailable.
 
-     
-
     **References:**
 
     https://aws.amazon.com/premiumsupport/knowledge-center/transit-gateway-ecmp-multiple-tunnels/
 
     https://aws.amazon.com/blogs/networking-and-content-delivery/scaling-vpn-throughput-using-aws-transit-gateway/
 
-     
-
     **Check out this AWS Transit Gateway Cheat Sheet:**
 
     https://tutorialsdojo.com/aws-transit-gateway/
-
-    
-
-    
 
 24. ##### 24. QUESTION
 
@@ -2030,13 +2118,49 @@
 
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     **Check out this Amazon S3 Glacier Cheat Sheet:**
 
     https://tutorialsdojo.com/amazon-glacier/
-
-    
-
-    
 
 37. ##### 37. QUESTION
 
@@ -2044,18 +2168,12 @@
 
     Which of the following options is the most suitable approach to migrate the database in AWS?
 
-    
-
     - Configure a Launch Template that automatically converts the source schema and code to match that of the target database. Then, use the AWS Database Migration Service to migrate data from the source database to the target database.
-    - First, use the AWS Schema Conversion Tool to convert the source schema and application code to match that of the target database, and then use the AWS Database Migration Service to migrate data from the source database to the target database.
+- ==First, use the AWS Schema Conversion Tool to convert the source schema and application code to match that of the target database, and then use the AWS Database Migration Service to migrate data from the source database to the target database.==
     - Use Amazon Neptune to convert the source schema and code to match that of the target database in RDS. Use the AWS Batch to effectively migrate the data from the source database to the target database in a batch process.
     - Heterogeneous database migration is not supported in AWS. You have to transform your database first to PostgreSQL and then migrate it to RDS.
-
     
-
     **Incorrect**
-
-    
 
     **AWS Database Migration Service** helps you migrate databases to AWS quickly and securely. The source database remains fully operational during the migration, minimizing downtime to applications that rely on the database. The AWS Database Migration Service can migrate your data to and from most widely used commercial and open-source databases.
 
@@ -2068,8 +2186,6 @@
     The option that says: ***\*Use Amazon Neptune to convert the source schema and code to match that of the target database in RDS. Use the AWS Batch to effectively migrate the data from the source database to the target database in a batch process\**** is incorrect because Amazon Neptune is a fully-managed graph database service and not a suitable service to use to convert the source schema. AWS Batch is not a database migration service and hence, it is not suitable to be used in this scenario. You should use the AWS Schema Conversion Tool and AWS Database Migration Service instead.
 
     The option that says: ***\*Heterogeneous database migration is not supported in AWS. You have to transform your database first to PostgreSQL and then migrate it to RDS\**** is incorrect because heterogeneous database migration is supported in AWS using the Database Migration Service.
-
-     
 
     **References:**
 
@@ -2366,15 +2482,9 @@
 
     https://docs.aws.amazon.com/sns/latest/dg/sns-common-scenarios.html
 
-     
-
     **Check out this Amazon SQS Cheat Sheet:**
 
     https://tutorialsdojo.com/amazon-sqs
-
-    
-
-    
 
 43. ##### 43. QUESTION
 
@@ -2382,18 +2492,12 @@
 
     Which of the following is the most suitable approach to implement the encryption?
 
-    
-
     - Use CloudTrail and configure the destination S3 bucket to use Server Side Encryption (SSE) with AES-128 encryption algorithm.
-    - Use CloudTrail and configure the destination S3 bucket to use Server-Side Encryption (SSE).
+- Use CloudTrail and configure the destination S3 bucket to use Server-Side Encryption (SSE).
     - Use CloudTrail and configure the destination Amazon Glacier archive to use Server-Side Encryption (SSE).
-    - Use CloudTrail with its default settings.
-
+    - ==Use CloudTrail with its default settings.==
     
-
     **Incorrect**
-
-    
 
     By default, CloudTrail event log files are encrypted using Amazon S3 server-side encryption (SSE). You can also choose to encrypt your log files with an AWS Key Management Service (AWS KMS) key. You can store your log files in your bucket for as long as you want. You can also define Amazon S3 lifecycle rules to archive or delete log files automatically. If you want notifications about log file delivery and validation, you can set up Amazon SNS notifications.
 
@@ -2405,23 +2509,15 @@
 
     ***\*Use CloudTrail and configure the destination S3 bucket to use Server Side Encryption (SSE) with AES-128 encryption algorithm\**** is incorrect because Cloudtrail event log files are already encrypted using the Amazon S3 server-side encryption (SSE) by default. Additionally, SSE-S3 only uses the AES-256 encryption algorithm and not the AES-128.
 
-     
-
     **References:**
 
     https://docs.aws.amazon.com/awscloudtrail/latest/userguide/how-cloudtrail-works.html
 
     https://aws.amazon.com/blogs/aws/category/cloud-trail/
 
-     
-
     **Check out this AWS CloudTrail Cheat Sheet:**
 
     https://tutorialsdojo.com/aws-cloudtrail/
-
-    
-
-    
 
 44. ##### 44. QUESTION
 
@@ -2429,19 +2525,13 @@
 
     Which of the following statements are true about encrypted Amazon Elastic Block Store volumes? (Select TWO.)
 
-    
-
     - Snapshots are not automatically encrypted.
-    - The volumes created from the encrypted snapshot are not encrypted.
-    - Snapshots are automatically encrypted.
-    - All data moving between the volume and the instance are encrypted.
+- The volumes created from the encrypted snapshot are not encrypted.
+    - ==Snapshots are automatically encrypted.==
+    - ==All data moving between the volume and the instance are encrypted.==
     - Only the data in the volume is encrypted and not all the data moving between the volume and the instance.
-
     
-
     **Incorrect**
-
-    
 
     **Amazon Elastic Block Store (Amazon EBS)** provides block level storage volumes for use with EC2 instances. EBS volumes are highly available and reliable storage volumes that can be attached to any running instance that is in the same Availability Zone. EBS volumes that are attached to an EC2 instance are exposed as storage volumes that persist independently from the life of the instance.  ![img](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/architecture_storage.png)
 
@@ -2789,23 +2879,15 @@
 
     To fix this, you can increase the message retention period to a maximum of 14 days using the [SetQueueAttributes](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SetQueueAttributes.html) action.
 
-     
-
     **References:**
 
     https://aws.amazon.com/sqs/faqs/
 
     https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-lifecycle.html
 
-     
-
     **Check out this Amazon SQS Cheat Sheet:**
 
     https://tutorialsdojo.com/amazon-sqs/
-
-    
-
-    
 
 51. ##### 51. QUESTION
 
@@ -2813,18 +2895,12 @@
 
     Which is the MOST suitable and cost-effective solution that the Architect should implement to achieve the above requirements?
 
-    
-
     - Use AWS ParallelCluster to deploy and manage the HPC cluster to provide higher bandwidth, higher packet per second (PPS) performance, and lower inter-instance latencies.
-    - Enable Enhanced Networking with Intel 82599 Virtual Function (VF) interface on the Windows EC2 Instances.
-    - Enable Enhanced Networking with Elastic Network Adapter (ENA) on the Windows EC2 Instances.
+- Enable Enhanced Networking with Intel 82599 Virtual Function (VF) interface on the Windows EC2 Instances.
+    - ==Enable Enhanced Networking with Elastic Network Adapter (ENA) on the Windows EC2 Instances.==
     - Enable Enhanced Networking with Elastic Fabric Adapter (EFA) on the Windows EC2 Instances.
-
     
-
     **Incorrect**
-
-    
 
     Enhanced networking uses single root I/O virtualization (SR-IOV) to provide high-performance networking capabilities on supported instance types. SR-IOV is a method of device virtualization that provides higher I/O performance and lower CPU utilization when compared to traditional virtualized network interfaces. Enhanced networking provides higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies. There is no additional charge for using enhanced networking.
 
@@ -3084,8 +3160,6 @@
 
     No. Amazon does not have access to your keys or credentials and therefore has no way to recover your keys if you lose your credentials.
 
-     
-
     **References:**
 
     https://aws.amazon.com/premiumsupport/knowledge-center/stop-cloudhsm/
@@ -3094,28 +3168,18 @@
 
     https://d1.awsstatic.com/whitepapers/Security/security-of-aws-cloudhsm-backups.pdf
 
-    
-
-    
-
 56. ##### 56. QUESTION
 
     A company plans to migrate a MySQL database from an on-premises data center to the AWS Cloud. This database will be used by a legacy batch application that has steady-state workloads in the morning but has its peak load at night for the end-of-day processing. You need to choose an EBS volume that can handle a maximum of 450 GB of data and can also be used as the system boot volume for your EC2 instance.
 
     Which of the following is the most cost-effective storage type to use in this scenario?
 
-    
-
     - Amazon EBS Throughput Optimized HDD (st1)
     - Amazon EBS Cold HDD (sc1)
     - Amazon EBS Provisioned IOPS SSD (io1)
-    - Amazon EBS General Purpose SSD (gp2)
-
-    
+    - ==Amazon EBS General Purpose SSD (gp2)==
 
     **Incorrect**
-
-    
 
     In this scenario, a legacy batch application which has steady-state workloads requires a ***relational MySQL database\***. The EBS volume that you should use has to handle a maximum of 450 GB of data and can also be used as the system ***boot volume\*** for your EC2 instance. Since HDD volumes cannot be used as a bootable volume, we can narrow down our options by selecting SSD volumes. In addition, SSD volumes are more suitable for transactional database workloads, as shown in the table below:
 
@@ -3129,19 +3193,53 @@
 
     ***\*Amazon EBS Cold HDD (sc1)\**** is incorrect. Although Amazon EBS Cold HDD provides lower cost HDD volume compared to General Purpose SSD, it cannot be used as a system boot volume.
 
-     
-
     **Reference:**
 
     https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html#EBSVolumeTypes_gp2
 
-     
-
     ***\*Amazon EBS Overview – SSD vs HDD:\****
+
+    <iframe title="YouTube video player" src="https://www.youtube.com/embed/LW7x8wyLFvw" frameborder="0" allowfullscreen="allowfullscreen" data-mce-fragment="1" name="fitvid13" style="box-sizing: border-box; margin: 0px; position: absolute; top: 0px; left: 0px; width: 966px; height: 543.375px;"></iframe>
 
     
 
-    <iframe title="YouTube video player" src="https://www.youtube.com/embed/LW7x8wyLFvw" frameborder="0" allowfullscreen="allowfullscreen" data-mce-fragment="1" name="fitvid13" style="box-sizing: border-box; margin: 0px; position: absolute; top: 0px; left: 0px; width: 966px; height: 543.375px;"></iframe>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 
@@ -3149,440 +3247,467 @@
 
     https://tutorialsdojo.com/amazon-ebs/
 
-    
+
+1. ##### 57. QUESTION
+
+   An investment bank has a distributed batch processing application which is hosted in an Auto Scaling group of Spot EC2 instances with an SQS queue. You configured your components to use client-side buffering so that the calls made from the client will be buffered first and then sent as a batch request to SQS.
+
+   What is a period of time during which the SQS queue prevents other consuming components from receiving and processing a message?
+
+   
+
+   - Component Timeout
+   - Visibility Timeout
+   - Processing Timeout
+   - Receiving Timeout
+
+   
+
+   **Correct**
+
+   
+
+   The visibility timeout is a period of time during which Amazon SQS prevents other consuming components from receiving and processing a message.
+
+   When a consumer receives and processes a message from a queue, the message remains in the queue. Amazon SQS doesn’t automatically delete the message. Because Amazon SQS is a distributed system, there’s no guarantee that the consumer actually receives the message (for example, due to a connectivity issue, or due to an issue in the consumer application). Thus, the consumer must delete the message from the queue after receiving and processing it.
+
+   Immediately after the message is received, it remains in the queue. To prevent other consumers from processing the message again, Amazon SQS sets a ***visibility timeout\***, a period of time during which Amazon SQS prevents other consumers from receiving and processing the message. The default visibility timeout for a message is 30 seconds. The maximum is 12 hours.
 
     
 
-57. ##### 57. QUESTION
+   **References:** 
 
-    An investment bank has a distributed batch processing application which is hosted in an Auto Scaling group of Spot EC2 instances with an SQS queue. You configured your components to use client-side buffering so that the calls made from the client will be buffered first and then sent as a batch request to SQS.
+   https://aws.amazon.com/sqs/faqs/
 
-    What is a period of time during which the SQS queue prevents other consuming components from receiving and processing a message?
-
-    
-
-    - Component Timeout
-    - Visibility Timeout
-    - Processing Timeout
-    - Receiving Timeout
+   https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html
 
     
 
-    **Correct**
+   **Check out this Amazon SQS Cheat Sheet:**
+
+   https://tutorialsdojo.com/amazon-sqs/
+
+   
+
+   
+
+2. ##### 58. QUESTION
+
+   A company plans to use Route 53 instead of an ELB to load balance the incoming request to the web application. The system is deployed to two EC2 instances to which the traffic needs to be distributed. You want to set a specific percentage of traffic to go to each instance.
+
+   Which routing policy would you use?
+
+   
+
+   - Latency
+   - Geolocation
+   - Failover
+   - Weighted
+
+   
+
+   **Correct**
+
+   
+
+   **Weighted routing** lets you associate multiple resources with a single domain name (tutorialsdojo.com) or subdomain name (portal.tutorialsdojo.com) and choose how much traffic is routed to each resource. This can be useful for a variety of purposes including load balancing and testing new versions of software. You can set a specific percentage of how much traffic will be allocated to the resource by specifying the weights.
+
+   ![img](https://media.tutorialsdojo.com/AWS-Route53-Weighted.PNG)
+
+   For example, if you want to send a tiny portion of your traffic to one resource and the rest to another resource, you might specify weights of 1 and 255. The resource with a weight of 1 gets 1/256th of the traffic (1/1+255), and the other resource gets 255/256ths (255/1+255).
+
+   You can gradually change the balance by changing the weights. If you want to stop sending traffic to a resource, you can change the weight for that record to 0.
 
     
 
-    The visibility timeout is a period of time during which Amazon SQS prevents other consuming components from receiving and processing a message.
+   **Reference:** 
 
-    When a consumer receives and processes a message from a queue, the message remains in the queue. Amazon SQS doesn’t automatically delete the message. Because Amazon SQS is a distributed system, there’s no guarantee that the consumer actually receives the message (for example, due to a connectivity issue, or due to an issue in the consumer application). Thus, the consumer must delete the message from the queue after receiving and processing it.
-
-    Immediately after the message is received, it remains in the queue. To prevent other consumers from processing the message again, Amazon SQS sets a ***visibility timeout\***, a period of time during which Amazon SQS prevents other consumers from receiving and processing the message. The default visibility timeout for a message is 30 seconds. The maximum is 12 hours.
-
-     
-
-    **References:** 
-
-    https://aws.amazon.com/sqs/faqs/
-
-    https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html
-
-     
-
-    **Check out this Amazon SQS Cheat Sheet:**
-
-    https://tutorialsdojo.com/amazon-sqs/
+   http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html
 
     
 
-    
+   ***\*Amazon Route 53 Overview:\****
 
-58. ##### 58. QUESTION
+   
 
-    A company plans to use Route 53 instead of an ELB to load balance the incoming request to the web application. The system is deployed to two EC2 instances to which the traffic needs to be distributed. You want to set a specific percentage of traffic to go to each instance.
+   <iframe title="YouTube video player" src="https://www.youtube.com/embed/Su308t19ubY" frameborder="0" allowfullscreen="allowfullscreen" data-mce-fragment="1" name="fitvid14" style="box-sizing: border-box; margin: 0px; position: absolute; top: 0px; left: 0px; width: 966px; height: 543.375px;"></iframe>
 
-    Which routing policy would you use?
+   
 
-    
+   
 
-    - Latency
-    - Geolocation
-    - Failover
-    - Weighted
+   
 
-    
+   
 
-    **Correct**
+   
 
-    
+   
 
-    **Weighted routing** lets you associate multiple resources with a single domain name (tutorialsdojo.com) or subdomain name (portal.tutorialsdojo.com) and choose how much traffic is routed to each resource. This can be useful for a variety of purposes including load balancing and testing new versions of software. You can set a specific percentage of how much traffic will be allocated to the resource by specifying the weights.
+   
 
-    ![img](https://media.tutorialsdojo.com/AWS-Route53-Weighted.PNG)
+   
 
-    For example, if you want to send a tiny portion of your traffic to one resource and the rest to another resource, you might specify weights of 1 and 255. The resource with a weight of 1 gets 1/256th of the traffic (1/1+255), and the other resource gets 255/256ths (255/1+255).
+   
 
-    You can gradually change the balance by changing the weights. If you want to stop sending traffic to a resource, you can change the weight for that record to 0.
+   
 
-     
+   
 
-    **Reference:** 
+   
 
-    http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html
+   
 
-     
+   
 
-    ***\*Amazon Route 53 Overview:\****
+   
 
-    
+   
 
-    <iframe title="YouTube video player" src="https://www.youtube.com/embed/Su308t19ubY" frameborder="0" allowfullscreen="allowfullscreen" data-mce-fragment="1" name="fitvid14" style="box-sizing: border-box; margin: 0px; position: absolute; top: 0px; left: 0px; width: 966px; height: 543.375px;"></iframe>
+   
 
-    
+   
 
-     
+   
 
-    **Check out this Amazon Route 53 Cheat Sheet:**
+   
 
-    https://tutorialsdojo.com/amazon-route-53/
+   
 
-    
+   **Check out this Amazon Route 53 Cheat Sheet:**
 
-    
+   https://tutorialsdojo.com/amazon-route-53/
 
-59. ##### 59. QUESTION
+3. ##### 59. QUESTION
 
-    A client is hosting their company website on a cluster of web servers that are behind a public-facing load balancer. The client also uses Amazon Route 53 to manage their public DNS.
+   A client is hosting their company website on a cluster of web servers that are behind a public-facing load balancer. The client also uses Amazon Route 53 to manage their public DNS.
 
-    How should the client configure the DNS zone apex record to point to the load balancer?
+   How should the client configure the DNS zone apex record to point to the load balancer?
 
-    
+   - Create an alias for CNAME record to the load balancer DNS name.
+   - Create a CNAME record pointing to the load balancer DNS name.
+   - Create an A record pointing to the IP address of the load balancer.
+   - ==Create an A record aliased to the load balancer DNS name.==
 
-    - Create an alias for CNAME record to the load balancer DNS name.
-    - Create a CNAME record pointing to the load balancer DNS name.
-    - Create an A record pointing to the IP address of the load balancer.
-    - Create an A record aliased to the load balancer DNS name.
+   **Incorrect**
 
-    
+   Route 53’s DNS implementation connects user requests to infrastructure running inside (and outside) of Amazon Web Services (AWS). For example, if you have multiple web servers running on EC2 instances behind an Elastic Load Balancing load balancer, Route 53 will route all traffic addressed to your website (e.g. `www.tutorialsdojo.com`) to the load balancer DNS name (e.g. `elbtutorialsdojo123.elb.amazonaws.com`).
 
-    **Incorrect**
+   ![img](https://docs.aws.amazon.com/govcloud-us/latest/ug-west/images/r53-cf-elb.png)
 
-    
+   Additionally, Route 53 supports the alias resource record set, which lets you map your **zone apex (**e.g. `tutorialsdojo.com`) DNS name to your load balancer DNS name. IP addresses associated with Elastic Load Balancing can change at any time due to scaling or software updates. Route 53 responds to each request for an Alias resource record set with one IP address for the load balancer.
 
-    Route 53’s DNS implementation connects user requests to infrastructure running inside (and outside) of Amazon Web Services (AWS). For example, if you have multiple web servers running on EC2 instances behind an Elastic Load Balancing load balancer, Route 53 will route all traffic addressed to your website (e.g. `www.tutorialsdojo.com`) to the load balancer DNS name (e.g. `elbtutorialsdojo123.elb.amazonaws.com`).
+   ***\*Creating an A record pointing to the IP address of the load balancer\**** is incorrect. You should be using an Alias record pointing to the DNS name of the load balancer since the IP address of the load balancer can change at any time.
 
-    ![img](https://docs.aws.amazon.com/govcloud-us/latest/ug-west/images/r53-cf-elb.png)
-
-    Additionally, Route 53 supports the alias resource record set, which lets you map your **zone apex (**e.g. `tutorialsdojo.com`) DNS name to your load balancer DNS name. IP addresses associated with Elastic Load Balancing can change at any time due to scaling or software updates. Route 53 responds to each request for an Alias resource record set with one IP address for the load balancer.
-
-    ***\*Creating an A record pointing to the IP address of the load balancer\**** is incorrect. You should be using an Alias record pointing to the DNS name of the load balancer since the IP address of the load balancer can change at any time.
-
-    ***\*Creating a CNAME record pointing to the load balancer DNS name\**** and ***\*creating an alias for CNAME record to the load balancer DNS name\**** are incorrect because CNAME records cannot be created for your **zone** apex. You should create an alias record at the top node of a DNS namespace which is also known as the *zone apex*. For example, if you register the DNS name tutorialsdojo.com, the zone apex is tutorialsdojo.com. You can’t create a CNAME record directly for tutorialsdojo.com, but you can create an alias record for tutorialsdojo.com that routes traffic to **www**.tutorialsdojo.com.
-
-     
-
-    **References**:
-
-    http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/setting-up-route53-zoneapex-elb.html
-
-    https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html
-
-     
-
-    **Check out this Amazon Route 53 Cheat Sheet:**
-
-    https://tutorialsdojo.com/amazon-route-53/
+   ***\*Creating a CNAME record pointing to the load balancer DNS name\**** and ***\*creating an alias for CNAME record to the load balancer DNS name\**** are incorrect because CNAME records cannot be created for your **zone** apex. You should create an alias record at the top node of a DNS namespace which is also known as the *zone apex*. For example, if you register the DNS name tutorialsdojo.com, the zone apex is tutorialsdojo.com. You can’t create a CNAME record directly for tutorialsdojo.com, but you can create an alias record for tutorialsdojo.com that routes traffic to **www**.tutorialsdojo.com.
 
     
 
-    
+   **References**:
 
-60. ##### 60. QUESTION
+   http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/setting-up-route53-zoneapex-elb.html
 
-    A local bank has an in-house application that handles sensitive financial data in a private subnet. After the data is processed by the EC2 worker instances, they will be delivered to S3 for ingestion by other services.
-
-    How should you design this solution so that the data does not pass through the public Internet?
+   https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html
 
     
 
-    - Create an Internet gateway in the public subnet with a corresponding route entry that directs the data to S3.
-    - Configure a Transit gateway along with a corresponding route entry that directs the data to S3.
-    - Provision a NAT gateway in the private subnet with a corresponding route entry that directs the data to S3.
-    - Configure a VPC Endpoint along with a corresponding route entry that directs the data to S3.
+   **Check out this Amazon Route 53 Cheat Sheet:**
+
+   https://tutorialsdojo.com/amazon-route-53/
+
+   
+
+   
+
+4. ##### 60. QUESTION
+
+   A local bank has an in-house application that handles sensitive financial data in a private subnet. After the data is processed by the EC2 worker instances, they will be delivered to S3 for ingestion by other services.
+
+   How should you design this solution so that the data does not pass through the public Internet?
+
+   
+
+   - Create an Internet gateway in the public subnet with a corresponding route entry that directs the data to S3.
+   - Configure a Transit gateway along with a corresponding route entry that directs the data to S3.
+   - Provision a NAT gateway in the private subnet with a corresponding route entry that directs the data to S3.
+   - Configure a VPC Endpoint along with a corresponding route entry that directs the data to S3.
+
+   
+
+   **Correct**
+
+   
+
+   The important concept that you have to understand in this scenario is that your VPC and your S3 bucket are located within the larger AWS network. However, the traffic coming from your VPC to your S3 bucket is traversing the public Internet by default. To better protect your data in transit, you can set up a VPC endpoint so the incoming traffic from your VPC will not pass through the public Internet, but instead through the private AWS network.
+
+   A VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an Internet gateway, NAT device, VPN connection, or AWS Direct Connect connection. Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other services does not leave the Amazon network.
+
+   Endpoints are virtual devices. They are horizontally scaled, redundant, and highly available VPC components that allow communication between instances in your VPC and services without imposing availability risks or bandwidth constraints on your network traffic.
+
+   ![img](https://media.tutorialsdojo.com/amazon-s3-vpc-endpoint.PNG)
+
+   Hence, the correct answer is: ***\*Configure a VPC Endpoint along with a corresponding route entry that directs the data to S3.\****
+
+   The option that says: ***\*Create an Internet gateway in the public subnet with a corresponding route entry that directs the data to S3\**** is incorrect because the Internet gateway is used for instances in the public subnet to have accessibility to the Internet.
+
+   The option that says: ***\*Configure a Transit gateway along with a corresponding route entry that directs the data to S3\**** is incorrect because the Transit Gateway is used for interconnecting VPCs and on-premises networks through a central hub. Since Amazon S3 is outside of VPC, you still won’t be able to connect to it privately.
+
+   The option that says: ***\*Provision a NAT gateway in the private subnet with a corresponding route entry that directs the data to S3\**** is incorrect because NAT Gateway allows instances in the private subnet to gain access to the Internet, but not vice versa.
 
     
 
-    **Correct**
+   **References**:
+
+   https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html
+
+   https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html
 
     
 
-    The important concept that you have to understand in this scenario is that your VPC and your S3 bucket are located within the larger AWS network. However, the traffic coming from your VPC to your S3 bucket is traversing the public Internet by default. To better protect your data in transit, you can set up a VPC endpoint so the incoming traffic from your VPC will not pass through the public Internet, but instead through the private AWS network.
+   **Check out this Amazon VPC Cheat Sheet:**
 
-    A VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an Internet gateway, NAT device, VPN connection, or AWS Direct Connect connection. Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other services does not leave the Amazon network.
+   https://tutorialsdojo.com/amazon-vpc/
 
-    Endpoints are virtual devices. They are horizontally scaled, redundant, and highly available VPC components that allow communication between instances in your VPC and services without imposing availability risks or bandwidth constraints on your network traffic.
+   
 
-    ![img](https://media.tutorialsdojo.com/amazon-s3-vpc-endpoint.PNG)
+   
 
-    Hence, the correct answer is: ***\*Configure a VPC Endpoint along with a corresponding route entry that directs the data to S3.\****
+5. ##### 61. QUESTION
 
-    The option that says: ***\*Create an Internet gateway in the public subnet with a corresponding route entry that directs the data to S3\**** is incorrect because the Internet gateway is used for instances in the public subnet to have accessibility to the Internet.
+   A data analytics startup is collecting clickstream data and stores them in an S3 bucket. You need to launch an AWS Lambda function to trigger the ETL jobs to run as soon as new data becomes available in Amazon S3.
 
-    The option that says: ***\*Configure a Transit gateway along with a corresponding route entry that directs the data to S3\**** is incorrect because the Transit Gateway is used for interconnecting VPCs and on-premises networks through a central hub. Since Amazon S3 is outside of VPC, you still won’t be able to connect to it privately.
+   Which of the following services can you use as an extract, transform, and load (ETL) service in this scenario?
 
-    The option that says: ***\*Provision a NAT gateway in the private subnet with a corresponding route entry that directs the data to S3\**** is incorrect because NAT Gateway allows instances in the private subnet to gain access to the Internet, but not vice versa.
+   
 
-     
+   - AWS Glue
+   - S3 Select
+   - AWS Step Functions
+   - Redshift Spectrum
 
-    **References**:
+   **Correct**
 
-    https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html
+   ***\*AWS Glue\**** is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics. You can create and run an ETL job with a few clicks in the AWS Management Console. You simply point AWS Glue to your data stored on AWS, and AWS Glue discovers your data and stores the associated metadata (e.g. table definition and schema) in the AWS Glue Data Catalog. Once cataloged, your data is immediately searchable, queryable, and available for ETL. AWS Glue generates the code to execute your data transformations and data loading processes.
 
-    https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html
+   ![img](https://d1.awsstatic.com/Products/product-name/diagrams/product-page-diagram_Glue_Event-driven-ETL-Pipelines.e24d59bb79a9e24cdba7f43ffd234ec0482a60e2.png)
 
-     
+   **Reference:**
 
-    **Check out this Amazon VPC Cheat Sheet:**
+   https://aws.amazon.com/glue/
 
-    https://tutorialsdojo.com/amazon-vpc/
+   **Check out this AWS Glue Cheat Sheet:**
 
-    
+   https://tutorialsdojo.com/aws-glue/
 
-    
+   
 
-61. ##### 61. QUESTION
+6. ##### 62. QUESTION
 
-    A data analytics startup is collecting clickstream data and stores them in an S3 bucket. You need to launch an AWS Lambda function to trigger the ETL jobs to run as soon as new data becomes available in Amazon S3.
+   An application is hosted in an On-Demand EC2 instance and is using Amazon SDK to communicate to other AWS services such as S3, DynamoDB, and many others. As part of the upcoming IT audit, you need to ensure that all API calls to your AWS resources are logged and durably stored.
 
-    Which of the following services can you use as an extract, transform, and load (ETL) service in this scenario?
+   Which is the most suitable service that you should use to meet this requirement?
 
-    
+   
 
-    - AWS Glue
-    - S3 Select
-    - AWS Step Functions
-    - Redshift Spectrum
+   - Amazon CloudWatch
+   - AWS CloudTrail
+   - Amazon API Gateway
+   - AWS X-Ray
 
-    
+   **Correct**
 
-    **Correct**
+   AWS CloudTrail increases visibility into your user and resource activity by recording AWS Management Console actions and API calls. You can identify which users and accounts called AWS, the source IP address from which the calls were made, and when the calls occurred.
 
-    
+   ***\*Amazon CloudWatch\**** is incorrect because this is primarily used for systems monitoring based on the server metrics. It does not have the capability to track API calls to your AWS resources.
 
-    ***\*AWS Glue\**** is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics. You can create and run an ETL job with a few clicks in the AWS Management Console. You simply point AWS Glue to your data stored on AWS, and AWS Glue discovers your data and stores the associated metadata (e.g. table definition and schema) in the AWS Glue Data Catalog. Once cataloged, your data is immediately searchable, queryable, and available for ETL. AWS Glue generates the code to execute your data transformations and data loading processes.
+   ***\*AWS X-Ray\**** is incorrect because this is usually used to debug and analyze your microservices applications with request tracing so you can find the root cause of issues and performance. Unlike CloudTrail, it does not record the API calls that were made to your AWS resources.
 
-    ![img](https://d1.awsstatic.com/Products/product-name/diagrams/product-page-diagram_Glue_Event-driven-ETL-Pipelines.e24d59bb79a9e24cdba7f43ffd234ec0482a60e2.png)
+   ***\*Amazon API Gateway\**** is incorrect because this is not used for logging each and every API call to your AWS resources. It is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale.
 
-     
+   **Reference:**
 
-    **Reference:**
+   https://aws.amazon.com/cloudtrail/
 
-    https://aws.amazon.com/glue/
+   **Check out this AWS CloudTrail Cheat Sheet:**
 
-     
+   https://tutorialsdojo.com/aws-cloudtrail/
 
-    **Check out this AWS Glue Cheat Sheet:**
+   
 
-    https://tutorialsdojo.com/aws-glue/
+7. ##### 63. QUESTION
 
-    
+   A Solutions Architect joined a large tech company with an existing Amazon VPC. When reviewing the Auto Scaling events, the Architect noticed that their web application is scaling up and down multiple times within the hour.
 
-    
+   What design change could the Architect make to optimize cost while preserving elasticity?
 
-62. ##### 62. QUESTION
+   - ==Change the cooldown period of the Auto Scaling group and set the CloudWatch metric to a higher threshold==
+   - Increase the instance type in the launch configuration
+   - Add provisioned IOPS to the instances
+   - Increase the base number of Auto Scaling instances for the Auto Scaling group
 
-    An application is hosted in an On-Demand EC2 instance and is using Amazon SDK to communicate to other AWS services such as S3, DynamoDB, and many others. As part of the upcoming IT audit, you need to ensure that all API calls to your AWS resources are logged and durably stored.
+   **Incorrect**
 
-    Which is the most suitable service that you should use to meet this requirement?
+   Since the application is scaling up and down multiple times within the hour, the issue lies on the cooldown period of the Auto Scaling group.
 
-    
+   ![img](https://docs.aws.amazon.com/autoscaling/ec2/userguide/images/lifecycle_hooks.png)
 
-    - Amazon CloudWatch
-    - AWS CloudTrail
-    - Amazon API Gateway
-    - AWS X-Ray
+   The cooldown period is a configurable setting for your Auto Scaling group that helps to ensure that it doesn’t launch or terminate additional instances before the previous scaling activity takes effect. After the Auto Scaling group dynamically scales using a simple scaling policy, it waits for the cooldown period to complete before resuming scaling activities.
 
-    
+   When you manually scale your Auto Scaling group, the default is not to wait for the cooldown period, but you can override the default and honor the cooldown period. If an instance becomes unhealthy, the Auto Scaling group does not wait for the cooldown period to complete before replacing the unhealthy instance.
 
-    **Correct**
+   **Reference:**
 
-    
-
-    AWS CloudTrail increases visibility into your user and resource activity by recording AWS Management Console actions and API calls. You can identify which users and accounts called AWS, the source IP address from which the calls were made, and when the calls occurred.
-
-    ***\*Amazon CloudWatch\**** is incorrect because this is primarily used for systems monitoring based on the server metrics. It does not have the capability to track API calls to your AWS resources.
-
-    ***\*AWS X-Ray\**** is incorrect because this is usually used to debug and analyze your microservices applications with request tracing so you can find the root cause of issues and performance. Unlike CloudTrail, it does not record the API calls that were made to your AWS resources.
-
-    ***\*Amazon API Gateway\**** is incorrect because this is not used for logging each and every API call to your AWS resources. It is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale.
-
-     
-
-    **Reference:**
-
-    https://aws.amazon.com/cloudtrail/
-
-     
-
-    **Check out this AWS CloudTrail Cheat Sheet:**
-
-    https://tutorialsdojo.com/aws-cloudtrail/
+   http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html
 
     
 
-    
+   **Check out this Amazon EC2 Cheat Sheet:**
 
-63. ##### 63. QUESTION
+   https://tutorialsdojo.com/amazon-elastic-compute-cloud-amazon-ec2/
 
-    A Solutions Architect joined a large tech company with an existing Amazon VPC. When reviewing the Auto Scaling events, the Architect noticed that their web application is scaling up and down multiple times within the hour.
+   
 
-    What design change could the Architect make to optimize cost while preserving elasticity?
+   
 
-    
+8. ##### 64. QUESTION
 
-    - Change the cooldown period of the Auto Scaling group and set the CloudWatch metric to a higher threshold
-    - Increase the instance type in the launch configuration
-    - Add provisioned IOPS to the instances
-    - Increase the base number of Auto Scaling instances for the Auto Scaling group
+   An organization plans to run an application in a dedicated physical server that doesn’t use virtualization. The application data will be stored in a storage solution that uses an NFS protocol. To prevent data loss, you need to use a durable cloud storage service to store a copy of your data.
 
-    
+   Which of the following is the most suitable solution to meet the requirement?
 
-    **Incorrect**
+   
 
-    
+   - Use an AWS Storage Gateway hardware appliance for your compute resources. Configure Volume Gateway to store the application data and backup data.
+   - Use an AWS Storage Gateway hardware appliance for your compute resources. Configure File Gateway to store the application data and create an Amazon S3 bucket to store a backup of your data.
+   - Use an AWS Storage Gateway hardware appliance for your compute resources. Configure Volume Gateway to store the application data and create an Amazon S3 bucket to store a backup of your data.
+   - Use AWS Storage Gateway with a gateway VM appliance for your compute resources. Configure File Gateway to store the application data and backup data.
 
-    Since the application is scaling up and down multiple times within the hour, the issue lies on the cooldown period of the Auto Scaling group.
+   
 
-    ![img](https://docs.aws.amazon.com/autoscaling/ec2/userguide/images/lifecycle_hooks.png)
+   **Correct**
 
-    The cooldown period is a configurable setting for your Auto Scaling group that helps to ensure that it doesn’t launch or terminate additional instances before the previous scaling activity takes effect. After the Auto Scaling group dynamically scales using a simple scaling policy, it waits for the cooldown period to complete before resuming scaling activities.
+   
 
-    When you manually scale your Auto Scaling group, the default is not to wait for the cooldown period, but you can override the default and honor the cooldown period. If an instance becomes unhealthy, the Auto Scaling group does not wait for the cooldown period to complete before replacing the unhealthy instance.
+   **AWS Storage Gateway** is a hybrid cloud storage service that gives you on-premises access to virtually unlimited cloud storage by linking it to S3. Storage Gateway provides 3 types of storage solutions for your on-premises applications: file, volume, and tape gateways. The AWS Storage Gateway Hardware Appliance is a physical, standalone, validated server configuration for on-premises deployments.
 
-     
+   ![How File Gateway works](https://d1.awsstatic.com/cloud-storage/File-Gateway-How-it-Works.6a5ce3c54688864e5b951df9cb8732fc4f2926b4.png)
 
-    **Reference:**
+   The AWS Storage Gateway Hardware Appliance is a physical hardware appliance with the Storage Gateway software preinstalled on a validated server configuration. The hardware appliance is a high-performance 1U server that you can deploy in your data center, or on-premises inside your corporate firewall. When you buy and activate your hardware appliance, the activation process associates your hardware appliance with your AWS account. After activation, your hardware appliance appears in the console as a gateway on the *Hardware* page. You can configure your hardware appliance as a file gateway, tape gateway, or volume gateway type. The procedure that you use to deploy and activate these gateway types on a hardware appliance is the same as on a virtual platform.
 
-    http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html
+   Since the company needs to run a dedicated physical appliance, you can use an AWS Storage Gateway Hardware Appliance. It comes pre-loaded with Storage Gateway software, and provides all the required resources to create a file gateway. A file gateway can be configured to store and retrieve objects in Amazon S3 using the protocols NFS and SMB.
 
-     
+   Hence, the correct answer in this scenario is: ***\*Use an AWS Storage Gateway hardware appliance for your compute resources. Configure File Gateway to store the application data and create an Amazon S3 bucket to store a backup of your data\****.
 
-    **Check out this Amazon EC2 Cheat Sheet:**
+   The option that says: ***\*Use AWS Storage Gateway with a gateway VM appliance for your compute resources. Configure File Gateway to store the application data and backup data\**** is incorrect because as per the scenario, the company needs to use an on-premises hardware appliance and not just a Virtual Machine (VM).
 
-    https://tutorialsdojo.com/amazon-elastic-compute-cloud-amazon-ec2/
-
-    
-
-    
-
-64. ##### 64. QUESTION
-
-    An organization plans to run an application in a dedicated physical server that doesn’t use virtualization. The application data will be stored in a storage solution that uses an NFS protocol. To prevent data loss, you need to use a durable cloud storage service to store a copy of your data.
-
-    Which of the following is the most suitable solution to meet the requirement?
+   The options that say: ***\*Use an AWS Storage Gateway hardware appliance for your compute resources. Configure Volume Gateway to store the application data and backup data\**** and ***\*Use an AWS Storage Gateway hardware appliance for your compute resources. Configure Volume Gateway to store the application data and create an Amazon S3 bucket to store a backup of your data\**** are both incorrect. As per the scenario, the requirement is a file system that uses an NFS protocol and not iSCSI devices. Among the AWS Storage Gateway storage solutions, only file gateway can store and retrieve objects in Amazon S3 using the protocols NFS and SMB.**
+   **
 
     
 
-    - Use an AWS Storage Gateway hardware appliance for your compute resources. Configure Volume Gateway to store the application data and backup data.
-    - Use an AWS Storage Gateway hardware appliance for your compute resources. Configure File Gateway to store the application data and create an Amazon S3 bucket to store a backup of your data.
-    - Use an AWS Storage Gateway hardware appliance for your compute resources. Configure Volume Gateway to store the application data and create an Amazon S3 bucket to store a backup of your data.
-    - Use AWS Storage Gateway with a gateway VM appliance for your compute resources. Configure File Gateway to store the application data and backup data.
+   **References:**
+
+   https://docs.aws.amazon.com/storagegateway/latest/userguide/hardware-appliance.html
+
+   https://docs.aws.amazon.com/storagegateway/latest/userguide/WhatIsStorageGateway.html
 
     
 
-    **Correct**
+   ***\*AWS Storage Gateway Overview:\****
+
+   
+
+   <iframe title="YouTube video player" src="https://www.youtube.com/embed/pNb7xOBJjHE" frameborder="0" allowfullscreen="allowfullscreen" data-mce-fragment="1" name="fitvid15" style="box-sizing: border-box; margin: 0px; position: absolute; top: 0px; left: 0px; width: 966px; height: 543.375px;"></iframe>
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   **Check out this AWS Storage Gateway Cheat Sheet:**
+
+   https://tutorialsdojo.com/aws-storage-gateway/
+
+9. ##### 65. QUESTION
+
+   A company has recently adopted a hybrid cloud architecture and is planning to migrate a database hosted on-premises to AWS. The database currently has over 50 TB of consumer data, handles highly transactional (OLTP) workloads, and is expected to grow. The Solutions Architect should ensure that the database is ACID-compliant and can handle complex queries of the application.
+
+   Which type of database service should the Architect use?
+
+   - ==Amazon Aurora==
+   - Amazon Redshift
+   - Amazon DynamoDB
+   - Amazon RDS
+
+   **Incorrect**
+
+   **Amazon Aurora (Aurora)** is a fully managed relational database engine that’s compatible with MySQL and PostgreSQL. You already know how MySQL and PostgreSQL combine the speed and reliability of high-end commercial databases with the simplicity and cost-effectiveness of open-source databases. The code, tools, and applications you use today with your existing MySQL and PostgreSQL databases can be used with Aurora. With some workloads, Aurora can deliver up to five times the throughput of MySQL and up to three times the throughput of PostgreSQL without requiring changes to most of your existing applications.
+
+   Aurora includes a high-performance storage subsystem. Its MySQL- and PostgreSQL-compatible database engines are customized to take advantage of that fast distributed storage. The underlying storage grows automatically as needed, up to 64 tebibytes (TiB). Aurora also automates and standardizes database clustering and replication, which are typically among the most challenging aspects of database configuration and administration.
+
+   ![img](https://udemy-images.s3.amazonaws.com/redactor/raw/2020-01-04_04-04-51-474a73beda1fc209d60e63ed8d226b6a.png)
+
+   For Amazon RDS MariaDB DB instances, the maximum provisioned storage limit constrains the size of a table to a maximum size of 64 TB when using InnoDB file-per-table tablespaces. This limit also constrains the system tablespace to a maximum size of 16 TB. InnoDB file-per-table tablespaces (with tables each in their own tablespace) is set by default for Amazon RDS MariaDB DB instances.
+
+   Hence, the correct answer is ***\*Amazon Aurora\****.
+
+   ***\*Amazon Redshift\**** is incorrect because this is primarily used for OLAP applications and not for OLTP. Moreover, it doesn’t scale automatically to handle the exponential growth of the database.
+
+   ***\*Amazon DynamoDB\**** is incorrect. Although you can use this to have an ACID-compliant database, it is not capable of handling complex queries and highly transactional (OLTP) workloads.
+
+   ***\*Amazon RDS\**** is incorrect. Although this service can host an ACID-compliant relational database that can handle complex queries and transactional (OLTP) workloads, it is still not scalable to handle the growth of the database. Amazon Aurora is the better choice as its underlying storage can grow automatically as needed.
 
     
 
-    **AWS Storage Gateway** is a hybrid cloud storage service that gives you on-premises access to virtually unlimited cloud storage by linking it to S3. Storage Gateway provides 3 types of storage solutions for your on-premises applications: file, volume, and tape gateways. The AWS Storage Gateway Hardware Appliance is a physical, standalone, validated server configuration for on-premises deployments.
+   **References:**
 
-    ![How File Gateway works](https://d1.awsstatic.com/cloud-storage/File-Gateway-How-it-Works.6a5ce3c54688864e5b951df9cb8732fc4f2926b4.png)
+   https://aws.amazon.com/rds/aurora/
 
-    The AWS Storage Gateway Hardware Appliance is a physical hardware appliance with the Storage Gateway software preinstalled on a validated server configuration. The hardware appliance is a high-performance 1U server that you can deploy in your data center, or on-premises inside your corporate firewall. When you buy and activate your hardware appliance, the activation process associates your hardware appliance with your AWS account. After activation, your hardware appliance appears in the console as a gateway on the *Hardware* page. You can configure your hardware appliance as a file gateway, tape gateway, or volume gateway type. The procedure that you use to deploy and activate these gateway types on a hardware appliance is the same as on a virtual platform.
+   https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.html
 
-    Since the company needs to run a dedicated physical appliance, you can use an AWS Storage Gateway Hardware Appliance. It comes pre-loaded with Storage Gateway software, and provides all the required resources to create a file gateway. A file gateway can be configured to store and retrieve objects in Amazon S3 using the protocols NFS and SMB.
-
-    Hence, the correct answer in this scenario is: ***\*Use an AWS Storage Gateway hardware appliance for your compute resources. Configure File Gateway to store the application data and create an Amazon S3 bucket to store a backup of your data\****.
-
-    The option that says: ***\*Use AWS Storage Gateway with a gateway VM appliance for your compute resources. Configure File Gateway to store the application data and backup data\**** is incorrect because as per the scenario, the company needs to use an on-premises hardware appliance and not just a Virtual Machine (VM).
-
-    The options that say: ***\*Use an AWS Storage Gateway hardware appliance for your compute resources. Configure Volume Gateway to store the application data and backup data\**** and ***\*Use an AWS Storage Gateway hardware appliance for your compute resources. Configure Volume Gateway to store the application data and create an Amazon S3 bucket to store a backup of your data\**** are both incorrect. As per the scenario, the requirement is a file system that uses an NFS protocol and not iSCSI devices. Among the AWS Storage Gateway storage solutions, only file gateway can store and retrieve objects in Amazon S3 using the protocols NFS and SMB.**
-    **
-
-     
-
-    **References:**
-
-    https://docs.aws.amazon.com/storagegateway/latest/userguide/hardware-appliance.html
-
-    https://docs.aws.amazon.com/storagegateway/latest/userguide/WhatIsStorageGateway.html
-
-     
-
-    ***\*AWS Storage Gateway Overview:\****
+   https://aws.amazon.com/nosql/
 
     
 
-    <iframe title="YouTube video player" src="https://www.youtube.com/embed/pNb7xOBJjHE" frameborder="0" allowfullscreen="allowfullscreen" data-mce-fragment="1" name="fitvid15" style="box-sizing: border-box; margin: 0px; position: absolute; top: 0px; left: 0px; width: 966px; height: 543.375px;"></iframe>
+   **Check out this Amazon Aurora Cheat Sheet:**
 
-    
+   https://tutorialsdojo.com/amazon-aurora/
 
-    **Check out this AWS Storage Gateway Cheat Sheet:**
-
-    https://tutorialsdojo.com/aws-storage-gateway/
-
-    
-
-    
-
-65. ##### 65. QUESTION
-
-    A company has recently adopted a hybrid cloud architecture and is planning to migrate a database hosted on-premises to AWS. The database currently has over 50 TB of consumer data, handles highly transactional (OLTP) workloads, and is expected to grow. The Solutions Architect should ensure that the database is ACID-compliant and can handle complex queries of the application.
-
-    Which type of database service should the Architect use?
-
-    
-
-    - Amazon Aurora
-    - Amazon Redshift
-    - Amazon DynamoDB
-    - Amazon RDS
-
-    
-
-    **Incorrect**
-
-    
-
-    **Amazon Aurora (Aurora)** is a fully managed relational database engine that’s compatible with MySQL and PostgreSQL. You already know how MySQL and PostgreSQL combine the speed and reliability of high-end commercial databases with the simplicity and cost-effectiveness of open-source databases. The code, tools, and applications you use today with your existing MySQL and PostgreSQL databases can be used with Aurora. With some workloads, Aurora can deliver up to five times the throughput of MySQL and up to three times the throughput of PostgreSQL without requiring changes to most of your existing applications.
-
-    Aurora includes a high-performance storage subsystem. Its MySQL- and PostgreSQL-compatible database engines are customized to take advantage of that fast distributed storage. The underlying storage grows automatically as needed, up to 64 tebibytes (TiB). Aurora also automates and standardizes database clustering and replication, which are typically among the most challenging aspects of database configuration and administration.
-
-    ![img](https://udemy-images.s3.amazonaws.com/redactor/raw/2020-01-04_04-04-51-474a73beda1fc209d60e63ed8d226b6a.png)
-
-    For Amazon RDS MariaDB DB instances, the maximum provisioned storage limit constrains the size of a table to a maximum size of 64 TB when using InnoDB file-per-table tablespaces. This limit also constrains the system tablespace to a maximum size of 16 TB. InnoDB file-per-table tablespaces (with tables each in their own tablespace) is set by default for Amazon RDS MariaDB DB instances.
-
-    Hence, the correct answer is ***\*Amazon Aurora\****.
-
-    ***\*Amazon Redshift\**** is incorrect because this is primarily used for OLAP applications and not for OLTP. Moreover, it doesn’t scale automatically to handle the exponential growth of the database.
-
-    ***\*Amazon DynamoDB\**** is incorrect. Although you can use this to have an ACID-compliant database, it is not capable of handling complex queries and highly transactional (OLTP) workloads.
-
-    ***\*Amazon RDS\**** is incorrect. Although this service can host an ACID-compliant relational database that can handle complex queries and transactional (OLTP) workloads, it is still not scalable to handle the growth of the database. Amazon Aurora is the better choice as its underlying storage can grow automatically as needed.
-
-     
-
-    **References:**
-
-    https://aws.amazon.com/rds/aurora/
-
-    https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.html
-
-    https://aws.amazon.com/nosql/
-
-     
-
-    **Check out this Amazon Aurora Cheat Sheet:**
-
-    https://tutorialsdojo.com/amazon-aurora/
-
-    
+   
