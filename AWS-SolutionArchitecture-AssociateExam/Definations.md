@@ -557,7 +557,9 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 **Amazon WorkDocs** is a fully managed, secure content creation, storage, and collaboration service.
 **Bastion host** is a special purpose computer on a network specifically designed and configured to withstand attacks. If you have a bastion host in AWS, it is basically just an EC2 instance. It should be in a public subnet with either a public or Elastic IP address with sufficient RDP or SSH access defined in the security group. Users log on to the bastion host via SSH or RDP and then use that session to manage other hosts in the private subnets
 **AWS Kinesis** is the streaming data platform of AWS and has four distinct services under it: Kinesis Data Firehose, Kinesis Data Streams, Kinesis Video Streams, and Amazon Kinesis Data Analytics.
-**AWS Kinesis Data Firehose** allows you to load streaming data into data stores and analytics tools. It can capture, transform, and load streaming data, enabling near real-time analytics with existing business intelligence tools and dashboards you are already using today. It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security. You can use Amazon Kinesis Data Firehose in conjunction with Amazon Kinesis Data Streams if you need to implement real-time processing of streaming big data. 
+**AWS Kinesis Data Firehose** 
+	==allows you to load streaming data into data stores and analytics tools.== 
+	It can capture, transform, and load streaming data, enabling near real-time analytics with existing business intelligence tools and dashboards you are already using today. It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security. You can use Amazon Kinesis Data Firehose in conjunction with Amazon Kinesis Data Streams if you need to implement real-time processing of streaming big data. 
 	 only supports AWS S3, AWS Redshift, AWS Elasticsearch, and an HTTP endpoint as the destination, ==does not support AWS Lambda as destination==
 
 **AWS Kinesis Data Streams** 
@@ -706,10 +708,10 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	authenticate the users using Redis AUTH by creating a new Redis Cluster with both the `--transit-encryption-enabled` and `--auth-token` parameters enabled. This will require the user to enter a password before they are granted permission to execute Redis commands on a password-protected Redis server.
 
 **AWS Aurora:**
-	 is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. 
-	can deliver up to five times the throughput of MySQL and up to three times the throughput of PostgreSQL 
-	its underlying storage can grow automatically as needed.
-	if we use Amazon Aurora replicas, we get read replication latency of less than 1 second, compared to RDS read replicas where it is more than 1 second. 
+	 \- is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. 
+	\- can deliver up to five times the throughput of MySQL and up to three times the throughput of PostgreSQL 
+	\- its underlying storage can grow automatically as needed.
+	\- **Amazon Aurora replicas** can be used to serve read traffic which offloads requests from the main database. if we use Amazon Aurora replicas, we get read replication latency of less than 1 second, compared to RDS read replicas where it is more than 1 second. 
 	typically involves a cluster of DB instances instead of a single instance. Each connection is handled by a specific DB instance. When you connect to an Aurora cluster, the hostname and port that you specify point to an intermediate handler called an ***endpoint***. 
 	**a cluster endpoint** (**writer endpoint**) simply connects to the current primary DB instance for that DB cluster. This endpoint can perform write operations in the database but not suitable for handling queries for reporting .
 	A ***reader endpoint*** for an Aurora DB cluster provides load-balancing support for read-only connections to the DB cluster. Each Aurora DB cluster has one reader endpoint. If the cluster contains one or more Aurora Replicas, the reader endpoint load-balances each connection request among the Aurora Replicas. If the cluster only contains a primary instance and no Aurora Replicas, the reader endpoint connects to the primary instance.
@@ -815,6 +817,8 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	you can configure sampling rules to tell X-Ray which requests to record, at what sampling rates, according to criteria that you specif
 
 **AWS Global Accelerator** 
+	\- Acceleration for latency-sensitive applications
+	\- Many applications require very low latency for a great user experience. To improve the user experience, Global Accelerator directs user traffic to the application endpoint that is nearest to the client, which reduces internet latency and jitter. Global Accelerator routes traffic to the closest edge location by using Anycast, and then routes it to the closest regional endpoint over the AWS global network. Global Accelerator quickly reacts to changes in network performance to improve your usersג€™ application performance.
 	\- is primarily used to optimize the path from your users to your applications which improves the performance of your TCP and UDP traffic.
 	\- provides static IP addresses that act as a fixed entry point to your application endpoints in a single or multiple AWS Regions, such as your Application Load Balancers, Network Load Balancers or Amazon EC2 instances.
 	\- uses the AWS global network to optimize the path from your users to your applications, improving the performance of your TCP and UDP traffic. 
