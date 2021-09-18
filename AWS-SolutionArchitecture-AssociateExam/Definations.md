@@ -73,7 +73,7 @@
 
 **scale throughput of VPN connections where multiple AWS Site-to-Site VPN connections are placed between VPCs and their remote network.** 
 
-![image-20210914192931148](Definations.assets/image-20210914192931148.png)
+<img src="Definations.assets/image-20210914192931148.png" alt="image-20210914192931148" style="zoom: 200%;" />
 
 ------
 
@@ -131,6 +131,7 @@ You can connect your Amazon VPC to remote networks and users using the following
 	\- Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (`169.254.0.0/16`) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). Similarly, flow logs do not capture IP traffic to or from these addresses.
 	\- ==The FTP protocol uses TCP via ports 20 and 21.==
 	\- ==The **/32** in the the CIDR notation denotes one IP address and the **/0** refers to the entire network.==
+	\- ==For the Remote Desktop Protocol, the server listens on TCP port 3389 and UDP port 3389.==
 
 <img src="Definations.assets/2020-01-11_09-55-33-102a3438068e9bb4c45fa670155c2044.png" alt="img" style="zoom:67%;" />
 
@@ -145,15 +146,17 @@ The reason why you have to add both Inbound and Outbound SSH rule is due to the 
 ------
 
 **Internet Gateway** 
-	is used to provide Internet access to your instances in the public subnet of your VPC, and not for private subnets. 
+	==is used to provide Internet access to your instances in the public subnet of your VPC,== and not for private subnets. 
 	traffic originating from the public Internet will also be able to reach your instances.
 **egress-only Internet gateway** 
-	allows outbound communication over IPv6 from instances in your VPC to the Internet, and prevents the Internet from initiating an IPv6 connection with your instances.
+	highly available managed VPC component that allows outbound communication **over IPv6** from instances in your VPC to the Internet, and prevents the Internet from initiating an IPv6 connection with your instances.
 **NAT Gateway:** 
-	\- ==allows instances in the private subnet to gain access to the Internet over IPv4==
+	\- is a Network Address Translation (NAT) service.
+	\- ==highly available managed VPC component that allows instances in the private subnet to gain access to the Internet **over IPv4**==
 	\- are charged on an hourly basis even for idle time.
 	\- ==is created in a specific AZ and implemented with redundancy in that zone.== 
 	\- there is a limit on the number of NAT gateways you can create in an AZ.
+	\- ==**is more highly available compared to a NAT instance.**== 
 
 ![img](Definations.assets/Natcomparison.jpg)
 
@@ -256,6 +259,10 @@ To get temporary security credentials, the identity broker application calls eit
 	\- ==EBS volumes support live configuration changes while in production which means that you can modify the volume type, volume size, and IOPS capacity without service interruptions.==
 	\- Amazon EBS encryption uses 256-bit Advanced Encryption Standard algorithms (AES-256)
 	\- EBS Volumes offer 99.999% SLA.
+	\- **Encryption by default** 
+		\- ==is a Region-specific setting.== If you enable it for a Region, you cannot disable it for individual volumes or snapshots in that Region.
+		\- When you enable encryption by default, you can launch an instance only if the instance type supports EBS encryption.
+		\- ==has no effect on existing EBS volumes or snapshots.==
 
  **EBS type of Provisioned IOPS SSD(io1)**
  	provides sustained performance for ==mission-critical== low-latency workloads.
@@ -283,8 +290,6 @@ To get temporary security credentials, the identity broker application calls eit
 | Cost                           | Moderate\high                                                | Moderate\high                                                | low                                                          | low                                                          | low                                                          |
 | Dominant Performance attribute | IOPS                                                         | IOPS                                                         | throughout(MiB/s)                                            | throughout(MiB/s)                                            | throughout(MiB/s)                                            |
 | Suitable use cases             | Best for transactional workloads                             | Best for transactional workloads                             | Best for large streaming workloads requiring consistent, fast throughput at low price | Best for large streaming workloads requiring consistent, fast throughput at low price | Best for large streaming workloads requiring consistent, fast throughput at low price |
-
-
 
 ------
 
@@ -419,9 +424,10 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 ------
 
 **AWS EC2** 	
-	root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3. The data on instance store volumes persist only during the life of the instance which means that if the instance is terminated, the data will be automatically deleted.
-	Instance metadata is data about your EC2 instance that you can use to configure or manage the running instance. 
-	To view the private IPv4 address, public IPv4 address, and all other categories of instance metadata from within a running instance, use the http://169.254.169.254/latest/meta-data/ URL
+	\- root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3. The data on instance store volumes persist only during the life of the instance which means that if the instance is terminated, the data will be automatically deleted.
+	\- Instance metadata is data about your EC2 instance that you can use to configure or manage the running instance. 
+	\- To view the private IPv4 address, public IPv4 address, and all other categories of instance metadata from within a running instance, use the http://169.254.169.254/latest/meta-data/ URL
+	\- ==data transferred between Amazon EC2, Amazon RDS, Amazon Redshift, Amazon ElastiCache instances, and ENI in the same AZ is free.== Instead of using the public network to transfer the data, ==you can use the private network to reduce the overall data transfer costs==.
 
 **When EC2 instance is stopped and started**
 	The underlying host for the instance is possibly changed.
@@ -430,7 +436,6 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 	if it is an EC2-Classic instance, its Elastic IP address is disassociated from the instance. 
 	if it is an EC2-VPC instance, the Elastic IP address remains associated.
 	ENI will stay attached even if you stopped your EC2 instance.
-	
 
 **add an existing EC2 instance to an Auto Scaling group**
 	 \- The instance is in the **`running`** state.
@@ -507,10 +512,43 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 	encrypts data between the gateway and AWS 
 	compresses data and transitions virtual tapes between ==Amazon S3 and Amazon S3 Glacier, or Amazon S3 Glacier Deep Archive==
 
+**Amazon S3 File Gateway** presents a file interface that enables you to store files as objects in Amazon S3 using the industry-standard NFS and SMB file protocols, and access those files via NFS and SMB from your data center or Amazon EC2, or access those files as objects directly in Amazon S3.
+
+![img](Definations.assets/How-File-Gateway-handles-writes.png)
+
 | AWS Storage Gateway-File gateway                             | **Amazon FSx for Windows File Server**                       |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | can be used as a shared file system for Windows <br />can also be integrated with Microsoft Active Directory,<br />has lower level of throughput and IOPS compared with Amazon FSx for Windows File Server | can be used as a shared file system for Windows <br />can also be integrated with Microsoft Active Directory,<br />has higher level of throughput and IOPS compared with AWS Storage Gateway. |
 |                                                              | provides fully managed, highly reliable, and ==scalable file storage accessible over Service Message Block (SMB) protocol.== |
+
+
+
+------
+
+aws storage gateway is a hybrid cloud storage service that connects your on-premises data storage to the aws cloud 
+it allows your on-premises application to seamlessly use cloud storage services available in aws 
+it is mainly used to integrate your local and cloud storage systems by using a gateway 
+a gateway is just a virtual machine or a hardware appliance running on your on-premises data center 
+this service has three types: file gateway volume gateway and a tape gateway 
+a **file gateway** provides ability for you to store and retrieve objects in amazon s3 using the nfs and smb protocols 
+file gateway can also work with your microsoft active directory either hosted on premises or in aws 
+you can also access your data using s3 apis if you don't have a virtualized computer sources 
+you can also use a hardware appliance hosted on-premises to replicate your local data to amazon s3 
+the second type is **volume gateway** this type provides block storage to your on-premises application via the internet small computer system interface or iscsi 
+it also uses amson s3 to store your data by taking point in time snapshots of your volumes 
+this allows you to generate amazon ebs snapshots that you can use for your ec2 instances 
+a volume gateway can run in either a cached or stored mode 
+cache volumes store the primary data in amazon s3 while retaining copies of the frequently accessed data subsets locally stored volumes on the other hand **stored mode** store the entire data set on premises and just asynchronously back up the data to aws 
+the third type is the **tape gateway** 
+it is essentially a cloud-based virtual tape library or vtl just like file gateway and volume gateway 
+this one also uses amazon s3 you also have the option to store the archived tapes in amazon s3 glacier or amazon extra glacier deep archive your on-premises backup application can connect your tape gateway as an iscsi devices 
+it helps you reduce the cost of eliminating the use of physical backup tapes while preserving the existing investment of your on-premises backup applications and workflows 
+storage gateway is suitable for building a hybrid cloud storage infrastructure where your on-premises storage systems are actively sending data to aws 
+if you're planning to totally migrate your data to the cloud and decommission your on-premises storage then it is better to use the aws data sync service instead
+
+![image-20210916205727335](Definations.assets/image-20210916205727335.png)
+
+------
 
 **AWS STS(Security Token Service)** is the service that you can use to create and provide trusted users with temporary security credentials that can control access to your AWS resources. 
 **AWS SSO(Single Sign-On)** is a cloud SSO service that makes it easy to centrally manage SSO access to multiple AWS accounts and business applications.
@@ -549,23 +587,22 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	No loading or transformation is required, and you can use open data formats. 	
 	automatically scales query compute capacity based on the data being retrieved, so queries against Amazon S3 run fast, regardless of data set size.
 
-==**AWS Key Management Service (AWS KMS)**== 
+**AWS KMS(Key Management Service)**:
+	\-  managed service for creating and controlling your encryption keys, where you don't need to operate your own HSM.
+	b. Amazon S3 uses AWS KMS customer master keys (CMKs) to encrypt your Amazon S3 objects. 
+	c. SSE-KMS encrypts only the object data. Any object metadata is not encrypted.
+	d. ==provides an audit trail that shows when your CMK was used and by whom==
+	e. ==provides envelope encryption== where we use CMKs to generate, encrypt, and decrypt the data keys that you use outside of AWS KMS to encrypt your data. **Envelope encryption.**: Typically, you use CMKs to generate, encrypt, and decrypt the data keys that you use outside of AWS KMS to encrypt your data. 
+	==f.  can configure automatic key rotation==
+	\- is integrated with AWS CloudTrail to provide encryption key usage logs.
+	\- **Server-side encryption** is the encryption of data at its destination by the application or service that receives it.
+	\-  ==Advantage of using AWS CloudHSM over AWS KMS is that your keys will be stored in dedicated, third-party validated hardware security modules under your exclusive control.== 
 
-**Server-side encryption** is the encryption of data at its destination by the application or service that receives it. 
 **customer master key (CMK)** 
 	is a logical representation of a master key. 
 	includes metadata, such as the key ID, creation date, description, and key state. 
 	contains the key material used to encrypt and decrypt data. 
 	You can use a CMK to encrypt and decrypt up to 4 KB (4096 bytes) of data. 
-**Envelope encryption.**: Typically, you use CMKs to generate, encrypt, and decrypt the data keys that you use outside of AWS KMS to encrypt your data. 
-
-**AWS Key Management Service (AWS KMS)** 
-	a. is a service that provide a key management system scaled for the cloud. 
-	b. Amazon S3 uses AWS KMS customer master keys (CMKs) to encrypt your Amazon S3 objects. 
-	c. SSE-KMS encrypts only the object data. Any object metadata is not encrypted.
-	d. ==provides an audit trail that shows when your CMK was used and by whom==
-	e. ==provides envelope encryption== where we use CMKs to generate, encrypt, and decrypt the data keys that you use outside of AWS KMS to encrypt your data.  
-	==f.  can configure automatic key rotation==
 
 **options depending on how you choose to manage the encryption keys:**
 ==**Use Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3)** –== 
@@ -624,7 +661,7 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 	\- is a "managed" service and not "fully managed"
 	\- one still have to manually scale up your resources and create Read Replicas to improve scalability
 	\- provides metrics in real time for the OS that your DB instance runs on. You can view the metrics for your DB instance using the console, or consume the Enhanced Monitoring JSON output from CloudWatch Logs in a monitoring system of your choice.
-	 IAM database authentication works with MySQL and PostgreSQL. Authentication is handled by `AWSAuthenticationPlugin`—an AWS-provided plugin that works seamlessly with IAM to authenticate your IAM users. **Benefits:** Network traffic to and from the database is encrypted using Secure Sockets Layer (SSL) You can use IAM to centrally manage access to your database resources, instead of managing access individually on each DB instance. For applications running on Amazon EC2, you can use profile credentials specific to your EC2 instance to access your database instead of a password, for greater security
+	 \- ==IAM database authentication works with MySQL and PostgreSQL.== Authentication is handled by `AWSAuthenticationPlugin`—an AWS-provided plugin that works seamlessly with IAM to authenticate your IAM users. **Benefits:** Network traffic to and from the database is encrypted using Secure Sockets Layer (SSL) You can use IAM to centrally manage access to your database resources, instead of managing access individually on each DB instance. For applications running on Amazon EC2, you can use profile credentials specific to your EC2 instance to access your database instead of a password, for greater security
 	\- **transparent data encryption (TDE)** is primarily used to encrypt stored data on your DB instances running Microsoft SQL Server, and not the data that are in transit.
 
 ​	\- **CloudWatch** gathers metrics about CPU utilization from the hypervisor for a DB instance, and Enhanced Monitoring gathers its metrics from an agent on the instance.  ==**Enhanced Monitoring** metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.==
@@ -744,13 +781,15 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	a. improves performance for both cacheable content (such as images and videos) and dynamic content (such as API acceleration and dynamic site delivery). 
 	b. use the AWS global network and its edge locations around the world.	
 	c. integrate with AWS Shield for DDoS protection.
+	\- **cache behavior** is used to configure a variety of CloudFront functionality for a given URL path pattern for files on your website.
+
 **Using CloudFront to serve content that is stored in S3, but not publicly accessible from S3 directly:**
 	\- Grant the CloudFront **origin access identity(OAI)** the applicable permissions on the bucket.
 	\- Deny access to anyone that you don't want to have access using Amazon S3 URLs.
 
 **Using CloudFront with origin failover for scenarios that require high availability:**
 	An **origin group** may contain two origins: a primary and a secondary. If the primary origin is unavailable or returns specific HTTP response status codes that indicate a failure, CloudFront automatically switches to the secondary origin. 
-	To set up origin failover, you must have a distribution with at least two origins. we can use an EC2 instance or a custom origin in configuring CloudFront. To achieve high availability in an EC2 instance, we need to deploy the instances in two or more Availability Zones. You also need to configure the instances to be part of the origin group to ensure that the application is highly available.
+	To set up origin failover, you must have a distribution with at least two origins. we can use an EC2 instance or a custom origin in configuring CloudFront. ==To achieve high availability in an EC2 instance, we need to deploy the instances in two or more Availability Zones.== You also need to configure the instances to be part of the origin group to ensure that the application is highly available. ==A  single ASG(consisting of multiple EC2 instances) or Lambda@Edge functions, cannot be used as an origin.==
 
 **control the versions of files that are served from your distribution**, 
 	you can either invalidate files or give them versioned file names. 
@@ -857,6 +896,11 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 	\- ==The Default Termination Policy for ASG is that it tries to balance across AZ first, and then delete based on the age of the launch configuration.==
 	\- **cooldown period** helps to ensure that it doesn't launch or terminate additional instances before the previous scaling activity takes effect. 
 	\- You ==can only specify one launch configuration for an Auto Scaling group at a time==, and you can't modify a launch configuration after you've created it. Therefore, if you want to change the launch configuration for an Auto Scaling group, you must create a launch configuration and then update your Auto Scaling group with the new launch configuration.
+	\- **You can scale-out activity to ECS container instances based on following metrics:** CPU Utilization, Disk Reads, Disk Read Operations, Disk Writes, Disk Write Operations, Network In, Network Out, Status Check Failed (Any), Status Check Failed (Instance), Status Check Failed (System)
+	\- **You can scale-out activity to ECS service based on following metrics:** 
+		**ECSServiceAverageCPUUtilization**—Average CPU utilization of the service.
+		**ECSServiceAverageMemoryUtilization**—Average memory utilization of the service.
+		**ALBRequestCountPerTarget**—Number of requests completed per target in an Application Load Balancer target group.
 
 **automate the log collection for Auto Scaling group of Amazon EC2 instances across multiple AZ behind an ALB**
 
@@ -866,7 +910,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 
 **AWS ALB(Application Load Balancer)**: 
 	periodically sends requests to its registered targets to test their status. These tests are called *health checks*. Each load balancer node routes requests only to the healthy targets in the enabled Availability Zones for the load balancer.
-	is a managed resource. You cannot track nor view its resource utilization.
+	==is a managed resource. You cannot track nor view its resource utilization.==
 
 ==**SNI (Server Name Indication)** is a feature allowing you to expose multiple SSL certs if the client supports it.== 
 	 some older browsers do not support SNI and will not be able to establish a connection with CloudFront to load the HTTPS version of your content. 
@@ -924,7 +968,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 
 **AWS GuardDuty** is an intelligent threat detection service	
  **AWS EFA(Elastic Fabric Adapter)** 
-	 \- is simply an Elastic Network Adapter (ENA) with added OS-bypass capabilities. **OS-Bypass** is an access model that allow the HPC and machine learning applications to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality. The OS-bypass capabilities of EFAs are not supported on Windows instances. If you attach an EFA to a Windows instance, the instance functions as an Elastic Network Adapter, without the added EFA capabilities.
+	 \- is simply an Elastic Network Adapter (ENA) with added OS-bypass capabilities. **OS-Bypass** is an access model that allow the HPC and machine learning applications to communicate directly with the network interface hardware to provide low-latency, reliable transport functionality. **<u>The OS-bypass capabilities of EFAs are not supported on Windows instances</u>**. If you attach an EFA to a Windows instance, the instance functions as an ENA, without the added EFA capabilities.
 	\- you can attach only one EFA per EC2 instance.	
 
 **AWS ENI(Elastic Network Interface)** 
@@ -957,8 +1001,11 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 **AWS Workspace** is used to create the needed virtual desktops in your VPC.
 **AWS Certificate Manager (ACM)** provides SSL certificates.
 **AWS CloudHSM** you only store keys in CloudHSM. 
-	Attempting to log in as the administrator more than twice with the wrong password zeroizes your HSM appliance. When an HSM is zeroized, all keys, certificates, and other data on the HSM is destroyed. You can use your cluster's security group to prevent an unauthenticated user from zeroizing your HSM.
-	Amazon does not have access to your keys nor to the credentials of your Hardware Security Module (HSM) and therefore has no way to recover your keys if you lose your credentials. It is strongly recommends that you use two or more HSMs in separate Availability Zones in any production CloudHSM Cluster to avoid loss of cryptographic keys.
+	\- Attempting to log in as the administrator more than twice with the wrong password zeroizes your HSM appliance. When an HSM is zeroized, all keys, certificates, and other data on the HSM is destroyed. You can use your cluster's security group to prevent an unauthenticated user from zeroizing your HSM.
+	\- Amazon does not have access to your keys nor to the credentials of your Hardware Security Module (HSM) and therefore has no way to recover your keys if you lose your credentials. It is strongly recommends that you use two or more HSMs in separate Availability Zones in any production CloudHSM Cluster to avoid loss of cryptographic keys.
+	\-  ==Advantage of using AWS CloudHSM over AWS KMS is that your keys will be stored in dedicated, third-party validated hardware security modules under your exclusive control.== 
+
+
 **AWS OpsWorks** 
 	configuration management service that provides managed instances of Chef and Puppet. Chef and Puppet are automation platforms that allow you to use code to automate the configurations of your servers.
 **AWS Glue** 
@@ -986,6 +1033,9 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 	provides Service Auto Scaling, Service Load Balancing, and Monitoring with CloudWatch but it is not ***automatically\*** enabled by default unlike with Elastic Beanstalk. 
 ==**AWS Macie** is an ML-powered security service that== helps you prevent data loss by ==automatically discovering, classifying, and protecting sensitive data stored in Amazon S3==. Amazon Macie uses machine learning to recognize sensitive data such as personally identifiable information (PII) or intellectual property, assigns a business value, and provides visibility into where this data is stored and how it is being used in your organization. Amazon Macie ==continuously monitors data access activity== for anomalies, and ==delivers alerts when it detects== risk of unauthorized access or inadvertent data leaks. Amazon Macie has ability to detect global access permissions inadvertently being set on sensitive data, detect uploading of API keys inside source code, and verify sensitive customer data is being stored and accessed in a manner that meets their compliance standards.
 **Decoupled architecture** is a type of computing architecture that enables computing components or layers to execute independently while still interfacing with each other. eg: **AWS SQS** and **AWS SWF**. 
+**AWS Fargate** 
+	is a serverless compute engine for containers that works with both ECS and EKS. 
+	removes the need to provision and manage servers, lets you specify and pay for resources per application, and improves security through application isolation by design.
 
 **<u>==Questions to review:==</u>**
 
@@ -1018,7 +1068,7 @@ section 4=> 16
 **CSAA - Design Resilient Architectures**: 5
 **CSAA - Design Secure Applications and Architectures**: 
 
-**Timed Mode 4:** +review Correct answers
+**Timed Mode 5:** +review Correct answers
 **CSAA - Design Cost-Optimized Architectures**:
 **CSAA - Design High-Performing Architectures**: 
 **CSAA - Design Resilient Architectures**: 
@@ -1026,6 +1076,7 @@ section 4=> 16
 
 **Timed Mode 6:** +review Correct answers
 **CSAA - Design Cost-Optimized Architectures**: 
-**CSAA - Design High-Performing Architectures**: 13, 22
-**CSAA - Design Resilient Architectures**: 9,17,19,20, 
-**CSAA - Design Secure Applications and Architectures**: 2,9,10, 12, 14, 
+**CSAA - Design High-Performing Architectures**: 
+**CSAA - Design Resilient Architectures**: 
+**CSAA - Design Secure Applications and Architectures**: 
+
