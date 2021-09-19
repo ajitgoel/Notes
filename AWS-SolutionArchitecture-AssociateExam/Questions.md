@@ -2073,10 +2073,10 @@ How should a solutions architect optimize high availability for the application?
 
 Question #113*Topic 1*
 
-An application running on an Amazon EC2 instance in VPC-A needs to access files in another EC2 instance in VPC-B. Both are in separate. AWS accounts. The network administrator needs to design a solution to enable secure access to EC2 instance in VPC-B from VPC-A. The connectivity should not have a single point of failure or bandwidth concerns.
+An application running on an Amazon EC2 instance in VPC-A needs to access files in another EC2 instance in VPC-B. Both are in separate AWS accounts. The network administrator needs to design a solution to enable secure access to EC2 instance in VPC-B from VPC-A. The connectivity should not have a single point of failure or bandwidth concerns.
 Which solution will meet these requirements?
 
-- A. Set up a VPC peering connection between VPC-A and VPC-B.
+- ==A. Set up a VPC peering connection between VPC-A and VPC-B.==
 - B. Set up VPC gateway endpoints for the EC2 instance running in VPC-B.
 - C. Attach a virtual private gateway to VPC-B and enable routing from VPC-A.
 - D. Create a private virtual interface (VIF) for the EC2 instance running in VPC-B and add appropriate routes from VPC-B.
@@ -2093,7 +2093,7 @@ Where should the key material be stored to meet these requirements?
 - A. Amazon S3
 - B. AWS Secrets Manager
 - C. AWS Systems Manager Parameter store
-- D. AWS Key Management Service (AWS KMS)
+- ==D. AWS Key Management Service (AWS KMS)==
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/12/#) [  Discussion  **73**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/12/#)
 
@@ -2107,7 +2107,7 @@ What should a solutions architect recommend?
 - A. Set up AWS Storage Gateway to connect with the backup applications using the NFS interface.
 - B. Set up an Amazon EFS file system that connects with the backup applications using the NFS interface.
 - C. Set up an Amazon EFS file system that connects with the backup applications using the iSCSI interface.
-- D. Set up AWS Storage Gateway to connect with the backup applications using the iSCSI-virtual tape library (VTL) interface.
+- ==D. Set up AWS Storage Gateway to connect with the backup applications using the iSCSI-virtual tape library (VTL) interface.==
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/12/#) [  Discussion  **40**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/12/#)
 
@@ -2119,7 +2119,7 @@ A company hosts an application on an Amazon EC2 instance that requires a maximum
 Which solution should the solutions architect recommend?
 
 - A. Amazon EBS Cold HDD (sc1)
-- B. Amazon EBS General Purpose SSD (gp2)
+- ==B. Amazon EBS General Purpose SSD (gp2)==
 - C. Amazon EBS Provisioned IOPS SSD (io1)
 - D. Amazon EBS Throughput Optimized HDD (st1)
 
@@ -2133,7 +2133,7 @@ A company's application hosted on Amazon EC2 instances needs to access an Amazon
 How should a solutions architect configure access?
 
 - A. Create a private hosted zone using Amazon Route 53.
-- B. Configure a VPC gateway endpoint for Amazon S3 in the VPC.
+- ==B. Configure a VPC gateway endpoint for Amazon S3 in the VPC.==
 - C. Configure AWS PrivateLink between the EC2 instance and the S3 bucket.
 - D. Set up a site-to-site VPN connection between the VPC and the S3 bucket.
 
@@ -2149,7 +2149,7 @@ Which architecture should a solutions architect recommend for this situation?
 - A. Configure two AWS Lambda functions to run the applications. Create an Amazon EC2 instance with an instance store volume to store the data.
 - B. Configure two AWS Lambda functions to run the applications. Create an Amazon EC2 instance with an Amazon Elastic Block Store (Amazon EBS) volume to store the data.
 - C. Configure one memory optimized Amazon EC2 instance to run both applications simultaneously. Create an Amazon Elastic Block Store (Amazon EBS) volume with Provisioned IOPS to store the data.
-- D. Configure two Amazon EC2 instances to run both applications. Configure Amazon Elastic File System (Amazon EFS) with General Purpose performance mode and Bursting Throughput mode to store the data.
+- ==D. Configure two Amazon EC2 instances to run both applications. Configure Amazon Elastic File System (Amazon EFS) with General Purpose performance mode and Bursting Throughput mode to store the data.==
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/12/#) [  Discussion  **26**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/12/#)
 
@@ -2162,7 +2162,7 @@ What should the solutions architect recommend?
 
 - A. Export the data to Amazon DynamoDB and have the business analysts run their queries.
 - B. Load the data into Amazon ElastiCache and have the business analysts run their queries.
-- C. Create a read replica of the primary database and have the business analysts run their queries.
+- ==C. Create a read replica of the primary database and have the business analysts run their queries.==
 - D. Copy the data into an Amazon Redshift cluster and have the business analysts run their queries.
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/12/#) [  Discussion  **25**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/12/#)
@@ -2177,7 +2177,7 @@ Which solution should a solutions architect recommend to meet this requirement w
 - A. Deploy AWS Certificate Manager to generate certificates. Use the certificates to encrypt the database volume.
 - B. Deploy AWS CloudHSM, generate encryption keys, and use the customer master key (CMK) to encrypt database volumes.
 - C. Configure SSL encryption using AWS Key Management Service customer master keys (AWS KMS CMKs) to encrypt database volumes.
-- D. Configure Amazon Elastic Block Store (Amazon EBS) encryption and Amazon RDS encryption with AWS Key Management Service (AWS KMS) keys to encrypt instance and database volumes.
+- ==D. Configure Amazon Elastic Block Store (Amazon EBS) encryption and Amazon RDS encryption with AWS Key Management Service (AWS KMS) keys to encrypt instance and database volumes.==
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/12/#) [  Discussion  **34**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/12/#)
 
@@ -2193,7 +2193,7 @@ What should a solutions architect recommend as replacement database?
 - A. Use Amazon Aurora with Multi-AZ Aurora Replicas and restore from mysqldump for the test database.
 - B. Use Amazon Aurora with Multi-AZ Aurora Replicas and restore snapshots from Amazon RDS for the test database.
 - C. Use Amazon RDS for MySQL with a Multi-AZ deployment and read replicas, and use the standby instance for the test database.
-- D. Use Amazon RDS for SQL Server with a Multi-AZ deployment and read replicas, and restore snapshots from RDS for the test database.
+- ==D. Use Amazon RDS for SQL Server with a Multi-AZ deployment and read replicas, and restore snapshots from RDS for the test database.==
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#) [  Discussion  **112**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#)
 
@@ -2207,7 +2207,7 @@ How should a solutions architect meet these requirements?
 
 - A. Configure an AWS Lambda function in each developer account to copy the log files to the central account. Create an IAM role in the central account for the auditor. Attach an IAM policy providing read-only permissions to the bucket.
 - B. Configure CloudTrail from each developer account to deliver the log files to an S3 bucket in the central account. Create an IAM user in the central account for the auditor. Attach an IAM policy providing full permissions to the bucket.
-- C. Configure CloudTrail from each developer account to deliver the log files to an S3 bucket in the central account. Create an IAM role in the central account for the auditor. Attach an IAM policy providing read-only permissions to the bucket.
+- ==C. Configure CloudTrail from each developer account to deliver the log files to an S3 bucket in the central account. Create an IAM role in the central account for the auditor. Attach an IAM policy providing read-only permissions to the bucket.==
 - D. Configure an AWS Lambda function in the central account to copy the log files from the S3 bucket in each developer account. Create an IAM user in the central account for the auditor. Attach an IAM policy providing full permissions to the bucket.
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#) [  Discussion  **76**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#)
@@ -2223,8 +2223,8 @@ Which services meet the business requirements? (Choose two.)
 - A. Amazon EBS
 - B. Amazon EFS
 - C. Amazon FSx for Windows
-- D. Amazon S3
-- E. AWS Storage Gateway file gateway
+- ==D. Amazon S3==
+- ==E. AWS Storage Gateway file gateway==
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#) [  Discussion  **41**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#)
 
@@ -2235,7 +2235,7 @@ Question #124*Topic 1*
 A company is using Amazon EC2 to run its big data analytics workloads. These variable workloads run each night, and it is critical they finish by the start of business the following day. A solutions architect has been tasked with designing the MOST cost-effective solution.
 Which solution will accomplish this?
 
-- A. Spot Fleet
+- ==A. Spot Fleet==
 - B. Spot Instances
 - C. Reserved Instances
 - D. On-Demand Instances
@@ -2251,7 +2251,7 @@ What should a solutions architect do to accomplish this?
 
 - A. Configure a volume using Amazon EFS. Mount the EFS volume to each Windows instance.
 - B. Configure AWS Storage Gateway in Volume Gateway mode. Mount the volume to each Windows instance.
-- C. Configure Amazon FSx for Windows File Server. Mount the Amazon FSx volume to each Windows instance.
+- ==C. Configure Amazon FSx for Windows File Server. Mount the Amazon FSx volume to each Windows instance.==
 - D. Configure an Amazon EBS volume with the required size. Attach each EC2 instance to the volume. Mount the file system within the volume to each Windows instance.
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#) [  Discussion  **24**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#)
@@ -2261,25 +2261,27 @@ What should a solutions architect do to accomplish this?
 Question #126*Topic 1*
 
 A company has created an isolated backup of its environment in another Region. The application is running in warm standby mode and is fronted by an
-Application Load Balancer (ALB). The current failover process is manual and requires updating a DNS alias record to point to the secondary ALB in another
+Application Load Balancer (ALB). The current failover process is manual and requires updating a **DNS** alias record to point to the secondary ALB in another
 Region.
 What should a solutions architect do to automate the failover process?
 
 - A. Enable an ALB health check
-- B. Enable an Amazon Route 53 health check.
+- ==B. Enable an Amazon Route 53 health check.==
 - C. Crate an CNAME record on Amazon Route 53 pointing to the ALB endpoint.
 - D. Create conditional forwarding rules on Amazon Route 53 pointing to an internal BIND DNS server.
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#) [  Discussion  **53**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#)
 
 **Correct Answer:** *C*
+==Route 53 health check with active-passive failover record.== 
+==ALB health check is to identify the health of targets (EC2 instances). It cannot redirect clients to another Region.==
 
 Question #127*Topic 1*
 
 A company has a mobile chat application with a data store based in Amazon DynamoDB. Users would like new messages to be read with as little latency as possible. A solutions architect needs to design an optimal solution that requires minimal application changes.
 Which method should the solutions architect select?
 
-- A. Configure Amazon DynamoDB Accelerator (DAX) for the new messages table. Update the code to use the DAX endpoint.
+- ==A. Configure Amazon DynamoDB Accelerator (DAX) for the new messages table. Update the code to use the DAX endpoint.==
 - B. Add DynamoDB read replicas to handle the increased read load. Update the application to point to the read endpoint for the read replicas.
 - C. Double the number of read capacity units for the new messages table in DynamoDB. Continue to use the existing DynamoDB endpoint.
 - D. Add an Amazon ElastiCache for Redis cache to the application stack. Update the application to point to the Redis cache endpoint instead of DynamoDB.

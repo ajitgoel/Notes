@@ -275,6 +275,7 @@ To get temporary security credentials, the identity broker application calls eit
 	\- When you create an EBS volume in an Availability Zone, it is automatically replicated within that AZ.
 	\- After you create a volume, you can attach it to any EC2 instance in the same AZ
 	\- **AWS EBS Multi-Attach** enables you to attach a single Provisioned IOPS SSD (io1) volume to multiple Nitro-based instances that are ==**in the same AZ**==. However, other EBS types are not supported.
+	\- EBS do not support SMB protocol
 	\- You can specify not to terminate the EBS volume when you terminate the EC2 instance during instance creation.
 	\- ==EBS volumes support live configuration changes while in production which means that you can modify the volume type, volume size, and IOPS capacity without service interruptions.==
 	\- Amazon EBS encryption uses 256-bit Advanced Encryption Standard algorithms (AES-256)
@@ -304,7 +305,7 @@ To get temporary security credentials, the identity broker application calls eit
 
 |                                | **EBS type of Provisioned IOPS SSD(io1)**                    | **EBS General Purpose SSD (gp2)**                            | EBS Throughput Optimized HDD (st1)                           | **EBS Cold HDD (sc1)**                                       | Magnetic volumes                                             |
 | ------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-|                                | provides sustained performance for ==mission-critical== low-latency workloads.<br/>offer storage with consistent and low-latency performance and are designed for I/O intensive applications such as large relational or NoSQL databases.<br />==30,000 IOPS== | it does not provide the high IOPS required by the application, unlike the Provisioned IOPS SSD volume.<br/>are suitable for a broad range of workloads, including small to medium sized databases, development, and test environments, and boot volumes.<br />==less than 30,000 IOPS== | are more suitable for large streaming workloads rather than transactional database workloads. | are more suitable for large streaming workloads rather than transactional database workloads | are ideal for workloads where data are accessed infrequently, and applications where the lowest storage cost is important. <br/>this is a Previous Generation Volume. |
+|                                | provides sustained performance for ==mission-critical== low-latency workloads.<br/>offer storage with consistent and low-latency performance and are designed for I/O intensive applications such as large relational or NoSQL databases.<br />==30,000 IOPS== | it does not provide the high IOPS required by the application, unlike the Provisioned IOPS SSD volume.<br/>are suitable for a broad range of workloads, including small to medium sized databases, development, and test environments, and boot volumes.<br />==less than 30,000 IOPS== | are more suitable for large streaming workloads rather than transactional database workloads.<br />==has limit of 500 IOPS.== | are more suitable for large streaming workloads rather than transactional database workloads | are ideal for workloads where data are accessed infrequently, and applications where the lowest storage cost is important. <br/>this is a Previous Generation Volume. |
 | Best for workloads with        | small random I\O operations                                  | small random I\O operations                                  | large sequential I\O operations                              | large sequential I\O operations                              | large sequential I\O operations                              |
 | Can be used as bootable volume | Yes                                                          | Yes                                                          | No                                                           | No                                                           | No                                                           |
 | Cost                           | Moderate\high                                                | Moderate\high                                                | low                                                          | low                                                          | low                                                          |
@@ -320,6 +321,7 @@ To get temporary security credentials, the identity broker application calls eit
 	\- provides the same level of high availability and high scalability like S3 however, ==EFS is more suitable for scenarios where it is required to have a POSIX-compatible file system or if you are storing rapidly changing data. It offers strong consistency and file locking which the S3 service lacks.==
 	 \- can be used for HPC applications, ==it doesn't natively work with AWS S3==. 
 	\- It doesn't have the capability to easily process your S3 data with a high-performance POSIX interface, unlike Amazon FSx for Lustre.
+	\- supports NFS protocol.
 
 **AWS FSx for Lustre** 
 	\- provides a high-performance file system optimized for fast processing of workloads such as machine learning, high performance computing (HPC), video processing, financial modeling, and electronic design automation (EDA). These workloads commonly require data to be presented via a fast and scalable file system interface, and typically have data sets stored on long-term data stores like Amazon S3.
@@ -345,6 +347,7 @@ To get temporary security credentials, the identity broker application calls eit
 	\-you also set the permissions of the object during upload to make it public.
 	\-Under ***Manage public permissions**,* you can grant read access to your objects to everyone in the world, for all of the files that you're uploading. eg: when buckets are used for websites. in this case, the S3 bucket policy is configured to set all objects to public read.
 	\-You may choose to use resource-based policies, user policies, or some combination of these to manage permissions to your Amazon S3 resources.
+	\-  S3 supports SMB protocol
 	h.1.  **resource-based policies** and user policies. Access policies you attach to your resources (buckets and objects) are referred to as resource-based policies. eg: bucket policies and access control lists (ACLs) are resource-based policies. 
 	h.2. **user policies:** You can also attach access policies to users in your account.
 	\-Objects can be encrypted using Server-side encryption (SSE).
@@ -489,7 +492,12 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 	\- The instance is launched into one of the Availability Zones defined in your Auto Scaling group.
 	 \- If the Auto Scaling group has an attached load balancer, the instance and the load balancer must both be in EC2-Classic or the same VPC. If the Auto Scaling group has an attached target group, the instance and the load balancer must both be in the same VPC.
 
-**EC2 Instance Types** 	
+**EC2 Instance Types** 
+**Spot Fleet** 
+	\- allows you to automatically request and manage multiple Spot instances that provide the lowest price per unit of capacity for your cluster or application. 
+	\- enable you to launch and maintain the target capacity, and to automatically request resources to replace any that are disrupted or manually terminated
+	\- Spot Fleet = spot instances + on-demand
+	
 **Reserved Instance:** 
 	a. when a Reserved Instance expires, any instances that were covered by the Reserved Instance are billed at the on-demand price
 	b. provide you with a significant discount (up to 75%) compared to On-Demand instance pricing.
@@ -998,7 +1006,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 ![img](Definations.assets/auto_scaling_lifecycle.png)
 
 **AWS ALB(Application Load Balancer)**: 
-	periodically sends requests to its registered targets to test their status. These tests are called *health checks*. Each load balancer node routes requests only to the healthy targets in the enabled Availability Zones for the load balancer.
+	periodically sends requests to its registered targets to test their status. These tests are called *health checks*.  *health checks* cannot redirect clients to another Region. Each load balancer node routes requests only to the healthy targets in the enabled AZ's for the load balancer.
 	==is a managed resource. You cannot track nor view its resource utilization.==
 
 ==**SNI (Server Name Indication)** is a feature allowing you to expose multiple SSL certs if the client supports it.== 
