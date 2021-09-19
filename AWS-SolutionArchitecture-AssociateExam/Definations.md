@@ -254,6 +254,7 @@ To get temporary security credentials, the identity broker application calls eit
 
 **AWS EBS:** 
     \- block-level ==storage device that you can attach to a single EC2 instance.== 
+	\-  ==can support upto 64 TB of storage==
     \- Is not a concurrently accessible storage
 	\- EBS volumes behave like raw, unformatted block devices. 
 	\- EBS volumes that are attached to an instance are exposed as storage volumes that persist independently from the life of the instance.
@@ -265,7 +266,7 @@ To get temporary security credentials, the identity broker application calls eit
 	\- HDD's are best for large, sequential I/O operations.
 	==\- provides lowest latency access compared to EFS==
 	\- ==does not store data redundantly across multiple AZs by default, unlike EFS.==
-	\- ==instance store volumes have greater I/O performance than EBS volumes.==
+	\- ==instance store volumes have greater I/O performance than EBS volumes and can support upto 12 TB of storage==
 	\- When you create an encrypted EBS volume and attach it to a supported instance type, 
 		Data at rest inside the volume, 
 		==All data moving between the volume and the instance,== 
@@ -1099,8 +1100,9 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 **AWS Certificate Manager (ACM)** provides SSL certificates.
 **AWS CloudHSM** you only store keys in CloudHSM. 
 	\- Attempting to log in as the administrator more than twice with the wrong password zeroizes your HSM appliance. When an HSM is zeroized, all keys, certificates, and other data on the HSM is destroyed. You can use your cluster's security group to prevent an unauthenticated user from zeroizing your HSM.
-	\- Amazon does not have access to your keys nor to the credentials of your Hardware Security Module (HSM) and therefore has no way to recover your keys if you lose your credentials. It is strongly recommends that you use two or more HSMs in separate Availability Zones in any production CloudHSM Cluster to avoid loss of cryptographic keys.
+	\- Amazon does not have access to your keys(You control and manage your own keys) nor to the credentials of your Hardware Security Module (HSM) and therefore has no way to recover your keys if you lose your credentials. It is strongly recommends that you use two or more HSMs in separate Availability Zones in any production CloudHSM Cluster to avoid loss of cryptographic keys.
 	\-  ==Advantage of using AWS CloudHSM over AWS KMS is that your keys will be stored in dedicated, third-party validated hardware security modules under your exclusive control.== 
+	\- You can use CloudHSM to store keys or encrypt data used by other AWS services like AWS S3 or AWS EBS.
 
 **AWS OpsWorks** 
 	configuration management service that provides managed instances of Chef and Puppet. Chef and Puppet are automation platforms that allow you to use code to automate the configurations of your servers.

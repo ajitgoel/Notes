@@ -2299,7 +2299,7 @@ How can this issue be addressed?
 
 - A. Reduce the threshold for CPU utilization in the Auto Scaling group.
 - B. Replace the Application Load Balancer with a Network Load Balancer.
-- C. Add read replicas for the RDS instances and direct read traffic to the replica.
+- ==C. Add read replicas for the RDS instances and direct read traffic to the replica.==
 - D. Add Multi-AZ support to the RDS instances and direct read traffic to the new EC2 instance.
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#) [  Discussion  **31**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#)
@@ -2310,14 +2310,14 @@ Question #129*Topic 1*
 
 A company has implemented one of its microservices on AWS Lambda that accesses an Amazon DynamoDB table named Books. A solutions architect is designing an IAM policy to be attached to the Lambda function's IAM role, giving it access to put, update, and delete items in the Books table. The IAM policy must prevent function from performing any other actions on the Books table or any other.
 Which IAM policy would fulfill these needs and provide the LEAST privileged access?
-A.
-![img](Questions.assets/0009100001.png)
+==A.==
+==<img src="Questions.assets/0009100001.png" alt="img" style="zoom:67%;" />==
 B.
-![img](Questions.assets/0009100002.png)
+<img src="Questions.assets/0009100002.png" alt="img" style="zoom:67%;" />
 C.
-![img](Questions.assets/0009200001.png)
+<img src="Questions.assets/0009200001.png" alt="img" style="zoom:67%;" />
 D.
-![img](Questions.assets/0009200002.png)
+<img src="Questions.assets/0009200002.png" alt="img" style="zoom:67%;" />
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#) [  Discussion  **25**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/13/#)
 
@@ -2328,7 +2328,7 @@ Question #130*Topic 1*
 A company hosts its website on Amazon S3. The website serves petabytes of outbound traffic monthly, which accounts for most of the company's AWS costs.
 What should a solutions architect do to reduce costs?
 
-- A. Configure Amazon CloudFront with the existing website as the origin.
+- ==A. Configure Amazon CloudFront with the existing website as the origin.==
 - B. Move the website to Amazon EC2 with Amazon EBS volumes for storage.
 - C. Use AWS Global Accelerator and specify the existing website as the endpoint.
 - D. Rearchitect the website to run on a combination of Amazon API Gateway and AWS Lambda.
@@ -2342,7 +2342,7 @@ Question #131*Topic 1*
 A company runs a website on Amazon EC2 instances behind an ELB Application Load Balancer. Amazon Route 53 is used for the DNS. The company wants to set up a backup website with a message including a phone number and email address that users can reach if the primary website is down.
 How should the company deploy this solution?
 
-- A. Use Amazon S3 website hosting for the backup website and Route 53 failover routing policy.
+- ==A. Use Amazon S3 website hosting for the backup website and Route 53 failover routing policy.==
 - B. Use Amazon S3 website hosting for the backup website and Route 53 latency routing policy.
 - C. Deploy the application in another AWS Region and use ELB health checks for failover routing.
 - D. Deploy the application in another AWS Region and use server-side redirection on the primary website.
@@ -2360,7 +2360,7 @@ Which set of services should a solutions architect recommend to meet these requi
 - A. Amazon EBS for maximum performance, Amazon S3 for durable data storage, and Amazon S3 Glacier for archival storage
 - B. Amazon EBS for maximum performance, Amazon EFS for durable data storage, and Amazon S3 Glacier for archival storage
 - C. Amazon EC2 instance store for maximum performance, Amazon EFS for durable data storage, and Amazon S3 for archival storage
-- D. Amazon EC2 instance store for maximum performance, Amazon S3 for durable data storage, and Amazon S3 Glacier for archival storage
+- ==D. Amazon EC2 instance store for maximum performance, Amazon S3 for durable data storage, and Amazon S3 Glacier for archival storage==
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/14/#) [  Discussion  **106**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/14/#)
 
@@ -2373,7 +2373,7 @@ Which solution will lower costs without compromising the availability of objects
 
 - A. Use S3 ACLs.
 - B. Use Amazon Elastic Block Store (Amazon EBS) automated snapshots.
-- C. Use S3 Intelligent-Tiering storage.
+- ==C. Use S3 Intelligent-Tiering storage.==
 - D. Use S3 One Zone-Infrequent Access (S3 One Zone-IA).
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/14/#) [  Discussion  **24**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/14/#)
@@ -2385,9 +2385,9 @@ Question #134*Topic 1*
 An application is running on Amazon EC2 instances. Sensitive information required for the application is stored in an Amazon S3 bucket. The bucket needs to be protected from internet access while only allowing services within the VPC access to the bucket.
 Which combination of actions should solutions archived take to accomplish this? (Choose two.)
 
-- A. Create a VPC endpoint for Amazon S3.
+- ==A. Create a VPC endpoint for Amazon S3.==
 - B. Enable server access logging on the bucket.
-- C. Apply a bucket policy to restrict access to the S3 endpoint.
+- ==C. Apply a bucket policy to restrict access to the S3 endpoint.==
 - D. Add an S3 ACL to the bucket that has sensitive information.
 - E. Restrict users using the IAM policy to use the specific bucket.
 
@@ -2400,7 +2400,7 @@ Question #135*Topic 1*
 A web application runs on Amazon EC2 instances behind an Application Load Balancer. The application allows users to create custom reports of historical weather data. Generating a report can take up to 5 minutes. These long-running requests use many of the available incoming connections, making the system unresponsive to other users.
 How can a solutions architect make the system more responsive?
 
-- A. Use Amazon SQS with AWS Lambda to generate reports.
+- ==A. Use Amazon SQS with AWS Lambda to generate reports.==
 - B. Increase the idle timeout on the Application Load Balancer to 5 minutes.
 - C. Update the client-side application code to increase its request timeout to 5 minutes.
 - D. Publish the reports to Amazon S3 and use Amazon CloudFront for downloading to the user.
@@ -2417,7 +2417,7 @@ What should the solutions architect do to meet these requirements?
 - A. Create a Network Load Balancer backed by an Auto Scaling group with a UDP listener.
 - B. Create a Network Load Balancer backed by a Spot Fleet with instances in a partition placement group.
 - C. Create a Network Load Balancer backed by the existing servers in different Availability Zones as the target.
-- D. Create a Network Load Balancer backed by an Auto Scaling group with instances in multiple Availability Zones as the target.
+- ==D. Create a Network Load Balancer backed by an Auto Scaling group with instances in multiple Availability Zones as the target.==
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/14/#) [  Discussion  **26**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/14/#)
 
@@ -2431,7 +2431,7 @@ Which action will be MOST effective in accomplishing this?
 - A. Replace the SQS queue with Amazon Kinesis Data Firehose.
 - B. Use Amazon ElastiCache for Redis in front of the DynamoDB backend tier.
 - C. Add an Amazon CloudFront distribution to cache the responses for the web tier.
-- D. Use Amazon EC2 Auto Scaling to scale out the middle tier instances based on the SQS queue depth.
+- ==D. Use Amazon EC2 Auto Scaling to scale out the middle tier instances based on the SQS queue depth.==
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/14/#) [  Discussion  **35**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/14/#)
 
@@ -2440,10 +2440,10 @@ Which action will be MOST effective in accomplishing this?
 Question #138*Topic 1*
 
 A company relies on an application that needs at least 4 Amazon EC2 instances during regular traffic and must scale up to 12 EC2 instances during peak loads.
-The application is critical to the business and must be highly available.
+The application is critical to the business and must be ==**highly available.**==
 Which solution will meet these requirements?
 
-- A. Deploy the EC2 instances in an Auto Scaling group. Set the minimum to 4 and the maximum to 12, with 2 in Availability Zone A and 2 in Availability Zone B.
+- ==A. Deploy the EC2 instances in an Auto Scaling group. Set the minimum to 4 and the maximum to 12, with 2 in Availability Zone A and 2 in Availability Zone B.==
 - B. Deploy the EC2 instances in an Auto Scaling group. Set the minimum to 4 and the maximum to 12, with all 4 in Availability Zone A.
 - C. Deploy the EC2 instances in an Auto Scaling group. Set the minimum to 8 and the maximum to 12, with 4 in Availability Zone A and 4 in Availability Zone B.
 - D. Deploy the EC2 instances in an Auto Scaling group. Set the minimum to 8 and the maximum to 12, with all 8 in Availability Zone A.
@@ -2451,6 +2451,8 @@ Which solution will meet these requirements?
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/14/#) [  Discussion  **149**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/14/#)
 
 **Correct Answer:** *C*
+==High availability = two in Availability Zone A and two in Availability Zone B== 
+==Fault-tolerant = four in Availability Zone A and four in Availability Zone B==
 
 Question #139*Topic 1*
 
@@ -2458,7 +2460,7 @@ A solutions architect must design a solution for a persistent database that is b
 Which solution effectively meets the database administrator's criteria?
 
 - A. Use an instance from the I3 I/O optimized family and leverage local ephemeral storage to achieve the IOPS requirement.
-- B. Create an Nitro-based Amazon EC2 instance with an Amazon EBS Provisioned IOPS SSD (io1) volume attached. Configure the volume to have 64,000 IOPS.
+- ==B. Create an Nitro-based Amazon EC2 instance with an Amazon EBS Provisioned IOPS SSD (io1) volume attached. Configure the volume to have 64,000 IOPS.==
 - C. Create and map an Amazon Elastic File System (Amazon EFS) volume to the database instance and use the volume to achieve the required IOPS for the database.
 - D. Provision two volumes and assign 32,000 IOPS to each. Create a logical volume at the operating system level that aggregates both volumes to achieve the IOPS requirements.
 
@@ -2471,7 +2473,7 @@ Question #140*Topic 1*
 A solutions architect is designing an architecture for a new application that requires low network latency and high network throughput between Amazon EC2 instances. Which component should be included in the architectural design?
 
 - A. An Auto Scaling group with Spot Instance types.
-- B. A placement group using a cluster placement strategy.
+- ==B. A placement group using a cluster placement strategy.==
 - C. A placement group using a partition placement strategy.
 - D. An Auto Scaling group with On-Demand instance types.
 
@@ -2484,7 +2486,7 @@ Question #141*Topic 1*
 A company has global users accessing an application deployed in different AWS Regions, exposing public static IP addresses. The users are experiencing poor performance when accessing the application over the internet.
 What should a solutions architect recommend to reduce internet latency?
 
-- A. Set up AWS Global Accelerator and add endpoints.
+- ==A. Set up AWS Global Accelerator and add endpoints.==
 - B. Set up AWS Direct Connect locations in multiple Regions.
 - C. Set up an Amazon CloudFront distribution to access an application.
 - D. Set up an Amazon Route 53 geoproximity routing policy to route traffic.
@@ -2500,7 +2502,7 @@ The company must be able to immediately remove the key material and audit key us
 Which services satisfies these security requirements?
 
 - A. AWS CloudHSM with the CloudHSM client
-- B. AWS Key Management Service (AWS KMS) with AWS CloudHSM
+- ==B. AWS Key Management Service (AWS KMS) with AWS CloudHSM==
 - C. AWS Key Management Service (AWS KMS) with an external key material origin
 - D. AWS Key Management Service (AWS KMS) with AWS managed customer master keys (CMKs)
 
@@ -2513,7 +2515,7 @@ Question #143*Topic 1*
 A company recently deployed a two-tier application in two Availability Zones in the us-east-1 Region. The databases are deployed in a private subnet while the web servers are deployed in a public subnet. An internet gateway is attached to the VPC. The application and database run on Amazon EC2 instances. The database servers are unable to access patches on the internet. A solutions architect needs to design a solution that maintains database security with the least operational overhead.
 Which solution meets these requirements?
 
-- A. Deploy a NAT gateway inside the public subnet for each Availability Zone and associate it with an Elastic IP address. Update the routing table of the private subnet to use it as the default route.
+- ==A. Deploy a NAT gateway inside the public subnet for each Availability Zone and associate it with an Elastic IP address. Update the routing table of the private subnet to use it as the default route.==
 - B. Deploy a NAT gateway inside the private subnet for each Availability Zone and associate it with an Elastic IP address. Update the routing table of the private subnet to use it as the default route.
 - C. Deploy two NAT instances inside the public subnet for each Availability Zone and associate them with Elastic IP addresses. Update the routing table of the private subnet to use it as the default route.
 - D. Deploy two NAT instances inside the private subnet for each Availability Zone and associate them with Elastic IP addresses. Update the routing table of the private subnet to use it as the default route.
@@ -2528,7 +2530,7 @@ A company has an application with a REST-based interface that allows data to be 
 The third-party vendor has received many 503 Service Unavailable Errors when sending data to the application. When the data volume spikes, the compute capacity reaches its maximum limit and the application is unable to process all requests.
 Which design should a solutions architect recommend to provide a more scalable solution?
 
-- A. Use Amazon Kinesis Data Streams to ingest the data. Process the data using AWS Lambda functions.
+- ==A. Use Amazon Kinesis Data Streams to ingest the data. Process the data using AWS Lambda functions.==
 - B. Use Amazon API Gateway on top of the existing application. Create a usage plan with a quota limit for the third-party vendor.
 - C. Use Amazon Simple Notification Service (Amazon SNS) to ingest the data. Put the EC2 instances in an Auto Scaling group behind an Application Load Balancer.
 - D. Repackage the application as a container. Deploy the application using Amazon Elastic Container Service (Amazon ECS) using the EC2 launch type with an Auto Scaling group.
@@ -2542,10 +2544,10 @@ Question #145*Topic 1*
 A solutions architect needs to design a low-latency solution for a static single-page application accessed by users utilizing a custom domain name. The solution must be serverless, encrypted in transit, and cost-effective.
 Which combination of AWS services and features should the solutions architect use? (Choose two.)
 
-- A. Amazon S3
+- ==A. Amazon S3==
 - B. Amazon EC2
 - C. AWS Fargate
-- D. Amazon CloudFront
+- ==D. Amazon CloudFront==
 - E. Elastic Load Balancer
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/15/#) [  Discussion  **66**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/15/#)
@@ -2559,7 +2561,7 @@ Block (SMB) protocol. Which AWS managed service meets these requirements?
 
 - A. Amazon EBS
 - B. Amazon EC2
-- C. Amazon FSx
+- ==C. Amazon FSx==
 - D. Amazon S3
 
 [Hide Solution](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/15/#) [  Discussion  **25**](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c02/view/15/#)
