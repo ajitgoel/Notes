@@ -39,6 +39,7 @@
 	\- An AWS Direct Connect location provides access to AWS in the region with which it is associated. 
 	\- You can use a single connection in a public Region or AWS GovCloud (US) to access public AWS services in all other public Regions
 	\- To connect programmatically to an AWS service, you will need to use an **AWS Direct Connect service endpoint**
+	\- It's expensive to set up direct connect
 
 <img src="Definations.assets/aws-direct-connect-tutorialsdojo-saa-c02-aws.png" alt="img" style="zoom: 33%;" />
 
@@ -97,6 +98,10 @@ to fix slow connectivity issues between AWS Site-to-Site VPN connections placed 
 	You deploy an AWS DataSync agent to your on-premises hypervisor or in Amazon EC2. ==To connect programmatically to an AWS service, you will need to use an **AWS Direct Connect service endpoint**.==
 	does not work with Amazon EBS volumes. 
 	can copy data between Network File System (NFS) shares, Server Message Block (SMB) shares, self-managed object storage, AWS Snowcone, Amazon Simple Storage Service (Amazon S3) buckets, Amazon Elastic File System (Amazon EFS) file systems, and Amazon FSx for Windows File Server file systems.
+
+**Difference between AWS DataSync and AWS Storage Gateway:**
+	DataSync is for actual data transfer from on-premises to AWS whereas Storage Gateway is to retain access to the data that is transferred to AWS.
+	Use AWS DataSync for initial migration & accelerated transfer. Use AWS Storage Gateway once initial data is transferred and you want to sync incremental data.
 
 <img src="Definations.assets/AWS-DataSync-How-it-Works-Diagram.d27ec6f14be8ca9c2d434f94dd4a98c3fdf5c88c.png" alt="img" style="zoom: 33%;" />
 
@@ -183,7 +188,7 @@ b. After you've created a NAT gateway, you must update the route table associate
 ​	\- **IAM roles** are global services that are available to all regions
 ​	\- **IAM role** is an AWS identity with permission policies that determine what the identity can and cannot do in AWS. However, instead of being uniquely associated with one person, a role is intended to be assumable by anyone who needs it. Also, a role does not have standard long-term credentials (password or access keys) associated with it. Instead, if a user assumes a role, temporary security credentials are created dynamically and provided to the user.
 ​	\- ==**permission boundaries** can be assigned only to users and roles, not groups==
-​	\- ==if an IAM policy has an **Allow Effect statement** followed by the **Deny Effect statement**, then the deny statement will take precedence.== eg:  this policy will not allow any actions on all DynamoDB tables of the AWS account.
+​	\- ==if an IAM policy has an **Allow Effect statement** followed by the **Deny Effect statement**, then **the deny statement will take precedence over Allow**.== eg:  this policy will not allow any actions on all DynamoDB tables of the AWS account.
 
 ```
 {
@@ -207,6 +212,17 @@ b. After you've created a NAT gateway, you must update the route table associate
   ]
 }
 ```
+
+**<u>Sample IAM policy description:</u>**
+a. allow ec2 termination action coming from a IP address range 
+b. deny all actions on ec2 if the request is not coming from us-east-1, i.e allow actions only from us-east-1
+=>  ==user can terminate an EC2 instance in the us-east-1 region if his source IP is 10.100.100.254. **10.100.100.1 IP address is a reserved IP and unavailable in the CIDR block**== 
+
+
+
+![image-20210918175326308](Definations.assets/image-20210918175326308.png)
+
+
 
 ​	**web identity federation**, users of your app can sign in using a well-known identity provider (IdP) —such as Login with Amazon, Facebook, Google, or any other OpenID Connect (OIDC)-compatible IdP, receive an authentication token, and then exchange that token for temporary security credentials in AWS that map to an IAM role with permissions to use the resources in your AWS account. Using an IdP helps you keep your AWS account secure because you don’t have to embed and distribute long-term security credentials with your application.
 
@@ -348,12 +364,13 @@ To get temporary security credentials, the identity broker application calls eit
 
 ​	\-**Cross-Account Access** is primarily used if you want to grant access to your objects to another AWS account. eg: Account `MANILA` can grant another AWS account (Account `CEBU)` permission to access its resources such as buckets and objects
 
-|                                 | S3 Standard                      | S3 Intelligent-Tiering              | S3 Standard-IA                                               | S3 One Zone-IA                      | S3 Glacier                                                   | S3 Deep Archive                                        |
-| ------------------------------- | -------------------------------- | ----------------------------------- | ------------------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------ |
-|                                 | active, frequently accessed data | Data with changing access patterns  | \-Infrequently accessed data<br />\-entails an additional fee for monitoring and automation of each object in your S3 bucket | Re-creatable less accessed data     | Data archiving<br />For all but the largest archives (250 MB+), data accessed using **Expedited retrievals** are typically made available within 1–5 minutes. <br />**Provisioned Capacity** ensures that retrieval capacity for Expedited retrievals is available when you need it. | cheapest storage class for long term retention of data |
-| Minimum storage duration charge | N\A                              | 30 days min storage duration charge | 30 days min storage duration charge                          | 30 days min storage duration charge | 90 days min storage duration charge                          | 180 days min storage duration charge                   |
-| First byte latency              | milliseconds access              | milliseconds access                 | milliseconds access                                          | milliseconds access                 | retrievable within mins or hours                             | retrievable within  hours                              |
-| A\Z                             | >=3 AZ's                         | >=3 AZ's                            | >=3 AZ's                                                     | 1 AZ's                              | >=3 AZ's                                                     | >=3 AZ's                                               |
+|                                 | S3 Standard                      | S3 Intelligent-Tiering              | S3 Standard-IA                                               | S3 One Zone-IA                      | S3 Glacier                                                   | S3 Deep Archive                                              |
+| ------------------------------- | -------------------------------- | ----------------------------------- | ------------------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+|                                 | active, frequently accessed data | Data with changing access patterns  | \-Infrequently accessed data<br />\-entails an additional fee for monitoring and automation of each object in your S3 bucket | Re-creatable less accessed data     | Data archiving<br />For all but the largest archives (250 MB+), data accessed using **Expedited retrievals** are typically made available within 1–5 minutes. <br />**Provisioned Capacity** ensures that retrieval capacity for Expedited retrievals is available when you need it. | cheapest storage class for long term retention of data       |
+| Minimum storage duration charge | N\A                              | 30 days min storage duration charge | 30 days min storage duration charge                          | 30 days min storage duration charge | 90 days min storage duration charge                          | 180 days min storage duration charge                         |
+| First byte latency              | milliseconds access              | milliseconds access                 | milliseconds access                                          | milliseconds access                 | retrievable within mins or hours                             | retrievable within  hours                                    |
+| A\Z                             | >=3 AZ's                         | >=3 AZ's                            | >=3 AZ's                                                     | 1 AZ's                              | >=3 AZ's                                                     | >=3 AZ's                                                     |
+| Usage                           |                                  |                                     |                                                              |                                     | Glacier standard(requires 3-5 hours of retrieval time)       | when data is accessed at most twice a year with latencies of 12 to 48 hours. |
 
 <img src="Definations.assets/s3-minimum-storage-duration.png" alt="img" style="zoom:67%;" />
 
@@ -374,8 +391,10 @@ To get temporary security credentials, the identity broker application calls eit
 
 **AWS S3 access point** is named network endpoint that are attached to buckets that you can use to perform S3 object operations, such as uploading and retrieving objects.
 **To securely serve private content in S3 by using CloudFront**:
-	a. Require that your users access your private content by using special CloudFront signed URLs or signed cookies.
-	b. Require that your users access your Amazon S3 content by using CloudFront URLs, not Amazon S3 URLs. This prevents users from bypassing the restrictions that you specify in signed URLs or signed cookies. You can do this by setting up an origin access identity (OAI) for your Amazon S3 bucket. You can also configure the custom headers for a private HTTP server or an Amazon S3 bucket configured as a website endpoint.	
+	\- Require that your users access your private content by using special CloudFront signed URLs or signed cookies.
+	\- Require that your users access your Amazon S3 content by using CloudFront URLs, not Amazon S3 URLs. This prevents users from bypassing the restrictions that you specify in signed URLs or signed cookies. You can do this by setting up an origin access identity (OAI) for your Amazon S3 bucket. You can also configure the custom headers for a private HTTP server or an Amazon S3 bucket configured as a website endpoint.	
+	\- AWS CloudFront signed URL can have very long expiration date: "You can also distribute private content using a signed URL that is valid for a longer time, possibly for years.
+
 ==**AWS S3 Transfer Acceleration**== 
 	\- ==enables fast,== & secure ==transfers of files== over long distances ==between your client and your Amazon S3 bucket.== 
 	\- leverages Amazon CloudFront's globally distributed AWS Edge Locations. As data arrives at an AWS Edge Location, data is routed to your Amazon S3 bucket over an optimized network path.
@@ -417,9 +436,8 @@ in all other cases you pay for all bandwidth into and out of Amazon S3.
 	you manage the encryption keys and Amazon S3 manages the encryption, 
 
 **Use Client-Side Encryption** – You can encrypt data client-side and upload the encrypted data to Amazon S3. In this case, you manage the encryption process, the encryption keys, and related tools.
-
-1. Use Client-Side Encryption with AWS KMS–Managed Customer Master Key (CMK)
-2. Use Client-Side Encryption Using a Client-Side Master Key
+	\- ==Use Client-Side Encryption with AWS KMS–Managed Customer Master Key (CMK)==
+	\- ==Use Client-Side Encryption Using a Client-Side Master Key==
 
 ------
 
@@ -531,6 +549,7 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 
 ​	**AWS Storage Gateway - Cached Volumes:** data is stored in AWS S3 and you retain a copy of frequently accessed data subsets locally in your on-premises network. Cached volumes offer substantial cost savings on primary storage and minimize the need to scale your storage on-premises. You also retain low-latency access to your frequently accessed data. 
 ​	**AWS Storage Gateway - Stored Volumes:** are used if you need low-latency access to your entire dataset.
+​		all the data is stored in data center with backups going to s3 and then stored as ebs snapshots.
 
 <img src="Definations.assets/aws-storage-gateway-stored-diagram.png" alt="img"  />
 
@@ -749,6 +768,11 @@ Amazon Cognito service is primarily used for user authentication and not for pro
 
 **AWS Redis:**
 	authenticate the users using Redis AUTH by creating a new Redis Cluster with both the `--transit-encryption-enabled` and `--auth-token` parameters enabled. This will require the user to enter a password before they are granted permission to execute Redis commands on a password-protected Redis server.
+	**AWS ElastiCache for Redis** 
+		==is a in-memory data store== that provides submillisecond latency
+		ElastiCache for Redis cluster configuration supports up to 15 shards and enables customers to run Redis workloads with up to 6.1 TB of in-memory capacity in a single cluster. 
+		also provides the ability to add and remove shards from a running cluster. 
+		You can dynamically scaleout and even scale in your Redis cluster workloads to adapt to changes in demand.
 
 **AWS Aurora:**
 	 \- is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. 
@@ -845,6 +869,18 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 	If you want to update your files frequently, AWS recommends that you primarily use file versioning as Versioning is less expensive. 
 	You still have to pay for CloudFront to transfer new versions of your files to edge locations, but you don't have to pay for invalidating files.
 
+**How is AWS Global Accelerator different from Amazon CloudFront** 
+	AWS Global Accelerator and Amazon CloudFront are separate services that use the AWS global network and its edge locations around the world. 
+	**==CloudFront improves performance for both cacheable content==** (such as images and videos) ==**and dynamic content**== (such as API acceleration and dynamic site delivery). 
+	**==Global Accelerator improves performance for a wide range of applications over TCP or UDP==** by proxying packets at the edge to applications running in one or more AWS Regions. **==Global Accelerator is a good fit for non-HTTP use cases==**, such as gaming (UDP), IoT (MQTT), or Voice over IP, ==**as well as for HTTP use cases that specifically require static IP addresses or deterministic, fast regional failover**.== 
+
+**Restrict access to content by using AWS cloudFront**
+	\- **Use signed URLs or cookies**: You can restrict access to content that is intended for selected users by serving this private content through CloudFront using signed URLs or signed cookies. 
+	\- **Restrict access to content in Amazon S3 buckets**: If you restrict access to your content by using, for example, CloudFront signed URLs or signed cookies, you also won’t want people to view files by using the direct URL for the file. Instead, you want them to access the files only by using the CloudFront URL, so that your protections work.If you use an Amazon S3 bucket as the origin for a CloudFront distribution, you can set up an origin access identity (OAI) to manage direct access to your content. An origin access identity is a special CloudFront user identity that you can associate with your distribution so that you can secure all or just some of your Amazon S3 content. 
+	\- **Restrict access to content served by an ALB**: When you use CloudFront with an Application Load Balancer in Elastic Load Balancing as the origin, you can configure CloudFront to prevent users from directly accessing the Application Load Balancer. 
+	\- **Use AWS WAF web ACLs**: You can use AWS WAF, to create a web access control list (web ACL) to restrict access to your content. Based on conditions that you specify, such as the IP addresses that requests originate from or the values of query strings, CloudFront responds to requests either with the requested content or with an HTTP 403 status code (Forbidden). 
+	\- **Use geo restriction**: You can prevent users in specific geographic locations from accessing content that you serve through a CloudFront distribution. 
+
 ------
 
 **AWS CloudTrail** 
@@ -890,7 +926,7 @@ To collect logs from your Amazon EC2 instances and on-premises servers into **Cl
 
 | **Weighted routing** policy                                  | ==**Latency routing** policy==                               | Simple routing policy                                        | Geolocation routing policy                                   | **Geoproximity routing policy**                              | Failover routing policy                                      | **Multivalue answer routing policy**                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| lets you associate multiple resources with a single domain name (tutorialsdojo.com) or subdomain name (portal.tutorialsdojo.com) and choose how much traffic is routed to each resource. | ==Use when you have resources in multiple AWS Regions and you want to route traffic to the Region that provides the best latency with less round-trip time.== | Use for a single resource that performs a given function for your domain, for example, a web server that serves content for the example.com website. | Use when you want to route traffic based on the location of your users. | Use when you want to route traffic based on the location of your resources and, optionally, shift traffic from resources in one location to resources in another. | is used if you want to configure active-passive failover to your application architecture. | Use when you want Route 53 to respond to DNS queries with up to eight healthy records selected at random. |
+| lets you associate multiple resources with a single domain name (tutorialsdojo.com) or subdomain name (portal.tutorialsdojo.com) and choose how much traffic is routed to each resource. | ==Use when you have resources in multiple AWS Regions and you want to route traffic to the Region that provides the best latency with less round-trip time.== | Use for a single resource that performs a given function for your domain, for example, a web server that serves content for the example.com website. | Use when you want to route traffic based on the location of your users. | Use when you want to ==route traffic based on the location of your resources and, optionally, shift traffic from resources in one location to resources in another==. | is used if you want to configure active-passive failover to your application architecture. | Use when you want Route 53 to respond to DNS queries with up to eight healthy records selected at random. |
 | used for load balancing and testing new versions of software. |                                                              |                                                              |                                                              |                                                              |                                                              |                                                              |
 
 **configure the DNS zone apex record in Route53 to point to the ALB**
@@ -1008,7 +1044,7 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 	\- web application firewall that helps protect web applications from common web exploits
 	\- gives you control over how traffic reaches your applications by enabling you to create security rules that block common attack patterns, such as SQL injection or cross-site scripting, and rules that filter out specific traffic patterns you define. 
 	\- You can use AWS WAF to define customizable web security rules that control which traffic accesses your web applications. 
-	\- If you use **AWS Shield Advanced**, you can use AWS WAF at no extra cost for those protected resources.
+	\- If you use **AWS Shield Advanced**, you can use AWS WAF at no extra cost for those protected resources. ==AWS Shield Advanced includes intelligent DDoS attack detection and mitigation for not only for network layer (layer 3) and transport layer (layer 4) attacks, but also for application layer (layer 7) attacks==
 	\- **rate-based rule** counts the requests that arrive from any individual address in any five-minute period.
 	\- can deploy AWS WAF on:
 		\- AWS CloudFront as part of your CDN solution
@@ -1094,6 +1130,9 @@ Additionally, ==Route 53 supports the alias resource record set, which lets you 
 	\- ==lets you run Microsoft Active Directory (AD) as a managed service==. 
 	\- is powered by Windows Server 2012 R2. 
 	\- ==it is created as a highly available pair of domain controllers connected to your VPC. The domain controllers run in different AZ== in a region of your choice. 
+**AWS Secrets Manager**
+	 used to store passwords
+	to rotate credentials for Oracle, Microsoft SQL Server, or MariaDB databases hosted on Amazon RDS automatically
 
 **<u>==Questions to review:==</u>**
 
