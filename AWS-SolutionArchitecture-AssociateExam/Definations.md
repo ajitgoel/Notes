@@ -14,7 +14,7 @@
 **VPC endpoint**:
     \- ==enables you to privately connect your VPC to supported AWS services== and VPC endpoint services powered by PrivateLink ==without requiring an Internet gateway==, NAT device, VPN connection, or AWS Direct Connect connection, by creating a entry in VPC route table to direct data to the AWS service. 
     \- Instances in your VPC do not require public IP addresses to communicate with resources in the service. 
-	\- ==Traffic between your VPC and the other services does not leave the Amazon network. VPC endpoints do not support inter-region communication.==
+	\- ==Traffic between your VPC and the other services does not leave the Amazon network. **VPC endpoints do not support inter-region communication**.==
 	d. **gateway VPC endpoint** 
 			is a gateway that you specify in your route table to access AWS S3\DynamoDB from your VPC over the AWS network. 
 			==There is no additional charge for using gateway endpoints==. However, standard charges for data transfer and resource usage still apply.
@@ -76,7 +76,7 @@
 
 **scale throughput of VPN connections where multiple AWS Site-to-Site VPN connections are placed between VPCs and their remote network.** 
 
-<img src="Definations.assets/image-20210914192931148.png" alt="image-20210914192931148" style="zoom: 200%;" />
+<img src="Definations.assets/image-20210914192931148.png" alt="image-20210914192931148"  />
 
 ------
 
@@ -108,7 +108,7 @@ to fix slow connectivity issues between AWS Site-to-Site VPN connections placed 
 **VPN connection** 
 	a. traverses the public Internet
 	b. doesn't use a dedicated connection
-	c. allows you to connect your AWS cloud resources to your on-premises data center using secure and private sessions with IP Security (IPSec) or Transport Layer Security (TLS) tunnels
+	c. allows you to connect your AWS cloud resources to your on-premises data center using IP Security (IPSec) or Transport Layer Security (TLS) tunnels
 
 **VPN connectivity options**
 You can connect your Amazon VPC to remote networks and users using the following VPN connectivity options:
@@ -134,7 +134,7 @@ You can connect your Amazon VPC to remote networks and users using the following
 	\- Security groups act at the instance level, not the subnet level. Therefore, each instance in a subnet in your VPC can be assigned to a different set of security groups.
 	\- If you launch an instance and you don't specify a security group, the instance is automatically assigned to the default security group for the VPC. 
 	\- For each security group, you add *rules* that control the inbound traffic to instances, and a separate set of rules that control the outbound traffic.
-	\- Security groups are stateful which means that if an incoming request is granted, then the outgoing traffic will be automatically granted as well, regardless of the outbound rules.
+	\- ==**Security groups are stateful which means that if an incoming request is granted, then the outgoing traffic will be automatically granted as well, regardless of the outbound rules**==.
 	\- Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (`169.254.0.0/16`) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). Similarly, flow logs do not capture IP traffic to or from these addresses.
 	\- ==The FTP protocol uses TCP via ports 20 and 21.==
 	\- ==The **/32** in the the CIDR notation denotes one IP address and the **/0** refers to the entire network.==
@@ -319,7 +319,7 @@ To get temporary security credentials, the identity broker application calls eit
     \- file storage service for use with Amazon EC2. 
     \- provides a file system interface, file system access semantics (such as strong consistency and file locking), and concurrently-accessible storage for up to thousands of Amazon EC2 instances. 
 	\- stores data redundantly across multiple AZs by default
-	\- provides the same level of high availability and high scalability like S3 however, ==EFS is more suitable for scenarios where it is required to have a POSIX-compatible file system or if you are storing rapidly changing data. It offers strong consistency and file locking which the S3 service lacks.==
+	\- provides the same level of high availability and high scalability like S3 however, ==EFS is more suitable for scenarios where it is required to have a POSIX-compatible file system or if you are storing rapidly changing data. **It offers strong consistency and file locking which the S3 service lacks.**==
 	 \- can be used for HPC applications, ==it doesn't natively work with AWS S3==. 
 	\- It doesn't have the capability to easily process your S3 data with a high-performance POSIX interface, unlike Amazon FSx for Lustre.
 	\- supports NFS protocol.
@@ -426,13 +426,13 @@ in all other cases you pay for all bandwidth into and out of Amazon S3.
 **Use Server-Side Encryption** – You request Amazon S3 to encrypt your object before saving it on disks in its data centers and decrypt it when you download the objects.
 
 **Use Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3)**
-	requires that Amazon S3 manage the data and master encryption keys
+	==requires that Amazon S3 manage the data and master encryption keys==
 	==each object is encrypted with a unique key.== As an additional safeguard, AWS encrypts the key itself with a root key that it regularly rotates. 
 	uses one of the strongest block ciphers available, 256-bit Advanced Encryption Standard (AES-256), to encrypt your data. 
 
 **Use Server-Side Encryption with AWS KMS-Managed Keys (SSE-KMS)**
-	requires that AWS manage the data key but you manage the customer master key (CMK) in AWS KMS.	
-	====is similar to SSE-S3==
+	==requires that AWS manage the data key but you manage the customer master key (CMK) in AWS KMS.==	
+	==is similar to SSE-S3==
 	==There are separate permissions for the use of a KMS key==. 
 	==provides you with an audit trail== that shows when your KMS key was used and by whom. Additionally, you can create and manage customer managed keys or use AWS managed keys
 
@@ -472,7 +472,7 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 ------
 
 **AWS EC2** 	
-	\- root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3. The data on instance store volumes persist only during the life of the instance which means that if the instance is terminated, the data will be automatically deleted.
+	\- root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3. The data on instance store volumes persist only during the life of the instance
 	\- Instance metadata is data about your EC2 instance that you can use to configure or manage the running instance. 
 	\- To view the private IPv4 address, public IPv4 address, and all other categories of instance metadata from within a running instance, use the http://169.254.169.254/latest/meta-data/ URL
 	\- ==data transferred between Amazon EC2, Amazon RDS, Amazon Redshift, Amazon ElastiCache instances, and ENI in the same AZ is free.== Instead of using the public network to transfer the data, ==you can use the private network to reduce the overall data transfer costs==.
@@ -507,7 +507,7 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 	Applications that may require reserved capacity
 	need to commit to using EC2 over a 1 or 3 year term
 	==cost less than on demand price==. 
-	\- **Scheduled Reserved Instances** (Scheduled Instances) enable you to purchase capacity reservations that recur on a regular schedule, with a specified start time and duration, for a one-year term. You pay for the time that the instances are scheduled, even if you do not use them.
+	\- **Scheduled Reserved Instances** enable you to purchase capacity reservations that recur on a regular schedule, with a specified start time and duration, for a one-year term. You pay for the time that the instances are scheduled, even if you do not use them.
 
 **Reserved Instance Marketplace** is a platform that supports the sale of third-party and AWS customers' unused Standard Reserved Instances, which vary in terms of lengths and pricing options
 **Spot instances** are spare compute capacity in the AWS cloud available to you at steep discounts compared to On-Demand prices. It can be interrupted by AWS EC2 with two minutes of notification when the EC2 needs the capacity back.
@@ -520,7 +520,7 @@ Amazon S3 Glacier supports the following archive operations: Upload, Download, a
 	no charge for using Amazon VPC
 
 ==**Import SSL\TLS certificate of application:**==
-	**Amazon Certificate manager**: lets you import third-party certificates. 
+	**AWS ACM(Amazon Certificate manager)**: lets you import third-party certificates. 
 	If ACM is not available in your region, use AWS CLI to upload your third-party certificate to the **IAM certificate store**.
 
 **placement strategies**

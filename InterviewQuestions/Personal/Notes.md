@@ -49,9 +49,7 @@ Guidance on doing a phone interview:
 6.Stand up, or at least sit up straight at a table or desk.
 
 In the days before the interview
-Draw a line down the center of a piece of paper. On the left side, make a bulleted list of what the employer is
-looking for based on the job posting. On the right side, make a bulleted list of the qualities you possess that fit those
-requirements.
+Draw a line down the center of a piece of paper. On the left side, make a bulleted list of what the employer is looking for based on the job posting. On the right side, make a bulleted list of the qualities you possess that fit those requirements.
 Research the company, industry and the competition.
 Prepare your 60-second personal statement.
 Write at least five success stories to answer behavioral interview questions ("Tell me about a time when..." or "Give
@@ -78,15 +76,12 @@ Can be relied on to do the diagnose and resolve complex issues using innovative 
 
 **Why should we hire you?**
 • Have deep experience designing, coding, testing SQL Server databases
-• Design, code, and deliver multi-tier products with web-based, windows-based, mobile-based clients on the
-.NET/SQL Server technology stack.
+• Design, code, and deliver multi-tier products with web-based, windows-based, mobile-based clients on the .NET/SQL Server technology stack.
 • Develop applications in C# / .NET for high-volume transaction SQL database.
-• Take ownership of the technology used on projects and their implementation, and mentor less-experienced staff in
-their technical development
+• Take ownership of the technology used on projects and their implementation, and mentor less-experienced staff in their technical development
 • Diagnose and resolve complex issues using innovative approaches.
 • Leverage continuous build and automated unit test frameworks.
- Drive the appropriate use & implementation of technology to deliver high quality solutions that delight our
-customers.
+ Drive the appropriate use & implementation of technology to deliver high quality solutions that delight our customers.
  Develop applications utilizing Hybrid Cloud technologies (SaaS, Paas, IaaS).
  Generate innovative approaches and solutions to complex issues.
  Mentor less-experienced staff in their career development, and provide them daily guidance and direction.

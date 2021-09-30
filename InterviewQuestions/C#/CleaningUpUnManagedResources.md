@@ -6,9 +6,9 @@ If your types use unmanaged resources, you should do the following:
 
 - Implement the [dispose pattern](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose). This requires that you provide an [IDisposable.Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose) implementation to enable the deterministic release of unmanaged resources. A consumer of your type calls [Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose) when the object (and the resources it uses) are no longer needed. The [Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose) method immediately releases the unmanaged resources.
 
-- In the event that a consumer of your type forgets to call [Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose), provide a way for your unmanaged resources to be released. There are two ways to do this:
+- ==In the event that a consumer of your type forgets to call [Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose), provide a way for your unmanaged resources to be released.== There are two ways to do this:
 
-  - Use a safe handle to wrap your unmanaged resource. This is the recommended technique. Safe handles are derived from the [System.Runtime.InteropServices.SafeHandle](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle) abstract class and include a robust [Finalize](https://docs.microsoft.com/en-us/dotnet/api/system.object.finalize) method. When you use a safe handle, you simply implement the [IDisposable](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable) interface and call your safe handle's [Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle.dispose) method in your [IDisposable.Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose) implementation. The safe handle's finalizer is called automatically by the garbage collector if its [Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose) method is not called.
+  - ==Use a safe handle to wrap your unmanaged resource. This is the recommended technique. Safe handles are derived from the [System.Runtime.InteropServices.SafeHandle](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle) abstract class and include a robust [Finalize](https://docs.microsoft.com/en-us/dotnet/api/system.object.finalize) method. When you use a safe handle, you simply implement the [IDisposable](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable) interface and call your safe handle's [Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle.dispose) method in your [IDisposable.Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose) implementation. The safe handle's finalizer is called automatically by the garbage collector if its [Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose) method is not called.==
 
     —**or**—
 
@@ -16,4 +16,5 @@ If your types use unmanaged resources, you should do the following:
 
    Warning
 
-  However, because object finalization can be a complex and an error-prone operation, we recommend that you use a safe handle instead of providing your own finalizer.
+  However, because object finalization can be a complex and an error-prone operation, ==we recommend that you use a safe handle instead of providing your own finalizer.==
+

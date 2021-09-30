@@ -152,7 +152,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### ==Q.What Configure() method does in Startup.cs?==
 
-**Ans:** ==The `Configure` method is used to specify how the ASP.NET application will respond to HTTP requests.== The request pipeline is configured by adding middleware components to an IApplicationBuilder instance that is provided by dependency injection. There are some built-in middlewares for error handling, authentication, routing, session and diagnostic purpose. Highlighted lines in below code, are built-in Middleware with ASP.NET Core 1.0.
+**Ans:** ==The `Configure` method is used to specify how the ASP.NET application will respond to HTTP requests.== ==The request pipeline is configured by adding middleware components to an IApplicationBuilder instance that is provided by dependency injection.== There are some built-in middlewares for error handling, authentication, routing, session and diagnostic purpose. Highlighted lines in below code, are built-in Middleware with ASP.NET Core 1.0.
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 {

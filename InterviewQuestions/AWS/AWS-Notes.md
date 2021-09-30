@@ -63,7 +63,7 @@ There are currently three types of managed load balancers offered by AWS.
 
 **Classic Load Balancer**: This load balancer operates at Layer 4 or Layer 7 of the OSI model. It is now mostly used for legacy applications that run on EC2-Classic since application load balancers provide more features.
 
-What are some differences between EKS, ECS, and Fargate?
+**What are some differences between EKS, ECS, and Fargate?**
 
 EKS, or **Amazon Elastic Container Service for Kubernetes**, is Amazon’s managed Kubernetes service. This service provides a managed *Kubernetes control plane* that’s highly available, i.e. they run multiple master nodes for you.
 
