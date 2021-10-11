@@ -18,11 +18,11 @@ You need the following to complete this sample successfully:
 
 2. In the left menu, select **Create a resource**.
 
-   ![Create a resource in the Azure portal](C:\Users\ajitg\Notes\Azure-203Exam\Develop solutions that use Cosmos DB storage\Get started with Azure Cosmos DB Table API and Azure Table storage using the .NET SDK.assets\create-nosql-db-databases-json-tutorial-0.png)
+   ![Create a resource in the Azure portal](Get started with Azure Cosmos DB Table API and Azure Table storage using the .NET SDK.assets\create-nosql-db-databases-json-tutorial-0.png)
 
 3. On the **New** page, select **Databases** > **Azure Cosmos DB**.
 
-   ![The Azure portal Databases pane](C:\Users\ajitg\Notes\Azure-203Exam\Develop solutions that use Cosmos DB storage\Get started with Azure Cosmos DB Table API and Azure Table storage using the .NET SDK.assets\create-nosql-db-databases-json-tutorial-1.png)
+   ![The Azure portal Databases pane](Get started with Azure Cosmos DB Table API and Azure Table storage using the .NET SDK.assets\create-nosql-db-databases-json-tutorial-1.png)
 
 4. On the **Create Azure Cosmos DB Account** page, enter the settings for the new Azure Cosmos DB account.
 

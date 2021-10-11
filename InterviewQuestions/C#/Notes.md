@@ -107,7 +107,7 @@ try
 =={==
 	==foreach (Exception ex in aex.InnerExceptions)==
 		==Console.WriteLine (ex.Message);==
-}==
+}
 
 **Concurrent Collections**
 .NET offers thread-safe collections in the System.Collections.Concurrent namespace:
@@ -118,6 +118,28 @@ try
 • A thread-safe collection doesn’t guarantee that the code using it will be threadsafe
 • If you enumerate over a concurrent collection while another thread is modifying it, no exception is thrown—instead, you get a mixture of old and new content.
 these collections are not merely shortcuts for using an ordinary collection with a lock. 
+
+# Map and Reduce in .NET
+
+Linq equivalents of Map and Reduce: If you’re lucky enough to have linq then you don’t need to write your own map and reduce functions. C# 3.5 and Linq already has it albeit under different names.
+
+Map is `Select`:
+
+```cs
+Enumerable.Range(1, 10).Select(x => x + 2);
+```
+
+Reduce is `Aggregate`:
+
+```cs
+Enumerable.Range(1, 10).Aggregate(0, (acc, x) => acc + x);
+```
+
+Filter is `Where`:
+
+```cs
+Enumerable.Range(1, 10).Where(x => x % 2 == 0);
+```
 
 ------
 
@@ -2836,7 +2858,7 @@ These questions are designed to demonstrate your deep knowledge of programming o
 \1. "I noticed that you use technology X. How do you handle problem Y?"
 \2. "Why did the product choose to use the X protocol over the Y protocol? I know it has benefits like A, B,C, but many companies choose not to use it because of issue D."
 Asking such questions will typically require advance research about the company
-Passion Questions
+**Passion Questions**
 These questions are designed to demonstrate your passion for technology. They show that you're interested in learning and will be a strong contributor to the company.
 \1. "I'm very interested in scalability. Did you come in with a background in this, or what opportunities are there to learn about it?"
 \2. "I'm not familiar with technology X, but it sounds like a very interesting solution. Could you tell me a bit more about how it works?"
@@ -2855,86 +2877,25 @@ Example: "Tell me about a challenging interaction with a teammate."
 • Action: One day after class, I pulled him aside to speak about the course and then moved the discussion into talking about the project. I asked him open-ended questions about how he felt it was going and which components he was most excited about tackling. He suggested all the easiest components, and yet offered to do the write-up. I realized then that he wasn't lazy—he was actually just really confused about the project and lacked confidence. I worked with him after that to break down the components into smaller pieces, and I made sure to compliment him a lot on his work to boost his
 confidence.
 • Result
-Common Questions Enterprise Online
-leasing-next
-version.
+Common Questions 
+**Enterprise Online leasing-next version.**
 EOL Pepsi SourceRad Project 5
-Most Challenging Stabilizing
-application by
-increasing code
-coverage through
-new unit tests.
-custom workflow
-in application.
-What you learned ASP.Net MVC,
-TDD,
-Dependency
-Injection,
-Creating one of a
-kind application
-where a custom
-workflow widget
-that can be
-embedded in any
-webpage,
-Stabilizing
-application by
-increasing code
-coverage through
-new unit tests.
-New features of
-ASP.Net,
-custom workflow
-in application,
-Application reuse
-through common
-business layer,
-Performance
-improvement by
-using ProtoBuf.Net
-instead of XML
-serialization and
-Mutex to lock files
-when reading and
-writing.
-Complex pocket
-PC application
-involving very
-rigorous
-performance
-requirements,
-created custom
-controls for
-compact
-framework,
-Performance
-tuning application.
-Performance
-tuning application,
-removing
-deadlocks, was
-one of 5 members
-recruited by client
-for maintaining
-application.
-Most Interesting
-Hardest Bug
-Enjoyed Most
-Conflicts with
-Teammates
-Conflict with Jeff
-about client side
-logging, showing
-an error message
-when an error
-occurs.
-Conflict with Chris
-who was assigned
-a task and he was
-unable to
-complete. Talked
-to manager about
-it.
+**Most Challenging** Stabilizing application by increasing code coverage through new unit tests.
+custom workflow in application.
+**What you learned** ASP.Net MVC, TDD, Dependency Injection, Creating one of a kind application where a custom workflow widget that can be embedded in any webpage,
+Stabilizing application by increasing code coverage through new unit tests.
+New features of ASP.Net, custom workflow in application, 
+Application reuse through common business layer, 
+Performance improvement by using ProtoBuf.Net instead of XML serialization and Mutex to lock files when reading and writing.
+Complex pocket PC application involving very rigorous performance requirements,
+created custom controls for compact framework,
+Performance tuning application.
+Performance tuning application, removing deadlocks, was one of 5 members recruited by client for maintaining application.
+Most Interesting Hardest Bug Enjoyed Most 
+**Conflicts with Teammates** 
+Conflict with Jeff about client side logging, showing an error message when an error occurs.
+Conflict with Chris who was assigned a task and he was unable to complete. Talked to manager about it.
+
 6 Essential C# Interview Questions*
 Given an array of ints, write a C# method to total all the values that are even numbers.
 There are of course many ways to do this, but two of the most straightforward would be either:

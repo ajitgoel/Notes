@@ -1,4 +1,4 @@
-## 1xx informational response
+## ==1xx informational response==
 
 An informational response indicates that the request was received and understood. It is issued on a provisional basis while request processing continues. It alerts the client to wait for a final response. The message consists only of the status line and optional header fields, and is terminated by an empty line. As the HTTP/1.0 standard did not define any 1xx status codes, servers *must not*[[note 1\]](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#cite_note-3) send a 1xx response to an HTTP/1.0 compliant client except under experimental conditions.[[3\]](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#cite_note-4)
 
@@ -18,7 +18,7 @@ An informational response indicates that the request was received and understood
 
   Used to return some response headers before final HTTP message.[[7\]](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#cite_note-RFC_8297-8)
 
-## 2xx success
+## ==2xx success==
 
 This class of status codes indicates the action requested by the client was received, understood, and accepted.[[2\]](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#cite_note-iana_status_codes-2)
 
@@ -62,7 +62,7 @@ This class of status codes indicates the action requested by the client was rece
 
   The server has fulfilled a request for the resource, and the response is a representation of the result of one or more instance-manipulations applied to the current instance.[[17\]](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#cite_note-RFC_3229-18)
 
-## 3xx redirection
+## ==3xx redirection==
 
 This class of status code indicates the client must take additional action to complete the request. Many of these status codes are used in [URL redirection](https://en.wikipedia.org/wiki/URL_redirection).[[2\]](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#cite_note-iana_status_codes-2)
 
@@ -104,7 +104,7 @@ A user agent may carry out the additional action with no user interaction only i
 
   The request and all future requests should be repeated using another URI. 307 and 308 parallel the behaviors of 302 and 301, but *do not allow the HTTP method to change*. So, for example, submitting a form to a permanently redirected resource may continue smoothly.[[29\]](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#cite_note-rfc7238-30)
 
-## 4xx client errors
+## ==4xx client errors==
 
 [![A The Wikimedia 404 message](HTTPStatusCodes.assets/220px-Wikimedia_error_404.png)](https://en.wikipedia.org/wiki/File:Wikimedia_error_404.png)
 
@@ -230,7 +230,7 @@ This class of status code is intended for situations in which the error seems to
 
   A server operator has received a legal demand to deny access to a resource or to a set of resources that includes the requested resource.[[59\]](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#cite_note-60) The code 451 was chosen as a reference to the novel *[Fahrenheit 451](https://en.wikipedia.org/wiki/Fahrenheit_451)* (see the Acknowledgements in the RFC).
 
-## 5xx server errors
+## ==5xx server errors==
 
 The [server](https://en.wikipedia.org/wiki/Server_(computing)) failed to fulfil a request.[[60\]](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#cite_note-61)
 
