@@ -24,34 +24,32 @@ Cacheable
 Layered System
 Code on demand (optional)
 Some definitions before
-State
+**State**
 A state, is that which the server application cares about to fulfill the request. This is the chunk of information that is sent by the server in every response.
 
-Resource
-A resource, is the data that defines a model representation. This might be the stored data in the database.
+**Resource**
+A resource, is the data that defines a model representation. This might be the stored data in the database. Note, that, a state is an informacion that depends on the request and the client that is asking for; while the resource is information that is constant through all clients (of course until it needs to be updated).
 
-Note, that, a state is an informacion that depends on the request and the client that is asking for; while the resource is information that is constant through all clients (of course until it needs to be updated).
+**Idempotence**
+In terms of computer science, this term has a different meaning. It describes an operation that will produce the same result whether it is being called one or many times. In other works, making multiple identical requests has the same effect as making a single one. ==Imagine a client asking a server to update the resource user, setting its property age to the value of 20. No matter how many times you ask this. You'll have the same effect on the database.==
 
-Idempotence
-In terms of computer science, this term has a different meaning. It describes an operation that will produce the same result whether it is being called one or many times. In other works, making multiple identical requests has the same effect as making a single one. Imagine a client asking a server to update the resource user, setting its property age to the value of 20. No matter how many times you ask this. You'll have the same effect on the database.
-
-Safety
+**Safety**
 Speaking of RESTful approach, safety means the ability of a method to not change the state of a resource in the server. This means, all methods that are safety doesn't alter the information (database). Consequently, clients can make safe requests repeatedly without worry of side effects on the server.
 
-Client-Server
+**Client-Server**
 The web operates in this way: where there is a web server delivering content, that is being interpreted by a browser, or a mobile app. In this case, the server is usually the web application, and the client, is the browser, or mobile app. In this scenario, the information flow happens in one way: The client does a request to the server, which after processing such request, delivers a response.
 
-Uniform Interface
+**Uniform Interface**
 This constraint defines that the interface between any server, and all possibilities of clients, should be the same. This decouples the architecture between client and server, giving the ability to both to evolve separately.
 
-Stateless
+**==Stateless==**
 Here it comes what REST means. Representational State Transfer means that each request has to carry with the necessary state to handle the transaction. This releases the server from keeping a state of information between multiple requests. Are you familiar with the concept of SESSION in web development ? REST avoids the existence of it. And because of this, the server gets the ability to scale better.
 
-Cacheable
+**==Cacheable==**
 This constraint says that each response must define implicitly or explicitly, whether it is a cacheable resource, or not. By telling a client that such content is cacheable, it optimizes the performance of communication, since the client will avoid unnecesary requests for static data.
 
-Layered System
-This says that from the server side, scalability may be improved in such way that the client won't notice whether it is dealing in one server, or an intermedary app. That let the server side infraestructure to escalate through load balancing, shared caches, and security middlewares.
+**Layered System**
+==This says that from the server side, scalability may be improved in such way that the client won't notice whether it is dealing in one server, or an intermedary app.== That let the server side infraestructure to escalate through load balancing, shared caches, and security middlewares.
 
 Code on demand (optional)
 This means that the server might also delivers logic to the client, such as javascript content that might be interpreted by the client. This is optional, and I think is nowadays not used, since the appearance of Single Page Apps.
@@ -60,22 +58,22 @@ This means that the server might also delivers logic to the client, such as java
 Principles
 Know the best RESTful practices from the community.
 
-1. Use meaningful HTTP verbs.
+1. **Use meaningful HTTP verbs.**
 You know them: GET, POST, PUT, DELETE. Such verbs already mean an intention, and the purpose of REST principles is to use this as an advantage to set clarity for t he API.
 
-2. Sensible resource names.
+2. **Sensible resource names.**
 In the old times of web development, a resource used to accept parameters from long query strings, such as /api?model=user&id=123. By following this principle, the URI (also called resource name) shoud be as well meaninful as the HTTP verb. So rewriting the previous URI to a meaningful one, would be /user/123.
 
-3. XML and JSON
+3. **XML and JSON**
 That's up to the necessities of the client. If you're going to provide a public API, having both is a good idea, since you have a broad scope of clients that can interact with your app. But we suggest to favor JSON over XML. This is because the simplicity of its nature as a data container. Also, since most of the clients are browsers, JSON is javascript syntax, which makes perfect to be parsed by the client side. If you're going to render XML, avoid namespaces, and think of XML as a data container, which is the purpose of the API.
 
-4. Create Fine-Grained Resources
+4. **Create Fine-Grained Resources**
 Instead of starting with complex services, focus on basic, simple resources, and provide CRUD operations on them. Additionally you will add complex services over that system.
 
-5. Idempotence for PUT and DELETE
+5. **Idempotence for PUT and DELETE**
 This means that by sending a request with the same state (data) to the server, you'll have the same effect on the domain/database.
 
-6. Safety for HEAD, GET, OPTIONS and TRACE
+6. **Safety for HEAD, GET, OPTIONS and TRACE**
 These methods are defined to be safe, this means, to not alter the state in the server.
 
 HTTP Verbs
@@ -89,8 +87,9 @@ OPTIONS
 HEAD
 TRANCE
 CONNECT
+
 1. GET
-GET is used to retrieve information from the server, specifically information of a resource. If the request goes well, it returns a 200 code. Otherwise, it might return an error code, like 404 or 400
+==GET is used to retrieve information from the server, specifically information of a resource. If the request goes well, it returns a 200 code. Otherwise, it might return an error code, like 404 or 400==
 
 Examples:
 
@@ -101,7 +100,7 @@ GET /api/users/23
 # Gets a list of all orders belonging to user with id = 23
 GET /api/users/23/orders
 2. POST
-POST is used for creating a resource. It accepts usually a JSON body in the request. This data is the state for the resource that is going to be created. If the execution goes well, it returns a status code 201, with a location header with the link to the new created resource. The POST operation is not safe, since it affects th sate of information. It is also not an idempotent operation, since everytime a resource creation is requested, the id attribute will be auto incremented, making the effect of this operation, unique every time.
+==POST is used for creating a resource. It accepts usually a JSON body in the request. This data is the state for the resource that is going to be created. If the execution goes well, it returns a status code 201, with a location header with the link to the new created resource.== The POST operation is not safe, since it affects the state of information. ==It is also not an idempotent operation, since everytime a resource creation is requested, the id attribute will be auto incremented, making the effect of this operation, unique every time.==
 
 Examples:
 
@@ -111,8 +110,9 @@ POST /api/users
 {
   name: "User"
 }
+
 3. PUT
-PUT is used for updating a resource. It accepts usually a JSON body which contains the data of the resource that will be updated. On succesful execution, it returns a status code 200. PUT is not a safe operation, since it affects the state of the resource in the server information. However, PUT is encouraged to be an idempotent operation. This is, by knowing the id of the resource that will be updated, and having certain values that will be written, every operation will cause the same effect on the resource status in the server.
+==PUT is used for updating a resource. It accepts usually a JSON body which contains the data of the resource that will be updated. On succesful execution, it returns a status code 200.== PUT is not a safe operation, since it affects the state of the resource in the server information. However, ==PUT is encouraged to be an idempotent operation. This is, by knowing the id of the resource that will be updated, and having certain values that will be written, every operation will cause the same effect on the resource status in the server.==
 
 Examples:
 
@@ -122,8 +122,9 @@ PUT /api/users/23
 {
   name: "User number 23"
 }
+
 4. DELETE
-DELETE operation is used for deleting a resource identified by a URI. This is not a safe operation, since it affects the state of the resource in the server. If the operation goes well, it responds with a satus code of 200. DELETE operation is idempotent. This is, by calling this operation the first time, the resource will be deleted from the server information storage (database), and by calling the next times, the response should be the same: the resource is gone.
+==DELETE operation is used for deleting a resource identified by a URI.== This is not a safe operation, since it affects the state of the resource in the server. ==If the operation goes well, it responds with a satus code of 200. DELETE operation is idempotent. This is, by calling this operation the first time, the resource will be deleted from the server information storage (database), and by calling the next times, the response should be the same: the resource is gone.==
 
 Examples:
 
@@ -138,18 +139,18 @@ DELETE	Delete	/api/users/{id}	200	No	No	Yes
 Response Status Codes
 We will cover the most common codes here. If you want to check the full list, you can go to MDN page.
 
-2xx Success
-3xx Redirect
-4xx User error
-5xx Server error
-2xx Success codes
-200 OK (default code)
-201 Created (Response for POST requests)
-202 Accepted (Response for DELETE requests)
-4xxx Error codes
-400 Bad request (generic)
-401 Unauthorized
-404 Not found (Bad URL, resource not found)
+==2xx Success==
+==3xx Redirect==
+==4xx User error==
+==5xx Server error==
+==2xx Success codes==
+==200 OK (default code)==
+==201 Created (Response for POST requests)==
+==202 Accepted (Response for DELETE requests)==
+==4xxx Error codes==
+==400 Bad request (generic)==
+==401 Unauthorized==
+==404 Not found (Bad URL, resource not found)==
 405 Method not allowed (wrong HTTP method)
 409 Conflict
 Resource Naming Conventions

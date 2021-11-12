@@ -21,13 +21,13 @@ To get started right away, try the [Quickstart using Cloud Console](https://clou
 
 A publisher application creates and sends messages to a *topic*. Subscriber applications create a *subscription* to a topic to receive messages from it. Communication can be one-to-many (fan-out), many-to-one (fan-in), and many-to-many, as the following diagram shows.
 
-![Publishers A and B deliver messages to the same subscriber while Publisher C delivers messages to multiple subscribers.](C:\Users\ajitg\Notes\InterviewQuestions\Architecture\PubSub.assets\many-to-many.svg)
+![Publishers A and B deliver messages to the same subscriber while Publisher C delivers messages to multiple subscribers.](PubSub.assets\many-to-many.svg)
 
 ## Pub/Sub message flow
 
 The following diagram is an overview of the components in the Pub/Sub system and how messages flow between them:
 
-![The main components in the Pub/Sub system include messages, topics, and subscriptions.](C:\Users\ajitg\Notes\InterviewQuestions\Architecture\PubSub.assets\pub_sub_flow.svg)
+![The main components in the Pub/Sub system include messages, topics, and subscriptions.](PubSub.assets\pub_sub_flow.svg)
 
 1. A [*publisher* application](https://cloud.google.com/pubsub/docs/overview#endpoints) creates a *topic* in the Pub/Sub service and sends *messages* to the topic. A message contains a payload and optional *attributes* that describe the payload content.
 2. The service ensures that published messages are retained on behalf of subscriptions. A published message is retained for a subscription until it is acknowledged by any subscriber consuming messages from that subscription.
@@ -40,7 +40,7 @@ The following diagram is an overview of the components in the Pub/Sub system and
 
 Publishers can be any application that can make HTTPS requests to pubsub.googleapis.com: an App Engine app, a web service hosted on Google Compute Engine or any other third-party network, an app installed on a desktop or mobile device, or even a browser.
 
-![HTTP requests are made by publishers such as services, apps, or IoT devices, and subscribers such as microservices or data apps.](C:\Users\ajitg\Notes\InterviewQuestions\Architecture\PubSub.assets\publishers_subscribers.svg)
+![HTTP requests are made by publishers such as services, apps, or IoT devices, and subscribers such as microservices or data apps.](PubSub.assets\publishers_subscribers.svg)
 
 Pull subscribers can also be any application that can make HTTPS requests to pubsub.googleapis.com.
 
@@ -60,4 +60,4 @@ Push subscribers must be Webhook endpoints that can accept POST requests over HT
 
 The following diagram shows how Pub/Sub can integrate many components of Google Cloud.
 
-![Pub/Sub can integrate input from Cloud Logging and Compute Engine with endpoints such as Dataflow and App Engine.](C:\Users\ajitg\Notes\InterviewQuestions\Architecture\PubSub.assets\cps_integration.svg)
+![Pub/Sub can integrate input from Cloud Logging and Compute Engine with endpoints such as Dataflow and App Engine.](PubSub.assets\cps_integration.svg)
