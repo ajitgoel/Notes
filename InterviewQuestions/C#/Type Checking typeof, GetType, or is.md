@@ -15,9 +15,8 @@ void PrintTypes(Animal a)
 Dog spot = new Dog();
 PrintTypes(spot);
 
-What about typeof(T)? Is it also resolved at compile time?
-Yes. T is always what the type of the expression is. Remember, a generic method is basically a whole bunch of methods
-with the appropriate type. Example:
+**What about typeof(T)? Is it also resolved at compile time?**
+Yes. T is always what the type of the expression is. Remember, a generic method is basically a whole bunch of methods with the appropriate type. Example:
 string Foo<T>(T object) { return typeof(T).Name; }
 Animal probably_a_dog = new Dog();
 Dog definitely_a_dog = new Dog();

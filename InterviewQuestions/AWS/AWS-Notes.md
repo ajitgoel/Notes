@@ -63,7 +63,7 @@ There are currently three types of managed load balancers offered by AWS.
 
 **Classic Load Balancer**: This load balancer operates at Layer 4 or Layer 7 of the OSI model. It is now mostly used for legacy applications that run on EC2-Classic since application load balancers provide more features.
 
-What are some differences between EKS, ECS, and Fargate?
+**What are some differences between EKS, ECS, and Fargate?**
 
 EKS, or **Amazon Elastic Container Service for Kubernetes**, is Amazon’s managed Kubernetes service. This service provides a managed *Kubernetes control plane* that’s highly available, i.e. they run multiple master nodes for you.
 
@@ -123,3 +123,58 @@ Explain what this IAM Policy does:
 This IAM policy allows any IAM identity or AWS resource that has it attached to list all objects from the `company-data` bucket.
 
 It also allows running any revision of the `update-tables` task definition on the `prod` ECS cluster.
+
+------
+
+**The five pillars of a well-architected framework**
+That all leads us nicely into this section. The reason the cloud in general and AWS in particular are so popular is that they simplify the development of well-architected frameworks. If there is one must-read white paper from AWS, it is the paper titled AWS Well-Architected Framework, which spells out the five pillars of a well-architected framework. The full paper can be found here:
+https://d1.awsstatic.com/whitepapers/architecture/AWS_WellArchitected_Framework.pdf
+In this section, we will summarize the main points about those five pillars.
+**First pillar – security**
+In both on-premises and cloud architectures, security should always be a high priority. All aspects of security should be considered, including data encryption and protection, access management, infrastructure security, monitoring, and breach detection and inspection. To enable system security and to guard against nefarious actors and vulnerabilities, AWS recommends these architectural principles:
+==• Always enable traceability.==
+==• Apply security at all levels.==
+==• Implement the principle of least privilege.==
+==• Secure the system at all levels: application, data, operating system, and hardware.==
+==• Automate security best practices.==
+
+**Second pillar – reliability**
+Another characteristic of a well-architected framework is the minimization or elimination of single points of failure. Ideally, every component should have a backup, and the backup should be able to come online as quickly as possible and in an automated manner, without the need for human intervention. Another applicable concept to support reliability is the idea of self-healing systems. An example of this is how Amazon S3 handles data replication. At any given time, there are at least six copies of any object stored in Amazon S3. If, for some reason, one of the resources storing one of these copies fails, AWS will automatically recover from this failure, mark that resource as unavailable, and create another copy of the object using a healthy resource to keep the number of copies at six. When using AWS services that are not managed by AWS and are instead managed by you, make sure that you are following a similar pattern to avoid data loss and service interruption.
+==The well-architected framework paper recommends these design principles to enhance reliability:==
+==• Continuously test backup and recovery processes.==
+==• Design systems so that they can automatically recover from a single component failure.==
+==• Leverage horizontal scalability whenever possible to enhance overall system availability.==
+==• Use automation to provision and shutdown resources depending on traffic and usage to minimize resource bottlenecks.==
+==• Manage change with automation.==
+Whenever possible, changes to the infrastructure should occur in an automated fashion.
+
+**Third pillar – performance efficiency**
+In some respects, over-provisioning resources is just as bad as not having enough capacity to handle your workloads. Launching an instance that is constantly idle or almost idle is a sign of bad design. Resources should not be at full capacity, but they should be efficiently utilized. AWS provides a variety of features and services to assist in the creation of architectures with high efficiency. However, we still have a responsibility to ensure that the architectures we design are suitable and correctly sized for our applications.
+When it comes to performance efficiency, the recommended design best practices are as follows:
+==• Democratize advanced technologies.==
+==• Take advantage of AWS's global infrastructure to deploy your application globally with minimal cost and to provide low latency.==
+==• Leverage serverless architectures wherever possible.==
+==• Deploy multiple configurations to see which one delivers better performance.==
+
+**Fourth pillar – cost optimization**
+This pillar is related to the third pillar. If your architecture is efficient and can accurately handle varying application loads and adjust as traffic changes, it will follow that your costs will be minimized if your architecture can downshift when traffic slows down. Additionally, your architecture should be able to identify when resources are not being used at all and allow you to stop them or, even better, stop these unused compute resources for you. In this department, AWS also provides you with the ability to turn on monitoring tools that will automatically shut down resources if they are not being utilized.
+We strongly encourage you to adopt a mechanism to stop these resources once they are identified as idle. This is especially useful in development and test environments. To enhance cost optimization, these principles are suggested:
+==• Use a consumption model.==
+==• Leverage economies of scale whenever possible.==
+==• Reduce expenses by limiting the use of company-owned data centers.==
+==• Constantly analyze and account for infrastructure expenses.==
+Whenever possible, use AWS-managed services instead of services that you need to manage yourself. This should lower your administration expenses. 
+
+**Fifth pillar – operational excellence**
+The operational excellence of a workload should be measured across these dimensions:
+• Agility
+• Reliability
+• Performance
+The ideal way to optimize these metrics is to standardize and automate the management of these workloads. To achieve operational excellence, AWS recommends these principles:
+==• Provision infrastructure through code (for example, via CloudFormation).==
+==• Align operations and applications with business requirements and objectives.==
+==• Change your systems by making incremental and regular changes.==
+==• Constantly test both normal and abnormal scenarios.==
+==• Record lessons learned from operational events and failures.==
+==• Write down and keep standard operations procedures manual up to date.==
+AWS users need to constantly evaluate their systems to ensure that they are following the recommended principles of the AWS Well-Architected Framework paper and that they comply with and follow architecture best practices.  

@@ -73,6 +73,76 @@ public class FizzBuzz
     }
 }
 
+------
+
+**When to Use Parallel Framework(PFX):** The primary use case for PFX is parallel programming: leveraging multicore processors to speed up computationally intensive code.  
+
+**Example: Parallel Spellchecker**
+Suppose that we want to write a spellchecker that runs quickly with very large documents by utilizing all available cores. By formulating our algorithm into a LINQ query, we can very easily parallelize it.
+The first step is to download a dictionary of English words into a HashSet for efficient lookup:
+if (!File.Exists ("WordLookup.txt")) // Contains about 150,000 words
+	new WebClient().DownloadFile ("http://www.albahari.com/ispell/allwords.txt", "WordLookup.txt");
+var wordLookup = new HashSet<string> (File.ReadAllLines ("WordLookup.txt"),StringComparer.InvariantCultureIgnoreCase);
+We then use our word lookup to create a test “document” comprising an array of a million random words. After we build the array, let’s introduce a couple of spelling mistakes:
+var random = new Random();
+string[] wordList = wordLookup.ToArray();
+string[] wordsToTest = Enumerable.Range (0, 1000000).Select (i => wordList [random.Next (0, wordList.Length)]).ToArray();
+wordsToTest [12345] = "woozsh"; // Introduce a couple
+wordsToTest [23456] = "wubsie"; // of spelling mistakes.
+Now we can perform our parallel spellcheck by testing wordsToTest against wordLookup. PLINQ makes this very easy:
+var query = wordsToTest==.AsParallel()==.Select ((word, index) => new IndexedWord { Word=word, Index=index }).Where (iword => !wordLookup.Contains (iword.Word)).OrderBy (iword => iword.Index);
+foreach (var mistake in query)
+Console.WriteLine (mistake.Word + " - index = " + mistake.Index);
+// OUTPUT:
+// woozsh - index = 12345
+// wubsie - index = 23456
+IndexedWord is a custom struct that we define as follows: struct IndexedWord { public string Word; public int Index; }
+
+**Working with AggregateException :**
+==Because these libraries utilize many threads, it’s actually possible for two or more exceptions to be thrown simultaneously. To ensure that all exceptions are reported, exceptions are therefore wrapped in an AggregateException container, which exposes an InnerExceptions property containing each of the caught exception(s):==
+try
+{
+}
+====catch (AggregateException aex)==
+=={==
+	==foreach (Exception ex in aex.InnerExceptions)==
+		==Console.WriteLine (ex.Message);==
+}
+
+**Concurrent Collections**
+.NET offers thread-safe collections in the System.Collections.Concurrent namespace:
+**Concurrent collection**  ConcurrentStack<T>  ConcurrentQueue<T>  ConcurrentBag<T> 
+**Nonconcurrent equivalent** Stack<T> Queue<T> (none)
+
+• The conventional collections outperform the concurrent collections in all but highly concurrent scenarios.
+• A thread-safe collection doesn’t guarantee that the code using it will be threadsafe
+• If you enumerate over a concurrent collection while another thread is modifying it, no exception is thrown—instead, you get a mixture of old and new content.
+these collections are not merely shortcuts for using an ordinary collection with a lock. 
+
+# Map and Reduce in .NET
+
+Linq equivalents of Map and Reduce: If you’re lucky enough to have linq then you don’t need to write your own map and reduce functions. C# 3.5 and Linq already has it albeit under different names.
+
+Map is `Select`:
+
+```cs
+Enumerable.Range(1, 10).Select(x => x + 2);
+```
+
+Reduce is `Aggregate`:
+
+```cs
+Enumerable.Range(1, 10).Aggregate(0, (acc, x) => acc + x);
+```
+
+Filter is `Where`:
+
+```cs
+Enumerable.Range(1, 10).Where(x => x % 2 == 0);
+```
+
+------
+
 **(B)What is garbage collection?**
 Garbage collection is a CLR feature which automatically manages memory. CLR automatically releases objects when they are no longer in use and referenced. One side effect of this non-deterministic feature is that we cannot assume an object is destroyed when it goes out of the scope of a function. We should avoid using destructors because before GC destroys the object it first executes destructor in that case it will have to wait for code to release the umanaged resource.
 resultin in additional delays in GC. So its recommended to implement IDisposable interface and write cleaup code in Dispose method and call GC.SuppressFinalize method so instructing GC not to call your constructor.
@@ -88,41 +158,15 @@ Unboxing is vice versa of boxing operation where the value is copied from the in
 ==boxing process: value Type=> Object Type
 Unboxing process: Object Type=> Value Type==
 **(I) What is the difference between Convert.toString and .toString() method ?**
-The basic difference between them is “Convert” function handles NULLS while “i.ToString()” does not it will throw a NULL
-reference exception error. So as good coding practice using “convert” is always safe.
+The basic difference between them is “Convert” function handles NULLS while “i.ToString()” does not it will throw a NULL reference exception error. So as good coding practice using “convert” is always safe.
 **(B)What is an application domain?**
-Previously “PROCESS” where used as security boundaries. One process has its own virtual memory and does not overlap
-the other process virtual memory; due to this one process can not crash the other process. In .NET they went one step
-ahead introducing application domains. In application domains multiple applications can run in same process with out
-influencing each other. If one of the application domains throws error it does not affect the other application domains.
+Previously “PROCESS” where used as security boundaries. One process has its own virtual memory and does not overlap the other process virtual memory; due to this one process can not crash the other process. In .NET they went one step ahead introducing application domains. In application domains multiple applications can run in same process with out influencing each other. If one of the application domains throws error it does not affect the other application domains.
 **(B) What is UDDI ?**
-UDDI is Universal Description, Discovery and Integration. It is a directory that can be used to publish and discover public
-Web Services.
+UDDI is Universal Description, Discovery and Integration. It is a directory that can be used to publish and discover public Web Services.
 **(B) What is DISCO ?**
-DISCO is the abbreviated form of Discovery. It is basically used to club or group common services together on a server and
-provides links to the schema documents of the services it describes may require.
+DISCO is the abbreviated form of Discovery. It is basically used to club or group common services together on a server and provides links to the schema documents of the services it describes may require.
 **(B) What is WSDL?**
-Web Service Description Language (WSDL)is a W3C specification which defines XML grammar for describing Web Services.
-Abstraction: It allows complex real world to be represented in simplified manner.
-Encapsulation: It is a process of hiding all the internal details of an object from the outside world.
-Association: This is the simplest relationship between objects. Example every customer has sales. So Customer object and sales object have an association relation between them.
-Aggregation(Composition): This is also called as composition model. Example in order to make a “Accounts” class it has use other objects example “Voucher”, “Journal” and “Cash” objects. So accounts class is aggregation of these three objects.
-Inheritance: Hierarchy is used to define more specialized classes based on a preexisting generalized class.
-**<u>Polymorphism:</u>** ==When inheritance is used to extend a generalized class to a more specialized class, it includes behavior of the top class(Generalized class). The inheriting class often implement a behavior that can be somewhat different than the generalized class, but the name of the behavior can be same. It is important that a given instance of an object use the correct behavior, and the property of polymorphism allows this to happen automatically.==
-
-**(I) What are abstract classes ?**
-Following are features of a abstract class :-
-√ You can not create a object of abstract class
-√ Abstract class is designed to act as a base class (to be inherited by other classes). Abstract class is a design concept in program development and provides a base upon which other classes are built.
-√ Abstract classes are similar to interfaces. After declaring an abstract class, it cannot be instantiated on its own, it must be inherited.
-√ Abstract classes can have implementation or pure abstract methods which should be implemented in the child class. 
-Abstract classes can also have virtual or non-virtual methods.
-
-**(B) What is a Interface ?**
-Interface is a contract that defines the signature of the functionality. So if a class is implementing a interface it says to the outer world, that it provides specific behavior.
-(A) What is difference between abstract classes and interfaces?
-√ Abstract classes can have concrete methods while interfaces have no methods implemented.
-√ Interfaces do not come in inheriting chain, while abstract classes come in inheritance.
+Web Service Description Language (WSDL)is a W3C specification which defines XML grammar for describing Web Services. 
 
 **(B) What is a delegate ?** Delegate is a class that can hold a reference to a method or a function. Delegate class has a signature and it can only reference those methods whose signature is compliant with the class.
 
@@ -178,8 +222,7 @@ dictionary.Add("iguana", -1);
 }
 
 **Order of Constructor and Destructor:**
-The constructor of the derived class gets called after the constructor of the base class. The destructors get called in
-reversed order.
+The constructor of the derived class gets called after the constructor of the base class. The destructors get called in reversed order.
 
 **(B)What is the significance of Finalize method in .NET?**
 .NET Garbage collector does almost all clean up activity for your objects. But unmanaged resources (ex: - Windows API created objects, File, Database connection objects, COM objects etc) is outside the scope of .NET framework we have to explicitly clean our resources. which can be overridden and clean up code for unmanaged resources can be put in this section.
@@ -2790,10 +2833,9 @@ How would your last boss and colleagues describe you?
 Very dependable and honest
 Willing to go alone, take the path less travelled.
 Very high quality of work.
-Can be relied on to do the diagnose and resolve complex issues using innovative approaches, within the technical
-constraints imposed by the project.
+Can be relied on to do the diagnose and resolve complex issues using innovative approaches, within the technical constraints imposed by the project.
 Team Player, a person that can be trusted to tell it as it is, without going “round and round”.
-Closing Questions example:
+**Closing Questions example:**
 Is there any other information you need from me regarding my application?
 Do you have any hesitations about me for this position?
 How do I compare to my competition?
@@ -2803,28 +2845,23 @@ Is there anything hindering me from moving forward in the interview process?
 Where do I go from here? What are your next steps?
 What is your timeframe for making a final decision?
 Do you know when I might hear correspondence regarding the next step?
-Behavioural questions:
-Genuine Questions:
-These are the questions you actually want to know the answers to. Here are a few ideas of questions that are valuable to
-many candidates:
+
+**Behavioural questions:**
+**Genuine Questions:**
+These are the questions you actually want to know the answers to. Here are a few ideas of questions that are valuable to many candidates:
 \1. "How much of your day do you spend coding?"
 \2. "How many meetings do you have every week?"
-\3. "What is the ratio of testers to developers to program managers? What is the interaction like? How does project
-planning happen on the team?
-Insightful Questions
-These questions are designed to demonstrate your deep knowledge of programming or technologies, and they also
-demonstrate your passion for the company or product.
+\3. "What is the ratio of testers to developers to program managers? What is the interaction like? How does project planning happen on the team?
+
+**Insightful Questions**
+These questions are designed to demonstrate your deep knowledge of programming or technologies, and they also demonstrate your passion for the company or product.
 \1. "I noticed that you use technology X. How do you handle problem Y?"
-\2. "Why did the product choose to use the X protocol over the Y protocol? I know it has benefits like A, B,C, but many
-companies choose not to use it because of issue D."
+\2. "Why did the product choose to use the X protocol over the Y protocol? I know it has benefits like A, B,C, but many companies choose not to use it because of issue D."
 Asking such questions will typically require advance research about the company
-Passion Questions
-These questions are designed to demonstrate your passion for technology. They show that you're interested in learning and
-will be a strong contributor to the company.
-\1. "I'm very interested in scalability. Did you come in with a background in this, or what opportunities are there to learn
-about it?"
-\2. "I'm not familiar with technology X, but it sounds like a very interesting solution. Could you tell me a bit more about
-how it works?"
+**Passion Questions**
+These questions are designed to demonstrate your passion for technology. They show that you're interested in learning and will be a strong contributor to the company.
+\1. "I'm very interested in scalability. Did you come in with a background in this, or what opportunities are there to learn about it?"
+\2. "I'm not familiar with technology X, but it sounds like a very interesting solution. Could you tell me a bit more about how it works?"
 Advice when responding to questions.
 a. Be Specific,Not Arrogant
 b. Limit Details
@@ -2832,102 +2869,33 @@ c. Give Structured Answers
 c.1. Nugget First
 For example:
 • Interviewer: "Tell me about a time you had to persuade a group of people to make a big change."
-• Candidate: "Sure, let me tell you about the time when I convinced my school to let undergraduates teach their own
-courses. Initially, my school had a rule where..."
+• Candidate: "Sure, let me tell you about the time when I convinced my school to let undergraduates teach their own courses. Initially, my school had a rule where..."
 c.2. S.A.R. (Situation, Action, Result)
-The S.A.R. approach means that you start off outlining the situation, then explaining the actions you took, and lastly,
-describing the result.
+The S.A.R. approach means that you start off outlining the situation, then explaining the actions you took, and lastly, describing the result.
 Example: "Tell me about a challenging interaction with a teammate."
-• Situation:On my operating systems project, I was assigned to work with three other people. While two were great, the
-third team member didn't contribute much. He stayed quiet during meetings, rarely chipped in during email discussions,
-and struggled to complete his components.
-• Action: One day after class, I pulled him aside to speak about the course and then moved the discussion into talking
-about the project. I asked him open-ended questions about how he felt it was going and which components he was most
-excited about tackling. He suggested all the easiest components, and yet offered to do the write-up. I realized then that
-he wasn't lazy—he was actually just really confused about the project and lacked confidence. I worked with him after that
-to break down the components into smaller pieces, and I made sure to compliment him a lot on his work to boost his
+• Situation:On my operating systems project, I was assigned to work with three other people. While two were great, the third team member didn't contribute much. He stayed quiet during meetings, rarely chipped in during email discussions, and struggled to complete his components.
+• Action: One day after class, I pulled him aside to speak about the course and then moved the discussion into talking about the project. I asked him open-ended questions about how he felt it was going and which components he was most excited about tackling. He suggested all the easiest components, and yet offered to do the write-up. I realized then that he wasn't lazy—he was actually just really confused about the project and lacked confidence. I worked with him after that to break down the components into smaller pieces, and I made sure to compliment him a lot on his work to boost his
 confidence.
 • Result
-Common Questions Enterprise Online
-leasing-next
-version.
+Common Questions 
+**Enterprise Online leasing-next version.**
 EOL Pepsi SourceRad Project 5
-Most Challenging Stabilizing
-application by
-increasing code
-coverage through
-new unit tests.
-custom workflow
-in application.
-What you learned ASP.Net MVC,
-TDD,
-Dependency
-Injection,
-Creating one of a
-kind application
-where a custom
-workflow widget
-that can be
-embedded in any
-webpage,
-Stabilizing
-application by
-increasing code
-coverage through
-new unit tests.
-New features of
-ASP.Net,
-custom workflow
-in application,
-Application reuse
-through common
-business layer,
-Performance
-improvement by
-using ProtoBuf.Net
-instead of XML
-serialization and
-Mutex to lock files
-when reading and
-writing.
-Complex pocket
-PC application
-involving very
-rigorous
-performance
-requirements,
-created custom
-controls for
-compact
-framework,
-Performance
-tuning application.
-Performance
-tuning application,
-removing
-deadlocks, was
-one of 5 members
-recruited by client
-for maintaining
-application.
-Most Interesting
-Hardest Bug
-Enjoyed Most
-Conflicts with
-Teammates
-Conflict with Jeff
-about client side
-logging, showing
-an error message
-when an error
-occurs.
-Conflict with Chris
-who was assigned
-a task and he was
-unable to
-complete. Talked
-to manager about
-it.
+**Most Challenging** Stabilizing application by increasing code coverage through new unit tests.
+custom workflow in application.
+**What you learned** ASP.Net MVC, TDD, Dependency Injection, Creating one of a kind application where a custom workflow widget that can be embedded in any webpage,
+Stabilizing application by increasing code coverage through new unit tests.
+New features of ASP.Net, custom workflow in application, 
+Application reuse through common business layer, 
+Performance improvement by using ProtoBuf.Net instead of XML serialization and Mutex to lock files when reading and writing.
+Complex pocket PC application involving very rigorous performance requirements,
+created custom controls for compact framework,
+Performance tuning application.
+Performance tuning application, removing deadlocks, was one of 5 members recruited by client for maintaining application.
+Most Interesting Hardest Bug Enjoyed Most 
+**Conflicts with Teammates** 
+Conflict with Jeff about client side logging, showing an error message when an error occurs.
+Conflict with Chris who was assigned a task and he was unable to complete. Talked to manager about it.
+
 6 Essential C# Interview Questions*
 Given an array of ints, write a C# method to total all the values that are even numbers.
 There are of course many ways to do this, but two of the most straightforward would be either:

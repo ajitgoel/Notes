@@ -78,7 +78,7 @@ You have a robot that can turn left and right. It can also move forward and back
 
 **Solution**
 
-<img src="C:\temp\Notes\InterviewQuestions\DesignPatterns\Notes.assets\AdapterDesignPatternWithATwist.jpg" style="zoom: 80%;" />
+<img src="Notes.assets\AdapterDesignPatternWithATwist.jpg" style="zoom: 80%;" />
 
 using System;
 using System.Collections.Generic;
@@ -158,7 +158,7 @@ I have implemented the same in Solution 2 below.
 
 **Solution 1(Not recommended):**
 
-<img src="C:\temp\Notes\InterviewQuestions\DesignPatterns\Notes.assets\SingletonDesignPattern-2.jpg"  />
+<img src="Notes.assets\SingletonDesignPattern-2.jpg"  />
 
 using System;
 using System.Collections.Generic;
@@ -279,7 +279,7 @@ using System.Linq;
 
 ## Convert the interface of a class into another interface that the clients expects(Adapter Pattern)
 
-<img src="C:\temp\Notes\InterviewQuestions\DesignPatterns\Notes.assets\AdapterPattern.jpg"  />
+<img src="Notes.assets\AdapterPattern.jpg"  />
 
 **Adapter pattern:**
 

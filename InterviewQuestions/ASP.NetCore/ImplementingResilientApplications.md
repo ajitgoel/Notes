@@ -14,7 +14,7 @@ Another issue that developers run into is when using a shared instance of `HttpC
 
 However, the issue isn't really with `HttpClient` per se, but with the [default constructor for HttpClient](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.-ctor?view=netcore-3.1#System_Net_Http_HttpClient__ctor), because it creates a new concrete instance of [HttpMessageHandler](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpmessagehandler), which is the one that has *sockets exhaustion* and DNS changes issues mentioned above.
 
-To address the issues mentioned above and to make `HttpClient` instances manageable, .NET Core 2.1 introduced the [IHttpClientFactory](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.ihttpclientfactory) interface which can be used to configure and create `HttpClient` instances in an app through Dependency Injection (DI). It also provides extensions for Polly-based middleware to take advantage of delegating handlers in HttpClient.
+==To address the issues mentioned above and to make `HttpClient` instances manageable, .NET Core 2.1 introduced the [IHttpClientFactory](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.ihttpclientfactory) interface which can be used to configure and create `HttpClient` instances in an app through Dependency Injection (DI).== It also provides extensions for Polly-based middleware to take advantage of delegating handlers in HttpClient.
 
 [Polly](http://www.thepollyproject.org/) is a transient-fault-handling library that helps developers add resiliency to their applications, by using some pre-defined policies in a fluent and thread-safe manner.
 
