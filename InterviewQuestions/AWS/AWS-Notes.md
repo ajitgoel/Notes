@@ -50,8 +50,7 @@ EC2 instance metadata is a service accessible from within EC2 instances, which a
 It is possible to retrieve an instance’s IAM access key by accessing the `iam/security-credentials/role-name` metadata category. This returns a temporary set of credentials that the EC2 instance automatically uses for communicating with AWS services.
 
 <u>Q: What is an SQS dead-letter queue (DLQ), and what could you use it for?</u>
-==SQS is Amazon’s fully managed distributed queue service. Queues are useful for handling communication between different services or other components in distributed systems.
-A DLQ is a special queue for messages that could not be processed properly. These queues are specially used for debugging and troubleshooting applications.==
+==**SQS** is Amazon’s fully managed distributed queue service. Queues are useful for handling communication between different services or other components in distributed systems. A **DLQ** is a special queue for messages that could not be processed properly. These queues are specially used for debugging and troubleshooting applications.==
 
 <u>**Q:** What are the current types of load balancers present on AWS? How do you choose which one to use?</u>
 

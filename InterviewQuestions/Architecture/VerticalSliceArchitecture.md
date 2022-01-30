@@ -1,6 +1,6 @@
 # Why vertical slice architecture is better—if you know these few things
 
-==***Vertical slice architecture is becoming the preferred method for refactoring legacy systems (“vertical slice” being a crossection of code that runs from the front-end deep down to the data layer).== Our 
+==Vertical slice architecture is becoming the preferred method for refactoring legacy systems (“vertical slice” being a crossection of code that runs from the front-end deep down to the data layer).== Our 
 Many years back, we started a long term project by building an “onion” architecture. Within a couple of months, the cracks started to show in this style. So we moved towards a Command Query Responsibility Segregation (CQRS) pattern (before it had that name) and began building in vertical slices instead of layers (whether flat or concentric, layers are layers). Since then, we’ve almost exclusively built around vertical slice architectures for applications and systems and I can’t imagine going back to the constraints of layered architectures.
 
 ## What’s wrong with a layered architecture?

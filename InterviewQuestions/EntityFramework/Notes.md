@@ -37,6 +37,8 @@ using (var context = new BloggingContext())
 
 **Reference:** [Querying Related Data](https://docs.microsoft.com/en-us/ef/ef6/querying/related-data)
 
+------
+
 **Code First Approach versus Database First Approach**
 **Code First Approach**: In the Code First approach, you focus on the domain of your application and start creating classes for your domain entity to match your database design.
 **Database First Approach**: In the Database First approach, you design your database and then generate the domain of your application by reversing engineering the database.
@@ -56,6 +58,8 @@ As you load more objects and their references into memory, the memory consumptio
 ==The context is not thread-safe, therefore it should not be shared across multiple threads doing work on it concurrently.==
 If an exception causes the context to be in an unrecoverable state, the whole application may terminate.
 ==The chances of running into concurrency-related issues increase as the gap between the time when the data is queried and updated grows.==
+
+------
 
 **<u>Improving bulk insert performance:</u>**
 
@@ -107,7 +111,7 @@ Q4. Which method of DbSet can you use after finding a record to delete it?
 
 Q5. You want to easily update the last name of a person in a record stored in the database. You can do so in Entity
 Framework by:
-\1. Issuing a SQL command
+1. Issuing a SQL command
 **2. Getting the corresponding object, setting the LastName property, and calling SaveChanges**
 \3. Creating an instance with the same id and different values for LastName, then adding it to DbSet using the Add method, and then calling SaveChanges
 

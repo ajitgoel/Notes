@@ -87,7 +87,7 @@ When you’re indexing view, all objects used in view schema cannot be modified 
 
 **EXAMPLE of Correlated Subqueries :** Find all the employees who earn more than the average salary in their department.
 
-SELECT last_name, salary, department_id FROM employees outer
+SELECT last_name, salary, department_id FROM ==employees outer==
  WHERE salary >(SELECT AVG(salary) FROM employees WHERE department_id = ==outer==.department_id);
 
 ---------------------
@@ -115,8 +115,8 @@ FROM employee
 ----------------------
 
 **<u>Index seeks versus Index scans:</u>**
-==There are two different ways to access data in an index: a seek or a scan. ==
-==A **index seek** is used when a predicate present in the query matches the key(s) of an index. In this case, SQL Server can use the values of the predicate to limit the amount of data that must be searched by following the pointers within the index from the root to the leaf page to locate matching rows. If the predicate can't be used for some reason, then an index may be scanned. In this case, SQL Server starts at the root of the index and reads down to the leaf level, then reads all the leaf-level pages of the index, searching for the required rows to return.==  
+==There are two different ways to access data in an index: a seek or a scan.
+<u>A **index seek** is used when a predicate present in the query matches the key(s) of an index.</u> In this case, SQL Server can use the values of the predicate to limit the amount of data that must be searched by following the pointers within the index from the root to the leaf page to locate matching rows. If the predicate can't be used for some reason, then an index may be scanned. In this case, SQL Server starts at the root of the index and reads down to the leaf level, then reads all the leaf-level pages of the index, searching for the required rows to return.==  
 ==As mentioned, this applies to both clustered and non-clustered indexes, the only difference is with a clustered index, the leaf level contains the actual data pages, while the non-clustered index contains index pages with pointers to the data pages.==
 
 **SQL LEFT JOIN**: The LEFT JOIN keyword returns all records from the left table (table1), and the matched records from the right table (table2). The result is NULL from the right side, if there is no match.

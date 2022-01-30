@@ -1,6 +1,6 @@
 **[ASP.NET MVC 5] What basic folders do we have in an ASP.NET project without Areas? What are they for? What subfolders do they have (if applicable)? Which folders are publicly accessible?**
 
-- x`App_Data` can be used to store some application’s data.
+- `App_Data` can be used to store some application’s data.
 - `App_Start` contains configuration classes: `RouteConfig`, `BundleConfig`, etc.
 - `Content` is a publicly accessible folder for static files, such as CSS files, images, etc., but not scripts.
 - `Controllers` is a default folder for application controllers.
@@ -213,4 +213,4 @@ There are several answers, because ASP.NET Core is a new platform and supports s
 
 **What is the difference between asynchronous and synchronous actions? When would you use asynchronous actions?**
 
-Asynchronous actions won’t block the executing thread if it waits for an I/O operation. Using asynchronous actions can increase the throughput of a system if you use such a pattern for I/O operations, but it won’t help with CPU-bound operations.
+Asynchronous actions won’t block the executing thread if it waits for an I/O operation. ==Using asynchronous actions can increase the throughput of a system if you use such a pattern for I/O operations, but it won’t help with CPU-bound operations.==
