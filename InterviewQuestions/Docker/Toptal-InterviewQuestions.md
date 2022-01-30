@@ -2,9 +2,9 @@
 
 ==The volume parameter syncs a directory in a container with a host directory.==
 
-For example: docker run -v nginx-sites:/etc/nginx/sites-available nginx
+==For example: docker run -v nginx-sites:/etc/nginx/sites-available nginx==
 
-This command mounts the `nginx-sites` directory in the host to the `/etc/nginx/sites-available` directory. In this way, you can sync nginx sites without restarting the container they’re in. Also, you can protect your data that is generated in your container using a directory in the host. Otherwise, if you delete your container, your data that was generated and stored in your container will naturally be deleted.
+==This command mounts the `nginx-sites` directory in the host to the `/etc/nginx/sites-available` directory.== In this way, you can sync nginx sites without restarting the container they’re in. Also, you can protect your data that is generated in your container using a directory in the host. Otherwise, if you delete your container, your data that was generated and stored in your container will naturally be deleted.
 
 When you use the `volume` parameter, you can use the same data that was generated in a previous container using the same command.
 

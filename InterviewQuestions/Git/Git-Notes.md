@@ -1,5 +1,9 @@
 # Merging vs. Rebasing
 
+<img src="Git-Notes.assets/image-20220130121317167.png" alt="image-20220130121317167" style="zoom:67%;" />
+
+
+
 ## Conceptual Overview
 
 The first thing to understand about `git rebase` is that it solves the same problem as `git merge`. ==Both of these commands are designed to integrate changes from one branch into another branch==—they just do it in very different ways.

@@ -34,8 +34,7 @@ public class UnitTest1
 
 **Yield keyword:**
 
-==The use of the yield keyword controls the iterator’s behavior. If the consumer requests an iterator to produce a value, it runs until a yield statement is encountered. At that point, the iterator is 
-suspended until the consumer asks for the next value.==
+==The use of the yield keyword controls the iterator’s behavior. If the consumer requests an iterator to produce a value, it runs until a yield statement is encountered. At that point, the iterator is ssuspended until the consumer asks for the next value.==
 
 [TestClass]
 public class FizzBuzzTest
@@ -75,7 +74,7 @@ public class FizzBuzz
 
 ------
 
-**When to Use Parallel Framework(PFX):** The primary use case for PFX is parallel programming: leveraging multicore processors to speed up computationally intensive code.  
+**==When to Use Parallel Framework(PFX)==:** The primary use case for PFX is parallel programming: ==leveraging multicore processors to speed up computationally intensive code.==  
 
 **Example: Parallel Spellchecker**
 Suppose that we want to write a spellchecker that runs quickly with very large documents by utilizing all available cores. By formulating our algorithm into a LINQ query, we can very easily parallelize it.
@@ -112,6 +111,8 @@ try
 **Concurrent Collections**
 .NET offers thread-safe collections in the System.Collections.Concurrent namespace:
 **Concurrent collection**  ConcurrentStack<T>  ConcurrentQueue<T>  ConcurrentBag<T> 
+==The ConcurrentBag allows us to store objects in an unordered manner and allows for duplicates.== It is useful in a scenario where we do not need to worry about the order in which we would retrieve the objects from the collection.
+
 **Nonconcurrent equivalent** Stack<T> Queue<T> (none)
 
 • The conventional collections outperform the concurrent collections in all but highly concurrent scenarios.
