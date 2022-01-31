@@ -1,0 +1,8 @@
+==Scaling a traditional, relational database is difficult because transactional guarantees (atomicity, consistency, isolation, and durability, also known as ACID) require communication among all nodes of the database. The more nodes you add, the slower your database becomes, because more nodes must coordinate transactions between each other. The way to tackle this has been to use databases that don’t==
+==adhere to these guarantees. They’re called NoSQL databases.==
+There are four types of NoSQL databases—document, graph, columnar, and key-value store  
+
+**Primary keys**
+A primary key is unique within a table and identifies an item. You need the primary key to look up an item. The primary key is either a hash or a hash and a range. 
+==**Hash keys** A hash key uses a single attribute of an item to create a hash index.== If you want to look up an item based on its hash key, you need to know the exact hash key. ==A user table could use the user’s email as a hash primary key. A user then can be retrieved if you know the hash key (email, in this case).==
+==**HASH AND RANGE KEYS**== : A hash and range key uses two attributes of an item to create a more powerful index. The first attribute is the hash part of the key, and the second part is the range. ==To look up an item, you need to know the exact hash part of the key, but you don’t need to know the range part. The range part is sorted within the hash. This allows you to query the range part of the key from a certain starting point. A message table can use a hash and range as its primary key; the hash is the email of the user, and the range is a timestamp. You can now look up all messages of a user that are newer than a specific timestamp.==  
