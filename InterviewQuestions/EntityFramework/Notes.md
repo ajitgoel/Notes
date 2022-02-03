@@ -39,6 +39,55 @@ using (var context = new BloggingContext())
 
 ------
 
+# Using Include vs ThenInclude
+
+# "Include" works well with list of object, but if you need to get multi-level data, then "ThenInclude" is the best fit. Let me explain it with an example. Say we have two entities, Company and Client:
+
+```cs
+public class Company
+{
+    public string Name { get; set; }
+
+    public string Location { get; set; }
+
+    public List<Client> Clients {get;set;}
+}
+
+ public class Client
+ {
+    public string Name { get; set; }
+
+    public string Domains { get; set; }
+
+    public List<string> CountriesOfOperation { get; set; }
+ }
+```
+
+Now if you want just companies and the entire client list of that company, you can just use "Include":
+
+```cs
+using (var context = new YourContext())
+{
+  var customers = context.Companies
+    .Include(c => c.Clients)
+    .ToList();
+}
+```
+
+But if you want a Company with "CountriesOfOperation" as related data, you can use "ThenInclude" after including Clients like below:
+
+```cs
+using (var context = new MyContext())
+{
+   var customers = context.Companies
+    .Include(i => i.Clients)
+      .ThenInclude(a => a.CountriesOfOperation)
+    .ToList();
+}
+```
+
+------
+
 **Code First Approach versus Database First Approach**
 **Code First Approach**: In the Code First approach, you focus on the domain of your application and start creating classes for your domain entity to match your database design.
 **Database First Approach**: In the Database First approach, you design your database and then generate the domain of your application by reversing engineering the database.

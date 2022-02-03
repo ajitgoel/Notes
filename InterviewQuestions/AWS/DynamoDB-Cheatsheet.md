@@ -62,6 +62,7 @@ DynamoDB has two types of Indexes:
 
 ### LSI - Local Secondary index
 
+-  ==A local secondary index lets you query over a single partition, as specified by the partition key value in the query.==
 - ==Supports **strongly** or eventual consistency reads==
 - ==Can only be created with initial table (cannot be modified or and cannot deleted unless also deleting the table)==
 - Only Composite
@@ -71,10 +72,11 @@ DynamoDB has two types of Indexes:
 
 ### GSI -  Global Secondary Index
 
+- ==A global secondary index lets **you query over the entire table**, across all partitions.==
 - ==**Only eventual consistency** reads  (cannot provide strong consistency)==
 - ==Can create, modify, or delete at anytime==
 - Simple and Composite
-- ==Can have whatever attributes as Primary Key (PK) or Secondary Key (SK)==
+- Can have whatever attributes as Primary Key (PK) or Secondary Key (SK)
 - No size restriction per partition
 - ==Has its own capacity settings (does not share with base table)==
 

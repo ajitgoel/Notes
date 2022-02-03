@@ -143,10 +143,12 @@ We will cover the most common codes here. If you want to check the full list, yo
 ==3xx Redirect==
 ==4xx User error==
 ==5xx Server error==
+
 ==2xx Success codes==
 ==200 OK (default code)==
 ==201 Created (Response for POST requests)==
 ==202 Accepted (Response for DELETE requests)==
+
 ==4xxx Error codes==
 ==400 Bad request (generic)==
 ==401 Unauthorized==
