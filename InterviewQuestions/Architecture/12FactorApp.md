@@ -1,16 +1,16 @@
-The twelve-factor app is a methodology for building software-as-a-service apps that:
+==The twelve-factor app is a methodology for building software-as-a-service apps that:==
 
-- Use **declarative** formats for setup automation, to minimize time and cost for new developers joining the project;
-- Have a **clean contract** with the underlying operating system, offering **maximum portability** between execution environments;
-- Are suitable for **deployment** on modern **cloud platforms**, obviating the need for servers and systems administration;
-- **Minimize divergence** between development and production, enabling **continuous deployment** for maximum agility;
-- And can **scale up** without significant changes to tooling, architecture, or development practices.
+- ==Use **declarative** formats for setup automation,== to minimize time and cost for new developers joining the project;
+- ==Have a **clean contract** with the underlying operating system, offering **maximum portability** between execution environments;==
+- ==Are suitable for **deployment** on modern **cloud platforms**,== obviating the need for servers and systems administration;
+- ==**Minimize divergence** between development and production, enabling **continuous deployment** for maximum agility;==
+- ==And can **scale up** without significant changes to tooling, architecture, or development practices.==
 
 **I Codebase** There should be exactly one codebase for a deployed service with the codebase being used for many deployments.
 **II Dependencies** All dependencies should be declared, with no implicit reliance on system tools or libraries.
 **III Config** Configuration that varies between deployments should be stored in the environment.
 **IV Backing services** A *backing service* is any service the app consumes over the network as part of its normal operation.
-**The code for a twelve-factor app makes no distinction between local and third party services.** To the app, both are attached resources, accessed via a URL or other locator/credentials stored in the [config](https://12factor.net/config). A [deploy](https://12factor.net/codebase) of the twelve-factor app should be able to swap out a local MySQL database with one managed by a third party (such as [Amazon RDS](http://aws.amazon.com/rds/)) without any changes to the app’s code. 
+**The code for a twelve-factor app makes no distinction between local and third party services.** To the app, both are attached resources, accessed via a URL or other locator/credentials stored in the [config](https://12factor.net/config). ==A [deploy](https://12factor.net/codebase) of the twelve-factor app should be able to swap out a local MySQL database with one managed by a third party (such as [Amazon RDS](http://aws.amazon.com/rds/)) without any changes to the app’s code.== 
 **V Build, release, run** The delivery pipeline should strictly consist of build, release, run.
 **VI Processes** Applications should be deployed as one or more stateless processes with persisted data stored on a backing service.
 **VII Port binding** Self-contained services should make themselves available to other services by specified ports.
