@@ -16,6 +16,19 @@ enter image description here
 
 ==So if you working with only in-memory data collection IEnumerable is a good choice but if you want to query data collection which is connected with database `IQueryable is a better choice as it reduces network traffic and uses the power of SQL language.==
 
+**SelectMany:** The SelectMany LINQ operator is used in query expressions that have multiple from clauses. It’s called SelectMany because, instead of selecting a single output item for each input item, you provide it with a lambda that produces a whole collection for
+each input item.   
+
+int[][] arrays =
+{
+new[] { 1, 2 },
+new[] { 1, 2, 3, 4, 5, 6 },
+new[] { 1, 2, 4 },
+new[] { 1 },
+new[] { 1, 2, 3, 4, 5 }
+};  
+var flattened = arrays.SelectMany(row => row);  
+
 **What are advantages of LINQ?**
 Ans. There are following advantages of using LINQ:
 \1. It provides a uniform programming model (i.e. common query syntax) to query data sources (like SQL databases, XML documents, ADO.NET Datasets, Various Web services and any other objects such as Collections, Generics etc.)
