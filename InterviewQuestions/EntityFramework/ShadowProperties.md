@@ -75,11 +75,9 @@ You can get or set the values of the shadow properties using the `Property()` me
 ```
 using (var context = new SchoolContext())
 {
-    var std = new Student(){ StudentName = "Bill"  };
-    
+    var std = new Student(){ StudentName = "Bill"  };    
     // sets the value to the shadow property
     context.Entry(std).Property("CreatedDate").CurrentValue = DateTime.Now;
-
     // gets the value of the shadow property
     var createdDate = context.Entry(std).Property("CreatedDate").CurrentValue; 
 }
@@ -95,17 +93,14 @@ public override int SaveChanges()
         .Where(e =>
                 e.State == EntityState.Added
                 || e.State == EntityState.Modified);
-
     foreach (var entityEntry in entries)
     {
         entityEntry.Property("UpdatedDate").CurrentValue = DateTime.Now;
-
         if (entityEntry.State == EntityState.Added)
         {
             entityEntry.Property("CreatedDate").CurrentValue = DateTime.Now;
         }
     }
-
     return base.SaveChanges();
 }
 ```
@@ -139,7 +134,6 @@ For example, we can configure `CreatedDate` and `UpdatedDate` on all the entitie
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     var allEntities = modelBuilder.Model.GetEntityTypes();
-
     foreach (var entity in allEntities)
     {
         entity.AddProperty("CreatedDate",typeof(DateTime));

@@ -46,7 +46,7 @@ This constraint defines that the interface between any server, and all possibili
 Here it comes what REST means. Representational State Transfer means that each request has to carry with the necessary state to handle the transaction. This releases the server from keeping a state of information between multiple requests. Are you familiar with the concept of SESSION in web development ? REST avoids the existence of it. And because of this, the server gets the ability to scale better.
 
 **==Cacheable==**
-This constraint says that each response must define implicitly or explicitly, whether it is a cacheable resource, or not. By telling a client that such content is cacheable, it optimizes the performance of communication, since the client will avoid unnecesary requests for static data.
+==This constraint says that each response must define implicitly or explicitly, whether it is a cacheable resource, or not.== By telling a client that such content is cacheable, it optimizes the performance of communication, since the client will avoid unnecesary requests for static data.
 
 **Layered System**
 ==This says that from the server side, scalability may be improved in such way that the client won't notice whether it is dealing in one server, or an intermedary app.== That let the server side infraestructure to escalate through load balancing, shared caches, and security middlewares.
@@ -65,13 +65,13 @@ You know them: GET, POST, PUT, DELETE. Such verbs already mean an intention, and
 In the old times of web development, a resource used to accept parameters from long query strings, such as /api?model=user&id=123. By following this principle, the URI (also called resource name) shoud be as well meaninful as the HTTP verb. So rewriting the previous URI to a meaningful one, would be /user/123.
 
 3. **XML and JSON**
-That's up to the necessities of the client. If you're going to provide a public API, having both is a good idea, since you have a broad scope of clients that can interact with your app. But we suggest to favor JSON over XML. This is because the simplicity of its nature as a data container. Also, since most of the clients are browsers, JSON is javascript syntax, which makes perfect to be parsed by the client side. If you're going to render XML, avoid namespaces, and think of XML as a data container, which is the purpose of the API.
+That's up to the necessities of the client. If you're going to provide a public API, having both is a good idea, since you have a broad scope of clients that can interact with your app. But ==we suggest to favor JSON over XML. This is because the simplicity of its nature as a data container. Also, since most of the clients are browsers, JSON is javascript syntax, which makes perfect to be parsed by the client side.== If you're going to render XML, avoid namespaces, and think of XML as a data container, which is the purpose of the API.
 
 4. **Create Fine-Grained Resources**
 Instead of starting with complex services, focus on basic, simple resources, and provide CRUD operations on them. Additionally you will add complex services over that system.
 
-5. **Idempotence for PUT and DELETE**
-This means that by sending a request with the same state (data) to the server, you'll have the same effect on the domain/database.
+5. **==Idempotence for PUT and DELETE**==
+==This means that by sending a request with the same state (data) to the server, you'll have the same effect on the domain/database==.
 
 6. **Safety for HEAD, GET, OPTIONS and TRACE**
 These methods are defined to be safe, this means, to not alter the state in the server.
