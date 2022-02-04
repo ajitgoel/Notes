@@ -1,3 +1,22 @@
+==**Networking**==
+==DynamoDB does not run in your VPC. It is only accessible via the AWS API. You need internet access to talk to the AWS API. This means you can’t access DynamoDB from a private subnet, because a private subnet has no route to the internet via an internet gateway. Instead, a NAT gateway is used. Keep in mind that an application using DynamoDB can create a lot of traffic, and your NAT gateway is limited to 10 Gbps of bandwidth. A better approach is to set up a VPC endpoint for DynamoDB and use that to access DynamoDB from private subnets without needing a NAT gateway at all.== 
+
+==**Partition Key:** You can use a single attribute as the primary key(partition key).== 
+==**Composite Primary Key:** You can also use two attributes as the primary key. In this case, one of the attributes is the partition key, and the other is called the sort key.==  
+
+==**Global secondary index** as a read-only DynamoDB table that is automatically maintained by DynamoDB: whenever you change the parent table, all indexes are asynchronously (eventually consistent!) updated as well.  
+You can query a global secondary index like you would query the table.==  
+==You must provision additional write-capacity units for the index as well, because a write to your table will cause a write to the global secondary==
+==index as well.==  
+==**A local secondary index** must use the same partition key as the table. You can only vary on the attribute that is used as the sort key.== 
+==A local secondary index uses the read and write-capacity of the table.==  
+
+==You can enforce **strongly consistent reads** to avoid running into eventual consistency issues with stale data. But reads from a global secondary index are always **eventually consistent**.==
+== You can use the query operation to query table or secondary indexes.==
+== The scan operation is flexible but not efficient and shouldn’t be used too often.==  
+
+------
+
 ==Scaling a traditional, relational database is difficult because transactional guarantees (atomicity, consistency, isolation, and durability, also known as ACID) require communication among all nodes of the database. The more nodes you add, the slower your database becomes, because more nodes must coordinate transactions between each other. The way to tackle this has been to use databases that don’t==
 ==adhere to these guarantees. They’re called NoSQL databases.==
 There are four types of NoSQL databases—document, graph, columnar, and key-value store  

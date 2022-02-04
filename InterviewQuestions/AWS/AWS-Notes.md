@@ -1,7 +1,3 @@
-**Minimize AWS Lambda cold start time** you should keep the size of your deployment package as small as possible, provision additional memory, and use a runtime environment like Python, Node.js, or Go instead of C# or Java.  
-
-
-
 Q: Suppose you have hired a team of DevOps freelancers to set up your infrastructure. You create an IAM group called “devops” and add the team to that group. After the team finishes setting your infrastructure up, they leave your project. What actions should you take?
 
 ==You should delete only the user accounts from the developers, and keep the IAM group. It is possible that, in the future, you will want to hire more DevOps freelancers to change your infrastructure. Keeping the IAM group will mean you kept the underlying set of policies, and therefore, future users can reuse those policies.==
