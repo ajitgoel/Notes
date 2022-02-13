@@ -133,8 +133,7 @@ public class NamedClientModel : PageModel
         if (response.IsSuccessStatusCode)
         {
             using var responseStream = await response.Content.ReadAsStreamAsync();
-            PullRequests = await JsonSerializer.DeserializeAsync
-                    <IEnumerable<GitHubPullRequest>>(responseStream);
+            PullRequests = await JsonSerializer.DeserializeAsync<IEnumerable<GitHubPullRequest>>(responseStream);
         }
         else
         {
@@ -177,30 +176,21 @@ C#Copy
 public class GitHubService
 {
     public HttpClient Client { get; }
-
     public GitHubService(HttpClient client)
     {
         client.BaseAddress = new Uri("https://api.github.com/");
         // GitHub API versioning
-        client.DefaultRequestHeaders.Add("Accept",
-            "application/vnd.github.v3+json");
+        client.DefaultRequestHeaders.Add("Accept","application/vnd.github.v3+json");
         // GitHub requires a user-agent
-        client.DefaultRequestHeaders.Add("User-Agent",
-            "HttpClientFactory-Sample");
-
+        client.DefaultRequestHeaders.Add("User-Agent","HttpClientFactory-Sample");
         Client = client;
     }
-
     public async Task<IEnumerable<GitHubIssue>> GetAspNetDocsIssues()
     {
-        var response = await Client.GetAsync(
-            "/repos/aspnet/AspNetCore.Docs/issues?state=open&sort=created&direction=desc");
-
+        var response = await Client.GetAsync("/repos/aspnet/AspNetCore.Docs/issues?state=open&sort=created&direction=desc");
         response.EnsureSuccessStatusCode();
-
         using var responseStream = await response.Content.ReadAsStreamAsync();
-        return await JsonSerializer.DeserializeAsync
-            <IEnumerable<GitHubIssue>>(responseStream);
+        return await JsonSerializer.DeserializeAsync<IEnumerable<GitHubIssue>>(responseStream);
     }
 }
 ```
@@ -235,18 +225,13 @@ C#Copy
 public class TypedClientModel : PageModel
 {
     private readonly GitHubService _gitHubService;
-
     public IEnumerable<GitHubIssue> LatestIssues { get; private set; }
-
     public bool HasIssue => LatestIssues.Any();
-
     public bool GetIssuesError { get; private set; }
-
     public TypedClientModel(GitHubService gitHubService)
     {
         _gitHubService = gitHubService;
     }
-
     public async Task OnGet()
     {
         try
