@@ -1,3 +1,11 @@
+| Gitflow                                                      | Trunk-based development                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| is a stricter development model                              | is a [version control management](https://www.atlassian.com/git/tutorials/what-is-version-control) practice where developers merge small, frequent updates to a core “trunk” or main branch |
+| maintains code quality and minimizes the number of bugs.     | enables teams to iterate quickly and implement [CI/CD](https://www.atlassian.com/continuous-delivery). |
+| only certain individuals can approve changes to the main code. | all developers have access to the main code.                 |
+
+
+
 # Merging vs. Rebasing
 
 <img src="Git-Notes.assets/image-20220130121317167.png" alt="image-20220130121317167" style="zoom:67%;" />
