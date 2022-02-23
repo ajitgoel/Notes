@@ -6,8 +6,7 @@
 
 ==**Global secondary index** as a read-only DynamoDB table that is automatically maintained by DynamoDB: whenever you change the parent table, all indexes are asynchronously (eventually consistent!) updated as well.  
 You can query a global secondary index like you would query the table.==  
-==You must provision additional write-capacity units for the index as well, because a write to your table will cause a write to the global secondary==
-==index as well.==  
+==You must provision additional write-capacity units for the index as well, because a write to your table will cause a write to the global secondary index as well.==  
 ==**A local secondary index** must use the same partition key as the table. You can only vary on the attribute that is used as the sort key.== 
 ==A local secondary index uses the read and write-capacity of the table.==  
 
@@ -23,8 +22,8 @@ There are four types of NoSQL databases—document, graph, columnar, and key-val
 
 **Primary keys**
 A primary key is unique within a table and identifies an item. You need the primary key to look up an item. The primary key is either a hash or a hash and a range. 
-==**Hash keys** A hash key uses a single attribute of an item to create a hash index.== If you want to look up an item based on its hash key, you need to know the exact hash key. ==A user table could use the user’s email as a hash primary key. A user then can be retrieved if you know the hash key (email, in this case).==
-==**HASH AND RANGE KEYS**== : A hash and range key uses two attributes of an item to create a more powerful index. The first attribute is the hash part of the key, and the second part is the range. ==To look up an item, you need to know the exact hash part of the key, but you don’t need to know the range part. The range part is sorted within the hash. This allows you to query the range part of the key from a certain starting point. A message table can use a hash and range as its primary key; the hash is the email of the user, and the range is a timestamp. You can now look up all messages of a user that are newer than a specific timestamp.==  
+**Hash keys** A hash key uses a single attribute of an item to create a hash index. If you want to look up an item based on its hash key, you need to know the exact hash key. A user table could use the user’s email as a hash primary key. A user then can be retrieved if you know the hash key (email, in this case).
+**HASH AND RANGE KEYS** : A hash and range key uses two attributes of an item to create a more powerful index. The first attribute is the hash part of the key, and the second part is the range. To look up an item, you need to know the exact hash part of the key, but you don’t need to know the range part. The range part is sorted within the hash. This allows you to query the range part of the key from a certain starting point. A message table can use a hash and range as its primary key; the hash is the email of the user, and the range is a timestamp. You can now look up all messages of a user that are newer than a specific timestamp.==  
 
 ------
 

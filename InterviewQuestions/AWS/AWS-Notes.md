@@ -1,3 +1,47 @@
+**Achieving high availability: availability zones, auto-scaling, and CloudWatch: Recovering from EC2 instance failure with CloudWatch**  
+==the process in the case of an outage affecting a virtual machine:==
+==1 The physical hardware fails and causes the EC2 instance to fail as well.==
+==2 The EC2 service detects the outage and reports the failure to a CloudWatch metric.==
+==3 A CloudWatch alarm triggers recovery of the virtual machine.==
+==4 The EC2 instance is launched on another physical host.==
+==5 The EBS volume and Elastic IP stay the same, and are linked to the new EC2 instance.==
+
+**Decoupling your infrastructure: Elastic Load Balancing and Simple Queue Service**  
+The Elastic Load Balancing (ELB) service provides different types of load balancers that sit between your EC2 instances and the client to decouple your requests synchronously. For asynchronous decoupling, AWS offers a Simple Queue Service (SQS) that provides a message queue infrastructure.   
+== Application Load Balancer (ALB)—HTTP, HTTPS==
+== Network Load Balancer (NLB)—TCP==
+== Classic Load Balancer (CLB)—HTTP, HTTPS, TCP, TCP+TLS==  
+you can use load balancers in front of any systems that deal with request/response-style communication as long as the protocol is based on TCP.  
+
+==SQS is only a message queue. Don’t expect features like message routing or message priorities.   
+SQS FIFO (first-in-first-out) queues FIFO queues guarantee order of messages and have a mechanism to detect duplicate messages. The disadvantages are higher pricing and a limitation on 300 operations per second.  
+Amazon MQ provides Apache ActiveMQ as a service and speaks the JMS, NMS, AMQP, STOMP, MQTT, and WebSocket protocols.==  
+
+ Decoupling makes things easier because it reduces dependencies.
+ ==Synchronous decoupling requires two sides to be available at the same time, but the sides don’t have to know each other.==
+== With asynchronous decoupling, you can communicate without both sides being available.==
+ ==Most applications can be synchronously decoupled without touching the code, by using a load balancer offered by the ELB service.==
+== A load balancer can make periodic health checks to your application to determine whether the backend is ready to serve traffic.==
+== Asynchronous decoupling is only possible with asynchronous processes. But you can modify a synchronous process to be an asynchronous one most of the time.==
+ Asynchronous decoupling with SQS requires programming against SQS with one of the SDKs.  
+
+**Designing for fault tolerance**  
+
+====Fault tolerance means expecting that failures happen, and designing your systems in such a way that they can deal with failure.==
+== To create a fault-tolerant application, you can use idempotent actions to transfer from one state to the next.==
+== State shouldn’t reside on the EC2 instance (a stateless server) as a prerequisite for fault-tolerance.==
+== AWS offers fault-tolerant services and gives you all the tools you need to create fault-tolerant systems. EC2 is one of the few services that isn’t fault-tolerant out of the box.==
+== You can use multiple EC2 instances to eliminate the single point of failure. Redundant EC2 instances in different availability zones, started with an autoscaling group, are the way to make EC2 fault-tolerant.==
+
+**Scaling up and down: auto-scaling and CloudWatch**  
+==You can use auto-scaling to launch multiple identical virtual machines by using a launch configuration and an auto-scaling group.==
+== EC2, SQS, and other services publish metrics to CloudWatch (CPU utilization, queue length, and so on).==
+== CloudWatch alarms can change the desired capacity of an auto-scaling group. This allows you to increase the number of virtual machines based on CPU utilization or other metrics.==
+== Virtual machines need to be stateless if you want to scale them according to your current workload.==
+== To distribute load among multiple virtual machines, synchronous decoupling with the help of a load balancer or asynchronous decoupling with a message queue is necessary.==  
+
+------
+
 ## On-Premise, SaaS, PaaS, IaaS
 
 SaaS, PaaS, and IaaS are simply three ways to describe how you can use the cloud for your business.

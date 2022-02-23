@@ -102,7 +102,7 @@ IndexedWord is a custom struct that we define as follows: struct IndexedWord { p
 try
 {
 }
-====catch (AggregateException aex)==
+==catch (AggregateException aex)==
 =={==
 	==foreach (Exception ex in aex.InnerExceptions)==
 		==Console.WriteLine (ex.Message);==

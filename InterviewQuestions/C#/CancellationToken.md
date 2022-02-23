@@ -23,35 +23,32 @@ Consider the following method, `GetSomethingAsync` that will yield return an inc
 
 The call to `token.ThrowIfCancellationRequested` will make sure a `TaskCanceledException` is thrown if this process is cancelled by an outside action. Other approaches can be taken, for example, check if `token.IsCancellationRequested` is true and do something about it.
 
-```cs
-private static async IAsyncEnumerable<int> GetSomethingAsync(CancellationToken token)
+`private static async IAsyncEnumerable<int> GetSomethingAsync(CancellationToken token)
 {
-    Console.WriteLine("starting to get something");
-    token.ThrowIfCancellationRequested();
-    for (var i = 0; i < 100; i++)
+    Console.WriteLine("starting to get something");`
+    ==token.ThrowIfCancellationRequested();==
+    `for (var i = 0; i < 100; i++)
     {
         await Task.Delay(1000, token);
         yield return i;
     }
     Console.WriteLine("finished getting something");
-}
-```
+}`
 
 Now let's build the main method to call the above method.
 
-```cs
-public static async Task Main()
+`public static async Task Main()
 {    
     var cts = new CancellationTokenSource();
-    // cancel it after 3 seconds, just for demo purposes
-    cts.CancelAfter(3000);
-    // or: Task.Delay(3000).ContinueWith(_ => { cts.Cancel(); });
+    // cancel it after 3 seconds, just for demo purposes`
+    ==cts.CancelAfter(3000);==
+    `// or: Task.Delay(3000).ContinueWith(_ => { cts.Cancel(); });
     await foreach (var i in GetSomethingAsync(cts.Token))
     {
         Console.WriteLine(i);
     }
 }
-```
+`
 
 If we run this, we will get an output that should look like:
 
