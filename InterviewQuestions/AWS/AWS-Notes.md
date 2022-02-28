@@ -88,8 +88,6 @@ It'd be pretty weird if you needed surgery and found out a firefighter would be 
 
 ==This means we can assign an IAM role directly to an EC2 instance. With an IAM role assigned to an EC2 instance, we can associate specific IAM policies with the instance role, so that the EC2 instance itself can access other AWS services. This is extremely useful for automation, for example.==
 
-
-
 [Authorization](https://catalog.us-east-1.prod.workshops.aws/v2/workshops/13304db2-f715-48bf-ada0-92e5c4eea945/en-US/011-begin/iam/20-authorization#authorization)
 
 So far we've been discussing IAM principals. These represent the authentication component of accessing AWS. We authorize principals by attaching JSON documents to them called *IAM policies*. Policies define elements you can remember by the pneumonic *PARC*.
@@ -111,8 +109,6 @@ arn:partition:service:region:account-id:resource-id
 arn:partition:service:region:account-id:resource-type/resource-id
 arn:partition:service:region:account-id:resource-type:resource-id
 ```
-
-
 
 - Here **arn** means this string is an ARN,
 - **partition** is one of the three AWS paritions: AWS regions, AWS China regions, or AWS GovCloud (US) regions,
@@ -272,11 +268,7 @@ Because AWS CDK stacks are implemented through AWS CloudFormation stacks, they h
 
 Each Stack instance in your AWS CDK app is explicitly or implicitly associated with an environment (env). An environment is the target AWS account and region into which the stack is intended to be deployed.
 
-
-
 ------
-
-
 
 ## On-Premise, SaaS, PaaS, IaaS
 

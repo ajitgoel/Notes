@@ -19,6 +19,8 @@ public class HomeController : Controller
     }
 }
 
+**<u>IHost versus web server</u>**  a host is the execution context of any ASP.NET Core app. The host is responsible for application startup and lifetime management, while the server is responsible for accepting HTTP requests.   
+
 ## What is the use of "Map" extension while adding middleware to ASP.NET Core pipeline?
 
 It is used for branching the pipeline. It branches the ASP.NET Core pipeline based on request path matching. If request path starts with the given path, middleware on to that branch will execute.
