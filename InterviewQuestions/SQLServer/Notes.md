@@ -92,7 +92,7 @@ SELECT last_name, salary, department_id FROM ==employees outer==
 
 ---------------------
 
-**<u>Window functions in SQL</u>** ==Window functions applies aggregate and ranking functions over a particular window (set of rows)== OVER clause is used with window functions to define that window. OVER clause does two things :
+**<u>Window functions in SQL</u>** ==Window functions applies aggregate and ranking functions over a particular== window ==(set of rows) OVER clause is used with window functions to define that window==. OVER clause does two things :
 
 - Partitions rows into form set of rows. (PARTITION BY clause is used)
 - Orders rows within those partitions into a particular order. (ORDER BY clause is used)
@@ -119,4 +119,32 @@ FROM employee
 <u>A **index seek** is used when a predicate present in the query matches the key(s) of an index.</u> In this case, SQL Server can use the values of the predicate to limit the amount of data that must be searched by following the pointers within the index from the root to the leaf page to locate matching rows. If the predicate can't be used for some reason, then an index may be scanned. In this case, SQL Server starts at the root of the index and reads down to the leaf level, then reads all the leaf-level pages of the index, searching for the required rows to return.==  
 ==As mentioned, this applies to both clustered and non-clustered indexes, the only difference is with a clustered index, the leaf level contains the actual data pages, while the non-clustered index contains index pages with pointers to the data pages.==
 
-**SQL LEFT JOIN**: The LEFT JOIN keyword returns all records from the left table (table1), and the matched records from the right table (table2). The result is NULL from the right side, if there is no match.
+**SQL LEFT JOIN**: ==The LEFT JOIN keyword returns all records from the left table (table1), and the matched records from the right table (table2). The result is NULL from the right side, if there is no match.==
+
+------
+
+<img src="Notes.assets/image-20220305133744423.png" alt="image-20220305133744423" style="zoom:67%;" />
+
+We want to retrieve the names of all salespeople that have more than 1 order from the tables above. You can assume that each salesperson only has one ID.
+
+```
+SELECT Name FROM "Orders" o, Salesperson
+WHERE o.salesperson_id = Salesperson.ID
+GROUP BY salesperson_id, Name
+HAVING COUNT( salesperson_id ) >1
+```
+
+------
+
+![image-20220305133843300](Notes.assets/image-20220305133843300.png)
+
+find the largest order amount for each salesperson and the associated order number, along with the customer to whom that order belongs to
+
+```
+SELECT Orders.salesperson_id, Salesperson.Name, orders.Number AS OrderNumber, Orders.Amount
+FROM Orders JOIN Salesperson ON Salesperson.ID = Orders.salesperson_id
+JOIN (SELECT salesperson_id, MAX( Amount ) AS MaxOrder FROM Orders GROUP BY salesperson_id) AS TopOrderAmountsPerSalesperson
+on TopOrderAmountsPerSalesperson.salesperson_id=Salesperson.ID
+WHERE Orders.Amount = TopOrderAmountsPerSalesperson.MaxOrder 
+GROUP BY Orders.salesperson_id, Orders.Amount
+```

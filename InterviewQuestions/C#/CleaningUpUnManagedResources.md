@@ -11,7 +11,7 @@ If your types use unmanaged resources, you should do the following:
   - ==Use a safe handle to wrap your unmanaged resource. This is the recommended technique. Safe handles are derived from the [System.Runtime.InteropServices.SafeHandle](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle) abstract class and include a robust [Finalize](https://docs.microsoft.com/en-us/dotnet/api/system.object.finalize) method. When you use a safe handle, you simply implement the [IDisposable](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable) interface and call your safe handle's [Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle.dispose) method in your [IDisposable.Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose) implementation. The safe handle's finalizer is called automatically by the garbage collector if its [Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose) method is not called.==
 
   
-    <img src="CleaningUpUnManagedResources.assets/image-20220204123712345.png" alt="image-20220204123712345" style="zoom:67%;" />
+    <img src="CleaningUpUnManagedResources.assets/image-20220204123712345.png" alt="image-20220204123712345" style="zoom:200%;" />
   
     —**or**—
   

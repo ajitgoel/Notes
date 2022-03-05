@@ -274,8 +274,8 @@ Each Stack instance in your AWS CDK app is explicitly or implicitly associated w
 
 SaaS, PaaS, and IaaS are simply three ways to describe how you can use the cloud for your business.
 
-- **IaaS:** cloud-based services, pay-as-you-go for services such as storage, networking, and virtualization. eg: ==AWS EC2, Digital Ocean,== Rackspace, Google Compute Engine (GCE), Magento 1 Enterprise Edition*.
-- **PaaS:** hardware and software tools available over the internet. eg: ==AWS Elastic Beanstalk, Heroku,== Windows Azure (mostly used as PaaS), Force.com, OpenShift, Apache Stratos, Magento Commerce Cloud.
+- ==**IaaS:** cloud-based services, pay-as-you-go for services such as storage, networking, and virtualization==. eg: ==AWS EC2, Digital Ocean,== Rackspace, Google Compute Engine (GCE), Magento 1 Enterprise Edition*.
+- ==**PaaS:** hardware and software tools available over the internet.== eg: ==AWS Elastic Beanstalk, Heroku,== Windows Azure (mostly used as PaaS), Force.com, OpenShift, Apache Stratos, Magento Commerce Cloud.
 - ***\*SaaS:\**** software that’s available via a third-party over the internet. eg: BigCommerce, Google Apps, Salesforce, Dropbox, MailChimp, ZenDesk, DocuSign, Slack, Hubspot.
 - **On-premise**: software that’s installed in the same building as your business.
 

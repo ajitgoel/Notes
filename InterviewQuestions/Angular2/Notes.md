@@ -184,8 +184,9 @@ Some key points to note about the above code −
 - There are two types of dependencies, first is the dependencies and then there are dev dependencies. The dev ones are required during the development process and the others are needed to run the application.
 - The "build:watch": "tsc -p src/ -w" command is used to compile the typescript in the background by looking for changes in the typescript files.
 
-**Explain systemjs.config.json file.**
-This file contains the system files required for Angular JS application. This loads all the necessary script files without the need to add a script tag to the html pages. The typical files will have the following code.
+====**Explain systemjs.config.json file.**==
+==This file contains the system files required for Angular JS application. This loads all the necessary script files without the need to add a script tag to the html pages.== The typical files will have the following code.
+
 ```
 /** 
  * System configuration for Angular samples 
@@ -258,8 +259,9 @@ Let's go through each line of the code in detail.
 
 **How will you convert an input to all lowercase?**
 
-lowercase filter is used to convert the input to all lowercase.
+==lowercase filter is used to convert the input to all lowercase.==
 In below example, we've added lowercase filter to an expression using pipe character. Here we've added lowercase filter to print student name in all lowercase letters.
+
 ```
 <div> 
    The name of this Tutorial is {{TutorialName}}  
@@ -321,11 +323,11 @@ In below example, we've added percent filter to an expression using pipe charact
    The percentage of this Tutorial is {{newValue | percent}}
 </div> 
 ```
-**When ngOnChanges event get called in Angular 2 Application Lifecycle?**
-When the value of a data bound property changes, then this method is called.
+**==When ngOnChanges event get called in Angular 2 Application Lifecycle?**==
+==When the value of a data bound property changes, then this method is called.==
 
-**When ngOnInit event get called in Angular 2 Application Lifecycle?**
-This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.
+==**When ngOnInit event get called in Angular 2 Application Lifecycle?**==
+==This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.==
 
 **When ngDoCheck event get called in Angular 2 Application Lifecycle?**
 This is for the detection and to act on changes that Angular can't or won't detect on its own.

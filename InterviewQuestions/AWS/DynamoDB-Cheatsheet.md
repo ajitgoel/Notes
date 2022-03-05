@@ -242,11 +242,3 @@ DynamoDB API's most notable commands via CLI:  **aws dynamodb <command>**
 **aws dynamodb \*query\*** finds items based on primary key values. You can query table or secondary index that has a composite primary key.
 
 **aws dynamodb \*scan\*** returns one or more items and item attributes by accessing every item in a table or a secondary index.
-
-## ? #rocketsToMars
-
-I want to help you enter the web and cloud industry. That is why I am releasing my **free** **AWS Developer Associate Certification 2020** course on the freeCodeCamp YouTube channel with 10+ hours of additional content I have never released previously.
-
-This free course will be released in a few days as I apply the final touches.
-
-I believe in making tech education accessible to the world because in-turn the more we upskill, the sooner we can lift people out of poverty, the sooner we can engineer sustainable solutions to keep our planet green and healthy, and the sooner we can launch rockets to Mars.
