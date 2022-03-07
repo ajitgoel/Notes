@@ -9,3 +9,7 @@ https://www.educative.io/courses/grokking-the-system-design-interview?affiliate_
 https://www.educative.io/courses/grokking-the-object-oriented-design-interview?affiliate_id=5073518643380224
 https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews?affiliate_id=5073518643380224
 https://www.educative.io/courses/database-design-fundamentals?affiliate_id=5073518643380224
+
+O(Log(n)) time complexity as the binary search input decreases by half every time we transverse through the array.
+
+O(1) space complexity is we do the binary search iteratively instead of recursively where it is O(log(n)) space complexity . 
