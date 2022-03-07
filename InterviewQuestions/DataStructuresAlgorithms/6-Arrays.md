@@ -41,17 +41,17 @@ public static void reverseArray(int arr[], int n) {
 
 If you're asked to operate on a sorted array, you may want to consider using the 2 pointer technique. You might designate one pointer as a fast-runner and the other as a slow-runner — or you may place one pointer at the beginning and the other at the end, depending on the question you're asked.
 
-### Calculating memory usage
+### ==Calculating memory usage==
 
-To calculate the memory footprint of an array, simply multiply the size of the array with the size of the data type.
+==To calculate the memory footprint of an array, simply multiply the size of the array with the size of the data type.==
 
-**Question**: What is the memory usage of an array that contains one thousand 32-bit integers?
+==**Question**: What is the memory usage of an array that contains one thousand 32-bit integers?==
 
-**Answer**: `1,000 * 32 bits = 1,000 * 4 bytes = 4 Kb`
+==**Answer**: `1,000 * 32 bits = 1,000 * 4 bytes = 4 Kb`==
 
-**Question**: What is the memory usage of an array that contains one hundred 10-character strings?
+==**Question**: What is the memory usage of an array that contains one hundred 10-character strings?==
 
-**Answer**: `100 * 10 chars = 100 * 10 * 1 byte = 1 Kb`
+==**Answer**: `100 * 10 chars = 100 * 10 * 1 byte = 1 Kb==`
 
 ### When to use an **array** in an interview
 

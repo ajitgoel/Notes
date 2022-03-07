@@ -27,7 +27,7 @@ Amazon MQ provides Apache ActiveMQ as a service and speaks the JMS, NMS, AMQP, S
 
 **Designing for fault tolerance**  
 
-====Fault tolerance means expecting that failures happen, and designing your systems in such a way that they can deal with failure.==
+==Fault tolerance means expecting that failures happen, and designing your systems in such a way that they can deal with failure.==
 == To create a fault-tolerant application, you can use idempotent actions to transfer from one state to the next.==
 == State shouldn’t reside on the EC2 instance (a stateless server) as a prerequisite for fault-tolerance.==
 == AWS offers fault-tolerant services and gives you all the tools you need to create fault-tolerant systems. EC2 is one of the few services that isn’t fault-tolerant out of the box.==

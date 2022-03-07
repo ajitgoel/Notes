@@ -690,7 +690,7 @@ Example:
 SELECT col, case when upper(col) = lower(col) then 'Fizz' else 'Buzz' end as FizzBuzz from table;
 ```
 
-**Q How do you get the Nth-highest salary from the Employee table without a subquery or CTE?**
+==**Q How do you get the Nth-highest salary from the Employee table without a subquery or CTE?**==
 
 ```sql
 SELECT salary from Employee order by salary DESC LIMIT 2,1

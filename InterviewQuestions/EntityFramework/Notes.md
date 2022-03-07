@@ -39,9 +39,8 @@ using (var context = new BloggingContext())
 
 ------
 
-# Using Include vs ThenInclude
-
-# "Include" works well with list of object, but if you need to get multi-level data, then "ThenInclude" is the best fit. Let me explain it with an example. Say we have two entities, Company and Client:
+## ==Using Include vs ThenInclude==
+=="Include" works well with list of object, but if you need to get multi-level data, then "ThenInclude" is the best fit.== Let me explain it with an example. Say we have two entities, Company and Client:
 
 ```cs
 public class Company
@@ -74,10 +73,7 @@ But if you want a Company with "CountriesOfOperation" as related data, you can u
 ```cs
 using (var context = new MyContext())
 {
-   var customers = context.Companies
-    .Include(i => i.Clients)
-      .ThenInclude(a => a.CountriesOfOperation)
-    .ToList();
+   var customers = context.Companies.Include(i => i.Clients).ThenInclude(a => a.CountriesOfOperation).ToList();
 }
 ```
 

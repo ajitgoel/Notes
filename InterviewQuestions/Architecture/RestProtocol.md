@@ -70,7 +70,7 @@ That's up to the necessities of the client. If you're going to provide a public 
 4. **Create Fine-Grained Resources**
 Instead of starting with complex services, focus on basic, simple resources, and provide CRUD operations on them. Additionally you will add complex services over that system.
 
-5. **==Idempotence for PUT and DELETE**==
+5. **==Idempotence for PUT and DELETE==**
 ==This means that by sending a request with the same state (data) to the server, you'll have the same effect on the domain/database==.
 
 6. **Safety for HEAD, GET, OPTIONS and TRACE**

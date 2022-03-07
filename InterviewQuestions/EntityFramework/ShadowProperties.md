@@ -33,8 +33,6 @@ You can define the shadow properties for an entity type using the Fluent API in 
 
 The following configure two shadow properties `CreatedDate` and `UpdatedDate` on the `Student` entity.
 
-
-
 ```
 public class SchoolContext : DbContext
 {

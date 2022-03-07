@@ -60,7 +60,7 @@ git checkout feature git rebase master
 
 But, there are two trade-offs for this pristine commit history: safety and traceability. If you don’t follow the [Golden Rule of Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing), re-writing project history can be potentially catastrophic for your collaboration workflow. And, less importantly, ==rebasing loses the context provided by a merge commit—you can’t see when upstream changes were incorporated into the feature.==
 
-**==How do you revert a commit that has already been pushed and made public?==**
+**How do you revert a commit that has already been pushed and made public?**
 
 One or more commits can be reverted through the use of *git revert*. This command, in essence, creates a new commit with patches that cancel out the changes introduced in specific commits. In case the commit that needs to be reverted has already been published or changing the repository history is not an option, *git revert* can be used to revert commits. Running the following command will revert the last two commits:
 
@@ -70,7 +70,7 @@ git revert HEAD~2..HEAD
 
 Alternatively, one can always checkout the state of a particular commit from the past, and commit it anew.
 
-**=> ==How do you squash last N commits into a single commit?==**
+**=> How do you squash last N commits into a single commit?**
 
 Squashing multiple commits into a single commit will overwrite history, and should be done with caution. However, this is useful when working in feature branches. To squash the last N commits of the current branch, run the following command (with {N} replaced with the number of commits that you want to squash):
 
@@ -80,7 +80,7 @@ git rebase -i HEAD~{N}
 
 Upon running this command, an editor will open with a list of these N commit messages, one per line. Each of these lines will begin with the word “pick”. Replacing “pick” with “squash” or “s” will tell Git to combine the commit with the commit before it. To combine all N commits into one, set every commit in the list to be squash except the first one. Upon exiting the editor, and if no conflict arises, *git rebase* will allow you to create a new commit message for the new combined commit.
 
-==How do you find a list of files that has changed in a particular commit?==
+**How do you find a list of files that has changed in a particular commit?**
 
 ```
 git diff-tree -r {hash}
@@ -96,7 +96,7 @@ git diff-tree --no-commit-id --name-only -r {hash}
 
 Here *--no-commit-id* will supress the commit hashes from appearing in the output, and *--name-only* will only print the file names, instead of their paths.
 
-==How do you setup a script to run every time a repository receives new commits through push?==
+**How do you setup a script to run every time a repository receives new commits through push?**
 
 To configure a script to run every time a repository receives new commits through push, one needs to define either a pre-receive, update, or a post-receive hook depending on when exactly the script needs to be triggered.
 
@@ -108,7 +108,7 @@ Finally, post-receive hook in the repository is invoked after the updates have b
 
 Hooks are local to every Git repository and are not versioned. Scripts can either be created within the hooks directory inside the “.git” directory, or they can be created elsewhere and links to those scripts can be placed within the directory.
 
-==What is `git bisect`? How can you use it to determine the source of a (regression) bug?==
+**What is `git bisect`? How can you use it to determine the source of a (regression) bug?**
 
 Git provides a rather efficient mechanism to find bad commits. Instead of making the user try out every single commit to find out the first one that introduced some particular issue into the code, *git bisect* allows the user to perform a sort of binary search on the entire history of a repository.
 
@@ -125,7 +125,7 @@ Once this is done, Git will then have a range of commits that it needs to explor
 git bisect reset
 ```
 
-==What are the different ways you can refer to a commit?==
+**What are the different ways you can refer to a commit?**
 
 In Git each commit is given a unique hash. These hashes can be used to identify the corresponding commits in various scenarios (such as while trying to checkout a particular state of the code using the *git checkout {hash}* command).
 
@@ -135,7 +135,7 @@ Git also allows commits to be referred as relative to one another. For example, 
 
 And finally, refspecs. These are used to map local and remote branches together. However, these can be used to refer to commits that reside on remote branches allowing one to control and manipulate them from a local Git environment.
 
-=> **==What is `git rebase` and how can it be used to resolve conflicts in a feature branch before merge?==**
+=> **What is `git rebase` and how can it be used to resolve conflicts in a feature branch before merge?**
 
 In simple words, ==*git rebase* allows one to move the first commit of a branch to a new starting location.== For example, if a feature branch was created from master, and since then the master branch has received new commits, *git rebase* can be used to move the feature branch to the tip of master. The command effectively will replay the changes made in the feature branch at the tip of master, allowing conflicts to be resolved in the process. When done with care, this will allow the feature branch to be merged into master with relative ease and sometimes as a simple fast-forward operation.
 
@@ -169,7 +169,7 @@ Check out the latest commit to this branch in the reflog, and then check it out 
 
 In spite of applying the same changes, it will be a new commit with a new hash because the changes are applied to a different destination.
 
-==How do you cherry-pick a merge commit?==
+**How do you cherry-pick a merge commit?**
 
 Cherry-pick uses a diff to find the difference between branches.
 
@@ -187,6 +187,6 @@ git cherry-pick -m 1 63ad84c
 ==`git fetch` only downloads new data from a remote repository, but it doesn’t integrate any of the downloaded data into your working files. All it does is provide a view of this data.
 `git pull` downloads as well as merges the data from a remote repository into your local working files. It may also lead to merge conflicts if your local changes are not yet committed.== Use the `git stash` command to hide your local changes.
 
-=> **==What is a conflict in git and how can it be resolved?==**
+=> **What is a conflict in git and how can it be resolved?**
 
 A conflict arises when more than one commit that has to be merged has some change in the same place or same line of code. Git will not be able to predict which change should take precedence. This is a git conflict.

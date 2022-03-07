@@ -1,3 +1,5 @@
+![image-20220307162511325](SecurityInASP.NetCoreApplications.assets/image-20220307162511325.png)
+
 **<u>Improving your application's security:</u>**
 
 ****

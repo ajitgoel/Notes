@@ -7,8 +7,8 @@ c. Liskov Substitution Principle
 d. Interface Segregation Principle
 e. Dependency Inversion Principle==
 
-**a. Single Responsibility Principle**
-Single Responsibility Principle states that every class should have a single responsibility. There should never be more than one reason for a class to change.
+**a. ==Single Responsibility Principle**==
+==Single Responsibility Principle states that every class should have a single responsibility.== There should never be more than one reason for a class to change.
 
 ==This class violates Single Responsibility Principle since this class is doing two things. It is dealing with both opening \ closing connections and with data communication.==
 public interface IDatabase
@@ -34,15 +34,15 @@ public interface IConnectionManager
     void Close();
 }
 
-**b. Open/Closed Principle**
-Open/Closed Principle states that software entities should be open for extension, but closed for modification.
+**b. ==Open/Closed Principle**==
+==Open/Closed Principle states that software entities should be open for extension, but closed for modification.==
 
 In the example above, refactoring IDatabase into IConnectionManager, IDataManager classes allows the client application to either
 a. if the client application likes to change the way it opens or closes connection, it can implement its own IConnectionManager and pass it to the IDataManager class i.e Without touching the original code, it is able to extend the functionality of the classes without actually breaking the already existing class.
 b. if the client application likes to change the way its getting or sending data it can implement its own IDataManager and use it with the already existing implementation of IConnectionManager.
 
-**c. Liskov Substitution Principle**
-Liskov Substitution Principle states that code should not know it is using base class or its subtypes.
+==**c. Liskov Substitution Principle**==
+==Liskov Substitution Principle states that code should not know it is using base class or its subtypes.==
 
 public class DatabaseRepository
 {
@@ -238,10 +238,10 @@ public class Manager
 
 **Dependency Injection Container** is a way to auto-wire classes
 
-**Abstraction**: It allows complex real world to be represented in simplified manner.
-**Encapsulation**: It is a process of hiding all the internal details of an object from the outside world.
-**Association**: This is the simplest relationship between objects. Example every customer has sales. So Customer object and sales object have an association relation between them.
-**Aggregation(Composition)**: This is also called as composition model. Example in order to make a “Accounts” class it has use other objects example “Voucher”, “Journal” and “Cash” objects. So accounts class is aggregation of these three objects.
+==**Abstraction**: It allows complex real world to be represented in simplified manner.==
+==**Encapsulation**: It is a process of hiding all the internal details of an object from the outside world.==
+==**Association**: This is the simplest relationship between objects.== Example every customer has sales. So Customer object and sales object have an association relation between them.
+==**Aggregation(Composition)**: This is also called as composition model. Example in order to make a “Accounts” class it has use other objects example “Voucher”, “Journal” and “Cash” objects. So accounts class is aggregation of these three objects.==
 **Inheritance**: Hierarchy is used to define more specialized classes based on a preexisting generalized class.
 **<u>Polymorphism:</u>** ==When inheritance is used to extend a generalized class to a more specialized class, it includes behavior of the top class(Generalized class). The inheriting class often implement a behavior that can be somewhat different than the generalized class, but the name of the behavior can be same. It is important that a given instance of an object use the correct behavior, and the property of polymorphism allows this to happen automatically.==
 
