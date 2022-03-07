@@ -54,6 +54,7 @@ Proficient with Web APIs. Experience with Microservices preferred.
 
 Experience working with .Net Core preferred
 
+
 Experience working with open source technologies like Rabbit MQ, Graph QL, Elastic Search & Mongo DB is a plus.
 
 Strong knowledge and experience with software modelling and diagraming

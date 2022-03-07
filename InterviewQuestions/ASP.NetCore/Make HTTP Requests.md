@@ -208,9 +208,7 @@ The following code calls [AddHttpClient](https://docs.microsoft.com/en-us/dotnet
 
 C#Copy
 
-```csharp
-services.AddHttpClient<GitHubService>();
-```
+==services.AddHttpClient<GitHubService>();==
 
 The typed client is registered as transient with DI. In the preceding code, `AddHttpClient` registers `GitHubService` as a transient service. This registration uses a factory method to:
 
@@ -269,21 +267,16 @@ public class RepoService
 {
     // _httpClient isn't exposed publicly
     private readonly HttpClient _httpClient;
-
     public RepoService(HttpClient client)
     {
         _httpClient = client;
     }
-
     public async Task<IEnumerable<string>> GetRepos()
     {
         var response = await _httpClient.GetAsync("aspnet/repos");
-
         response.EnsureSuccessStatusCode();
-
         using var responseStream = await response.Content.ReadAsStreamAsync();
-        return await JsonSerializer.DeserializeAsync
-            <IEnumerable<string>>(responseStream);
+        return await JsonSerializer.DeserializeAsync<IEnumerable<string>>(responseStream);
     }
 }
 ```
@@ -304,7 +297,6 @@ public interface IHelloClient
     [Get("/helloworld")]
     Task<Reply> GetMessageAsync();
 }
-
 public class Reply
 {
     public string Message { get; set; }
@@ -369,14 +361,8 @@ C#Copy
 ```csharp
 public async Task CreateItemAsync(TodoItem todoItem)
 {
-    var todoItemJson = new StringContent(
-        JsonSerializer.Serialize(todoItem, _jsonSerializerOptions),
-        Encoding.UTF8,
-        "application/json");
-
-    using var httpResponse =
-        await _httpClient.PostAsync("/api/TodoItems", todoItemJson);
-
+    var todoItemJson = new StringContent(JsonSerializer.Serialize(todoItem, _jsonSerializerOptions),Encoding.UTF8,"application/json");
+    using var httpResponse =await _httpClient.PostAsync("/api/TodoItems", todoItemJson);
     httpResponse.EnsureSuccessStatusCode();
 }
 ```

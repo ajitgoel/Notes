@@ -77,11 +77,9 @@ It is a feature provided by Razor view engine that enables us to write server-si
 ```html
  Example:
  //HTML Helper
- @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", placeholder = "Enter Your First Name" }) 
- 
+ @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", placeholder = "Enter Your First Name" })  
  //content with tag helper
- <input asp-for="FirstName" placeholder="Enter Your First Name" class="form-control" /> 
- 
+ <input asp-for="FirstName" placeholder="Enter Your First Name" class="form-control" />  
  //Equivalent HTML
  <input placeholder="Enter Your First Name" class="form-control" id="FirstName" name="FirstName" value="" type="text"> 
 ```
