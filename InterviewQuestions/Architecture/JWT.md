@@ -34,7 +34,7 @@ If JWT is valid, the server allows the user access to the requested resource.==
 
 | JWT based authentication                                     | Cookie based authentication |
 | ------------------------------------------------------------ | --------------------------- |
-| Stateless authentication - No user session information is stored on the server |                             |
+| No user session information is stored on the server          |                             |
 | Not limited to specific domains, paths, or servers. No Cross-Origin Resource Sharing (CORS) issues |                             |
 | JSON-based JWT is more compact as compared to XML-based SAML (Security Assertion Markup Language) information exchange, which is typically used with cookies |                             |
 | JSON is more commonly used on the Internet for information exchange than XML is. |                             |

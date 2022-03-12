@@ -9,8 +9,6 @@ United States (Remote)
 In your consumer life, apps like Venmo and Zelle are making it easy to pay friends and family. Unfortunately in the B2B space, it's extraordinarily difficult for businesses to pay other businesses for services and suppliers. In this role you will build payments products to solve this problem; driving digital B2B payments solutions in a market space with 10 trillion of spend.
 You will be leading team efforts with our internationalization approaches - building cloud native micro-services that process 20+ billion dollars annually. Roadmap includes new banking and credit card gateway integrations as well as modernization of existing systems to cloud native high availability low latency systems.
 
- 
-
 - Work with a team leveraging Agile techniques to build and deliver web products
 - Design and implement internal and external APIs primarily in C#/.NET Core
 - Build a great user experience for our clients utilizing Javascript and Angular 10+
@@ -29,7 +27,7 @@ You will be leading team efforts with our internationalization approaches - buil
 - A mindset towards quality and an ability to write unit tests utilizing a unit test framework such as NUnit or Protractor
 - Well-honed skills in source control management using tools such as Git/GitLab
 - Experience with Amazon Web Services (AWS) or other cloud infrastructure
-- Experience with some of the following preferred: Jenkins, Docker, Nginx, Terraform, event-driven architecture, queuing
+- Experience with some of the following preferred: Jenkins, Docker, Nginx, Terraform, ==event-driven architecture, queuing==
 - An understanding of Agile/Scrum techniques
 - Ability to communicate and collaborate cross-functionally, and work well with a team-oriented environment
 - Experience in a SaaS, software, product-centric or payments business nice-to-have

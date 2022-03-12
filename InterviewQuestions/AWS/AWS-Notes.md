@@ -13,7 +13,10 @@ The Elastic Load Balancing (ELB) service provides different types of load balanc
 == Classic Load Balancer (CLB)—HTTP, HTTPS, TCP, TCP+TLS==  
 you can use load balancers in front of any systems that deal with request/response-style communication as long as the protocol is based on TCP.  
 
-==SQS is only a message queue. Don’t expect features like message routing or message priorities.   
+**<u>SQS Cons:</u>**
+a. DOESN’T GUARANTEE THAT A MESSAGE IS DELIVERED ONLY ONCE  
+b. DOESN’T GUARANTEE THE MESSAGE ORDER  
+c. DOESN’T REPLACE A MESSAGE BROKER: ==SQS is only a message queue without features like message routing or message priorities.   
 SQS FIFO (first-in-first-out) queues FIFO queues guarantee order of messages and have a mechanism to detect duplicate messages. The disadvantages are higher pricing and a limitation on 300 operations per second.  
 Amazon MQ provides Apache ActiveMQ as a service and speaks the JMS, NMS, AMQP, STOMP, MQTT, and WebSocket protocols.==  
 
@@ -39,6 +42,15 @@ Amazon MQ provides Apache ActiveMQ as a service and speaks the JMS, NMS, AMQP, S
 == CloudWatch alarms can change the desired capacity of an auto-scaling group. This allows you to increase the number of virtual machines based on CPU utilization or other metrics.==
 == Virtual machines need to be stateless if you want to scale them according to your current workload.==
 == To distribute load among multiple virtual machines, synchronous decoupling with the help of a load balancer or asynchronous decoupling with a message queue is necessary.==  
+
+------
+
+Summary
+ An object consists of a unique identifier, metadata to describe and manage the object, and the content itself. You can save images, documents, executables, or any other content as an object in an object store.
+ Amazon S3 is an object store accessible only via HTTP(S). You can upload, manage, and download objects with the CLI, SDKs, or the Management Console.
+ Integrating S3 into your applications will help you implement the concept of a stateless server, because you don’t have to store objects locally on the server.
+ You can define a lifecycle for your objects that will move them from Amazon S3 to Amazon Glacier, a special service for archiving data that you don’t need to access frequently. Doing so reduces your cost dramatically.
+ S3 is an eventually consistent object store. You have to consider this if you integrate it into your applications and processes, to avoid unpleasant surprises.  
 
 ------
 

@@ -141,14 +141,6 @@ With references you don't set FKs directly and should even exclude them from you
 
 Updated the answer to elaborate on that. – [Steve Py](https://stackoverflow.com/users/423497/steve-py) [Jun 14 '18 at 22:03](https://stackoverflow.com/questions/50844828/ef-db-savechanges-vs-dbtransaction-commit#comment88735403_50846922)
 
-- 
+How about DB level transactions. Forexample MS SQL Server support many types of transaction. May be you should update your answer with DbContext.Database.BeginTransactionAsync and DbContext.Database.BeginTransaction – [Nuri YILMAZ](https://stackoverflow.com/users/550279/nuri-yilmaz) [Jun 2 '19 at 15:34](https://stackoverflow.com/questions/50844828/ef-db-savechanges-vs-dbtransaction-commit#comment99428702_50846922)
 
-  
-
-  How about DB level transactions. Forexample MS SQL Server support many types of transaction. May be you should update your answer with DbContext.Database.BeginTransactionAsync and DbContext.Database.BeginTransaction – [Nuri YILMAZ](https://stackoverflow.com/users/550279/nuri-yilmaz) [Jun 2 '19 at 15:34](https://stackoverflow.com/questions/50844828/ef-db-savechanges-vs-dbtransaction-commit#comment99428702_50846922)
-
-- 
-
-  
-
-  ==All operations within the SaveChanges are performed within a single transaction. The only times you should need explicit transactions or a transaction scope is when dealing with multiple DbContexts (i.e. multiple updates across bounded contexts) or transaction scoped operations in conjunction with the DbContext updates==. These situations are generally the exception, not the norm.
+==All operations within the SaveChanges are performed within a single transaction. The only times you should need explicit transactions or a transaction scope is when dealing with multiple DbContexts (i.e. multiple updates across bounded contexts) or transaction scoped operations in conjunction with the DbContext updates==. These situations are generally the exception, not the norm.

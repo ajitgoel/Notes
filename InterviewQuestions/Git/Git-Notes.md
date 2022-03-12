@@ -137,9 +137,9 @@ And finally, refspecs. These are used to map local and remote branches together.
 
 => **What is `git rebase` and how can it be used to resolve conflicts in a feature branch before merge?**
 
-In simple words, ==*git rebase* allows one to move the first commit of a branch to a new starting location.== For example, if a feature branch was created from master, and since then the master branch has received new commits, *git rebase* can be used to move the feature branch to the tip of master. The command effectively will replay the changes made in the feature branch at the tip of master, allowing conflicts to be resolved in the process. When done with care, this will allow the feature branch to be merged into master with relative ease and sometimes as a simple fast-forward operation.
+In simple words, *git rebase* allows one to move the first commit of a branch to a new starting location. For example, if a feature branch was created from master, and since then the master branch has received new commits, *git rebase* can be used to move the feature branch to the tip of master. The command effectively will replay the changes made in the feature branch at the tip of master, allowing conflicts to be resolved in the process. When done with care, this will allow the feature branch to be merged into master with relative ease and sometimes as a simple fast-forward operation.
 
-==How do you configure a Git repository to run code sanity checking tools right before making commits, and preventing them if the test fails?==
+**How do you configure a Git repository to run code sanity checking tools right before making commits, and preventing them if the test fails?**
 
 This can be done with a simple script bound to the pre-commit hook of the repository. The pre-commit hook is triggered right before a commit is made, even before you are required to enter a commit message. In this script one can run other tools, such as linters and perform sanity checks on the changes being committed into the repository. For example, the following script:
 
