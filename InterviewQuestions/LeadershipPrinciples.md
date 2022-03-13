@@ -4,8 +4,6 @@ Leaders start with the customer and work backwards. They work vigorously to earn
 
 - Tell me about a time you had to deal with a difficult customer
 
-  
-
 - ==Tell me about a time you made something much simpler for customers==
 
   ​	==EOL-Next version: resident living together as hosuehold, single payment instead of multiple payments.== 
