@@ -16,6 +16,7 @@ yarn.lock
 yarn-error.log
 vuexy-shell-scripts
 .vs
+.obsidian
 
 #amplify
 amplify/\#current-cloud-backend
