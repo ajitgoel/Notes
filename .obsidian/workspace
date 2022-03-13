@@ -7,12 +7,8 @@
         "id": "51674103514cd565",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "Tasks.md",
-            "mode": "source",
-            "source": false
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -69,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tasks.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,6 +84,7 @@
   },
   "active": "51674103514cd565",
   "lastOpenFiles": [
+    "InterviewQuestions/AWS/Lambda.md",
     "Tasks.md",
     "ValoremReply-TechLead.md",
     "DevCareer-Notes.md",
