@@ -1,7 +1,6 @@
 **Team Lead roles and responsibilies:**
 
 ==Lead and mentor developers thru coaching and sharing of knowledge==
-
 - ==drives projects to completion==
 - works under pressure with constantly changing priorities and deadlines
 - ==Relies on good judgment to plan/accomplish goals==
@@ -29,7 +28,6 @@ Development of ASP.Net based web applications.
 Assist Technical Project Manager in updating and processing information.
 
 Assist Architecture and Standards team to validate designs and standards.
-
 ==Perform coding, bug verification, unit testing and integration testing.==
 
 Support enterprise systems and applications.
@@ -45,9 +43,6 @@ Develop enterprise coding standards and drive process improvements.
 Research, document and troubleshoot related technical problems.
 
 ==Develop Enterprise Application Blocks and custom controls.==
-
 ==Troubleshoot problems in security, remoting, threading, and serialization.==
-
 ==Validate requirements of the business needs== and initiate processes.
-
 ==Undertake major development initiatives.==

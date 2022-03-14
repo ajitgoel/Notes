@@ -51,7 +51,7 @@ Very high quality of work.
 Can be relied on to do the diagnose and resolve complex issues using innovative approaches, within the technical constraints imposed by the project.==
 
 **Why should we hire you?**
-• Have deep experience designing, coding, testing SQL Server databases
+==• Have deep experience designing, coding, testing SQL Server databases
 • Design, code, and deliver multi-tier products with web-based, windows-based, mobile-based clients on the .NET/SQL Server technology stack.
 • Develop applications in C# / .NET for high-volume transaction SQL database.
 • Take ownership of the technology used on projects and their implementation, and mentor less-experienced staff in their technical development
@@ -60,7 +60,7 @@ Can be relied on to do the diagnose and resolve complex issues using innovative 
  Drive the appropriate use & implementation of technology to deliver high quality solutions that delight our customers.
  Develop applications utilizing Hybrid Cloud technologies (SaaS, Paas, IaaS).
  Generate innovative approaches and solutions to complex issues.
- Mentor less-experienced staff in their career development, and provide them daily guidance and direction.
+ Mentor less-experienced staff in their career development, and provide them daily guidance and direction.==
 
 What are your salary expectations?
 Before you go to the interview

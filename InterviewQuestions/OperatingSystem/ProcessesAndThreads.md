@@ -94,7 +94,7 @@ What other information may be useful to store on the Process Control Block?
 
 **Introduction to Threads**
 
-While a process is an abstract data structure that represents all of the necessary information to run a program, a *thread* represents the actual sequence of processor instructions that are actively being executed.
+==While a **process** is an abstract data structure that represents all of the necessary information to run a program, a ***thread*** represents the actual sequence of processor instructions that are actively being executed.==
 
 Each process contains at least one thread to be able to execute, although more can be created to allow for concurrent processing if it is supported by the CPU. These threads live within the process and share all of the common resources available to it, such as memory pages and active files, as shown in the image to the right.
 

@@ -161,8 +161,8 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 app.UseApplicationInsightsRequestTelemetry();
 if (env.IsDevelopment())
 {
-    ==app.UseBrowserLink();
-    app.UseDeveloperExceptionPage();==
+    app.UseBrowserLink();
+    app.UseDeveloperExceptionPage();
 }
 else
 {
@@ -177,9 +177,9 @@ try
 }
 catch { }
 }
-==app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
+app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
 app.UseStaticFiles();
-app.UseIdentity();==
+app.UseIdentity();
 // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 app.UseMvc(routes =>
 {

@@ -1,3 +1,10 @@
+Fri: Steven Caputo - Software Engineer, Russell Rogers - Software Architect  
+
+12-12.30 pm: David Larcara: BillTrust: Peer Panel Interview
+12.30-1 pm: Crystal Fortner: BillTrust: Cross Functional Interview
+2-2.30 pm: Steve Markee: BillTrust: TA interview
+3-3.30 pm: Sean Reedy: BillTrust: Hiring Manager interview
+
 # Lead Software Engineer (FinTech SaaS)
 
 at Billtrust US Careers [(View all jobs)](https://www.billtrust.com/careers/openjobs/)
