@@ -1,0 +1,102 @@
+{
+  "main": {
+    "id": "906d113f91903ff7",
+    "type": "split",
+    "children": [
+      {
+        "id": "1a4ffcf537a3d3c7",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "InterviewQuestions/Architecture/LoadBalancing-Algorithms.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1de8027b55f4b5f4",
+    "type": "split",
+    "children": [
+      {
+        "id": "bbd6a34cd0604f3b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7282c125effcfed0",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "470aba7351fd3a32",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "1226b2989c407223",
+    "type": "split",
+    "children": [
+      {
+        "id": "83f8856cc9492833",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f344f046088476bb",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "InterviewQuestions/Architecture/LoadBalancing-Algorithms.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "1a4ffcf537a3d3c7",
+  "lastOpenFiles": [
+    "InterviewQuestions/Architecture/LoadBalancing-Algorithms.md",
+    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/shutterstock_569197654-350x242.jpg",
+    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/round-robin-new-node.png",
+    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/round-robin-2-nodes.png",
+    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/MLC_BER21_Content_Boxes_900x100_62165_v1.jpg",
+    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/least-connections-new-node.png",
+    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/Dr.-Pieter-Buteneers-1.jpg",
+    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/Christoph-Henkelmann-1.jpg",
+    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.md",
+    "InterviewQuestions/SystemDesign/Notes.md"
+  ]
+}

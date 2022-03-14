@@ -29,11 +29,24 @@ High level architecture
 
 ![image-20211011174643646](Notes.assets/image-20211011174643646.png)
 
-
-
 ![image-20211011175252492](Notes.assets/image-20211011175252492.png)
 
 ![image-20211011175322604](Notes.assets/image-20211011175322604.png)
 
+horizontal shard postgres database based on userid
+have a pub\sub queue for each set of user ids
+**Database sharding:**
+	Hot spots, shards replication, 
+**Load Balancers:**
+	
+**Map Reduce:**
+	
+	
+12-12.30 pm: David Larcara: BillTrust: Peer Panel Interview
+12.30-1 pm: Clara Fortner: BillTrust: Cross Functional Interview
+2-2.30 pm: Steve Markee: BillTrust: TA interview
+3-3.30 pm: Sean Reedy: BillTrust: Hiring Manager interview
+
+4-5 PM: Brandon Johnson: Valorem Reply
 
 
