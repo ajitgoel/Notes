@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "InterviewQuestions/Architecture/LoadBalancing-Algorithms.md",
+            "file": "InterviewQuestions/Architecture/SystemDesignPrimer.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "InterviewQuestions/Architecture/LoadBalancing-Algorithms.md",
+                "file": "InterviewQuestions/Architecture/SystemDesignPrimer.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +88,15 @@
   },
   "active": "1a4ffcf537a3d3c7",
   "lastOpenFiles": [
-    "InterviewQuestions/Architecture/LoadBalancing-Algorithms.md",
-    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/shutterstock_569197654-350x242.jpg",
-    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/round-robin-new-node.png",
-    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/round-robin-2-nodes.png",
-    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/MLC_BER21_Content_Boxes_900x100_62165_v1.jpg",
-    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/least-connections-new-node.png",
-    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/Dr.-Pieter-Buteneers-1.jpg",
-    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.assets/Christoph-Henkelmann-1.jpg",
-    "InterviewQuestions/Architecture/LoadBalancing-RoundRobin.md",
-    "InterviewQuestions/SystemDesign/Notes.md"
+    "InterviewQuestions/Architecture/SystemDesignPrimer.md",
+    "InterviewQuestions/LeadershipPrinciples.md",
+    "InterviewQuestions/InterviewQuestionsToAskWhenInterviewingSomeone.md",
+    "InterviewQuestions/Drawings.excalidraw",
+    "InterviewQuestions/WCF/Notes.md",
+    "InterviewQuestions/UML/UML-Notes.md",
+    "InterviewQuestions/SystemDesign/Notes.md",
+    "InterviewQuestions/SystemDesign/Notes.assets/image-20211011175322604.png",
+    "InterviewQuestions/SystemDesign/Notes.assets/image-20211011175252492.png",
+    "InterviewQuestions/SystemDesign/Notes.assets/image-20211011174643646.png"
   ]
 }
