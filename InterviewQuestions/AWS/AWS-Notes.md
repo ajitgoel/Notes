@@ -53,6 +53,17 @@ Summary
  S3 is an eventually consistent object store. You have to consider this if you integrate it into your applications and processes, to avoid unpleasant surprises.  
 
 ------
+**Amazon API Gateway** is a fully managed service that ==makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale==. APIs act as the "front door" for applications to access data, business logic, or functionality from your backend services. Using API Gateway, you can create RESTful APIs and ==**WebSocket APIs** that enable real-time two-way communication applications==. API Gateway supports containerized and serverless workloads, as well as web applications.
+
+API Gateway ==handles all the tasks involved in accepting and processing== up to hundreds of thousands of concurrent ==API calls, including traffic management, CORS support, authorization and access control, throttling, monitoring, and API version management==. API Gateway has no minimum fees or startup costs. You pay for the API calls you receive and the amount of data transferred out and, with the API Gateway tiered pricing model, you can reduce your cost as your API usage scales.
+
+------
+
+==A "**REST API**" (Representational state transfer) is an API that follows a certain architectural style, based on HTTP verbs (get, post, etc.).== A REST API is always HTTP based.
+==An "**HTTP API**" simply only says that the HTTP protocol is used. A HTTP API doesn't necessarily have to be a REST API if it doesn't follow REST architectural styles.==
+==You could say that a HTTP API could be any interface that you connect to over HTTP whereas REST API is only a subset of that group==, that adheres to stricter rules.
+
+------
 
 [Introduction to IAM](https://catalog.us-east-1.prod.workshops.aws/v2/workshops/13304db2-f715-48bf-ada0-92e5c4eea945/en-US/011-begin/iam#introduction-to-iam)
 

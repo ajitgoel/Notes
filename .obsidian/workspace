@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "BillTrust-TechLead.md",
+            "file": "InterviewQuestions/AWS/AWS-Notes.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "BillTrust-TechLead.md",
+                "file": "InterviewQuestions/AWS/AWS-Notes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,7 @@
   },
   "active": "1a4ffcf537a3d3c7",
   "lastOpenFiles": [
+    "InterviewQuestions/AWS/AWS-Notes.md",
     "BillTrust-TechLead.md",
     "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
     "InterviewQuestions/SystemDesign/Notes.md",
@@ -96,7 +97,6 @@
     "WayFair-Questions.assets/image-20220221224511257.png",
     "WayFair-Questions.assets/default_avatar.jpg",
     "WayFair-Questions.assets/avatar_1635838819.png",
-    "WayFair-Questions.assets/avatar_1632189687.png",
-    "WayFair-Questions.assets/avatar_1624975794.png"
+    "WayFair-Questions.assets/avatar_1632189687.png"
   ]
 }
