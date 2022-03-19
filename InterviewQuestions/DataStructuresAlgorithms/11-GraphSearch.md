@@ -6,7 +6,7 @@ Graph search algorithms are used to solve any problem that can be expressed with
 
 ### Breadth-first search (BFS)
 
-BFS searches a tree data structure *one level of depth at a time*. This means that we explore all of a node’s neighbors before exploring any children.
+==BFS searches a tree data structure *one level of depth at a time*. This means that we explore all of a node’s neighbors before exploring any children.==
 
 ![bfs](11-GraphSearch.assets/bfs_c17fe0c09d.png)
 
@@ -36,7 +36,7 @@ function bfs(node, neighbors) {
 
 ### Depth-first search (DFS)
 
-In DFS, we traverse *as far as possible* along each branch before backtracking, exploring until we reach a node without edges or a node that we’ve previously visited.
+==In DFS, we traverse *as far as possible* along each branch before backtracking, exploring until we reach a node without edges or a node that we’ve previously visited.==
 
 ![dfs](11-GraphSearch.assets/dfs_03096c040d.png)
 

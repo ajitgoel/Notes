@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "InterviewQuestions/AWS/AWS-Notes.md",
+            "file": "InterviewQuestions/ASP.NetCore/ASP.NetCore-Fundamentals-Overview.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "InterviewQuestions/AWS/AWS-Notes.md",
+                "file": "InterviewQuestions/ASP.NetCore/ASP.NetCore-Fundamentals-Overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +88,15 @@
   },
   "active": "1a4ffcf537a3d3c7",
   "lastOpenFiles": [
+    "InterviewQuestions/ASP.NetCore/ASP.NetCore-Fundamentals-Overview.md",
+    "InterviewQuestions/ASP.Net/Notes.md",
+    "InterviewQuestions/Angular2/Notes.md",
     "InterviewQuestions/AWS/AWS-Notes.md",
     "BillTrust-TechLead.md",
     "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
     "InterviewQuestions/SystemDesign/Notes.md",
     "InterviewQuestions/LeadershipPrinciples.md",
     "WayFair-Questions.md",
-    "WayFair-Questions.assets/image-20220221224511257.png",
-    "WayFair-Questions.assets/default_avatar.jpg",
-    "WayFair-Questions.assets/avatar_1635838819.png",
-    "WayFair-Questions.assets/avatar_1632189687.png"
+    "WayFair-Questions.assets/image-20220221224511257.png"
   ]
 }
