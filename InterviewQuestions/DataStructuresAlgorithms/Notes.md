@@ -12,4 +12,4 @@ https://www.educative.io/courses/database-design-fundamentals?affiliate_id=50735
 
 O(Log(n)) time complexity as the binary search input decreases by half every time we transverse through the array.
 
-O(1) space complexity is we do the binary search iteratively instead of recursively where it is O(log(n)) space complexity . 
+O(1) space complexity is we do the binary search iteratively instead of recursively(where it is O(log(n)) space complexity). 
