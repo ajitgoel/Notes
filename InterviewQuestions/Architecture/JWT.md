@@ -28,7 +28,7 @@ Solution
 ==A user logs in successfully using their credentials (username and password).
 The server creates a JWT and signs it with a secret. The JWT, or the signature, is not stored on the server at all. The signature is created from the encoded header, and the encoded payload of the JWT along with a secret and an algorithm. 
 The JWT token is sent back to the user. The user must store the JWT securely. JWT is typically not stored in the browser, which would involve the same CSRF issues as cookies do. 
-User includes the JWT token in the Authorization header when accessing a secure resource. 
+**User includes the JWT token in the Authorization header when accessing a secure resource.** 
 Server verifies JWT signature. As the signature is based on the information in the JWT itself, the JWT is self-contained and no JWT related information is stored on the server. 
 If JWT is valid, the server allows the user access to the requested resource.==
 

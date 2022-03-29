@@ -64,9 +64,9 @@ The fourth policy is `unless-stopped`, where the Docker daemon will always try t
 
 **What is a Docker image? What is a Docker image registry?**
 
-==A Docker image consists of many layers. Each layer corresponds to a command in an image’s Dockerfile. This image provides isolation for an application when you run a Docker image as a container. You can run many containers from a single Docker image. Docker images can be built from a Dockerfile.==
+==A **Docker image** consists of many layers. Each layer corresponds to a command in an image’s Dockerfile. This image provides isolation for an application when you run a Docker image as a container. You can run many containers from a single Docker image. Docker images can be built from a Dockerfile.==
 
-==A Docker image registry is a storage area for Docker images. You can get images from them instead of building them.==
+==A **Docker image registry** is a storage area for Docker images. You can get images from them instead of building them.==
 
 An image registry is either public or private. The best-known public registry is Docker Hub.
 
