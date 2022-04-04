@@ -1,79 +1,43 @@
 **Senior Software Engineer - .NET / AWS**
-
 **Qualifications**
-
 A Senior Software Engineer on our team has a broad skillset, and experiences that span multiple technologies and industries
-
 Bachelor's Degree, or higher, in Computer Science or related field
-
 At least 6 years related professional experience
-
 Deep experience designing / coding data-intensive applications using C#
-
 Mastery of T-SQL, stored procedures, performance tuning, etc
-
 ==Experience in containerization and management tools such as ECS, EKS, Swarm or Kubernetes==
-
 ==Experience with common AWS services such as Lambda, SNS, SQS, EC2==
-
 ==Experience with event-driven architecture in AWS managed services==
-
 Ability to prioritize tasks and work independently
-
 Excellent analytical, decision-making and problem solving skills
-
 Strong verbal and written communication skills
-
 Proven ability to work in a rapidly changing environment with keen attention to detail
 
 **Responsibilities**
-
 This individual can quickly get up to speed on a team and provide technical assistance and direction wherever needed
-
 This may take the form of providing architectural guidance on new efforts, mentoring teammates, solving difficult problems, and acting wherever needed to keep the team unblocked and working in the right direction
-
 Their code is refined and reflects industry best practices
-
 They can take loosely defined work and solicit clearer requirements with a definite scope to execute against
-
 Occasionally this solicitation process includes minimalistic implementations to demonstrate potential directions for the project
-
 Our Senior Software Engineers always aim for improvement both in processes, code quality, and team training
-
 Evangelize cloud adoption within the organization
-
 Provide consultation, guidance, and support across existing and emerging cloud technologies
-
 Design highly resilient and available cloud architectures using proven cloud frameworks and tools
-
 Adopt and determine reference architectures and implementations using cloud technologies
-
 Provide oversight on cloud adoption and usage
-
 Solve complex technical issues involving multiple technology stacks
-
 Provide documentation and training to other Engineering stakeholders
 
 Benefits
-
 Medical, dental and vision benefits: Affordable health care plans with premiums that will not exceed 5% of your salary and company HSA contributions, starting on Day 1
-
 A 6% 401(k) match
-
 Competitive time off package with 20 days of Paid Time Off, 9 paid company holidays, 2 paid floating holidays, 7 paid sick days, and a paid volunteer day
-
 4 weeks paid Parental (Bonding) Leave
-
 Remote work stipend for internet, cell phone, office furniture and supplies
-
 Culture and team-building activities
-
 Employee Assistance Program
-
 Tuition assistance
-
 Career development opportunities
-
 Charitable contribution match per team member
 
 --------

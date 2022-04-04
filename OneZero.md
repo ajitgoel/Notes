@@ -35,6 +35,86 @@ This job is focused on our Data Source product which is a next-generation cloud-
 • A positive, team-oriented attitude. Our team has exceptional productivity and high employee morale because we respect one another and work well together.  
 
 ------------------------
+You will be speaking with Dustin Vertrees [https://www.linkedin.com/in/dustinvertrees/](https://www.linkedin.com/in/dustinvertrees/). He is a director at oneZero and the hiring manager for this team.
+
+**Prep Recommendations**
+- Dustin may ask some general interview questions like:
+
+- What are you passionate about? What kind of technical problems excite you?
+
+- What are you looking for in a new role? What is important to you on your search?
+
+- Evaluate your most significant strengths for this role based on the attached JD
+
+  ==•You have the specific technical skills needed to do the job well.==
+  ==•You have a problem-prevention-and-solution mindset.==
+  ==•You are fully aware that the product of your work (that sale, that accounting report) in turn becomes part of someone else’s work. You understand your work is one small but important cog in the complex machinery that helps the company make money.==
+
+- Come up with an organized list of talking points to concisely communicate your relevant expertise
+
+- Be prepared to talk through every step of relevant projects and describe technical detail for those platforms/systems/applications
+
+- Do some basic research on oneZero as a firm and Dustin (link above)
+
+-   Come up with some good questions to ask Dustin to understand this team, the role, oneZero overall, etc.
+    **My notes from Dustin:**
+    
+- Planning to grow their cloud team fairly rapidly
+
+- AWS focus. Other public cloud experience is valuable as well
+
+- Breaking up monolithic systems and decoupling problem spaces as the team expands
+
+- Working with large volumes of data. Performance is absolutely key here!
+
+-   Very complex data sets. This team will be building new ways to relate data sets, new metrics, and ways to generate market insights and predictions
+
+**oneZero Financial Systems**
+
+==A next-generation cloud-based business intelligence toolkit that stores your quote and trade data and enables its transformation into our, your or data analytics vendor partners' advanced analytics, that facilitate relationships between consumers and providers of liquidity.==
+
+oneZero builds the trading technology that retail broker-dealers and market makers need to compete effectively across the global foreign exchange, commodities, equities, crypto-currency and futures markets. Their niche is ultra-low-latency trading environments and solutions tailored for the highest reliability, scalability and performance. Their solutions, proven liquidity, ecosystem network of more than 100 liquidity providers, and reliable IT infrastructure are all customized to scale to any size broker. They are distributed across Americas, Asia, Australia and Europe.
+
+At their core, they are an innovative technology firm, consisting of enterprise software developers, IT consultants, QA engineers, server managers, application support specialists and many, many more technologists. By bringing together these groups to collaborate, they’ve created a unique culture built to solve some of the toughest technology challenges in the global financial markets.
+
+Their leadership has a diverse technical background with many folks coming from the video game industry. Culturally, they feel like a modern tech startup, but have the resources and track record of an industry leader. When they were in the office before Covid-19, lunches are catered every day, staff have flexible work hours (you’re free to come in or leave super early or super late as long as you get work done), etc.
+
+**
+WHAT DO THEY MAKE?**
+
+**Hub Technology**: https://www.onezero.com/hub-technology/
+
+Our Hubs are robust Software-as-a-Service price and risk management systems, used by clients around the globe to manage and route tens of millions of trades daily. Our technology is secure, reliable and scalable. We offer specialized Hubs for wholesale brokers and banks, retail brokers and liquidity providers.
+
+*Under the Hood:* The foundation of our Hub technology is a highly-parallel architecture designed and built in-house by our world-class engineering team. Our software is written in the C++ programming language, giving our engineers exceptional control over both high-level architecture and low-level performance. This allows us to optimize our Hubs for low latency, high throughput and stability without sacrificing the flexibility necessary to accommodate changing market requirements.
+
+**Ecosystem:** https://www.onezero.com/ecosystem/
+
+EcoSystem is where our vast network of 200+ retail brokers, wholesale brokers, banks and liquidity providers come together for liquidity distribution and access to unique flow, with direct market access to exchanges and clearing providers. Clients also access our network of Data Analytics Partner Vendors and Post-trade settling and Reporting Partners, who they may connect with seamlessly without special integration.
+
+*Award-Winning Connectivity:* Brokers and liquidity providers connect and cross-connect across our award-winning ultra-low latency technology platform. For the past two years, we have been awarded Best Connectivity Provider by Finance Magnates, recognizing oneZero as the leading technology provider that offers access to liquidity, risk management, routing aggregation, and bridge solutions for platforms.
+
+**MetaTrader: Server Hosting & Platform Services**
+
+Deploy your trading systems within our proven globally distributed infrastructure, with exceptional operations and administrative support provided 24/5.5 by our highly skilled engineers with decades of front-line support experience.
+
+**Retail Broker Hub: Pricing & Risk Management**
+
+Build customized liquidity pools and establish connections to clients via the front-end trading platform MetaTrader MT4/MT5 for the receipt and delivery of quotes and trades. Features include pricing and risk management, aggregation, warehousing, market access, price distribution, and more.
+
+**Data Source:** https://www.onezero.com/data-source/
+
+Data Source is a next-generation cloud-based business intelligence toolkit that stores your quote and trade data which can then be transformed into meaningful analytics that facilitates the relationship between consumers and providers of liquidity.
+
+
+
+Access your Hub’s trade, quote and quote derivative data in real-time, near real-time and historical. We collect and curate your data from multiple data centers and transport it to the cloud via high-speed connection. It’s available whenever you need it and comes in formats easily accessible to internal users and third-party vendors to analyze, including for compliance reporting.
+
+**Awards:** oneZero Financial Systems has won Best Connectivity Provider at the Finance Magnates London Summit Awards for two years in a row!
+
+https://www.onezero.com/company/news/onezero-wins-best-connectivity-provider-2019-at-london-summit-awards/
+
+------------------------
 
 First I had a short phone interview about my interests, experience and the company. Then, I was sent a 6 hours programming test to be done in C++. Then, I was invited to a face-to-face interview, which included going over my programming test and solving a problem on whiteboard. I received a good offer soon after this. Unfortunately I had to decline the offer for personal/family reasons.
 
