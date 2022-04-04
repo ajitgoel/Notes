@@ -383,14 +383,8 @@ C#Copy
 ```csharp
 public async Task SaveItemAsync(TodoItem todoItem)
 {
-    var todoItemJson = new StringContent(
-        JsonSerializer.Serialize(todoItem),
-        Encoding.UTF8,
-        "application/json");
-
-    using var httpResponse =
-        await _httpClient.PutAsync($"/api/TodoItems/{todoItem.Id}", todoItemJson);
-
+    var todoItemJson = new StringContent(JsonSerializer.Serialize(todoItem),Encoding.UTF8,"application/json");
+    using var httpResponse =await _httpClient.PutAsync($"/api/TodoItems/{todoItem.Id}", todoItemJson);
     httpResponse.EnsureSuccessStatusCode();
 }
 ```
@@ -404,9 +398,7 @@ C#Copy
 ```csharp
 public async Task DeleteItemAsync(long itemId)
 {
-    using var httpResponse =
-        await _httpClient.DeleteAsync($"/api/TodoItems/{itemId}");
-
+    using var httpResponse =await _httpClient.DeleteAsync($"/api/TodoItems/{itemId}");
     httpResponse.EnsureSuccessStatusCode();
 }
 ```

@@ -16,7 +16,7 @@ You can query a global secondary index like you would query the table.==
 
 ------
 
-==Scaling a traditional, relational database is difficult because transactional guarantees (atomicity, consistency, isolation, and durability, also known as ACID) require communication among all nodes of the database. The more nodes you add, the slower your database becomes, because more nodes must coordinate transactions between each other. The way to tackle this has been to use databases that don’t adhere to these guarantees. They’re called NoSQL databases.==
+==Scaling a traditional, relational database is difficult because transactional guarantees (**atomicity, consistency, isolation, and durability, also known as ACID**) require communication among all nodes of the database. The more nodes you add, the slower your database becomes, because more nodes must coordinate transactions between each other. The way to tackle this has been to use databases that don’t adhere to these guarantees. They’re called **NoSQL databases**.==
 There are four types of NoSQL databases—document, graph, columnar, and key-value store  
 
 **Primary keys**

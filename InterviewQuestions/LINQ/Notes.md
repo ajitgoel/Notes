@@ -13,7 +13,7 @@ EmpEntities ent = new EmpEntities();
 **IQueryable<Employee>** emp = ent.Employees;
 IQueryable<Employee> temp = emp.Where(x => x.Empid == 2).ToList<Employee>();
 
-==So if you working with only in-memory data collection IEnumerable is a good choice but if you want to query data collection which is connected with database `IQueryable is a better choice as it reduces network traffic and uses the power of SQL language.==
+==So if you working with only in-memory data collection **IEnumerable** is a good choice but if you want to query data collection which is connected with database `**IQueryable** is a better choice as it reduces network traffic and uses the power of SQL language.==
 
 **SelectMany:** The SelectMany LINQ operator is used in query expressions that have multiple from clauses. It’s called SelectMany because, instead of selecting a single output item for each input item, you provide it with a lambda that produces a whole collection for each input item.   
 

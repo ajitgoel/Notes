@@ -127,14 +127,12 @@ FROM employee
 
 We want to retrieve the names of all salespeople that have more than 1 order from the tables above. You can assume that each salesperson only has one ID.
 
-```
-SELECT Name FROM "Orders" o, Salesperson
-WHERE o.salesperson_id = Salesperson.ID
-GROUP BY salesperson_id, Name
-HAVING COUNT( salesperson_id ) >1
-```
 
-------
+==//salesperson id is not required in the select clause below==
+SELECT Name FROM "Orders" o, Salesperson 
+WHERE o.salesperson_id = Salesperson.ID 
+GROUP BY salesperson_id, Name 
+HAVING COUNT( salesperson_id ) >1
 
 ![image-20220305133843300](Notes.assets/image-20220305133843300.png)
 

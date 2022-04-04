@@ -35,3 +35,9 @@ switch to the target branch e.g. `git checkout development``
 \- SOLID
 \- Difference between abstract class and interface
 \- Abstraction, Encapsulation, Association, Aggregation(Composition), Inheritance, Polymorphism
+
+https://www.ajitgoel.net/post/aws-tips-and-tricks/
+https://www.ajitgoel.net/post/solid-principles/
+https://www.ajitgoel.net/post/net-core-async-await-tips/
+https://www.ajitgoel.net/post/entity-framework-core-tips-and-tricks/
+https://www.ajitgoel.net/post/c-func-type-action-type-yield-operator/

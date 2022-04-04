@@ -7,7 +7,7 @@ Problem
 Authenticating a user requires verification of a user’s identity. The traditional ==cookies-based authentication method makes use of HTTP cookies to authenticate client requests and store session information on the server==. Typically the following procedure is used:
 
 1. ==A client, also called a user agent, sends a login request to the server.==
-2. ==On successful login, the server stores the session information in memory or in persistent storage and returns a HTTP Response that includes an HTTP cookie (also called a browser cookie or a web cookie) in the Set-Cookie header. A cookie is a string of data with a name-value pair as its only required attribute. The cookie is tied with the session stored on the server and may include additional attributes for the duration a cookie is valid or an expiration date.==
+2. ==On successful login, the server stores the session information in memory or in persistent storage and returns a HTTP Response that includes **<u>an HTTP cookie</u>** (also called a browser cookie or a web cookie) **<u>in the Set-Cookie header</u>**. A cookie is a string of data with a name-value pair as its only required attribute. The cookie is tied with the session stored on the server and may include additional attributes for the duration a cookie is valid or an expiration date.==
 3. ==The cookie gets set in the client’s browser.==
 4. ==For authentication, the client sends the cookie in the cookie header of each subsequent request.==
 5. ==The server deserializes the cookie to authenticate the user.==

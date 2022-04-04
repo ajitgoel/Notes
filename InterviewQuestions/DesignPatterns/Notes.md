@@ -224,7 +224,7 @@ public class Singleton
             }
             lock (tempObjectForLocking)
             {
-                Multiple processes could access the code below at the same time, therefore a "null" check has been added so only one process can create a singleton instance. 
+                //Multiple processes could access the code below at the same time, therefore a "null" check has been added so only one process can create a singleton instance. 
                 if (singleton == null)//Second(double) check
                 {
                     singleton = new Singleton();
