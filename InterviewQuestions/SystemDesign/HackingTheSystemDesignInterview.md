@@ -345,7 +345,7 @@ To optimize the read performance, **denormalization** is introduced by adding re
 
 The abstraction of a KV store is a giant hashtable/hashmap/dictionary.
 
-The main reason we want to use a key-value cache is to reduce latency for accessing active data. Achieve an O(1) read/write performance on a fast and expensive media (like memory or SSD), instead of a traditional O(logn) read/write on a slow and cheap media (typically hard drive).
+==The main reason we want to use a key-value cache is to reduce latency for accessing active data.== Achieve an O(1) read/write performance on a fast and expensive media (like memory or SSD), instead of a traditional O(logn) read/write on a slow and cheap media (typically hard drive).
 
 There are three major factors to consider when we design the cache.
 
@@ -353,29 +353,29 @@ There are three major factors to consider when we design the cache.
 2. Placement: Where to place the cache? client side/distinct layer/server side?
 3. Replacement: When to expire/replace the data? LRU/LFU/ARC?
 
-Out-of-box choices: Redis/Memcache? Redis supports data persistence while memcache does not. Riak, Berkeley DB, HamsterDB, Amazon Dynamo, Project Voldemort, etc.
+Out-of-box choices: Redis/Memcache? ==Redis supports data persistence while memcache does not.== Riak, Berkeley DB, HamsterDB, Amazon Dynamo, Project Voldemort, etc.
 
-##### Document Store 
+##### ==Document Store== 
 
 The abstraction of a document store is like a KV store, but documents, like XML, JSON, BSON, and so on, are stored in the value part of the pair.
 
-The main reason we want to use a document store is for flexibility and performance. Flexibility is obtained by schemaless document, and performance is improved by breaking 3NF. Startup’s business requirements are changing from time to time. Flexible schema empowers them to move fast.
+==The main reason we want to use a document store is for flexibility and performance. Flexibility is obtained by schemaless document, and performance is improved by breaking 3NF.== Startup’s business requirements are changing from time to time. Flexible schema empowers them to move fast.
 
-Out-of-box choices: MongoDB, CouchDB, Terrastore, OrientDB, RavenDB, etc.
+Out-of-box choices: ==MongoDB==, CouchDB, Terrastore, OrientDB, RavenDB, etc.
 
-##### Column-oriented Store 
+##### ==Column-oriented Store== 
 
 The abstraction of a column-oriented store is like a giant nested map: ColumnFamily<RowKey, Columns<Name, Value, Timestamp>>.
 
-The main reason we want to use a column-oriented store is that it is distributed, highly-available, and optimized for write.
+==The main reason we want to use a column-oriented store is that it is distributed, highly-available, and optimized for write.==
 
 Out-of-box choices: Cassandra, HBase, Hypertable, Amazon SimpleDB, etc.
 
-##### Graph Database 
+##### ==Graph Database== 
 
-As the name indicates, this database’s abstraction is a graph. It allows us to store entities and the relationships between them.
+As the name indicates, this database’s abstraction is a graph. ==It allows us to store entities and the relationships between them.==
 
-If we use a relational database to store the graph, adding/removing relationships may involve schema changes and data movement, which is not the case when using a graph database. On the other hand, when we create tables in a relational database for the graph, we model based on the traversal we want; if the traversal changes, the data will have to change.
+==If we use a relational database to store the graph, adding/removing relationships may involve schema changes and data movement, which is not the case when using a graph database. On the other hand, when we create tables in a relational database for the graph, we model based on the traversal we want; if the traversal changes, the data will have to change.==
 
 Out-of-box choices: Neo4J, Infinitegraph, OrientDB, FlockDB, etc.
 
@@ -383,9 +383,9 @@ Out-of-box choices: Neo4J, Infinitegraph, OrientDB, FlockDB, etc.
 
 ==When we design a distributed system, **trading off among CAP (consistency, availability, and partition tolerance)** is almost the first thing we want to consider.==
 
-- ==Consistency: all nodes see the same data at the same time==
-- ==Availability: a guarantee that every request receives a response about whether it succeeded or failed==
-- ==Partition tolerance: system continues to operate despite arbitrary message loss or failure of part of the system==
+- ==**Consistency**: all nodes see the same data at the same time==
+- ==**Availability**: a guarantee that every request receives a response about whether it succeeded or failed==
+- ==**Partition tolerance**: system continues to operate despite arbitrary message loss or failure of part of the system==
 
 ==In a distributed context, the choice is between CP and AP.== Unfortunately, CA is just a joke, because single point of failure is a red flag in the real distributed systems world.
 
@@ -514,20 +514,20 @@ Want an example? Go to see [how Facebook scale its social graph data store](http
 
 # [ACID vs BASE](https://tianpan.co/notes/2018-07-26-acid-vs-base)
 
-ACID (Consistency over Availability)
+==ACID (Consistency over Availability)==
 
-- Atomicity ensures transaction succeeds completely or fails completely.
-- Consistency: In ACID, the C means that a transaction pre-serves all the database rules, such as unique keys, triggers, cascades. In contrast, the C in CAP refers only to single copy consistency, a strict subset of ACID consistency.
-- Isolation ensures that concurrent execution of transactions leaves the database in the same state that would have been obtained if the transactions were executed sequentially.
-- Durability ensures that once a transaction has been committed, it will remain committed even in the case of a system failure (e.g. power outage or crash).
+- **Atomicity** ensures transaction succeeds completely or fails completely.
+- **Consistency**: In ACID, the C means that a transaction pre-serves all the database rules, such as unique keys, triggers, cascades. In contrast, the C in CAP refers only to single copy consistency, a strict subset of ACID consistency.
+- **Isolation** ensures that concurrent execution of transactions leaves the database in the same state that would have been obtained if the transactions were executed sequentially.
+- **Durability** ensures that once a transaction has been committed, it will remain committed even in the case of a system failure (e.g. power outage or crash).
 
-BASE (Availability over Consistency)
+==BASE (Availability over Consistency)==
 
 - Basically available indicates that the system is guaranteed to be available
 - Soft state indicates that the state of the system may change over time, even without input. This is mainly due to the eventually consistent model.
 - Eventual consistency indicates that the system will become consistent over time, given that the system doesn’t receive input during that time.
 
-Although most NoSQL takes BASE priciples, they are learning from or moving toward ACID. e.g. Google Spanner provides strong consistency. MongoDB 4.0 adds support for multi-document ACID transactions.
+==Although most NoSQL takes BASE priciples, they are learning from or moving toward ACID==. e.g. Google Spanner provides strong consistency. MongoDB 4.0 adds support for multi-document ACID transactions.
 
 ## Data Partition and Routing 
 
@@ -2049,8 +2049,6 @@ Graphana is mature enough for the data visualization work. If you do not want to
 
 # How to write solid code? 
 
-![he likes it](HackingTheSystemDesignInterview.assets/he-likes-it.jpg)
-
 1. empathy / perspective-taking is the most important.
    1. realize that code is written for human to read first and then for machines to execute.
    2. software is so “soft” and there are many ways to achieve one thing. It’s all about making the proper trade-offs to fulfill the requirements.
@@ -2070,17 +2068,13 @@ Structured programming vs. OO programming vs. Functional programming
 
    2. But OO makes polymorphism safe and convenient to use. And then enable the powerful
 
-       
-
       plugin architecture
-
-       
 
       with dependency inversion
 
       1. Source code denpendencies and flow of control are typically the same. However, if we make them both depend on interfaces, dependency is inverted.
-      2. Interfaces empower independent deployability. e.g. when deploying Solidity smart contracts, importing and using interfaces consume much less gases than doing so for the entire implementation.
-
+   2. Interfaces empower independent deployability. e.g. when deploying Solidity smart contracts, importing and using interfaces consume much less gases than doing so for the entire implementation.
+   
 3. Functional programming: Immutability. is discipline imposed upon variable assignment.
 
    1. Why important? All race conditions, deadlock conditions, and concurrent update problems are due to mutable variables.

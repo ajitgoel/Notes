@@ -88,6 +88,7 @@
   "active": "1a4ffcf537a3d3c7",
   "lastOpenFiles": [
     "InterviewQuestions/Drawings.excalidraw",
+    "InterviewQuestions/SystemDesign/HackingTheSystemDesignInterview.md",
     "InterviewQuestions/Personal/Untitled.md",
     "OneZero.md",
     "CommerceHub-.Net-AWS.md",
@@ -95,7 +96,6 @@
     "InterviewQuestions/ASP.NetCore/ImplementingResilientApplications.md",
     "InterviewQuestions/ASP.NetCore/Make HTTP Requests.md",
     "InterviewQuestions/AWS/AWS-Notes.md",
-    "InterviewQuestions/ASP.Net/Notes.md",
-    "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md"
+    "InterviewQuestions/ASP.Net/Notes.md"
   ]
 }
