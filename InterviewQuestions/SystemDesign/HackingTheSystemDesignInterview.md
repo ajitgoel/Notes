@@ -1,16 +1,6 @@
 # Hacking the Software Engineer Interview
 
- 142168 2018-05-02 18:41 (Last Updated 2019-09-25 01:57)
-
-[ Slides](https://tianpan.co/notes/hacking-the-software-engineer-interview.md/slides)
-
- Save
-
- Share
-
-This topic is work in process. You can also visit the [google doc version - BigDataKV](https://docs.google.com/document/d/1dNKjHICogW5f94MKoBr8wDA3TASbhP0nrcy4eKiuA8Q/edit).
-
-Welcome to join us for discussion: https://t.me/system_design_and_architecture
+ 
 
 # Table of Contents 
 
@@ -389,9 +379,9 @@ Out-of-box choices: Neo4J, Infinitegraph, OrientDB, FlockDB, etc.
 
 ==In a distributed context, the choice is between CP and AP.== Unfortunately, CA is just a joke, because single point of failure is a red flag in the real distributed systems world.
 
-To ensure consistency, there are some popular protocols to consider: 2PC, eventual consistency (vector clock + RWN), Paxos, [In-Sync Replica](http://www.confluent.io/blog/hands-free-kafka-replication-a-lesson-in-operational-simplicity/), etc.
+==To ensure consistency==, there are some popular protocols to consider: 2PC, ==eventual consistency== (vector clock + RWN), Paxos, [In-Sync Replica](http://www.confluent.io/blog/hands-free-kafka-replication-a-lesson-in-operational-simplicity/), etc.
 
-To ensure availability, we can add replicas for the data. As to components of the whole system, people usually do [cold standby, warm standby, hot standby, and active-active](https://www.ibm.com/developerworks/community/blogs/RohitShetty/entry/high_availability_cold_warm_hot?lang=en) to handle the failover.
+==To ensure availability, we can add replicas for the data.== As to components of the whole system, people usually do [cold standby, warm standby, hot standby, and active-active](https://www.ibm.com/developerworks/community/blogs/RohitShetty/entry/high_availability_cold_warm_hot?lang=en) to handle the failover.
 
 ## 3 Future Studies 
 
@@ -718,7 +708,7 @@ To optimize the read performance, **denormalization** is introduced by adding re
 
 The abstraction of a KV store is a giant hashtable/hashmap/dictionary.
 
-The main reason we want to use a key-value cache is to reduce latency for accessing active data. Achieve an O(1) read/write performance on a fast and expensive media (like memory or SSD), instead of a traditional O(logn) read/write on a slow and cheap media (typically hard drive).
+The main reason ==we want to use a key-value cache is to reduce latency for accessing active data.== Achieve an O(1) read/write performance on a fast and expensive media (like memory or SSD), instead of a traditional O(logn) read/write on a slow and cheap media (typically hard drive).
 
 There are three major factors to consider when we design the cache.
 
@@ -726,29 +716,29 @@ There are three major factors to consider when we design the cache.
 2. Placement: Where to place the cache? client-side/distinct layer/server side?
 3. Replacement: When to expire/replace the data? LRU/LFU/ARC?
 
-Out-of-box choices: Redis/Memcache? Redis supports data persistence while Memcache does not. Riak, Berkeley DB, HamsterDB, Amazon Dynamo, Project Voldemort, etc.
+Out-of-box choices: Redis/Memcache? ==Redis supports data persistence while Memcache does not.== Riak, Berkeley DB, HamsterDB, Amazon Dynamo, Project Voldemort, etc.
 
 ## Document Store 
 
 The abstraction of a document store is like a KV store, but documents, like XML, JSON, BSON, and so on, are stored in the value part of the pair.
 
-The main reason we want to use a document store is for flexibility and performance. Flexibility is achieved by the schemaless document, and performance is improved by breaking 3NF. Startup’s business requirements are changing from time to time. Flexible schema empowers them to move fast.
+The main reason ==we want to use a document store is for flexibility and performance. Flexibility is achieved by the schemaless document, and performance is improved by breaking 3NF.== Startup’s business requirements are changing from time to time. Flexible schema empowers them to move fast.
 
-Out-of-box choices: MongoDB, CouchDB, Terrastore, OrientDB, RavenDB, etc.
+Out-of-box choices: ==MongoDB==, CouchDB, Terrastore, OrientDB, RavenDB, etc.
 
 ## Column-oriented Store 
 
 The abstraction of a column-oriented store is like a giant nested map: ColumnFamily<RowKey, Columns<Name, Value, Timestamp>>.
 
-The main reason we want to use a column-oriented store is that it is distributed, highly-available, and optimized for write.
+The main reason ==we want to use a column-oriented store is that it is distributed, highly-available, and optimized for write.==
 
 Out-of-box choices: Cassandra, HBase, Hypertable, Amazon SimpleDB, etc.
 
-## Graph Database 
+## ==Graph Database== 
 
 As the name indicates, this database’s abstraction is a graph. It allows us to store entities and the relationships between them.
 
-If we use a relational database to store the graph, adding/removing relationships may involve schema changes and data movement, which is not the case when using a graph database. On the other hand, when we create tables in a relational database for the graph, we model based on the traversal we want; if the traversal changes, the data will have to change.
+==If we use a relational database to store the graph, adding/removing relationships may involve schema changes and data movement, which is not the case when using a graph database. On the other hand, when we create tables in a relational database for the graph, we model based on the traversal we want; if the traversal changes, the data will have to change.==
 
 Out-of-box choices: Neo4J, Infinitegraph, OrientDB, FlockDB, etc.
 
@@ -778,24 +768,24 @@ In distributed systems, we choose those policies according to the business requi
 
 When a cache does not support native read-through and write-through operations, and the resource demand is unpredictable, we use this cache-aside pattern.
 
-- Read: try to hit the cache. If not hit, read from the database and then update the cache.
-- Write: write to the database first and then delete the cache entry. A common pitfall here is that [people mistakenly update the cache with the value, and double writes in a high concurrency environment will make the cache dirty](https://www.quora.com/Why-does-Facebook-use-delete-to-remove-the-key-value-pair-in-Memcached-instead-of-updating-the-Memcached-during-write-request-to-the-backend).
+- ==Read: try to hit the cache. If not hit, read from the database and then update the cache.==
+- ==Write: write to the database first and then delete the cache entry.== A common pitfall here is that [people mistakenly update the cache with the value, and double writes in a high concurrency environment will make the cache dirty](https://www.quora.com/Why-does-Facebook-use-delete-to-remove-the-key-value-pair-in-Memcached-instead-of-updating-the-Memcached-during-write-request-to-the-backend).
 
 There are still chances for dirty cache in this pattern. It happens when these two cases are met in a racing condition:
 
 1. read database and update cache
 2. update database and delete cache
 
-## Where to put the cache? 
+## ==Where to put the cache?== 
 
-- client-side
-- distinct layer
-- server-side
+- ==client-side==
+- ==distinct layer==
+- ==server-side==
 
-## What if data volume reaches the cache capacity? Use cache replacement policies 
+## What if data volume reaches the cache capacity? Use ==cache replacement policies== 
 
-- LRU(Least Recently Used): check time, and evict the most recently used entries and keep the most recently used ones.
-- LFU(Least Frequently Used): check frequency, and evict the most frequently used entries and keep the most frequently used ones.
+- ==LRU(Least Recently Used):== check time, and evict the most recently used entries and keep the most recently used ones.
+- ==LFU(Least Frequently Used):== check frequency, and evict the most frequently used entries and keep the most frequently used ones.
 - ARC(Adaptive replacement cache): it has a better performance than LRU. It is achieved by keeping both the most frequently and frequently used entries, as well as a history for eviction. (Keeping MRU+MFU+eviction history.)
 
 ## Who are the King of the cache usage? 
@@ -2075,9 +2065,9 @@ Structured programming vs. OO programming vs. Functional programming
       1. Source code denpendencies and flow of control are typically the same. However, if we make them both depend on interfaces, dependency is inverted.
    2. Interfaces empower independent deployability. e.g. when deploying Solidity smart contracts, importing and using interfaces consume much less gases than doing so for the entire implementation.
    
-3. Functional programming: Immutability. is discipline imposed upon variable assignment.
+3. ==Functional programming: Immutability. is discipline imposed upon variable assignment.==
 
-   1. Why important? All race conditions, deadlock conditions, and concurrent update problems are due to mutable variables.
+   1. ==Why important? All race conditions, deadlock conditions, and concurrent update problems are due to mutable variables.==
    2. Event sourcing is a strategy wherein we store the transactions, but not the state. When state is required, we simply apply all the transactions from the beginning of time.
 
 # [SOLID Design Principles](https://tianpan.co/notes/12-solid-design-principles)
