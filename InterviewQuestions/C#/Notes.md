@@ -2836,6 +2836,7 @@ Willing to go alone, take the path less travelled.
 Very high quality of work.
 Can be relied on to do the diagnose and resolve complex issues using innovative approaches, within the technical constraints imposed by the project.
 Team Player, a person that can be trusted to tell it as it is, without going “round and round”.
+
 **Closing Questions example:**
 Is there any other information you need from me regarding my application?
 Do you have any hesitations about me for this position?
@@ -2846,56 +2847,6 @@ Is there anything hindering me from moving forward in the interview process?
 Where do I go from here? What are your next steps?
 What is your timeframe for making a final decision?
 Do you know when I might hear correspondence regarding the next step?
-
-**Behavioural questions:**
-**Genuine Questions:**
-These are the questions you actually want to know the answers to. Here are a few ideas of questions that are valuable to many candidates:
-\1. "How much of your day do you spend coding?"
-\2. "How many meetings do you have every week?"
-\3. "What is the ratio of testers to developers to program managers? What is the interaction like? How does project planning happen on the team?
-
-**Insightful Questions**
-These questions are designed to demonstrate your deep knowledge of programming or technologies, and they also demonstrate your passion for the company or product.
-\1. "I noticed that you use technology X. How do you handle problem Y?"
-\2. "Why did the product choose to use the X protocol over the Y protocol? I know it has benefits like A, B,C, but many companies choose not to use it because of issue D."
-Asking such questions will typically require advance research about the company
-**Passion Questions**
-These questions are designed to demonstrate your passion for technology. They show that you're interested in learning and will be a strong contributor to the company.
-\1. "I'm very interested in scalability. Did you come in with a background in this, or what opportunities are there to learn about it?"
-\2. "I'm not familiar with technology X, but it sounds like a very interesting solution. Could you tell me a bit more about how it works?"
-Advice when responding to questions.
-a. Be Specific,Not Arrogant
-b. Limit Details
-c. Give Structured Answers
-c.1. Nugget First
-For example:
-• Interviewer: "Tell me about a time you had to persuade a group of people to make a big change."
-• Candidate: "Sure, let me tell you about the time when I convinced my school to let undergraduates teach their own courses. Initially, my school had a rule where..."
-c.2. S.A.R. (Situation, Action, Result)
-The S.A.R. approach means that you start off outlining the situation, then explaining the actions you took, and lastly, describing the result.
-Example: "Tell me about a challenging interaction with a teammate."
-• Situation:On my operating systems project, I was assigned to work with three other people. While two were great, the third team member didn't contribute much. He stayed quiet during meetings, rarely chipped in during email discussions, and struggled to complete his components.
-• Action: One day after class, I pulled him aside to speak about the course and then moved the discussion into talking about the project. I asked him open-ended questions about how he felt it was going and which components he was most excited about tackling. He suggested all the easiest components, and yet offered to do the write-up. I realized then that he wasn't lazy—he was actually just really confused about the project and lacked confidence. I worked with him after that to break down the components into smaller pieces, and I made sure to compliment him a lot on his work to boost his
-confidence.
-• Result
-Common Questions 
-**Enterprise Online leasing-next version.**
-EOL Pepsi SourceRad Project 5
-**Most Challenging** Stabilizing application by increasing code coverage through new unit tests.
-custom workflow in application.
-**What you learned** ASP.Net MVC, TDD, Dependency Injection, Creating one of a kind application where a custom workflow widget that can be embedded in any webpage,
-Stabilizing application by increasing code coverage through new unit tests.
-New features of ASP.Net, custom workflow in application, 
-Application reuse through common business layer, 
-Performance improvement by using ProtoBuf.Net instead of XML serialization and Mutex to lock files when reading and writing.
-Complex pocket PC application involving very rigorous performance requirements,
-created custom controls for compact framework,
-Performance tuning application.
-Performance tuning application, removing deadlocks, was one of 5 members recruited by client for maintaining application.
-Most Interesting Hardest Bug Enjoyed Most 
-**Conflicts with Teammates** 
-Conflict with Jeff about client side logging, showing an error message when an error occurs.
-Conflict with Chris who was assigned a task and he was unable to complete. Talked to manager about it.
 
 6 Essential C# Interview Questions*
 Given an array of ints, write a C# method to total all the values that are even numbers.

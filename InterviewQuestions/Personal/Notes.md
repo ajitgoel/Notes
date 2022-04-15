@@ -1,5 +1,24 @@
 1.**"Tell me a little about yourself,"** is often the first question. Interviewers don’t want your life story; they want to know if meeting you would be a good use of their time. Answer with a brief work history showing how each job and project helped prepare you for this job. Then give a profile of the "professional you," showcasing your skills in a way that will have the interviewer mentally picturing you doing the same things for him.  
 2.“**What experience do you have in…**?” Make any discussion of your experience relevant to the deliverables of this particular job, and reference the specific skills you possess that enable you to do it well. At its core, this job exists to help the company make money in some way; and your work helps achieve this goal by solving problems and preventing problems from arising within your areas of responsibility. Your answers should show that you are a problem solver (and problem preventer) by nature, and that this problem prevention and solution attitude is always part of your thinking. You do this by giving concrete examples of problem identification and solution.
+
+==**How would your last boss and colleagues describe you?**
+Very dependable and honest
+Willing to go alone, take the path less travelled.
+Very high quality of work.
+Can be relied on to do the diagnose and resolve complex issues using innovative approaches, within the technical constraints imposed by the project.==
+
+**Why should we hire you?**
+==• Have deep experience designing, coding, testing SQL Server databases
+• Design, code, and deliver multi-tier products with web-based, windows-based, mobile-based clients on the .NET/SQL Server technology stack.
+• Develop applications in C# / .NET for high-volume transaction SQL database.
+• Take ownership of the technology used on projects and their implementation, and mentor less-experienced staff in their technical development
+• Diagnose and resolve complex issues using innovative approaches.
+• Leverage continuous build and automated unit test frameworks.
+ Drive the appropriate use & implementation of technology to deliver high quality solutions that delight our customers.
+ Develop applications utilizing Hybrid Cloud technologies (SaaS, Paas, IaaS).
+ Generate innovative approaches and solutions to complex issues.
+ Mentor less-experienced staff in their career development, and provide them daily guidance and direction.==
+
 3."**What are your strengths**?" Whatever your particular strengths, you want to get these three points across:
 ==•You have the specific technical skills needed to do the job well.
 •You have a problem-prevention-and-solution mindset.
@@ -43,24 +62,6 @@ What are your goals?
 What are your strengths and weaknesses?
 Why do you want to work here?
 What has been your most significant achievement?
-
-==**How would your last boss and colleagues describe you?**
-Very dependable and honest
-Willing to go alone, take the path less travelled.
-Very high quality of work.
-Can be relied on to do the diagnose and resolve complex issues using innovative approaches, within the technical constraints imposed by the project.==
-
-**Why should we hire you?**
-==• Have deep experience designing, coding, testing SQL Server databases
-• Design, code, and deliver multi-tier products with web-based, windows-based, mobile-based clients on the .NET/SQL Server technology stack.
-• Develop applications in C# / .NET for high-volume transaction SQL database.
-• Take ownership of the technology used on projects and their implementation, and mentor less-experienced staff in their technical development
-• Diagnose and resolve complex issues using innovative approaches.
-• Leverage continuous build and automated unit test frameworks.
- Drive the appropriate use & implementation of technology to deliver high quality solutions that delight our customers.
- Develop applications utilizing Hybrid Cloud technologies (SaaS, Paas, IaaS).
- Generate innovative approaches and solutions to complex issues.
- Mentor less-experienced staff in their career development, and provide them daily guidance and direction.==
 
 What are your salary expectations?
 Before you go to the interview

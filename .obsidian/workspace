@@ -7,10 +7,9 @@
         "id": "1a4ffcf537a3d3c7",
         "type": "leaf",
         "state": {
-          "type": "markdown",
+          "type": "excalidraw",
           "state": {
-            "file": "CommerceHub-.Net-AWS.md",
-            "mode": "source"
+            "file": "InterviewQuestions/Drawings.excalidraw"
           }
         }
       }
@@ -68,7 +67,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CommerceHub-.Net-AWS.md",
+                "file": "InterviewQuestions/Drawings.excalidraw",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +87,15 @@
   },
   "active": "1a4ffcf537a3d3c7",
   "lastOpenFiles": [
-    "CommerceHub-.Net-AWS.md",
+    "InterviewQuestions/Drawings.excalidraw",
+    "InterviewQuestions/Personal/Untitled.md",
     "OneZero.md",
+    "CommerceHub-.Net-AWS.md",
     "InterviewQuestions/ASP.NetCore/ASP.NetCore-Fundamentals-Overview.md",
     "InterviewQuestions/ASP.NetCore/ImplementingResilientApplications.md",
     "InterviewQuestions/ASP.NetCore/Make HTTP Requests.md",
     "InterviewQuestions/AWS/AWS-Notes.md",
     "InterviewQuestions/ASP.Net/Notes.md",
-    "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
-    "InterviewQuestions/Personal/Notes.md",
-    "InterviewQuestions/AWS/DynamoDB.md"
+    "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md"
   ]
 }
