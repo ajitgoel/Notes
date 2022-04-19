@@ -127,16 +127,11 @@ Here is an example of the static import of the class `Arrays` which contains a l
 
 ```java
 package org.hyperskill.java.packages.theory;
-
 import static java.util.Arrays.*; // instead of the statement "import java.util.Arrays;"
-
 public class Main {
-
     public static void main(String[] args) {
         int[] numbers = { 10, 4, 5, 47, 5, 12 }; // an array
-
         sort(numbers); // instead of writing Arrays.sort(...)
-
         int[] copy = copyOf(numbers, numbers.length); // instead of writing Arrays.copyOf(...)
     }
 }
@@ -144,7 +139,7 @@ public class Main {
 
 ##### Default package
 
-If we do not write a package statement before defining our class, it will be placed inside the **default package**. This package has a big disadvantage — classes located here can't be imported to classes located inside named packages.
+If we do not write a package statement before defining our class, it will be placed inside the **default package**. This package has a big disadvantage — ==classes located here can't be imported to classes located inside named packages.==
 
 The following class cannot be used in a class located inside packages since there is no package declaration.
 
