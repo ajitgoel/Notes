@@ -76,3 +76,58 @@ Which of the following is a correct statement about default packages in Java?
 Import statement can't import a class from a named package into a java file inside the default package.
 Classes inside the default package are invisible to each other.
 ==Import statement can't import a class from the default package into a java file inside a named package.==
+
+## Access modifiers
+
+Which types of the access modifiers can be applied to a class, a field and a method?
+
+|                    | public | protected | private | no modifier |
+| ------------------ | ------ | --------- | ------- | ----------- |
+| class (not nested) | Yes    |           |         | Yes         |
+| field              | Yes    | Yes       | Yes     | Yes         |
+| method             | Yes    | Yes       | Yes     | Yes         |
+| constructor        | Yes    | Yes       | Yes     | Yes         |
+
+## Getters and setters
+
+Choose a pair of getter and setter names for the boolean field `completed` according to the convention.
+
+readCompleted
+
+getCompleted
+
+==isCompleted==
+
+==setCompleted==
+
+completed
+
+## Inheritance
+
+You have a base class and a derived class. Both classes are in different packages.
+
+The base class:
+
+```cpp
+public class BaseClass {
+    ??? int a;
+}
+```
+
+The derived class:
+
+```java
+public class DerivedClass extends BaseClass {
+    private int b;
+
+    public int sum() {
+        return a + b;
+    }
+}
+```
+
+Which of the following access modifiers can be written instead of **???** to make this code compile?
+private
+==protected==
+no access modifier
+==public==

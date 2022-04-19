@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "InterviewQuestions/Java/Notes.md",
+            "file": "InterviewQuestions/Java/46-Package.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "InterviewQuestions/Java/Notes.md",
+                "file": "InterviewQuestions/Java/46-Package.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,9 @@
   },
   "active": "2774863fc83997ea",
   "lastOpenFiles": [
+    "InterviewQuestions/Java/46-Package.md",
+    "InterviewQuestions/Java/47-AccessModifiers.md",
+    "InterviewQuestions/Java/Notes.md",
     "InterviewQuestions/Drawings.excalidraw",
     "InterviewQuestions/SystemDesign/HackingTheSystemDesignInterview.md",
     "InterviewQuestions/Personal/Untitled.md",

@@ -1,0 +1,17 @@
+------------------------------------------------------------------------------------------------------------
+PLEASE STAR OR FORK MY REPO: 
+https://github.com/imgVOID/autograding-api
+------------------------------------------------------------------------------------------------------------
+Webarchive: 
+https://web.archive.org/web/20211114112811/https://gist.github.com/imgVOID/35e1c463ce187fac9f793e06a6688649
+------------------------------------------------------------------------------------------------------------
+How to use?
+Change PHPStorm2021.1 to an actual version of your program. 
+Windows: save jetbrains-license-3.bat file and run it with admin permissions.
+Linux: save jetbrains-license-linux.sh file and run it with root permissions.
+------------------------------------------------------------------------------------------------------------
+IF YOU NEED TO LOG IN EVEN FOR THE TRIAL VERSION, DOWNLOAD AN OLD VERSION BEFORE 2021.2: 
+IDEA: https://www.jetbrains.com/idea/download/other.html
+WebStorm: https://www.jetbrains.com/webstorm/download/other.html
+PyCharm: https://www.jetbrains.com/pycharm/download/other.html
+PHPStorm: https://www.jetbrains.com/phpstorm/download/other.html
