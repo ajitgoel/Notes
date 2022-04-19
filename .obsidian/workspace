@@ -4,12 +4,13 @@
     "type": "split",
     "children": [
       {
-        "id": "1a4ffcf537a3d3c7",
+        "id": "2774863fc83997ea",
         "type": "leaf",
         "state": {
-          "type": "excalidraw",
+          "type": "markdown",
           "state": {
-            "file": "InterviewQuestions/Drawings.excalidraw"
+            "file": "InterviewQuestions/Java/Notes.md",
+            "mode": "source"
           }
         }
       }
@@ -51,7 +52,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 191
+    "width": 323
   },
   "right": {
     "id": "1226b2989c407223",
@@ -67,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "InterviewQuestions/Drawings.excalidraw",
+                "file": "InterviewQuestions/Java/Notes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,12 +86,9 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "1a4ffcf537a3d3c7",
+  "active": "2774863fc83997ea",
   "lastOpenFiles": [
     "InterviewQuestions/Drawings.excalidraw",
-    "InterviewQuestions/SystemDesign/Notes.md",
-    "InterviewQuestions/LeadershipPrinciples.md",
-    "InterviewQuestions/InterviewQuestionsToAskWhenInterviewingSomeone.md",
     "InterviewQuestions/SystemDesign/HackingTheSystemDesignInterview.md",
     "InterviewQuestions/Personal/Untitled.md",
     "OneZero.md",
