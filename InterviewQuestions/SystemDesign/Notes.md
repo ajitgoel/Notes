@@ -33,6 +33,10 @@ High level architecture
 
 ![image-20211011175322604](Notes.assets/image-20211011175322604.png)
 
+
+
+![image-20220415114149256](Notes.assets/image-20220415114149256.png)
+
 horizontal shard postgres database based on userid
 have a pub\sub queue for each set of user ids
 **Database sharding:**
