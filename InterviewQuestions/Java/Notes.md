@@ -131,3 +131,278 @@ private
 ==protected==
 no access modifier
 ==public==
+
+## Referencing subclass objects
+
+##### Invalid method invocations
+
+There is a class hierarchy that includes three classes:
+
+```java
+class Animal {
+    protected int age;
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+class Pet extends Animal {
+    protected String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+class Cat extends Pet {    
+    protected String color;
+    public String getColor() {
+        return color;
+    }
+    public void setColor(String color) {
+        this.color = color;
+    }
+}
+```
+
+
+Given the following object:
+
+```java
+Pet cat = new Cat();
+```
+
+Select all **invalid** method invocations.
+
+cat.getName();
+
+cat.getAge();
+
+==cat.getColor();==
+
+cat.setAge(5);
+
+==cat.setColor("Gray");==
+
+cat.setName("Pharaoh");
+
+## The Object class
+
+##### The full name of Object
+
+Enter the full name of the class `Object`. It refers to the package as well.
+==java.lang.Object==
+
+## Objects
+
+##### What is my age?
+
+You have the class `Tree`:
+
+```java
+class Tree {
+    String sort;
+    int age;
+    double height;
+}
+```
+
+After you execute the following code,
+
+```java
+Tree tree1 =  new Tree();
+Tree tree2 = tree1;
+Tree tree3 = tree2;
+tree1 = new Tree();
+tree1.age = 5;
+tree2.age = 10;
+tree3 = null;
+```
+
+what will be the value of `tree1.age` ?
+
+ null
+
+0
+
+==5==
+
+10
+
+## Interface
+
+##### Which methods must be overridden
+
+Here is an interface and a class implementing this interface:
+
+```java
+interface A {    
+    static void staticMethod() { }    
+    void method();    
+    default void defaultMethod() { }
+    abstract void abstractMethod();
+}
+class B implements A { }
+```
+
+Which methods must be implemented in the class `B`?
+==Spot 🎯 the curly braces. (Where there's none, implementation is required)==
+==in the class that implements the interface, all methods that do not have an implementation in the interface must be implemented.==
+
+defaultMethod
+
+==method==
+
+staticMethod
+
+==abstractMethod==
+
+## Multiple constructors
+
+##### Suppose, you have a class
+
+Imagine you have a class with two constructors. You'd like to invoke the first constructor from the second one. Where should you place the statement `this(...)`? Select the most suitable option.
+==https://stackoverflow.com/questions/1168345/why-do-this-and-super-have-to-be-the-first-statement-in-a-constructor==
+==we need super() to be first to ensure that the object is fully constructed (has reached Object class constructor).==
+
+It must be the first statement in the body of the first constructor.
+It must be the last statement in the body of the second constructor.
+It can be placed anywhere in the body of the first constructor.
+It must be the last statement in the body of the first constructor.
+==It must be the first statement in the body of the second constructor.==
+It can be placed anywhere in the body of the second constructor.
+
+
+
+## The keyword super
+
+##### When the keyword cannot be used
+
+Given the following class hierarchy, select all **illegal** usages of the keyword `super`:
+
+```java
+class A {
+    protected int a;
+}
+class B extends A {
+    protected int b;   
+    public B(int a, int b) {
+        super();     // 1
+        super.a = a; // 2
+        super.b = b; // 3
+    }
+}
+class C extends B {
+    protected int c;
+    public C(int a, int b) {
+        super(a); // 4
+    }    
+    public C(int a) {
+        super(a, 10); // 5
+    }
+}
+```
+
+1
+2
+==3==
+==4==
+5
+
+## Hierarchy of exceptions
+
+##### The name of the base class
+
+ Enter the name of the base class for all unchecked exceptions.
+
+Use the full address of the class including packages, for instance: `com.example.SomeClass`.
+
+ ==java.lang.RuntimeException==
+
+## Exception handling
+
+##### Executed blocks
+
+Take a look at the following piece of code:
+
+```java
+try {
+    // it throws an exception
+} catch (RuntimeException e) {
+    // ...
+} catch (IOException e) {
+    // ...
+} catch (Exception e) {
+    // ...
+} finally {
+    // ...
+}
+```
+
+Let's assume in the `try` block the `java.lang.NumberFormatException` is thrown at runtime.
+Select all blocks that will be executed.
+
+==catch (RuntimeException e)==
+catch (IOException e)
+catch (Exception e)
+==finally==
+
+## Annotations basics
+
+##### Rules of annotations
+
+What are the rules of marking an element with an annotation in Java? Select all correct options. Select one or more options from the list
+All annotations can mark classes and methods.
+==It's possible to mix built-in and external annotations in a **.java** file.==
+==Some annotations can mark classes, methods, fields, and variables.==
+A class can be marked with no more than one annotation.
+All annotations include elements.
+
+##### Create by
+
+An external annotation **`@CreatedBy`** has one string element named **`name`**. The element does not have a default value. How can you mark a field using this annotation? Select all correct options.
+
+==the element can only be omitted if its name is "value", otherwise, you have to inform the name of the element.==
+
+ Select one or more options from the list
+
+@CreatedBy("John Coder")
+==@CreatedBy(name = "Unknown")==
+@CreatedBy(value = "John Coder")
+@CreatedBy
+==@CreatedBy(name = "John Coder")==
+
+##### Deprecated annotation
+
+Select all correct ways to mark a method using the `@Deprecated` annotation.
+
+ Select one or more options from the list
+
+==@Deprecated==
+
+@Deprecated(since = "8", forRemoval = "unknown")
+
+@Deprecated(since = 11, forRemoval = true)
+
+==@Deprecated(since = "1.0")==
+
+==@Deprecated(since = "5.3", forRemoval = true)==
+
+##### Entity
+
+An external annotation **`@Entity`** has one string element named **`name`**. The element has a default value (the empty string). How can you mark a class with this annotation? Select all correct ways.
+
+Was this hint helpful? Yes NoReport
+
+ Select one or more options from the list
+
+==@Entity(name = "MyEntity")==
+
+@Entity(value = "MyEntity")
+
+==@Entity==
+
+@Entity("MyEntity")
