@@ -406,3 +406,228 @@ Was this hint helpful? Yes NoReport
 ==@Entity==
 
 @Entity("MyEntity")
+
+## Web development
+
+Why might we need to separate the client side from the server side? Choose all possible answers.
+
+==To be able to make changes independently to the frontend and backend logic.==
+
+==We need a server to store and structure data.==
+
+To always get up-to-date answers from **the client**.
+
+## Immutability
+
+##### Cat in a box
+
+Imagine, you have a box of objects called `my_favorite_box`. The type of the items in the box is not predetermined and at the moment this is a box of kittens.
+
+The object `my_favorite_box` is considered **==immutable==** (but variable reassigning is **allowed**).
+
+What can you do with the object `my_favorite_box`? Choose all that apply.
+
+Add another kitten to the box
+
+Add a puppy to the box
+
+==Get a box of puppies and say that now this box is `my_favorite_box`==
+
+==Look at the kittens that are in the box==
+
+Take one kitten out of the box
+
+## Boxing and unboxing
+
+##### Initializing long value
+
+Select all correct ways to initialize a `Long` object with the value 4321.
+
+==Long val = 4321L;==
+
+==Long val = Long.parseLong("4321");==
+
+Long val = Long.of(4321);
+
+==Long val = Long.valueOf("4321");==
+
+## Introduction to generic programming
+
+##### Type arguments
+
+Which types can be used as arguments of a generic type?
+
+==Array  is reference type.==
+
+==String[]==
+
+==int[]==
+
+int
+
+==String==
+
+## Introduction to generic programming
+
+##### Pastry packing optimization
+
+You were asked to help with Java programming for a pie company. At the moment, they bake pies, cakes, and tarts and pack them in nice boxes to sell. Unfortunately, their approach to box programming is quite outdated and each pie type requires its own box class. This approach is poorly scalable and will turn the situation into a nightmare with product range growth (imagine all these: ApplePieBox, StrawberryPieBox, etc.).
+
+To avoid this, implement a universal Box class that will accommodate anything with *put* methods and give it back with *get* methods.
+
+/**
+
+  Box for cakes
+
+*/
+
+class CakeBox {
+
+  private Cake cake;
+
+  public void put(Cake cake) {
+
+​    this.cake = cake;
+
+  }
+
+  public Cake get() {
+
+​    return this.cake;
+
+  }
+
+}
+
+/**
+
+  Box for pies
+
+*/
+
+class PieBox {
+
+  private Pie pie;
+
+  public void put(Pie pie) {
+
+​    this.pie = pie;
+
+  }
+
+  public Pie get() {
+
+​    return this.pie;
+
+  }
+
+}
+
+/**
+
+  Box for tarts
+
+*/
+
+class TartBox {
+
+  private Tart tart;
+
+  public void put(Tart tart) {
+
+​    this.tart = tart;
+
+  }
+
+  public Tart get() {
+
+​    return this.tart;
+
+  }
+
+}
+
+==class Box<T> {==
+
+  ==private T t;==
+
+  ==public void put(T t) {==
+
+​    ==this.t = t;==
+
+  ==}==
+
+  ==public T get() {==
+
+​    ==return this.t;==
+
+  ==}==
+
+==}==
+
+class Cake { }
+
+class Pie { }
+
+class Tart { }
+
+##### Generic parameter values
+
+Consider a generic class:
+
+```java
+public class Example<T> { /* large body */ }
+```
+
+What can be used as X when creating instances?
+
+```java
+Example<X> example = new Example<>()
+```
+
+==Character==
+
+42
+
+==String==
+
+"JetBrains"
+
+char
+
+## Generics and Object
+
+##### Instance without type argument
+
+Consider the following generic class:
+
+```java
+class MyClass<T> {
+
+    private T t;
+
+    public MyClass(T t) {
+        this.t = t;
+    }
+
+    public T get() {
+        return t;
+    }
+}
+```
+
+What will the `get` method return if you create an instance but don't specify the type argument?
+
+```java
+MyClass instance = new MyClass("Hello!");
+```
+
+An exception occurs after executing this line
+
+==It will return an **Object**==
+
+It will return **Void**
+
+It does not compile
+
+It will return a **String**
