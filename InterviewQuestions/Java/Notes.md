@@ -631,3 +631,170 @@ It will return **Void**
 It does not compile
 
 It will return a **String**
+
+## Lambda expressions
+
+##### Higher-order functions
+
+Which of the following Java methods can be called higher-order functions according to the functional programming general theory.
+
+int method(int n)
+
+==Function<T, R> method(int n)==
+
+==Function<T, R> method(Function<T, R> f, int n)==
+
+==void method(Function<T, R> f)==
+
+##### Statements
+
+Select all correct statements about lambda expressions.
+
+A lambda expression always has parameters.
+
+==If a lambda expression has only one argument, parentheses () are not mandatory.==
+
+A lambda expression should always return a value.
+
+==A lambda expression can contain multiple statements within the body.==
+
+##### Expressions
+
+Select all valid lambda expressions.
+
+==there are 3 answer, don't forger  if it has one argument, () is not mandatory  and if it has more than one argument, () become mandatory==
+
+x := x
+
+x => x
+
+(x, y) => x + y
+
+x, y -> x + y
+
+==(z) -> z==
+
+==x -> x==
+
+==(x, y) -> x + y==
+
+##### Parts of code
+
+There are some parts of code with closures. Find the correct one.
+
+1)
+
+```java
+final int a = 3;
+Function<Integer, Integer> f = (x) -> a * x;
+a++;
+```
+
+2)
+
+```java
+final int a = 3;
+Function<Integer, Integer> f = (x) => a * x;
+```
+
+3)
+
+```java
+int a = 3;
+Function<Integer, Integer> f = (x) -> a * x;
+```
+
+4)
+
+```java
+int a = 3;
+Function<Integer, Integer> f = (x) => a * x;
+a++;
+```
+
+5)
+
+```java
+final int a = 3;
+Function<Integer, Integer> f = (x) := a * x;
+```
+
+1
+
+2
+
+==3==
+
+4
+
+5
+
+## JVM, JRE, and JDK
+
+##### What does JRE include
+
+Select all components of JRE.
+
+==JVM==
+
+IDE
+
+==Class library==
+
+Java Compiler
+
+## Command line overview
+
+##### Directory or list
+
+Open the terminal and run the command `dir` (Win) or `ls` (Unix/macOS). What do you see?
+
+terminal returns all the folders in the directory that you are currently using
+
+==terminal returns all the non-hidden files and folders in the directory that you are currently using==
+
+terminal returns all the files and folders including hidden ones in the directory that you are currently using
+
+terminal returns all the files in the directory that you are currently using
+
+terminal returns nothing
+
+**FEEDBACK:**
+
+```
+By default, dir and ls commands return only non-hidden files and subfolders. If you want to view hidden files use "dir /A" or "ls -a" command!
+```
+
+## Parameters and options
+
+##### Recursive list of directories
+
+Open CLI and type `dir /?` on Windows or `man ls` on Unix. Now you see the manual. What's the correct way to list the content of a directory and all of its subdirectories?
+
+ Report a typo
+
+ Select one option from the list
+
+==`dir /S` (Win), `ls -R` (Linux/macOS)==
+
+`dir /L` (win), `ls -F` (Linux/macOS)
+
+`dir /O` (Win), `ls -d` (Linux/macOS)
+
+`dir /D` (Win), `ls -l` (Linux/macOS)
+
+## Java Archive
+
+##### Where is metadata?
+
+What is the path to the file containing metadata within a JAR?
+
+Enter an answer without spaces like in the example below. The current directory is .jar archive.
+
+```
+DIRECTORY-NAME/FILE-NAME.EXTENSION
+```
+
+Note, the answer is case sensitive.
+
+==META-INF/MANIFEST.MF==
