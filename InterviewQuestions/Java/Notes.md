@@ -798,3 +798,356 @@ DIRECTORY-NAME/FILE-NAME.EXTENSION
 Note, the answer is case sensitive.
 
 ==META-INF/MANIFEST.MF==
+
+## The big O notation
+
+##### Arrange time complexities
+
+Arrange the time complexity estimates of an algorithm from faster to slower. The fastest algorithm should be at the top.
+
+==*O*(log*n*)==
+==O(n^{2/3})==
+==O(n^4)==
+==O(3^n)==
+==O(n^n)==
+
+## Data structures
+
+##### ADT
+
+What is Abstract Data Type?
+
+It is a synonym for data structure
+
+A type that has a specific size, but undefined number of operations
+
+==A type that is defined by a set of values and a set of possible operations.==
+
+A type that represents a platform-independent way to organize data.
+
+## What are collections
+
+##### Processing a sequence of data
+
+ Imagine you need to process a sequence of data of an arbitrary size. Choose the reasons why it is better to use collections than standard arrays.
+
+==It is possible to choose the most effective collection for this problem.==
+
+==Collections have a rich set of embedded operations for processing elements.==
+
+==There are mutable collections which are good when the size is not fixed.==
+
+They are part of the standard library.
+
+## The Collections Framework overview
+
+##### Creating instances
+
+ Can you create an object of `Collection<E>` or `List<E>` by using the `new` keyword?
+
+```java
+new Collection<String>();
+new List<Integer>();
+```
+
+ ==no for both==
+
+yes for both
+
+yes, only for List<E>
+
+yes, only for Collection<E>
+
+## Build tools
+
+##### The reasons to use a build tool
+
+What are **three good reasons** to use a build tool in your project?
+
+You would like to run the source code of the application immediately, without compilation into bytecode.
+
+You would like to start your application without JVM installed on the computer.
+
+==The project depends on large number of external libraries.==
+
+==You would like to generate a production-ready application archive easily.==
+
+==You always need to run automated tests after changes in the application.==
+
+## Gradle basics
+
+##### Customizing build steps
+
+A developer wants to customize build steps for Gradle.
+
+Select all the languages that they can use to do so.
+
+XML
+
+Scala
+
+==Kotlin==
+
+==Groovy==
+
+JavaScript
+
+## Basic project with Gradle
+
+##### Initializing a project
+
+ You need to initialize a new repository using Gradle.There is a command to do that: `gradle init --type basic --dsl kotlin`. Describe its result.
+
+==It adds several default tasks in the build file.==
+
+It initializes a new project
+
+==It builds a Kotlin application.==
+
+It creates the build.gradle.kts file.
+
+## Building apps using Gradle
+
+##### Find mistakes
+
+Find a mistake in the `build.gradle` file to run it using the `gradle run` command:
+
+```java
+plugins {
+    id 'application'
+    // here are other plugins (incl. for Java or Kotlin)
+}
+jar {
+    manifest {
+        mainClassName = 'Main'
+    }
+}
+```
+
+No version specification
+
+No sources directory specification
+
+==The main class is defined in an unsuitable place==
+
+No dependencies section
+
+## Dependency management
+
+##### Adding a dependency
+
+Select the correct ways to add Guava library as a dependency in your project.
+
+implementation group: 'com.google.guava'
+
+==implementation 'com.google.guava:guava:28.0-jre'==
+
+implementation 'com.google.guava', guava, 28.0-jre'
+
+==implementation ('com.google.guava:guava:28.0-jre')==
+
+==implementation group: 'com.google.guava', name: 'guava', version: '28.0-jre'==
+
+## External resources
+
+##### The last 10
+
+ **Git** is a **version** control system for tracking changes in source code and coordinating work among programmers. It’s used worldwide by all developers. In git terms, to **commit** means to save the latest changes in your code locally. All information about the commit is then saved: who committed, when, a short description of changes made, the unique id of the commit, and, of course, the committed version.
+
+John wants to see the commits he made recently. Write down the command that will let him see his **commit history**. Note that you don't need to write the full command line! We ask you to submit **only the name of the command**, without arguments.
+
+==git log==
+
+## Tags and attributes
+
+##### Good syntax
+
+Select the correctly written tag with the correct attribute:
+
+``<img src="image.jpg"></img>``
+
+``<img src"img.jpg"></img>``
+
+==``<img src="img.jpg">``==
+
+``<img src=image.jpg>``
+
+## Dynamic array
+
+##### Time complexities
+
+What are the average and the worst time complexities for Add, Add to index, and Update operations?
+
+Match each operation below with its time complexity. The first option is the average time complexity, and the second is the worst.
+
+==Update the value at the specified index	O(1) *O*(1)==
+
+==Add an element at the specified index		O(n)*O*(*n*)==
+
+==Add an element to the end of the array		O(1) O(n)==
+
+## The List interface
+
+##### Select correct assignments
+
+ Which of the following assignments are correct?
+
+ ==Collection<Integer> list = new ArrayList<>();==
+
+==List<Integer> list = new ArrayList<>();==
+
+==ArrayList<Integer> list = new ArrayList<>();==
+
+LinkedList<Integer> list = new ArrayList<>();
+
+==LinkedList<Integer> list = new LinkedList<>(new ArrayList<>());==
+
+##### Third-party library
+
+ What is true about a third-party library?
+
+ t comes with a language implementation
+
+It is always developed by the programming language maintainers
+
+==You can get it from sites like Github for your language==
+
+==It extends the standard library with high-level modules==
+
+## Frameworks
+
+##### Choosing a framework
+
+ What should be considered when choosing a framework?
+
+==The popularity of the framework==
+
+The catchy name of the framework
+
+==The size and complexity of the application you want to write==
+
+==Adequacy and clarity of documentation==
+
+## JSON
+
+##### The JSON object
+
+Carefully study the JSON object below and specify which line contains an error:
+
+```json
+{  
+  persons: [  
+    {  
+      "firstName": "Stanislaw",
+      "lastName": "Lem",
+      "book": [  
+        {  
+          "title": "Summa Technologiae",
+          "year": 1964
+        }
+      ]
+    },
+    {  
+      "firstName": "Isaac",
+      "lastName": "Asimov",
+      "book": [  
+        {  
+          "title": "The End of Eternity",
+          "year": 1955
+        }
+      ]
+    }
+  ]
+}
+```
+
+Write the line number as the answer.
+
+If you try your best but you don't succeed, you can search the JSON validators — special services that check the correctness of the code.
+
+==2==
+
+## Introduction to Spring boot
+
+##### Suitable applications
+
+ Suppose you are responsible for choosing a tech stack in a company.
+
+With which applications does it make sense to use the Spring Framework?
+
+==Web==
+
+==Server-side mobile==
+
+==Desktop==
+
+Small command-line programs with ten lines of code.
+
+## Introduction to Spring boot
+
+##### Spring and Spring Boot
+
+Select one correct statement about using Spring together with Spring Boot.
+
+==Spring Boot allows you to use all the features of Spring==
+
+Spring boot limits some features of Spring, but not all of them
+
+It is impossible to use Spring features together with Spring Boot
+
+It is possible but not a good practice to mix Spring Boot with Spring in one application
+
+##### What is Spring Boot
+
+Spring boot is...
+
+a programming language
+
+a building tool for Spring applications
+
+a quick launcher for Spring applications
+
+a combination of Spring and Bootstrap CSS
+
+==a framework that simplifies the configuration of Spring applications==
+
+##### Application type
+
+ What kind of applications are normally created using the Spring framework?
+
+ desktop apps
+
+==web apps==
+
+command-line apps
+
+mobile apps
+
+## Getting started with Spring Boot
+
+##### An impossible property
+
+Suppose you want to generate a new Spring Boot project using the web Initializr. What **cannot** be configured for this project?
+
+programming language
+
+build tool
+
+==application logic==
+
+version of Spring Boot
+
+dependencies
+
+## Processes and threads
+
+##### Process's and thread's properties
+
+ Mark suitable properties for each kind of container.
+
+|                              | Process | Thread |
+| ---------------------------- | ------- | ------ |
+| Schedule other units of work | Yes     |        |
+| Owns system resources        | Yes     |        |
+| Borrows shared resources     |         | Yes    |
+| Run a unit of work           |         | Yes    |
