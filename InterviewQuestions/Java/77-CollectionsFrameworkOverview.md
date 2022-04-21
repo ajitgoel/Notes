@@ -1028,11 +1028,7 @@ ArrayList<String> list = new ArrayList<>(anotherList);
 
 Regardless of how you create an instance of `ArrayList`, its size will dynamically change. In this lesson, we will create a list with the default capacity like in the first example.
 
-
-
 If you are an advanced user, you know that it is better to create and use an `ArrayList` via its `List` interface. We will do it in the next lessons after learning **inheritance**. We believe that the current approach is enough for now since it requires less knowledge to start using dynamic collections.
-
-
 
 ##### Basic methods
 
@@ -1836,7 +1832,7 @@ Now you've created objects for threads, but you're not done yet. To perform the 
 
 ##### Starting threads
 
-The class `Thread` has a method called `start()` that is used to start a thread. At some point after you invoke this method, the method `run` will be invoked automatically, but it'll not happen immediately.
+The class `Thread` has a method called `start()` that is used to start a thread. ==At some point after you invoke the `start()` method, the method `run` will be invoked automatically, but it'll not happen immediately.==
 
 Let's suppose that inside the **main** method you create an object of `HelloThread` named `t` and start it.
 
@@ -1900,7 +1896,7 @@ Hello, i'm Thread-0
 Hello, i'm Thread-1
 ```
 
-This means that even though we call the `start` method sequentially for each thread, we do not know when the `run` method will be actually called.
+This means that ==even though we call the `start` method sequentially for each thread, we do not know when the `run` method will be actually called.==
 
 Do not rely on the order of execution of statements between different threads, unless you've taken special measures.
 
@@ -1967,3 +1963,1916 @@ Process finished with exit code 0
 ```
 
 As you can see, this program performs two tasks **"at the same time"**: one in the **main** thread and another one in the **worker** thread. It may not be **"the same time"** in the physical sense, however, both tasks are given some time to be executed.
+
+## Thread management
+
+We've already learned how to start a new thread by simply invoking the `start` method on a corresponding object. However, ==sometimes it is necessary to manage the lifecycle of a thread using `sleep()` and `join()` while it's working rather than just start it and leave it be.==
+
+In this topic we will consider two commonly used methods in multithreading programming: `sleep()` and `join()`. Both methods may throw a checked `InterruptedException` that is omitted here for brevity.
+
+##### Sleeping
+
+==The static method `Thread.sleep()` causes the currently executing thread to suspend execution for the specified number of milliseconds.== This is an efficient means of making processor time available for the other threads of an application or other applications that might be running on a computer.
+
+We will often use this method throughout our educational platform to simulate expensive calls and difficult tasks.
+
+```java
+System.out.println("Started");
+Thread.sleep(2000L); // suspend current thread for 2000 millis      
+System.out.println("Finished");
+```
+
+Let's see what this code does. At first, it prints **"Started"**. Then ==the current thread is suspended for 2000 milliseconds (it may be longer, but not less than indicated)==. Eventually, the thread wakes up and prints **"Finished"**.
+
+Another way to make the current thread sleep is to use the special class `TimeUnit` from the package `java.util.concurrent:`
+
+- `TimeUnit.MILLISECONDS.sleep(2000)` performs `Thread.sleep` for 2000 milliseconds;
+- `TimeUnit.SECONDS.sleep(2)` performs `Thread.sleep` for 2 seconds;
+
+There are more existing periods: `NANOSECONDS`, `MICROSECONDS`, `MILLISECONDS`, `SECONDS`, `MINUTES`, `HOURS`, `DAYS`.
+
+##### Joining
+
+==The `join` method forces the current thread to wait for the completion of another thread on which the method was called.== In the following example, the string **"do something else"** will not be printed until the thread terminates.
+
+```java
+Thread thread = ...
+thread.start(); // start thread
+
+System.out.println("Do something useful");
+
+thread.join();  // waiting for thread to die
+
+System.out.println("Do something else");
+```
+
+The overloaded version of this method takes a waiting time in milliseconds:
+
+```java
+thread.join(2000L);
+```
+
+This is used to avoid waiting for too long or even infinitely in case the thread is hung.
+
+Let's consider another example. The `Worker` class is developed to solve "a difficult task" simulated by the sleep:
+
+```java
+class Worker extends Thread {
+    
+    @Override
+    public void run() {
+        try {
+            System.out.println("Starting a task");
+            Thread.sleep(2000L); // it solves a difficult task
+            System.out.println("The task is finished");
+        } catch (Exception ignored) {
+        }
+    }
+}
+```
+
+Here is the `main` method where the **main** thread waits for completion of the `worker`.
+
+```java
+public class JoiningExample {
+    public static void main(String []args) throws InterruptedException {
+        Thread worker = new Worker();
+        worker.start(); // start the worker
+       
+        Thread.sleep(100L);
+        System.out.println("Do something useful");
+        
+        worker.join(3000L);  // waiting for the worker
+        System.out.println("The program stopped");
+    }
+}
+```
+
+The main thread waits for `worker` and cannot print the message `The program stopped` until the worker terminates or the timeout is exceeded. We know exactly only that `Starting a task` precedes `The task is finished` and `Do something useful` precedes `The program stopped`**.** There are several possible outputs
+
+First possible output (the task is completed before the timeout is exceeded):
+
+```java
+Starting a task
+Do something useful
+The task is finished
+The program stopped
+```
+
+Second possible output (the task is completed before the timeout is exceeded):
+
+```java
+Do something useful
+Starting a task
+The task is finished
+The program stopped
+```
+
+Third possible output:
+
+```java
+Do something useful
+Starting a task
+The program stopped
+The task is finished
+```
+
+Fourth possible output:
+
+```java
+Starting a task
+Do something useful
+The program stopped
+The task is finished
+```
+
+## Exceptions in threads
+
+==If one of the threads of your program throws an exception that is not caught by any method within the invocation stack, the thread will be terminated.== If such an exception occurs in a single-threaded program, the entire program will stop, because JVM terminates the running program as soon as there are no more **non-daemon** threads left.
+
+Here is a tiny example:
+
+```java
+public class SingleThreadProgram {
+    public static void main(String[] args) {
+        System.out.println(2 / 0);
+    }
+}
+```
+
+This program outputs:
+
+```java
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+  at org.example.multithreading.exceptions.SingleThreadProgram.main(SingleThreadProgram.java:6)
+
+Process finished with exit code 1
+```
+
+The code `1` means the process was finished with an error.
+
+==If an error occurs inside the new thread we've created, the whole process will not be stopped:==
+
+```java
+public class ExceptionInThreadExample {
+    public static void main(String[] args) throws InterruptedException {
+        Thread thread = new CustomThread();
+        thread.start();
+        thread.join(); // wait for thread with exception to terminate
+        System.out.println("I am printed!"); // this line will be printed
+    }
+}
+class CustomThread extends Thread {
+    @Override
+    public void run() {
+        System.out.println(2 / 0);
+    }
+}
+```
+
+Despite the uncaught exception, the program will be successfully completed.
+
+```java
+Exception in thread "Thread-0" java.lang.ArithmeticException: / by zero  at org.example.multithreading.exceptions.CustomThread.run(ExceptionInThreadExample.java:15)
+I am printed!
+Process finished with exit code 0
+```
+
+The code `0` means the process successfully finished.
+
+Exceptions in different threads are handled independently. While the process has an alive non-daemon thread, it won't be stopped in case an uncaught exception occurs. ==Still the good practice is to handle exceptions in threads.==
+
+## Shared data
+
+##### Sharing data between threads
+
+==Threads that belong to the same process share the common memory (that is called **Heap**). They may communicate by using shared data in memory. To be able to access the same data from multiple threads, each thread must have a reference to this data (by an object). T==he picture below demonstrates the idea.
+
+**<img src="77-CollectionsFrameworkOverview.assets/b2ad2d24-f178-40de-94df-2d65f09f4215.svg." alt="img" style="zoom:67%;" />**
+
+**Multiple threads of a single process have references to objects in the Heap**
+
+Let's consider an example. Here's a class named `Counter`.
+
+```java
+class Counter {
+    private int value = 0;
+    public void increment() {
+        value++;
+    }
+    public int getValue() {
+        return value;
+    }
+}
+```
+
+The class has two methods: `increment` and `getValue`. Each invocation of `increment` adds 1 to the field `value` and calling `getValue` returns the current value of the field.
+
+And here's a class that extends `Thread`:
+
+```java
+class MyThread extends Thread {
+    private final Counter counter;
+    public MyThread(Counter counter) {
+        this.counter = counter;
+    }
+    @Override
+    public void run() {
+        counter.increment();
+    }
+}
+```
+
+The constructor of `MyThread` takes an instance of `Counter` and stores it to the field. The method `run` invokes the method `increment` of the `counter` object.
+
+Let's now create an instance of `Counter` and two instances of `MyThread`. Both instances of `MyThread` have the same reference to the `counter` object.
+
+```java
+Counter counter = new Counter();
+MyThread thread1 = new MyThread(counter);
+MyThread thread2 = new MyThread(counter);
+```
+
+Now let's see what happens when we start both threads one by one and print out the result of `counter.getValue().`
+
+```java
+thread1.start(); // start the first thread
+thread1.join();  // wait for the first thread
+thread2.start(); // start the second thread
+thread2.join();  // wait for the second thread
+System.out.println(counter.getValue()); // it prints 2
+```
+
+As you can see if you try it by yourself the result is 2, because ==both threads work with the same data by using a reference.==
+
+In this example, we started the first thread and waited until it has completed its work (by this time an increment happened), then we started the second thread and waited till it also has completed its work (increment's happened again). The result is exactly as we would've expected.
+
+==When you write your code in different threads that work with the same data concurrently,== it is important to understand a few things:
+
+- some operations are non-atomic;
+- ==changes of a variable performed by one thread may be invisible to the other threads;==
+- ==if changes are visible, their order might not be (reordering).==
+
+Let's now learn more about those.
+
+##### Thread interference
+
+A non-atomic operation is an operation that consists of multiple steps. A thread may operate on an intermediate value of non-atomic operation performed by another thread. This leads to a problem called **thread interference:** the sequences of steps of non-atomic operations performed by several threads may overlap.
+
+Let's start by explaining why **increment** is a non-atomic operation and how exactly it works. As an example, consider the class `Counter` again.
+
+```java
+class Counter {
+    private int value = 0;
+    public void increment() {
+        value++; // the same thing as value = value + 1   
+    }
+    public int getValue() {
+        return value;
+    }
+}
+```
+
+Note: in the previous example, the two threads did not work with the data at the same time. Before the start of the second thread, the first has already terminated.
+
+The operation `value++` can be decomposed into three steps:
+
+1. read the current value;
+2. increment the value by 1;
+3. write the incremented value back in the field;
+
+Since the increment operation is non-atomic and takes 3 steps to work the **thread interference** may occur in case two threads call the method `increment` of the same instance of `Counter`**,*
+
+In the same way, the operation `value--` may be decomposed into three steps.
+
+Suppose that we have an instance of the `Counter` class:
+
+```java
+Counter counter = new Counter();
+```
+
+The initial value of the field is 0.
+
+Now if `Thread A `invokes the method `increment` of this instance and `Thread B `also invokes the method at the same time, the following happens:
+
+1. **Thread A:** read value from the variable.
+2. **Thread** **A:** increment the read value by 1.
+3. **Thread B:** read value from the variable (it reads an intermediate value 0).
+4. **Thread A:** write the result in the variable (now, the current value of the field is 1).
+5. **Thread B:** increment the read value by 1.
+6. **Thread B:** write the result in the variable (now, the current value of the field is 1).
+
+In this case after calling the method `increment` from two threads we may obtain the unexpected result (1 instead of 2). That means that the result of `Thread A` was lost, overwritten by `Thread B`. Although sometimes the result may be correct, this particular interleaving is possible.
+
+We've just seen how increment and decrement are non-atomic operations. In this topic, we will not discuss how this problem may be solved, just keep it in mind for now.
+
+Let's consider another case: an assignment of 64-bit values. It may be surprising, but even the reading and writing fields of `double` and `long` types (64-bits) may not be atomic on some platforms.
+
+```java
+class MyClass {
+    long longVal; // reading and writing may be not atomic
+    double doubleVal; // reading and writing may be not atomic
+}
+```
+
+It means while a thread writes a value to a variable, another thread can access an intermediate result (for example, only 32 written bits). ==To make these operations atomic, fields should be declared using the `volatile` keyword.==
+
+```java
+class MyClass {
+    volatile long longVal; // reading and writing are atomic now
+    volatile double doubleVal; // reading and writing are atomic now
+}
+```
+
+The reading of and writing to the fields of other primitive types (boolean, byte, short, int, char, float) are guaranteed to be **atomic**.
+
+In large applications, **thread interference** bugs can be difficult to detect.
+
+##### Visibility between threads
+
+Sometimes, when a thread changes shared data, another thread may not notice these changes or obtain them in a different order. It means different threads may have inconsistent views of the same data.
+
+The reasons are different, including caching values for threads, compiler optimization, and more. Fortunately, most programmers do not need a detailed understanding of the causes. All that is needed is a strategy for avoiding them in the first place.
+
+**Example.** Here's an `int` field, defined and initialized:
+
+```java
+int number = 0;
+```
+
+The field is shared between two threads:` Thread A` and `Thread B`.
+
+`Thread A` increments the `number` by 5.
+
+```java
+number += 5;
+```
+
+Right after it, `Thread B` prints `number` in the standard output:
+
+```java
+System.out.println(number);
+```
+
+The output may be either 0 or 5, because there is no guarantee that the change performed by `Thread A` is visible to `Thread B`**.**
+
+As we've already mentioned, the keyword `volatile` is used for **visibility**. ==To make visible changes of a value made by one thread to other threads, we should declare the field with the keyword `volatile`.==
+
+```java
+volatile int number = 0;
+```
+
+When the field is declared as **volatile** all changes made to this field by a thread are guaranteed to be visible for another thread when it's reading the value from this field.
+
+==The `volatile` keyword may be written in an instance and static fields declaration.==
+
+##### Other cases of visibility
+
+Sometimes we don't need to write the `volatile` keyword. The following procedures will also guarantee visibility:
+
+- changes of variables performed by a thread **before starting** a new thread are always visible to the new thread;
+- changes of variables inside a thread are always visible to any other threads after it successfully returns from a `join` on the thread (we used this one at the beginning of this topic).
+
+We will not consider all existing ways to guarantee visibility now. They are formalized using a special relationship named **"Happens-before"**. For now, keep in mind the use of the `volatile` and two cases above.
+
+##### More on volatile keyword
+
+Again, the `volatile` keyword allows us to make visible changes of a field made by one thread to other threads. This keyword also makes writing to `double` and `long` fields atomic. But the keyword doesn't make the increment/decrement and similar operations atomic.
+
+In fact, there's more abstract and complex things about `volatile` , but we'll skip this information for now.
+
+## Thread synchronization
+
+Working concurrently with shared data from multiple threads may cause unexpected or erroneous behavior. Fortunately, Java provides a mechanism ==to control the access of multiple threads to a shared resource of any type. The mechanism is known as **thread synchronization**.==
+
+##### Important terms and concepts
+
+Before we start using synchronization in our code, let's introduce terms and concepts we're going to use.
+
+\1) ==A **critical** **section** is a region of code that accesses shared resources and should not be executed by more than one thread at the same time.== A shared resource may be a variable, file, input/output port, database or something else.
+
+Let's consider an example. A class has a static field named `counter`:
+
+```java
+public static long counter = 0;
+```
+
+Two threads increment the field (increase by 1) 10 000 000 times concurrently. The final value should be 20 000 000. But, as we've discussed in previous topics, the result often might turn out wrong, for example, 10 999 843.
+
+This happens because sometimes a thread does not see changes of shared data performed by another thread, and sometimes a thread may see an intermediate value of the non-atomic operation. Those are visibility and atomicity problems we deal with while working with shared data.
+
+This is why increasing value by multiple threads is a **critical section**. Of course, this example is very simple, a critical section may be way more complicated.
+
+\2) ==The **monitor** is a special mechanism to control concurrent access to an object.== In Java, each object and class has an associated implicit monitor. ==A thread can acquire a monitor, then other threads cannot acquire this monitor at the same time. They will wait until the owner (the thread that acquired the monitor) releases it.==
+
+Thus, a thread can be locked by the **monitor** of an object and wait for its release. This mechanism allows programmers to protect **critical sections** from being accessed by multiple threads concurrently.
+
+##### The synchronized keyword
+
+The "classic" and simplest way to protect code from being accessed by multiple threads concurrently is using the keyword **synchronized**.
+
+It is used in two different forms:
+
+- synchronized method (a static or an instance method)
+- synchronized blocks or statements (inside a static or an instance method)
+
+A synchronized method or block needs an object for locking threads. The monitor associated with this object controls concurrent access to the specified critical section. Only one thread can execute code in a synchronized block or method at the same time. Other threads are blocked until the thread inside the synchronized block or method exits it.
+
+##### Static synchronized methods
+
+When we synchronize static methods using the **synchronized** keyword the monitor is the class itself. ==Only one thread can execute the body of a synchronized static method at the same time.== This can be summarized as *"one thread per class"*.
+
+Here is an example of a class with a single synchronized static method named `doSomething`.
+
+```java
+class SomeClass {
+    public static synchronized void doSomething() {        
+        String threadName = Thread.currentThread().getName();
+        System.out.println(String.format("%s entered the method", threadName));
+        System.out.println(String.format("%s leaves the method", threadName));
+    }
+}
+```
+
+The method `doSomething` is declared as synchronized. It can be invoked only from one thread at the same time. The method is synchronized on the class the static method belongs to (the monitor is `SomeClass`).
+
+Let's call the method from two threads concurrently. The result will always be similar to:
+
+```java
+Thread-0 entered the method
+Thread-0 leaves the method
+Thread-1 entered the method
+Thread-1 leaves the method
+```
+
+It's impossible for more than one thread to execute code inside the method.
+
+##### Instance synchronized methods
+
+==Instance methods are synchronized on the instance (object).== The monitor is the current object (`this`) that owns the method. If we have two instances of a class, each instance has a monitor for synchronizing.
+
+Only one thread can execute code in a synchronized instance method of a particular instance. But different threads can execute methods of different objects at the same time. This can be summarized as *"one thread per instance"*.
+
+Here is an example of a class with a single synchronized instance method named `doSomething`. The class also has a constructor for distinguishing instances.
+
+```java
+class SomeClass {
+    private String name;
+    public SomeClass(String name) {
+        this.name = name;
+    }
+    public synchronized void doSomething() {
+        String threadName = Thread.currentThread().getName();
+        System.out.println(String.format("%s entered the method of %s", threadName, name));
+        System.out.println(String.format("%s leaves the method of %s", threadName, name));
+    }
+}
+```
+
+Let's create two instances of the class and three threads invoking `doSomething`. The first and second threads take the same instance of the class, and the third thread takes another one.
+
+```java
+SomeClass instance1 = new SomeClass("instance-1");
+SomeClass instance2 = new SomeClass("instance-2");
+MyThread first = new MyThread(instance1);
+MyThread second = new MyThread(instance1);
+MyThread third = new MyThread(instance2);
+first.start();
+second.start();
+third.start();
+```
+
+The result will look like this:
+
+```java
+Thread-0 entered the method of instance-1
+Thread-2 entered the method of instance-2
+Thread-0 leaves the method of instance-1
+Thread-1 entered the method of instance-1
+Thread-2 leaves the method of instance-2
+Thread-1 leaves the method of instance-1
+```
+
+As you can see, there are no threads executing the code in `doSomething` of the `**instance-1**` at the same time. Try running it many times.
+
+##### Synchronized blocks (statements)
+
+Sometimes you need to synchronize only a part of a method. This is possible by using synchronized blocks (statements). They must specify an object for locking threads.
+
+Here is a class with a static and an instance method. Both methods are unsynchronized but have synchronized parts inside.
+
+```java
+class SomeClass {
+    public static void staticMethod() {
+        // unsynchronized code                
+        synchronized (SomeClass.class) { // synchronization on the class
+            // synchronized code
+        }
+    }
+    public void instanceMethod() {
+        // unsynchronized code
+        synchronized (this) { // synchronization on this instance
+            // synchronized code
+        }
+    }
+}
+```
+
+==The block inside `staticMethod` is synchronized on the class, which means only one thread can execute code in this block.==
+
+==The block inside `instanceMethod` is synchronized on `this` instance, which means only one thread can execute the block of the instance. But some other thread is able to execute the block of different instances at the same time.==
+
+==Synchronized blocks may resemble synchronized methods, but they allow programmers to synchronize only necessary parts of methods.==
+
+##### Synchronization and visibility of changes
+
+The *Java Language Specification* guarantees that changes performed by a thread are visible to other threads if they are synchronized on the same monitor. More precisely, if a thread has changed shared data (for example, a variable) inside a synchronized block or a method and released the monitor, other threads can see all changes after acquiring the same monitor.
+
+##### Example: a synchronized counter
+
+Here is an example. It's a synchronized counter with two synchronized instance methods: `increment` and `getValue`.
+
+```java
+class SynchronizedCounter {    
+    private int count = 0;
+    public synchronized void increment() {
+        count++;
+    }
+    public synchronized int getValue() {
+        return count;
+    }
+}
+```
+
+When multiple threads invoke `increment` on the same instance, no problem arises because the **synchronized** keyword protects the shared field. Only one thread can change the field. Other threads will wait until the thread releases the monitor. All changes of the variable `count` are visible.
+
+The method `getValue` doesn't modify the field. It only reads the current value. The method is synchronized so that the reading thread always reads the actual value; otherwise, there is no guarantee that the reading thread will see the `**count**` as it is after it's changed.
+
+Here is a class called `Worker` that extends `Thread`. The class takes an instance of `SynchronizedCounter` and calls the method `increment` 10 000 000 times.
+
+```java
+class Worker extends Thread {
+    private final SynchronizedCounter counter;
+    public Worker(SynchronizedCounter counter) {
+        this.counter = counter;
+    }
+    @Override
+    public void run() {
+        for (int i = 0; i < 10_000_000; i++) {
+            counter.increment();
+        }
+    }
+}
+```
+
+The following code creates an instance of `SynchronizedCounter`, starts threads and prints the result.
+
+```java
+SynchronizedCounter counter = new SynchronizedCounter();
+
+Worker worker1 = new Worker(counter);
+Worker worker2 = new Worker(counter);
+worker1.start();
+worker2.start();
+worker1.join();
+worker2.join();
+System.out.println(counter.getValue()); // the result is 20_000_000
+```
+
+Sometimes, however, there's no need to synchronize methods that only read shared data (including getters):
+
+- If we have a guarantee that the reading thread successfully returns from `join` on all writing threads when it reads a field. That's true about the code above and we can remove the synchronized keyword from the declaration of `getValue`.
+
+- If a shared field is declared with the `volatile` keyword. In that case, we will always see the actual value of this field.
+
+Be extra careful when you decide not to synchronize read methods.
+
+##### One monitor and multiple synchronized methods and blocks
+
+**Important:** an object or a class that has only one monitor and only one thread can execute synchronized code on the same monitor.
+
+It means that if a class has several synchronized instance methods and a thread invokes one of them, other threads cannot execute either of these methods on the same instance until the first thread releases the monitor of the instance.
+
+Here is an example: a class with three instance methods. Two methods are synchronized and the third one has an internal synchronized block. Both methods and the block are synchronized on the monitor of `this` instance.
+
+```java
+class SomeClass {
+    public synchronized void method1() {
+        // do something useful
+    }
+    public synchronized void method2() {
+        // do something useful
+    }    
+    public void method3() {
+        synchronized (this) {
+            // do something useful
+        }
+    }
+}
+```
+
+If a thread invokes `method1` and executes statements inside the method, no other thread can execute statements inside `method2` or in the synchronized block in `method3` because `this` monitor is already acquired. The threads will wait for the release of the monitor.
+
+The same behavior is correct when a class monitor is used.
+
+##### Reentrant synchronization
+
+A thread cannot acquire a lock owned by another thread. But a thread can acquire a lock that it already owns. This behavior is called **reentrant synchronization**.
+
+Take a look at the following example:
+
+```java
+class SomeClass {
+    public static synchronized void method1() {
+        method2(); // legal invocation because a thread has acquired monitor of SomeClass
+    }
+    public static synchronized void method2() {
+        // do something useful
+    }
+}
+```
+
+The code above is correct. When a thread is inside `method1` it can invoke `method2` because both methods are synchronized on the same object (`SomeClass`).
+
+##### Fine-grained synchronization
+
+Sometimes a class has several fields that are never used together. It's possible to protect these fields by using the same monitor, but in this case, only one thread will be able to access one of these fields, despite their independence. To improve the concurrency rate it's possible to use an idiom with additional objects as monitors.
+
+Here is an example: a class with two methods. The class stores the number of calls to each method in a special field.
+
+```java
+class SomeClass {
+    private int numberOfCallingMethod1 = 0;
+    private int numberOfCallingMethod2 = 0;
+    final Object lock1 = new Object(); // an object for locking
+    final Object lock2 = new Object(); // another object for locking
+    public void method1() {
+        System.out.println("method1...");
+        synchronized (lock1) {
+            numberOfCallingMethod1++;
+        }
+    }
+    public void method2() {
+        System.out.println("method2...");
+        
+        synchronized (lock2) {
+            numberOfCallingMethod2++;
+        }
+    }
+}
+```
+
+As you can see, the class has two additional fields that are the locks for separating monitors for each critical section.
+
+If we have an instance of the class, one thread may work inside the synchronized block of the first method and, at the same time, another thread may work inside the synchronized block of the second method.
+
+##### Synchronization and performance of programs
+
+==Remember, the code protected by the synchronization mechanism can be executed only by one thread at the same time. It reduces the parallelism and responsiveness of the program.==
+
+==Do not synchronize all your code. Try to use synchronization only when it really is necessary. Determine small parts of the code to be synchronized. Sometimes it's better to use a synchronization block instead of synchronizing a whole method (if the method is complex).==
+
+## Collections and thread-safety
+
+##### Classic collections and multithreading
+
+As you already know, several threads may access the same data concurrently that often leads to different problems if we do not use some kind of synchronization.
+
+Similar problems occur when multiple threads access a collection:
+
+- most of the classic collections like `ArrayList`, `LinkedList`, `HashMap` and others are non-synchronized and, as a consequence, they do not provide thread-safety;
+- there is a set of old collections like `Vector`, `Stack`, and `Hashtable` that are totally synchronized and thread-safe, but they have low performance;
+- when one thread is iterating over a standard totally synchronized collection and another thread tries to add a new element to it then we get a runtime exception called `ConcurrentModificationException`.
+
+The following program demonstrates a race condition that appears when two threads add elements to the same collection.
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+public class NeedOfConcurrentCollectionsDemo {
+    public static void main(String[] args) throws InterruptedException {
+        ArrayList<Integer> numbers = new ArrayList<>();
+        Thread writer = new Thread(() -> addNumbers(numbers));
+        writer.start();
+        addNumbers(numbers); // add number from the main thread
+        writer.join(); // wait for writer thread
+        System.out.println(numbers.size()); // the result can be any
+    }
+    private static void addNumbers(ArrayList<Integer> target) {
+        for (int i = 0; i < 100_000; i++) {
+            target.add(i);
+        }
+    }
+}
+```
+
+The expected result is 200000 (100000 + 100000), but in fact, it changes every time you run this code. Some elements of a list are lost.
+
+We started the program three times and get the following results:
+
+```java
+196797
+154802
+181359
+```
+
+You may also try it yourself.
+
+So, it is a bad idea to use standard collections in multithreaded environments without explicit synchronization. Again, though, such synchronization may lead to poor performance and hard-to-find errors in large programs.
+
+##### Concurrent collections
+
+==To avoid all the problems associated with custom synchronization, Java Class Library provides alternative collection implementations in the `java.util.concurrent` package that are adapted to be used in multithreaded applications and they are fully thread-safe.== You may find them in the `java.util.concurrent` package that includes lists, queues, maps and other collections which make it easier to develop modern Java applications.
+
+These concurrent collections allow you to avoid custom synchronization in many cases as well as they have high performance close to classic collections. Concurrent collections do not use the `synchronized` keyword but rely on more complex synchronization primitives and lock-free algorithm that allows them to be both thread-safe and high-performance. However, if you do not really need multithreading, use classic collections, since they are still more efficient than concurrent ones.
+
+You will learn the different types of concurrent collections later on.
+
+## Postman
+
+If you already know something about REST services but haven't quite used them yet, it's time to try! REST requests are simple HTTP requests, but it's not convenient to make them through a browser as you'd usually do with most of the web content. You need a client to create requests, and [Postman](https://www.getpostman.com/) is a good one to try out.
+
+We will use endpoints of the free API server [Reqres](https://reqres.in/) to make our example requests. It has the implementation of all basic HTTP methods: *GET, POST, PUT, DELETE*.
+
+##### Installation
+
+**Postman** is a collaboration platform for API development. It has more functions than a simple API client, but all we need now is its ability to create requests to API endpoints.
+
+You can get the application on Postman's [official website](https://www.getpostman.com/downloads/). Once you download the executable file for Windows or an archive for Linux, unpack it if needed and run the app. You should see a page like this:
+
+<img src="77-CollectionsFrameworkOverview.assets/e356f7a1-c6a6-40ff-b0bd-4b5b9c04d3fd.png" alt="img" style="zoom:67%;" />
+
+Using Postman is free, so you can use your email or Google account to sign in. This will help you share your workspace on several devices. The registration is not obligatory, so you can close this window for now and start using Postman anonymously.
+
+We use Postman 7.15.0 for our illustrations here. The UI interface of your version may look slightly different, but the behavior of the application should be the same.
+
+##### GET requests
+
+We are almost ready to make the first request. For this example, we will use a free test API server. Reqres API has several endpoints; you can get their descriptions on the [official site](https://reqres.in/).
+
+Postman is similar to a browser: you have tabs for your requests. Let's open the first one. Just hit the *plus* tab, and Postman will show the full panel.
+
+![img](77-CollectionsFrameworkOverview.assets/247c0cf2-9e1e-4a3b-a5a3-5ef6dc25246b.png)
+
+To create a simple *GET* request without query parameters, add the address of an endpoint of the service. In the image you can see that we use `https://reqres.in/api/users/2` for this purpose. Then press the *Send* button*,* and you will see a nicely formatted response.
+
+<img src="77-CollectionsFrameworkOverview.assets/4575d9ed-7322-44fb-b0ba-bf460bafcf5c.png" alt="img" style="zoom:67%;" />
+
+If you want to use any query parameters, you can add them as key-value pairs. Notice that we used endpoint `https://reqres.in/api/users` this time.
+
+<img src="77-CollectionsFrameworkOverview.assets/b8f627c3-8c75-4f12-95e8-278ee960c3aa.png" alt="img" style="zoom:67%;" />
+
+Query parameters and key-value pairs are interchangeable in the application, so you can use any method you want. Postman will fill the other one automatically.
+
+We know how to get data from the server, but sometimes we need to send data with *POST* requests, so let's see how you can do it with Postman.
+
+##### POST requests
+
+A useful feature of *POST* requests is that we can fill the body of it with sensitive data. If we send our login and password through query parameters, it's easy to read them for someone who sees the traffic from your computer, for example, your internet service provider. We will try our best with registration and authentication to the server through API requests, but do not use real data for it though.
+
+To create a *POST* request, open a new tab as you did earlier. Reqres allows you to use only defined emails that you receive in the previous example at the endpoint `https://reqres.in/api/register`. Let's choose "*tracey.ramos@reqres.in*" as the user's login for the registration. Change the request type to *POST*, add key-value pairs with email and password (any password you want) in the body of the request, and press *Send*:
+
+<img src="77-CollectionsFrameworkOverview.assets/f485776a-2373-494b-a6ba-a3ece28b1be6.png" alt="img" style="zoom:50%;" />
+
+We receive a response with a token. Tokens are identifiers that you can use for authorization. We almost repeated our previous requests, but this time choosing different parameters.
+
+Sometimes it's preferable to use JSON to send data to the server, for example, when we have nested fields. Though we don't need to make a nested structure to send a login request, we try to make a JSON to show out how it works.
+
+Choose a raw format for a body and JSON type for the data type. Then paste JSON with email and password to the editor and send the request to the server:
+
+<img src="77-CollectionsFrameworkOverview.assets/96995512-95d9-4e9a-ab96-110346b5504d.png" alt="img" style="zoom:50%;" />
+
+And again we succeed and get a token.
+
+##### Other requests
+
+Postman allows you to create HTTP requests with other methods: *DELETE, PUT, PATCH*... You should select the one you want as the request type:
+
+<img src="77-CollectionsFrameworkOverview.assets/dc385714-d1d9-45e5-a460-06ba3e18ce27.png" alt="img" style="zoom:50%;" />
+
+You know enough to fill the fields by yourself and practice *DELETE, PUT, PATCH* with the [Reqres API](https://reqres.in/) server.
+
+Before using any API, do not forget to read the documentation first, or you can make some inappropriate changes on the server.
+
+Now you are ready to send a request to any server you want!
+
+##### Conclusion
+
+Postman is a simple and useful tool for making API requests. It includes all basic requests like POST, GET, PUT, DELETE, etc. You can use it as an API testing tool to reliably check HTTP requests.
+
+## Hashing: overview
+
+Hashing is a technique widely used in programming. Whether you send a message over the internet, log in to a website, or search for a file on your computer, you are using **hash functions**! But what are they and what do they do?
+
+##### What is hashing?
+
+Formally, ==hash functions are functions that we can use to map data of arbitrary size to fixed-size values.== That's quite vague, so let's look at a real-life comparison to understand them better:
+
+Imagine you have a friend Paul who keeps a phone book. Your friend is lazy and doesn't want to spend a lot of time writing the full names of his contacts. So, instead, Paul writes only the consonants in their names. For example, instead of *John Smith,* Paul writes *Jhn Smth.* In quite a few ways, this process is similar to **hashing**. We can consider that "remove all vowels" is the **hash function**. We call the result of applying a hash function to some input a **hash value**, or simply its hash. In our case, *Jhn Smth* is the hash value of *John Smith*. Now, not all hash values will be distinct: think about two people with names *Tim Black* and *Tom Black*. The hash value for both of those names will be *Tm Blck.* When this happens, we call it a **collision**.
+
+![img](77-CollectionsFrameworkOverview.assets/2b8e67e4-1546-47d2-80da-e5227653dd26.png)
+
+The main difference between our example and a real hash function is that, in our case, the hash values do not have a fixed size. A more accurate example would be if Paul wrote the first 5 letters in their names. The hash value for *John Smith* would be *John S*, for *Tim Black* it would be *Tim Bl*, and for *Tim Blacksmith,* it would be *Tim Bl* too. There are more names than possible ways to write 5 letters, so we are guaranteed to have collisions. The same thing is also true for ==hash functions. They take input that can be really big and return something of a fixed size, so there is no way to completely avoid collisions!==
+
+##### Applications of hash functions
+
+As we mentioned in the beginning, hash functions have many applications. Let's look at a few of the most important ones:
+
+- Message digests
+
+Say you have a message that you want to send to a friend over the internet but are afraid that someone might change its contents before it reaches your friend. One of the things you can do is to compute a hash value for your message before sending it. When your friends receive it, they compute the hash value of the message using the same hash function as you. You can then compare the two hashes and check that they are equal. Hash functions used for this have the property that it is hard to find collisions. Such hash functions are called **cryptographic** hash functions. They can have other properties too, like the one in the following example.
+
+- Password Storage
+
+Ever wondered why websites don't have an option to send you your password in case you forget it, and they make you reset it? To be able to send it back, they have to store it in plain text. By doing so, if someone gets access to the password database, they can easily steal all the accounts! What websites do is store a hash of your password. When you send the password to log in, they compute its hash and check if it is equal to what they have stored. In this case, finding collisions is not such a big problem. Here, you need to know that if someone finds the hash of your password, they should not be able to find out your password from it.
+
+- Hash tables
+
+A more common use in day-to-day programming is hash tables. They are fast and convenient data structures that use hashing. With them, you can search, insert, or remove elements from a table. The main idea behind them is that you want to use hash values to index data in an array. For example, if you want to use a hash table to store a phone book, you can save the pair *(**Tim Black, 0123456789)* at index *Tm Blck.* Then, to find Tim's phone number, you only have to search at index *Tm Blck.* After that, you can also save *(Tom Black**, 9876543210)* at the same index and, whenever you need to find Tim's or Tom's phone number, you only have to search between two pairs, rather than the whole phone book. Hash functions used in hash tables are less restrictive than the ones used for message digests and password storage, and their hash values are, generally, numbers. We will look closer at hash tables in the following topics.
+
+##### Conclusion
+
+You now have an idea about hashing and hash functions, what they are and where you can use them. This should be more than enough for now to emphasize their importance. In the next topics, we will study in more detail hash functions, hash tables, and collisions.
+
+## Hash function
+
+##### Introduction
+
+==In theory, a **hash function** is any function that can take any large value and output a fixed-sized value.== However, not all functions with this property are useful as different use cases need different properties. To understand it better, we will now look at some general properties of hash functions and a few examples of them.
+
+##### Defining a good hash function
+
+What's the difference between just any hash function and a good one? To define a ==good hash function==, we need to learn three of ==its properties: efficient, deterministic, and uniform.==
+
+An efficient hash function should compute the hash value in constant time: O(1) in the size of the input. Say you have an array of n*n* integers. Then, a good hash function would take time O(n), as n is the size of the input, and would be able to compute hashes for n > 100,000,000*n*>100,000,000 in under a second. Now say another hash function takes time O(n^2). Then it could barely compute hashes for n \sim 10,000*n*∼10,000 in one second.
+
+If two inputs are equal, they should have the same hash value, that's why we need a hash function to be deterministic. There are two things to remember here:
+
+- First, deterministic means that the function cannot be random. For example, the function that returns 0 or 1 randomly, independently of the input, is a hash function, but not a deterministic one.
+- Secondly, imagine you have two distinct variables, both with the same value, say 7. For a computer, they take different spots in memory, so they are different, but these variables are equal if the values are compared. In this case, we want the hash function to return the same value. An example of a hash function that does not do that is the function that returns the address in memory of the value.
+
+As you already know, the third property is uniform: the hash values are distributed uniformly. This means that the inputs should be mapped equally among the possible hash values. Another way to put it: if we group possible inputs by their hash value, we want the groups to have sizes close to each other.
+
+Those are the general properties that any hash function should have. Let's look at some common ones to see how it works.
+
+##### Standard hash functions
+
+To use hash functions, we need to learn the notation first. Hash functions are usually denoted by *h\*h**. The hash value for a particular object x*x* is denoted by *h(x)\*h*(\*x*)*. Hash functions used in day-to-day programming usually take one type of value and return integers. They are used in hash tables and have all three properties we discussed above. These are some of the easiest and most commonly used hashes:
+
+- Integers*:* we use the identity function, which always returns the value it is given: ***\*h(x) = x\*h\*(\*x\*)=\*x\*\****, or the modulo operation: ***\*h(x) = x \ \%\ p\*h\*(\*x\*)=\*x\* % \*p\*\****, for some number **p\*p\*** (usually a prime). The [modulo](https://en.wikipedia.org/wiki/Modulo_operation) operation x\ \%\ p*x* % *p* returns the remainder when dividing x*x* by p*p*. Let's see how these functions work for some random number, say 10. The identity function will always return the number it is given, so we have h(10)=10*h*(10)=10. For the modulo operation, if we pick p = 7*p*=7, then we have h(10) = 10\ \%\ 7 = 3*h*(10)=10 % 7=3. If we pick p = 10*p*=10, then we have h(10) = 10\ \%\ 10 = 0*h*(10)=10 % 10=0.
+- Integer arrays: say the array has the form [v_1, v_2,...,v_n][*v*1,*v*2,...,*v**n*]. The idea is to start from left to right and convert each value to a single integer. At each step, multiply the integer you have by some number and add the next value to it. We can write this mathematically as h_0 = 0,\ h_{i+1}=h_i*p\ +\ v_{i+1}*h*0=0, *h**i*+1=*h**i*∗*p* + *v**i*+1, where p*p* is some number (usually a prime). Then h_n*h**n* will be the hash value. Let's look at what we get: h_n= v_1*p^{n-1} + v_2*p^{n-2}+...+v_n*h**n*=*v*1∗*p**n*−1+*v*2∗*p**n*−2+...+*v**n*. This considers every element but in different proportions. What if we take just the normal sum of all elements? Then all arrays with the same elements, possibly in a different order, will have the same hash value. But they are not equal! This trick helps distinguish between such cases.
+- General arrays: what if your arrays have some other type of data, rather than integers? First, choose a hash function for that data type, let's call it h'*h*′, which has the properties above and outputs integers. Then, you can do the same thing as before, but, instead of adding the next value, add its hash. Mathematically, the only change is: h_{i+1}=h_i*p\ +\ h'(v_{i+1})*h**i*+1=*h**i*∗*p* + *h*′(*v**i*+1), that's it! For example, imagine we want to calculate the hash for an array of integer arrays. We can use the updated hash formula if we choose h'*h*′ to be a hash function for integer arrays.
+- Strings: strings are nothing more than arrays of characters. A character is, in general, an integer between 0 and 255, so we can compute the hash function in the same way as for an array of integers!
+
+To make it clear, let's look at how we compute the hash value for the array [1, 2, 3, 4][1,2,3,4] using p = 5*p*=5:
+
+- h_1 = h_0*p\ +\ v_1 = 0*5\ +\ 1=1*h*1=*h*0∗*p* + *v*1=0∗5 + 1=1
+- h_2 = h_1*p\ +\ v_2 = 1*5\ +\ 2=7*h*2=*h*1∗*p* + *v*2=1∗5 + 2=7
+- h_3 = h_2*p\ +\ v_3 = 7*5\ +\ 3=38*h*3=*h*2∗*p* + *v*3=7∗5 + 3=38
+- h_4 = h_3*p\ +\ v_4 = 38*5\ +\ 4=194*h*4=*h*3∗*p* + *v*4=38∗5 + 4=194
+
+So we have hash value 194194. Note that the hash grows fast! Because of this, we usually choose another prime q*q* different from p*p* and much larger, and we modify the step to h_{i+1}=(h_i*p\ +\ h'(v_{i+1}))\ \%\ q*h**i*+1=(*h**i*∗*p* + *h*′(*v**i*+1)) % *q*. The modulo is the remainder of dividing by q*q*, so, this way, the hash value will always be less than q*q*. With a bit of math, we can show that taking the modulo at every step gives the same result as only taking the modulo of h_n*h**n*, so we keep all the properties that we want!
+
+Now, what happens if we change the order of the values in the array while keeping p=5*p*=5? For [2,1,3,4][2,1,3,4] the hash value is h_4' = 294*h*4′=294 and for [1, 2, 4, 3][1,2,4,3] we have h_4''=198*h*4′′=198. The closer to the start, the bigger the difference!
+
+##### Cryptographic hash functions
+
+Cryptographic hashes are made to work with any input of any length and type by considering it as a sequence of bits: 1's and 0's. They also output a sequence of bits, but of fixed length. The computer can work quite well with it, but for us, it's quite hard to "see" if we don't format it clearly. Typically, there are a few hundred bits in the output, so what we do is consider it as a large number in base 2, convert it to base 16 and write it as a string.
+
+Cryptographic hashes still respect the properties above, but they are more complex. They have fewer use cases but are extremely important in security. Let's see what properties they need:
+
+- Imagine a company that stores a table of username-password pairs for a website you use. If that table gets leaked, then anyone can see your password. So, what they do is save the hash of your password instead. Whenever you send them your password, they compute the hash and check if it is the same as the one saved. Now, if the table is leaked, an attacker must find a password that hashes to the same value as your password to be able to log in as you. So, the hash function must make it very difficult for an attacker to find such a password. Such a function is called **pre-image resistant**: given a hash value h*h*, it is hard to find a message m*m* with hash(m) = h*ha**s**h*(*m*)=*h*.
+- One of the ways we can make sure a message was not changed is by sending the hash of the message together with the message itself. Suppose that an attacker wants to change the message, but cannot change the hash. Then she or he has to find a different message that hashes to the same value. Even if the new message might not make sense, it can affect communication in some ways. To prevent such situations, we can use a **second pre-image resistant**, or **weak collision-resistant** hash function. When we use it, given a message m_1*m*1, it will be hard to find a different message m_2*m*2 with hash(m_1) = hash(m_2)*ha**s**h*(*m*1)=*ha**s**h*(*m*2).
+- In some very specific use cases, finding any pair of messages that have the same hash might result in problems. A hash function that makes sure it is hard to find any messages m_1, m_2*m*1,*m*2 such that hash(m_1) = hash(m_2)*ha**s**h*(*m*1)=*ha**s**h*(*m*2) is called **collision-resistant**, or **strong collision-resistant**.
+
+When we say it's hard to find some value, that means that finding a value with the needed properties would take years, even with the most powerful supercomputers. If you think that it's hard to get those properties, you're right! Not everyone can create such a function. Fortunately, there are a few standard ones that are widely used today. Their implementations are complicated, so we will not go into detail.
+
+First, let's look at MD5. It was created in 1992 as a better alternative to its predecessor, MD4. It takes any input and outputs a 128-bit hash value. Initially, it was believed to be collision-resistant, but in 2004 it was proved that it wasn't the case. It took 12 years and a lot of research to find this, so it's better to stick with existing hashes than try and create new ones!
+
+Another cryptographic hash function, more secure, is SHA256. Its output is 256-bit long and is used in many places, one of them being the [Bitcoin proof of work](https://en.bitcoin.it/wiki/Proof_of_work). Let's look at some examples and see what small changes in the input do to the hash value:
+
+SHA256("Hashes\ are\ fun!") = c128f0e84f60397828b11eaa3cbb67262b99f4d11f3ad630139ffa36cc600278*S**H**A*256("*H**a**s**h**es* *a**re* *f**u**n*!")=*c*128*f*0*e*84*f*60397828*b*11*e**aa*3*c**bb*67262*b*99*f*4*d*11*f*3*a**d*630139*ff**a*36*cc*600278
+
+SHA256("hashes\ are\ fun!"\ )=9659f1fcdf143e3e1f66a922d71500d86c3b7d8f3a5ef03e1d9676547632317e*S**H**A*256("*ha**s**h**es* *a**re* *f**u**n*!" )=9659*f*1*f**c**df*143*e*3*e*1*f*66*a*922*d*71500*d*86*c*3*b*7*d*8*f*3*a*5*e**f*03*e*1*d*9676547632317*e*
+
+SHA256("Hashes\ are\ fun.")=b2cde78b638667158fb91d0c665d1d20cc247925b45d9eccb7d25c08721fea12*S**H**A*256("*H**a**s**h**es* *a**re* *f**u**n*.")=*b*2*c**d**e*78*b*638667158*f**b*91*d*0*c*665*d*1*d*20*cc*247925*b*45*d*9*ecc**b*7*d*25*c*08721*f**e**a*12
+
+SHA256("Hashes\ are\ fnu!")=c75bb5fed45a21695e0c607376cc1c925939a02c38fac8e7d5488b8820487bca*S**H**A*256("*H**a**s**h**es* *a**re* *f**n**u*!")=*c*75*bb*5*f**e**d*45*a*21695*e*0*c*607376*cc*1*c*925939*a*02*c*38*f**a**c*8*e*7*d*5488*b*8820487*b**c**a*
+
+Even small changes produce huge differences! This is the consequence of collision resistance and pre-image resistance.
+
+##### Conclusion
+
+Now you know what hash functions and cryptographic hash functions are. We learned the standard properties of hash functions: efficient, deterministic, and uniform, and how to build hash functions for some standard data types. We also saw the different use cases of cryptographic hash functions and their importance. Now you are ready to dig deeper and learn some other hashing techniques, for example, hash tables!
+
+## Hash table
+
+##### Introduction
+
+Let's imagine the following scenario: you have a lot of friends and a big shelf full of books. Some of your friends want to borrow your books, some want to return them, and some want to know if you have a certain book. So, you want to write a program that lets you *add* books, *remove* books, and *check* if a book is available. For this scenario, what would be the best data structure to use?
+
+<img src="77-CollectionsFrameworkOverview.assets/fd8d7a68-7887-49c3-9623-f2d3f02f65f3.svg" alt="img" style="zoom: 50%;" />
+
+==**Hash tables** are structures that allow us to insert and remove values, and check if a value is present in time O(1)*O*(1) for each of those operations.== Hash tables alone cannot guarantee this time. However, paired with a good hash function, everything works well, making it one of the best data structures for this purpose.
+
+##### Hash tables
+
+==Hash tables are arrays where each entry is a **bucket==**. Buckets can hold 0 or more values of a type. They are identified by their index in the array. If we want to insert a value in the hash table, we compute its hash value and insert it in the bucket at an index equal to the hash value (modulo the size of the array if the hash value is too large). You can do the same to remove an object or search for it.
+
+Let's look at an example now. Say we have a hash table with 5 buckets, and we are inserting integers {1, 3, 5, 6} with the identity hash function. The table looks like this:
+
+| Index  | 0    | 1      | 2    | 3    | 4    |
+| ------ | ---- | ------ | ---- | ---- | ---- |
+| Values | {5}  | {1, 6} | {}   | {3}  | {}   |
+
+Now let's figure out how it works. Since we're using the identity function, the hash value is equal to the value itself. Because of this, you can see that 1 and 3 are in buckets at indexes 1 and 3 respectively. Now, 5 and 6 have hash values 5 and 6, but there are too few buckets! To find a bucket for them, we take the modulo of the hash value by the total number of buckets, in this case, 5. So, 5 modulo 5 is 0, and 6 modulo 5 is 1, and you can see in the table that the values are placed in the correct buckets.
+
+There are two types of hash tables. The one above is called a **hash set**. We can use it in scenarios where we only need to check if a value is present: for example, the book scenario in the introduction. We can still add or remove elements to a hash set, but in most cases we are not interested in getting a value out of a hash set. This happens because we already have an equal value that we need in order to search a hash table. Implementations of hash sets are *unordered_set* in C++ and *HashSet* in Java.
+
+Another type of hash table is a **hash map**. Imagine you want to keep a phone book of names and numbers of friends, and want to search for phone numbers using a friend's name. If you kept a hash set of the name-number pairs, you would need to know the number to be able to search. Here, hash maps can help you. They are very similar to hash sets, but they store pairs. The first entry in the pair is called the *key*, and the second is the *value*. Only the hash of the key is used, and, when searching, we look for the value associated with a key. In the example above, the keys would be the names, and the values would be the phone numbers. Implementations of hash maps are *unordered_map* in C++ and *HashMap* in Java.
+
+##### Load factor
+
+Having huge buckets is always bad news! Imagine a hash table with one bucket and a huge number of elements. Then every time we want to do something, we have to search through the whole bucket to find the elements we need. That's the same thing as putting all the elements into an array without any order! If we allowed this to happen, what would be the point of using a hash table?
+
+Now, think about a more common example: a hash table with 100 buckets and 200 values in it. An ideal hash function would spread the values uniformly, and we would have 2 values in each bucket. Then, whenever we check for a value, we have to check for equality with both values in the corresponding bucket. This is not bad, but, ideally, buckets should have 1 or 0 elements. We can't always guarantee it, but we can improve the average number if, for example, we have more buckets than elements. For this, we have to introduce the load factor.
+
+The **load factor** of a hash table is a real number **l\*l*** between 0 and 1 that tells us how full the hash table is. We can calculate it at any time with this formula:
+
+l = { \#elements \over \#buckets}*l*=#*b**u**c**k**e**t**s*#*e**l**e**m**e**n**t**s*.
+
+Most hash tables have a **max load factor** **\alpha\*α***, a constant number between 0 and 1 that is an upper limit for the load factor. After we insert a new value to the hash table, we calculate the new load factor **l\*l**.* If **l > \alpha\*l\*>\*α***, then we increase the number of buckets in the hash table, usually by creating a new array of twice as many buckets and inserting in it all the values from the old one. Note that we have to recompute the indices of all elements, since their indices are based on both hash values and the total number of buckets. A common value for the max load factor is 0.75, which helps us make sure there are enough buckets, while not wasting a lot of memory on empty ones.
+
+![img](77-CollectionsFrameworkOverview.assets/42312e1a-40bd-4003-8247-33880e22f31a.svg)
+
+This picture illustrates that the emptier the bucket, the better it is for the performance of the hash table. The load factor helps us keep the buckets as close to empty as reasonably possible. A too low load factor, however, may also be a bad sign, as it means that we use a lot of unnecessary memory to store empty buckets.
+
+##### Why are hash tables so fast?
+
+Earlier we mentioned that hash tables take O(1)*O*(1) to insert, remove, or search for a value when using a good hash function. Let's see why this is true!
+
+For all those operations, the hash table has to do exactly 2 things: compute the hash value and search in only one bucket for the initial value, namely in the bucket whose index is equal to the computed hash value. A good hash function is *efficient*, so it takes O(1)*O*(1) to compute the hash value and is *deterministic*, so the hash value will be the same for any equal values, meaning that we will search the correct bucket. Next, a good hash function is *uniform*, so there will not be some very large buckets, while others are empty or almost empty. This, together with the load factor we explained above, makes sure that, on average, there is no more than one element in a bucket. So, searching the bucket takes time O(1)*O*(1). Finally, we can implement buckets so that inserting and deleting from them also takes O(1)*O*(1), for example, using linked lists. So, if we are using a good hash function, all operations on a hash table will take O(1)*O*(1).
+
+##### Summary
+
+- Hash tables are data structures that support fast inserting and removing values, and checking if a value is present.
+- Hash tables consist of buckets holding zero, one, several values.
+- Hash functions are used to determine a bucket for a value.
+- Hash sets store objects based on their hash values; hash maps store key-value pairs based on the keys' hash values.
+- Load factor is typically used to determine when to resize the hash table to keep it fast.
+
+## The Map interface
+
+In some situations, you need to store pairs of associated objects. For example, when counting the number of words in a text, the first one is a word and the second one is the number of its occurrences in the text. There is a special type of collections called **map** to effectively store such pairs of objects.
+
+==A **map** is a collection of key-value pairs. Keys are always unique while values can repeat.==
+
+A good example of a map from the real world is a phone book where keys are names of your friends and values are phones associated with them.
+
+```java
+Keys  : Values
+-----------------------
+Bob   : +1-202-555-0118
+James : +1-202-555-0220
+Katy  : +1-202-555-0175
+```
+
+Maps have some similarities with sets and arrays;
+
+- **keys** of a map form a **set**, but each key has an associated value;
+- **keys** of a map are similar to **indexes of an array**, but the keys can have any type including integer numbers, strings and so on.
+
+Due to these reasons, you can encounter some kind of *deja vu* effect when learning maps.
+
+Next, all our examples will use string and numbers as keys since using custom classes as types of keys have some significant points the same as for sets. It will be considered in other topics.
+
+##### The Map interface
+
+***The Collections Framework*** provides the `Map<K,V>` interface to represent a **map** as an abstract data type. Here, `K` is a type of keys, and `V` is a type of associated values. The `Map` interface is not a subtype of the `Collection` interface, but maps are often considered as collections since they are part of the framework.
+
+The interface declares a lot of methods to work with maps. Some of the methods are similar to methods of `Collection`, while others are unique to maps.
+
+**1) Collection-like methods:**
+
+- `int size()` returns the number of elements in the map;
+- `boolean isEmpty()` returns `true` if the map does not contain elements and `false` otherwise;
+- `void clear()` removes all elements from the map.
+
+We hope, these methods do not need any comments.
+
+**2) Keys and values processing:**
+
+- `V put(K key, V value)` associates the specified `value` with the specified `key` and returns the previously associated value with this `key` or `null`;
+- `V get(Object key)` returns the value associated with the key, or `null` otherwise;
+- `V remove(Object key`) removes the mapping for a `key` from the map;
+- `boolean containsKey(Object key)` returns `true` if the map contains the specified `key`;
+- `boolean containsValue(Object value)` returns `true` if the map contains the specified `value`.
+
+These methods are similar to the methods of collections, except they process key-value pairs.
+
+**3) Advanced methods:**
+
+- `V putIfAbsent(K key, V value)` puts a pair if the specified key is not already associated with a value (or is mapped to `null`) and return `null`, otherwise, returns the current value;
+- `V getOrDefault(Object key, V defaultValue)` returns the value to which the specified key is mapped, or `defaultValue` if this map contains no mapping for the key.
+
+These methods together with some others are often used in real projects.
+
+**4) Methods which return other collections:**
+
+- `Set<K> keySet()` Returns a `Set` view of the keys contained in this map;
+- `Collection<V> values() `returns a `Collection` view of the values contained in this map;
+- `Set<Map.Entry<K, V>> entrySet()` returns a `Set` view of the entries (associations) contained in this map.
+
+This is even not a complete list of methods since `Map` is really a huge interface. The documentation really helps when using maps.
+
+To start using a map, you need to instantiate one of its implementations: `HashMap`, `TreeMap`, and `LinkedHashMap`. They use different rules for ordering elements and have some additional methods. There are also **immutable** maps whose names are not important for programmers.
+
+##### Immutable maps
+
+The simplest way to create a **map** is to invoke the `of` method of the `Map` interface. The method takes zero or any even number of arguments in the format `key1, value1, key2, value2, ...` and returns an **immutable** map.
+
+```java
+Map<String, String> emptyMap = Map.of();
+
+Map<String, String> friendPhones = Map.of(
+        "Bob", "+1-202-555-0118",
+        "James", "+1-202-555-0220",
+        "Katy", "+1-202-555-0175"
+);
+```
+
+Now let's consider some operations that can be applied to **immutable** maps using our example with `friendPhones`.
+
+The size of a map equals to the number of pairs contained in it.
+
+```java
+System.out.println(emptyMap.size());     // 0
+System.out.println(friendPhones.size()); // 3
+```
+
+It is possible to get a value from a map by its key:
+
+```java
+String bobPhone = friendPhones.get("Bob"); // +1-202-555-0118
+String alicePhone = friendPhones.get("Alice"); // null
+String phone = friendPhones.getOrDefault("Alex", "Unknown phone"); // Unknown phone
+```
+
+Note that the `getOrDefault` method provides a simple way to prevent **NPE** since it avoids `null`'s.
+
+It is also possible to check whether a map contains a particular key or value by using `containsKey` and `containsValue` methods.
+
+We can directly access the set of keys and collection of values from a map:
+
+```java
+System.out.println(friendPhones.keySet()); // [James, Bob, Katy]
+System.out.println(friendPhones.values()); // [+1-202-555-0220, +1-202-555-0118, +1-202-555-0175]
+```
+
+Since it is **immutable,** only methods that do not change the elements of this map will work. Others will throw an exception `UnsupportedOperationException`. If you'd like to put or to remove elements, use one of `HashMap`, `TreeMap` or `LinkedHashMap`.
+
+##### HashMap
+
+The `HashMap` class represents a map backed by a **hash table**. This implementation provides constant-time performance for `get` and `put` methods assuming the hash function disperses the elements properly among the buckets.
+
+The following example demonstrates a map of products where key is the product code and value is the name.
+
+```java
+Map<Integer, String> products = new HashMap<>();
+
+products.put(1000, "Notebook");
+products.put(2000, "Phone");
+products.put(3000, "Keyboard");
+
+System.out.println(products); // {2000=Phone, 1000=Notebook, 3000=Keyboard}
+
+System.out.println(products.get(1000)); // Notebook
+
+products.remove(1000);
+
+System.out.println(products.get(1000)); // null
+
+products.putIfAbsent(3000, "Mouse"); // it does not change the current element
+
+System.out.println(products.get(3000)); // Keyboard
+```
+
+This implementation is often used in practice since it is highly-optimized for putting and getting pairs.
+
+##### LinkedHashMap
+
+The `LinkedHashMap` stores the order in which elements were inserted.
+
+Let's see a part of the previous example again:
+
+```java
+Map<Integer, String> products = new LinkedHashMap<>(); // ordered map of products
+
+products.put(1000, "Notebook");
+products.put(2000, "Phone");
+products.put(3000, "Keyboard");
+
+System.out.println(products); // it's always ordered {1000=Notebook, 2000=Phone, 3000=Keyboard}
+```
+
+In this code, the order of pairs is always the same and matches the order in which they are inserted into the map.
+
+##### TreeMap
+
+The `TreeMap` class represents a map that gives us guarantees on the order of the elements. It is corresponding to the sorting order of the keys determined either by their natural order (if they implement the `Comparable` interface) or by specific `Comparator` implementation.
+
+This class implements the `SortedMap` interface which extends the base `Map` interface. It provides some new methods, related to comparisons of keys:
+
+- `Comparator<? super K> comparator()` returns the comparator used to order elements in the map or `null` if the map uses the natural ordering of its keys;
+- `E firstKey()` returns the first (lowest) key in the map;
+- `E lastKey()` returns the last (highest) key in the map;
+- `SortedMap<K, V> headMap(K toKey)` returns a submap containing elements whose keys are strictly less than `toKey`;
+- `SortedMap<K, V> tailMap(K fromKey)` returns a submap containing elements whose keys are greater than or equal to `fromKey`;
+- `SortedMap<K, V> subMap(K fromKey, E toKey)` returns a submap containing elements whose keys are in range `fromKey` (inclusive) `toKey` (exclusive);
+
+The example below demonstrates how to create and use an object of `TreeMap`. This map is filled with events, each of them has a date (key) and title (value).
+
+`LocalDate` is a class that represents a date. The invocation of `LocalDate.of(year, month, day)` method creates the specified date object with the given year, month and day.
+
+```java
+SortedMap<LocalDate, String> events = new TreeMap<>();
+
+events.put(LocalDate.of(2017, 6, 6), "The Java Conference");
+events.put(LocalDate.of(2017, 6, 7), "Another Java Conference");
+events.put(LocalDate.of(2017, 6, 8), "Discussion: career or education?");
+events.put(LocalDate.of(2017, 6, 9), "The modern art");
+events.put(LocalDate.of(2017, 6, 10), "Coffee master class");
+
+LocalDate fromInclusive = LocalDate.of(2017, 6, 8);
+LocalDate toExclusive = LocalDate.of(2017, 6, 10);
+
+System.out.println(events.subMap(fromInclusive, toExclusive));
+```
+
+The code outputs the resulting submap:
+
+```java
+{2017-06-08=Discussion: career or education?, 2017-06-09=The modern art}
+```
+
+Use `TreeMap` only when you really need the sorting order of elements, since this implementation is less efficient than `HashMap`.
+
+##### Iterating over maps
+
+It is impossible to directly iterate over a map since it does not implement the `Iterable` interface. Fortunately, some methods of maps return other collections which are iterable. The order of elements when iterating depends on the concrete implementation of the `Map` interface.
+
+The following code shows how to get keys and values in a for-each loop:
+
+```java
+Map<String, String> friendPhones = Map.of(
+        "Bob", "+1-202-555-0118",
+        "James", "+1-202-555-0220",
+        "Katy", "+1-202-555-0175"
+);
+
+// printing names
+for (String name : friendPhones.keySet()) {
+    System.out.println(name);
+}
+
+// printing phones
+for (String phone : friendPhones.values()) {
+    System.out.println(phone);
+}
+```
+
+If you want to print a key and its associated value at the same iteration, you can get `entrySet()` and iterate over it.
+
+```java
+for (var entry : friendPhones.entrySet()) {
+    System.out.println(entry.getKey() + ": " + entry.getValue());
+}
+```
+
+This code prints all pairs as we expect:
+
+```java
+Bob: +1-202-555-0118
+James: +1-202-555-0220
+Katy: +1-202-555-0175
+```
+
+We use `var` released in Java 10 to declare the loop's variable `entry`, but it is not necessary. If you have an older version of Java or just don't want to use `var`, you can write the data type explicitly like `Map.Entry<String, String>`.
+
+The same behavior can be achieved by using a lambda expression with two arguments if you prefer this way:
+
+```java
+friendPhones.forEach((name, phone) -> System.out.println(name + ": " + phone));
+```
+
+##### Other collections as values
+
+It is possible to store other collections as values in maps since collections are objects as well.
+
+Here is an example with a map of synonyms:
+
+```java
+Map<String, Set<String>> synonyms = new HashMap<>();
+
+synonyms.put("Do", Set.of("Execute"));
+synonyms.put("Make", Set.of("Set", "Attach", "Assign"));
+synonyms.put("Keep", Set.of("Hold", "Retain"));
+
+// {Keep=[Hold, Retain], Make=[Attach, Assign, Set], Do=[Execute]}
+System.out.println(synonyms);
+```
+
+Storing collections as keys of a map, on the other hand, is not a common case and it has some restrictions. Such keys should be represented by **immutable** collections. We will not consider this case here.
+
+##### Map equality
+
+Two maps are considered equal if they contain the same keys and values. Types of maps are not important.
+
+So, the following maps are fully equal:
+
+```java
+Map<String, Integer> namesToAges1 = Map.of("John", 30, "Alice", 28);
+Map<String, Integer> namesToAges2 = new HashMap<>();
+
+namesToAges2.put("Alice", 28);
+namesToAges2.put("John", 30);
+
+System.out.println(Objects.equals(namesToAges1, namesToAges2)); // true
+```
+
+But the following two maps are different since the second map does not include "Alice":
+
+```java
+Map<String, Integer> namesToAges1 = Map.of("John", 30, "Alice", 28);
+Map<String, Integer> namesToAges2 = Map.of("John", 28);
+
+System.out.println(Objects.equals(namesToAges1, namesToAges2)); // false
+```
+
+By this, we are finishing our consideration of maps. There was a lot of theory. If there's something you don't understand, try to practice anyway and return to the theory when questions arise.
+
+## YAML
+
+##### Introduction
+
+Imagine objects with complex structures. For example, you have a large dictionary or a list with a bunch of other values. You need to preserve such an object without losing its structure. In other words, you want to serialize it. It's also good if the format of serialization has a simple syntax and is human-readable. So, let's get acquainted with a famous data format called YAML.
+
+**YAML** is a recursive acronym for *YAML Ain't Markup Language***.** It's a human-readable data serialization standard for all programming languages. It is commonly used for configuration files, and for storing and transferring data. It’s difficult to escape YAML if you’re doing anything related to software configuration. The usual extensions for YAML files are *.yaml* and *.yml*.
+
+Let's take a closer look at this language in order to appreciate all its simplicity and functionality. We'll go over basic types, structures, and syntax.
+
+##### Basic data types
+
+YAML supports all essential data types like numbers, strings, booleans, etc. It recognizes some language-specific data types, such as dates, timestamps, and special numerical values. So, the list of basic YAML data types includes:
+
+- *integers* like 15, 123
+- *strings* like "15", 'Hello, YAML!', which may be enclosed either in double or single quotation marks
+- *floats* like 15.033
+- *booleans* (true or false)
+- *null type* (null)
+
+YAML auto-detects the type of data, but users can specify the type they need using `!!`. For example, if you need to specify the string *yes*, you need to write `!!str yes`.
+
+Now you know the basic data types in YAML. Let's figure out the structures and their syntax.
+
+##### Maps
+
+Mapping consists of key-value pairs. For example:
+
+```yaml
+---
+object: Book
+
+metadata:  
+  name: Three Men in a Boat
+  author: Jerome K Jerome 
+  genre: humorous account
+  
+published:
+  year: 1889
+  country: United Kingdom
+```
+
+The first line is a separator. It's optional unless you’re trying to define multiple structures in a single file. Then there is a set of `key: value` pairs as a block. Pairs are called *scalars*. The syntax is clean and simple; the usual format symbols, such as braces, square brackets, closing tags, or quotation marks, are unnecessary. Scalars are colon-separated, and there should be a space between the map elements. Note, that In YAML indentation is always done with spaces, not tabs.
+
+##### Lists
+
+The lists in YAML are sequences of objects, as the example below shows.
+
+```yaml
+animals:
+  - cat
+  - dog
+  - bird
+```
+
+The number of items in the list is not limited. Each item on the list should start with a dash. Elements are separated from the parent with spaces; after a parent name there should be a colon. The example above represents a block style. In flow style, the list looks like this: `[cat, dog, bird]`.
+
+These are the structures. Next, we'll learn how to combine them.
+
+##### Combination
+
+Maps and lists can be combined, so that one may have maps of maps, or maps of lists, or lists of lists, or lists of maps. Let's consider an example of a to-do map, where keys are weekends and values are lists of things to do during each day:
+
+```yaml
+weekend:
+  saturday: 
+    - order cleaning
+    - order a pizza
+    - watch new series
+  sunday: 
+    - go to yoga 
+    - hang out with a friend 
+```
+
+Also, if you need to denote a string that preserves newlines instead of a list, use `|` character:
+
+```yaml
+saturday: |
+  order cleaning
+  order a pizza
+  watch new series
+```
+
+Great, now you know how to use structures. The last important thing we should mention here is comments.
+
+##### Comments
+
+One may add comments to the YAML file. Comments start with `#` and go till newline. They can be made anywhere in the line, for example:
+
+```yaml
+# The comment
+metadata:  # this is metadata
+  name: Three Men in a Boat
+  author: Jerome K Jerome
+  genre: humorous account
+```
+
+##### Conclusion
+
+To sum up, we've discussed that
+
+- YAML is a human-readable text-based format that lets you easily specify configuration-type information
+- YAML supports integers, strings, floats, booleans, and null data types
+- there are two data structures in YAML, lists and maps, that can also be combined
+- comments can be added to YAML file
+
+Let's get to the tasks!
+
+## Basic project structure
+
+In this topic, you will consider the basic structure of any Spring Boot application. If you don't have such an application, just visit [the Spring Initializr site](https://start.spring.io/) and generate it with Gradle and Java.
+
+##### Gradle as a skeleton
+
+The basic structure of a Spring Boot application depends on a build tool that we use for the project. Since we use Gradle, our project has the `build.gradle` file that describes how to build and manage the dependencies of the project.
+
+```java
+.
+├── build.gradle
+├── gradle
+│   └── ...
+├── gradlew
+├── gradlew.bat
+├── HELP.md
+├── settings.gradle
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── org
+    │   │       └── hyperskill
+    │   │           └── demo
+    │   │               └── DemoApplication.java
+    │   └── resources
+    │       └── application.properties
+    └── test
+        └── java
+            └── org
+                └── hyperskill
+                    └── demo
+                        └── DemoApplicationTests.java
+```
+
+There are also other Gradle-related files that you probably already know.
+
+The initially generated Spring Boot application has several dependencies specified in the `build.gradle` file.
+
+```java
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+```
+
+The first dependency adds the Spring Boot framework to this project, and the second one brings test libraries integrated with Spring Boot. It is enough for the simplest Spring Boot application. As you can see, no boring configurations or excessive amount of dependencies!
+
+These dependencies are called **starters** and there are more of them. Each such starter dependency is a group of related dependencies. Instead of specifying a lot of related dependencies and their versions (Spring approach), we can add a Spring Boot starter that contains a group of tested-for-compatibility dependencies. All the starters follow a similar naming pattern: `spring-boot-starter**-\***`, where ***** denotes a particular type of application. For example, if we want to use Spring Web for creating web apps, we can include the `spring-boot-starter**-web**` dependency that contains web-related dependencies, or if we want to secure our app we can add `spring-boot-starter**-security**` instead of a bunch of security-related dependencies. This approach greatly simplifies dependency management, is less error-prone, and speeds up the development process.
+
+The source code is placed in the `src` directory in `main` and `test` subdirectories.
+
+##### The application properties
+
+Spring Boot uses **Convention Over Configuration** approach. It means that a developer only needs to specify unconventional aspects of the application, while all other aspects work by default.
+
+To configure some aspects of a Spring Boot application, there is an `application.properties` file located in `src/main/resources`. In a newly generated project, this file is empty, but the application still works thanks to default implicit configurations.
+
+We will modify the properties in the next topics.
+
+The properties can also be stored in the YAML format within the `application.yml` file. We intend to add their examples in the future.
+
+##### The Application class
+
+The entry point of our application is `DemoApplication` class located in `org.hyperskill.demo` package. This class contains the `main` method that is commonly-known among Java developers.
+
+```java
+@SpringBootApplication
+public class DemoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+}
+```
+
+The presented program looks very simple, almost like a typical *hello-world* Java program. Inside `main`, the `SpringApplication.run()` method is invoked to launch the application with given arguments.
+
+There is also an important ==annotation `@SpringBootApplication` that does all the Spring Boot magic! It makes your application work with incredible abilities: autoconfiguration, managing lifecycle of application components== and a lot of other useful things that we will consider later. This annotation shows the convenient approach in Spring Boot: annotating classes and their members to get all features provided by Spring Boot.
+
+That is all about the basic structure of Spring Boot applications. In the next topics, you will create new classes and set up configurations to develop an application that behaves as you like.
+
+##### Changing the default logo
+
+As you know, when starting a Spring Boot application, you can see the default Spring logo. Let's take a look at one simple but amazing feature as a bonus: you can change the logo to any other, e.g. the logo of your company or the project. To change the logo, first, you need to create a file named `banner.txt` that contains your custom logo and then put it in the `/src/main/resources` directory (next to the `application.properties` file).
+
+Here is our result after running an application with a custom logo:
+
+```java
+ __    __   __          __    __       _______. __  
+|  |  |  | |  |        |  |  |  |     /       ||  | 
+|  |__|  | |  |        |  |__|  |    |   (----`|  | 
+|   __   | |  |        |   __   |     \   \    |  | 
+|  |  |  | |  |  __    |  |  |  | .----)   |   |__| 
+|__|  |__| |__| (_ )   |__|  |__| |_______/    (__) 
+                 |/                                 
+```
+
+To create a stunning logo, you can use this [Spring Boot Banner Generator](https://github.com/Turbots/spring-boot-banner-gen). We hope this small bonus will help you have more fun and remember the structure of a Spring Boot project!
+
+## Introduction to Spring Web MVC
+
+**Spring Web MVC**, commonly known as **Spring MVC,** is one of the modules of the core Spring framework. Spring MVC is used to create websites and RESTful services. It provides ready components that simplify and speed up the development process.
+
+As the name suggests, the Spring MVC framework follows the MVC (Model, View, Controller) pattern which helps to organize code by separating different parts of an application: input logic, UI logic, and business logic.
+
+Applications commonly created with Spring MVC can be described by the type of data they return:
+
+- HTML: application creates web pages that can be viewed via a web browser (client). This type of app fully uses the underlying MVC pattern. The model stores the application data. The view is responsible for rendering model data and generating HTML output. The controller processes user requests, builds an appropriate model, and passes it to the view for rendering.
+- JSON/XML: the application provides RESTful services that generate JSON or XML data. Various kinds of clients, including other services, can use this kind of data. The structure of this type of program is similar to the first type, but View is absent and Spring MVC is no longer responsible for it. Instead, JSON/XML data is returned and some other program (client) is responsible for rendering and visualizing the returned model data.
+
+There are more types and formats that this framework can handle.
+
+In this topic, you'll learn about the Spring Web MVC framework and we'll create a very simple web application that returns a "Welcome!" page. We'll start with the basics and won't be showing yet how MVC is implemented in Spring MVC. You'll learn that and other interesting features of this framework in the upcoming topics.
+
+##### Dependency
+
+To develop and run a Spring MVC web application in Spring Boot we need to include the following dependency in Spring Boot project.
+
+For Gradle-based Spring Boot projects:
+
+```xml
+dependencies {
+   // ...
+   implementation 'org.springframework.boot:spring-boot-starter-web'
+   // ...
+}
+```
+
+For Maven-based Spring Boot projects:
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
+This starter dependency is a combination of dependencies that are required to start writing web apps. It also provides auto-configuration, which means that after we've added the dependency we can start writing the application code. We can also override auto-configuration if we need to.
+
+One of the included dependencies is an **embedded server** dependency.
+
+##### Web server
+
+As you probably know, the difference between a web application and a usual app is that a web app requires a web server — a special program that is used to run it.
+
+A server is called embedded when it is part of an application and we don't need to install it separately. This is convenient because it allows us to package the whole application in one executable `.jar` file that we can move and run like a regular application.
+
+
+
+We can also package an application in a `.war` file that doesn't contain a web server. Such an app should be deployed on an external server. In our projects, we'll only use the `.jar` format.
+
+The default embedded server is **Apache Tomcat** — free, open-source, lightweight, and one of the most popular servers. It remains actively developed and kept up to date.
+
+Now that we know how to add Spring MVC to a project and what an embedded server means, let's create and run a web app.
+
+##### Log
+
+Let's assume that we started a new Spring Boot project and just added a web dependency without any code.
+
+Don't forget that we can generate a basic Spring Boot project using [Spring Initializr](https://start.spring.io/) or special IDE. Here is a [link](https://www.jetbrains.com/idea/guide/tutorials/getting-started-spring-data-jpa/creating-spring-boot-project/) describing how to generate project using IntelliJ IDEA. In this topic we use `jar` packaging.
+
+If we run such an app it will start the built-in Tomcat server and we'll see some new log information related to Spring MVC in the console:
+
+![img](77-CollectionsFrameworkOverview.assets/2697249c-1575-41aa-ac92-d26f544281d4.jpeg)
+
+Let's examine some of the log entries. The first line related to Spring MVC contains the following information:
+
+```xml
+... Tomcat initialized with port(s): 8080 (http)
+```
+
+The line shows that embedded Tomcat is starting on port `8080`. This is the default port provided by auto-configuration. We will use this port in the upcoming steps and topics unless otherwise specified. It is followed by some additional initialization, and we see a line that contains the Apache Tomcat version:
+
+```xml
+... Starting Servlet engine: [Apache Tomcat/9.0.45]
+```
+
+In our case, the version is `9.0.45`. This information is useful in some cases. After this, more initialization follows, and the last line related to Spring MVC contains the following information:
+
+```xml
+... Tomcat started on port(s): 8080 (http) with context path ''
+```
+
+The line indicates that the initialization was completed successfully and the Tomcat server is running. It also shows the default **context path**.
+
+The context path is the prefix of a URL path at which we can access the application. It is also known as sub-path or sub-directory. As we can see, the default context path is empty. It means that the web app can be accessed from `http://localhost:8080/` URL. Apps are often hosted somewhere other than the default context path. For example, a context path like `blog` means that the app can be accessed via a URL like `http://localhost:8080/blog`. A context path can also be nested: `blog/v1`.
+
+You'll learn how to change the default port and context path in the upcoming sections — but first let's complete our app.
+
+##### Web page
+
+To complete the app, we'll create a simple HTML file in a folder responsible for **static content**, and then open it via a web browser. The location of the folder is `/resources/static`.
+
+Note If there is no `static` folder in the `resources` folder, we need to create it manually.
+
+This is the folder in which we can place any static content (images, stylesheets, JavaScript, and so forth) that we want to serve to the browser. Initially, it's empty. If we place an HTML file there with the name `index.html` it will be available at the root URL.
+
+Let's create an `index.html` file with the following content:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+    <h1>Welcome!</h1>
+</body>
+</html>
+```
+
+Now, if we run the application again and point our web browser to `http://localhost:8080/`, we'll see the following web page:
+
+![img](77-CollectionsFrameworkOverview.assets/1f3926b2-f864-481b-b818-84032467cb10.jpeg)
+
+Also, we can access the file by its name: `http://localhost:8080/index.html`.
+
+We can have multiple HTML files and access them by name as in the example above. Feel free to experiment with this. The page can look much more complex with CSS and JS.
+
+This approach can be used to create simple web apps that return hardcoded pages. More complex programs require us to add at least some amount of code. For example, we may need to include some data from a database in a web page. To do that, we will need to write the code that fetches the data from a database and adds it to the page.
+
+As mentioned earlier, we can change the default port and context path. Now, let's learn how to do that.
+
+##### Configuration
+
+Usually, it's a good idea to prefer auto-configuration, but there are cases when we may want to have a custom context path or port, as well as change some other properties of the app. We can do that in the `application.properties` file.
+
+This is how we can change the port:
+
+```xml
+server.port=9090
+```
+
+While writing a project, you may come across a situation when your program can't start and the log shows that the port is already in use. It means that some other program is already using the port on which you are trying to run your app. Changing the port should solve the problem.
+
+And here is how you can change the context path in Spring Boot 2.x:
+
+```xml
+server.servlet.context-path=/myapp
+```
+
+If we change the port and context path and run the application again we'll see that the log in the console includes these changes:
+
+```xml
+... Tomcat started on port(s): 9090 (http) with context path '/myapp'
+```
+
+From now on, a web app can be accessed from `http://localhost:9090/myapp` URL.
+
+##### Conclusion
+
+Here's what we've learned in this topic:
+
+- Spring MVC is a framework used to create web apps. You can add it to a project by using the starter dependency we discussed.
+- An embedded server is an embedded component of a web app required to run it. The default server for Spring MVC is Apache Tomcat.
+- That default port is `8080` and the **context path** is empty.
+- You can change the default port and context path in the `application.properties` file.
+- If we place an `index.html` file in the `/resources/static` folder, it will be available at the root URL.
+- We can place multiple HTML files in `/resources/static` folder and access them by name.
+
+In the upcoming topics, you'll learn more about Spring Web MVC, but before you continue learning new features of this framework, let's practice what we've just learned by solving some tasks!
+
+## Getting data from REST
+
+Web-based applications communicate with a server via **API** — various methods that can be processed through **HTTP** (HyperText Transfer Protocol) **requests**. A **controller** is a part of the application that handles these API methods.
+
+In this topic, we will take a look at how you can implement a basic **REST-based controller** for retrieving data through `GET` requests. The diagram below outlines the typical flow of a REST API when a `GET` request is sent to the server through Spring.
+
+![img](77-CollectionsFrameworkOverview.assets/047f0c66-9180-4816-aa14-8b84784791e5.svg)
+
+##### Rest Controller
+
+The `@RestController` annotation usually sits on top of the class. It makes a class provide exact endpoints (a requested URL) to access the REST methods. The class along with class methods can tell which requests suit your case. All appropriate requests will be sent to the specific method of this class.
+
+Suppose that we want to create an API. When a user accesses a specific URL, they receive `1`. To make it possible with Spring, we will implement two annotations. The first annotation is ==`@RestController` that is used to handle any REST requests sent by a user to the application.== To create a `@RestController`, we should create a Java class and annotate it with `@RestController`:
+
+```java
+import org.springframework.web.bind.annotation.*;
+@RestController
+public class TaskController {
+}
+```
+
+The `@RestController` annotation is a wrapper of two different annotations:
+
+1. `@Controller` contains handler methods for various requests. Since we opt for `@RestController`, the methods are related to REST requests.
+2. `@ResponseBody` contains an object of each handler method. They will be represented in JSON format. When we send a request, the response we receive is in JSON format. This will become clear when we start working with objects in our `GET` requests.
+
+We can implement methods to handle various REST requests in `@RestController`. ==To implement a `GET` request, we can use a `@GetMapping` annotation. It indicates what URL path should be associated with a `GET` request.== After that, we can implement a method that is executed when the `GET` request is received at that path. For example, we can create a `GET` request that returns `1` when *http://localhost:8080/test* is accessed:
+
+```java
+@RestController
+public class TaskController {
+    @GetMapping("/test")
+    public int returnOne() {
+        return 1;
+    }
+}
+```
+
+When you send a request to `http://localhost:8080/test`, you will receive `1` in return.
+
+<img src="77-CollectionsFrameworkOverview.assets/40fff02d-18b5-40fa-a135-ef68675dd8d8.jpeg" alt="img" style="zoom: 80%;" />
+
+
+
+In addition to Postman, it is also possible to send a `GET`request to the server through a browser. To do so, simply open the browser, and navigate to the same URL as Postman (in this example, *http://localhost:8080/test*).
+
+##### GET with Collections
+
+A list is a good way to store data. Sometimes, we want to return a full list or a specific list index when a `GET` request is received. We can adjust our `@GetMapping` annotation to do so.
+
+We need to create a simple object to store in our list. Call it `Task`. It will implement a **basic constructor** as well as **getters** and **setters** for each of the object properties:
+
+```java
+public class Task {
+    private int id;
+    private String name;
+    private String description;
+    private boolean completed;
+    public Task() {}
+    public Task(int id, String name, String description, boolean completed) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.completed = completed;
+    }
+    // getters and setters
+}
+```
+
+
+
+It is very important to implement getters and setters. If they are not implemented, Spring will not be able to display object contents correctly. Spring will try to return all data from our controller in JSON format or similar. To construct a representation of our object that can be read properly, Spring needs getters and setters to access the object properties.
+
+After that, we can implement a collection to store our tasks. We are going to use a list. When we work with Spring, we can end up facing a lot of `GET` requests at the same time. In this case, it would be a good idea to use an immutable collection to eliminate any thread-based issues. We also need to make sure that our collection can be used by our application:
+
+```java
+@RestController
+public class TaskController {
+    List<Task> taskList = List.of(
+            new Task(1, "task1", "A first test task", false),
+            new Task(2, "task2", "A second test task", true)
+    );
+}
+```
+
+In the snippet above, we have created the `Task` list and populated it with sample tasks. You can start working with the object from a database query right away. After that, we need to create a `@GetMapping` function that can be used to retrieve data from the tasks collection.
+
+```java
+@RestController
+public class TaskController {
+    List<Task> taskList = List.of(
+            new Task(1, "task1", "A first test task", false),
+            new Task(2, "task2", "A second test task", true)
+    );
+    @GetMapping("/tasks")
+    public List<Task> getTasks() {
+        return taskList;
+    }
+}
+```
+
+Now, when we make a request to *http://localhost:8080/tasks/*, we will see all tasks that have been added earlier:
+
+![img](77-CollectionsFrameworkOverview.assets/96b09086-f297-4cce-b7da-08250142cc7f.jpeg)
+
+
+
+In addition to a `List`, it is also possible to return other types of collections from a `RestController`. As in case of a list, a `Set` is converted to a JSON array. However, a `Map` is converted to a JSON key-value structure.
+
+##### @PathVariable
+
+We may want to modify the code above so that users could enter an ID to specify which task they would like to retrieve. To do this, ==we will need to add a `@PathVariable` annotation to `@GetMapping`.== The code below shows how we can add an ID to our `getTask` function:
+
+```java
+@RestController
+public class TaskController {
+    List<Task> taskList = List.of(
+        new Task(1, "task1", "A first test task", false),
+        new Task(2, "task2", "A second test task", true)
+    );
+    @GetMapping("/tasks/{id}")
+    public Task getTask(@PathVariable int id) {
+        return taskList.get(id - 1); // list indices start from 0
+    }
+}
+```
+
+We added `{id}` to the `@GetMapping` annotation to tell Spring that we expect the `id` parameter. We can place the `id` variable as `@PathVariable` in the arguments of our `getTask` method. It indicates to Spring how to map the parameter provided in `@GetMapping` to the function. After that, the function will return only one element rather than the whole collection. A request to *http://localhost:8080/tasks/1* gives us the first task in the list:
+
+![img](77-CollectionsFrameworkOverview.assets/100.jpeg)
+
+However, if we provide an invalid id, we will receive a **500 error**, similar to what is pictured below:
+
+![img](77-CollectionsFrameworkOverview.assets/100-165056902458916.jpeg)
+
+##### Customizing the status code
+
+By default, a method annotated with `@GetMapping` returns the status code `200 OK` in the response if a request has been processed successfully and the status code `500` if there is an uncaught exception. However, ==we can change this default status code by returning an object of the `ResponseEntity<T>` class as the result.==
+
+There is an example below when we return `202 ACCEPTED` instead of `200 OK`.
+
+```java
+@GetMapping("/tasks/{id}")
+public ResponseEntity<Task> getTasks(@PathVariable int id) {
+    return new ResponseEntity<>(taskList.get(id - 1), HttpStatus.ACCEPTED);
+}
+```
+
+Actually, the status code `202 ACCEPTED` is not the best example for this case, but it clearly demonstrates the possibility to change the status code.
+
+##### Conclusion
+
+A controller is the first component that meets and greets a web request. In this topic, we have covered how to define a `GET` method in a `@RestController` annotated class to receive data from a web application. This request type is common in APIs and is often required to return sets or single elements.
+
+On the one hand, web-app developers need to keep the handlers short and clear as it helps to find the right handler and create a correct request quickly. On the other hand, web apps are clients for other web apps. It means that they can call controllers of other applications. That's why you also need to know foreign handlers to figure out what requests they can handle.
+
+## Posting and deleting data via REST
+
+When users receive data from web applications, they may want to **add** new or **delete** the existing data. With `POST` requests users can add new information by sending **values** they want to upload. A `DELETE` request allows users to remove the existing data from an application. When users send `POST` or `DELETE` requests, they are processed by the `@RestController`. The controller takes the appropriate actions depending on the method. In this topic, we will learn how to implement `POST` and `DELETE` methods via **Spring**.
+
+We will use the [REST Resource Naming Guide](https://restfulapi.net/resource-naming/) throughout this topic; it governs standard naming conventions. Use this site if you want to learn more about API namings.
+
+##### @PostMapping
+
+Suppose you want to create an application where users can add names and addresses of the people they know. To add a person to the address book, a user needs to send the data to the server, while the server needs to store it somewhere. To make it possible, implement `@PostMapping` in the `@RestController`.
+
+We advise you to use a **thread-safe object** to work with data in `@RestController`. The controller can get multiple requests at the same time, and the requests are processed by different threads. If the object is not thread-safe, multiple requests can lead to data loss and other unexpected errors when data is processed with `POST` or `DELETE` requests
+
+In our example, we want to store mappings from people to addresses, so use a `Map` object in Java. We can use `ConcurrentHashMap` to implement a thread-safe `Map` in our application:
+
+```java
+@RestController
+public class AddressController {
+    private ConcurrentMap<String, String> addressBook = new ConcurrentHashMap<>();
+}
+```
+
+With `ConcurrentHashMap` we can set up a `@PostMapping` that takes a person's name and address and adds them to the `Map`. Since the user wants to send data with a `POST` request, we need to use a `@RequestParam` to send the data with a `POST` request.
+
+`@RequestParam` is a **variable** provided by a user in the **query parameters**. It is used during handling of `POST` requests. `@RequestParam` can be provided in two ways:
+
+1. In the query parameters section of a REST request. In Postman, it can be found in the **Params** section, labeled as **Query Params**;
+2. In the URL path, in the following format: `localhost:<port>/<ApiPath>?<Param>=<value>&<Param>=<value>`.
+
+In the examples below, the Spring port is set to 8080, so all `POST` and `DELETE` requests are made at `localhost:8080`.
+
+When we provide a parameter through the query parameters, we need to set a name and a value. The name of the parameter should match the name of the `@RequestParam`, and the value should be the same type as the `@RequestParam` variable. The following code is an example of how `@RequestParam` can be used with `@PostMapping` to add the data to the address book:
+
+```java
+@RestController
+public class AddressController {
+    private ConcurrentMap<String, String> addressBook = new ConcurrentHashMap<>();
+    
+    @PostMapping("/addresses")
+    public void postAddress(@RequestParam String name, @RequestParam String address) {
+        addressBook.put(name, address);
+    }       
+}
+```
+
+In this `@PostMapping`, we expect two `@RequestParam` with a request. The first is the name of the `String` type. The second is the address, also of the `String` type. When users send a `POST` request to the `/addresses` path, they provide two parameters in the request body. When the request is sent, the name and address are added to `ConcurrentHashMap`.
+
+![img](77-CollectionsFrameworkOverview.assets/9d072ad5-e5c7-465f-aa10-3cac2fe1fc4c.jpeg)
+
+To test whether the `POST` was a success, you can implement a `GET` request that returns a requested address based on the provided name:
+
+```java
+@RestController
+public class AddressController {
+    private ConcurrentMap<String, String> addressBook = new ConcurrentHashMap<>();
+    
+    @PostMapping("/addresses")
+    public void postAddress(@RequestParam String name, @RequestParam String address) {
+        addressBook.put(name, address);
+    }       
+    
+    @GetMapping("/addresses/{name}")
+    public String getAddress(@PathVariable String name) {
+        return addressBook.get(name);
+    }
+}
+```
+
+In the previous `POST` request, we have added `Bob` that is mapped to `123 Younge Street`. Now, if we send a request to `/addresses/Bob`, we expect to get `123 Younge Street` as shown below:
+
+![img](77-CollectionsFrameworkOverview.assets/5bcd91d4-8091-456f-9bbb-86eed08bae22.jpeg)
+
+But what happens when a parameter is either missing or invalid? A user will receive `400 Bad Request` as shown below:
+
+![img](77-CollectionsFrameworkOverview.assets/648621f4-47eb-4c19-86fe-f35a2a34d643.jpeg)
+
+If this error occurs, reexamine the parameters to make sure that they are correct.
+
+##### @DeleteMapping
+
+Apart from adding new data, sometimes users need to delete some data too. In our address book, we may want to delete a name if it is no longer required. In this situation, we can use `@DeleteMapping` to send a request to delete some portion of our data.
+
+Using `@RequestParam` we can pass a parameter to the `@DeleteMapping` handler. The parameter that needs to be passed in our example is the name of the person we want to delete. Once the name has been provided, we can remove the value from the `Map` and return a message to indicate that it has been successfully deleted:
+
+```java
+@RestController
+public class AddressController {
+    private ConcurrentMap<String, String> addressBook = new ConcurrentHashMap<>();
+
+    @DeleteMapping("/addresses")
+    public String removeAddress(@RequestParam String name) {
+        addressBook.remove(name);
+        return name + " removed from address book!";
+    }
+}
+```
+
+To verify that the mapping has been removed, we can send a `GET` to return the contents of the `addressBook` variable. Take a look at the snippet below. It shows the whole controller:
+
+```java
+@RestController
+public class AddressController {
+    private ConcurrentMap<String, String> addressBook = new ConcurrentHashMap<>();
+    
+    @PostMapping("/addresses")
+    public void postAddress(@RequestParam String name, @RequestParam String address) {
+        addressBook.put(name, address);
+    }       
+    
+    @GetMapping("/addresses")
+    public ConcurrentMap<String, String> getAddressBook() {
+        return addressBook;
+    }
+    
+    @DeleteMapping("/addresses")
+    public String removeAddress(@RequestParam String name) {
+        addressBook.remove(name);
+        return name + " removed from address book!";
+    }
+}
+```
+
+Once `@DeleteMapping` has been established, we only need to send a `DELETE` request to the `/addresses` URL with the address we want to delete in the query parameters. To test this, let's first populate our `Map` with data. To do this, we can send a few `POST` requests to the web application. Consider the following two `POST` requests:
+
+- `localhost:8080/addresses?name=Bob&address=123 Younge Street`
+- `localhost:8080/addresses?name=Alice&address=200 Rideau Street`
+
+This will add two entries to the `Map`, the first is `Bob` living on `123 Younge Street`. The second is `Alice` living on `200 Rideau Street`. We can verify whether the entries were added with a `GET` request to `/addresses`.
+
+Now, suppose that we want to delete the entry associated with `Bob`. We need to send a `DELETE` request to the `/addresses` mapping, passing the name parameter with the `Bob` value.
+
+![img](77-CollectionsFrameworkOverview.assets/49688955-e89d-4984-8ac6-9ffd4ea405f2.jpeg)
+
+Once the data has been removed, we can verify that the request has been completed successfully by sending another `GET` request for the whole `Map`. As a result, the value for Bob is removed from the `Map`:
+
+![img](77-CollectionsFrameworkOverview.assets/78e1762b-3a5d-4bee-8d15-16646ef75f84.jpeg)
+
+##### Conclusion
+
+In this topic, we have discussed how we can add and remove data with `POST` and `DELETE` requests. With `@RequestParam` annotation, it is possible to send data through the query parameters, rather than through the path as with `@PathVariable`. When we work with the stored data in a `@RestController`, it is important to remember that the application can process multiple requests at once. So, it is essential to implement thread-safe objects. They ensure that no thread-related data errors occur. When you work with `@RequestParam`, remember that the `400 Bad Request` error will occur if parameters are missing or incorrect. Review the parameters if you happen to see this error. Make sure that none of them are incorrect or missing. This will help you with building complex but steady REST APIs that can handle user input.

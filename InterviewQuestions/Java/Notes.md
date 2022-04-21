@@ -1151,3 +1151,259 @@ dependencies
 | Owns system resources        | Yes     |        |
 | Borrows shared resources     |         | Yes    |
 | Run a unit of work           |         | Yes    |
+
+## Thread management
+
+##### Ordering the execution of threads
+
+Implement a method that takes three objects (instances of `Thread` or its subclasses). The method must start passed objects as threads in a way that the order of their execution goes like this: **t3, t2, t1**. These threads print secret phrases to the standard output, their output must always be the same.
+
+All given threads must be terminated before the implemented method is completed.
+
+Otherwise, the testing system will give you some hints on throwing exceptions in the main thread, for example:
+
+```java
+Exception in thread "main" java.lang.RuntimeException: All threads must be terminated before ending the implemented method
+```
+
+ class Invoker {
+
+  public static void invokeMethods(Thread t1, Thread t2, Thread t3) throws InterruptedException {
+
+​    t3.start();
+
+​    t3.join();
+
+​    t2.start();
+
+​    t2.join();
+
+​    t1.start();
+
+​    t1.join();
+
+  }
+
+}
+
+## Exceptions in threads
+
+##### MyThread class
+
+There's a class **MyThread** that extends **Thread**.
+
+We create and start an instance of the class in the current thread:
+
+```java
+Thread thread = new MyThread();
+thread.start();
+
+// here is a lot of code with exceptions
+
+thread.join();
+```
+
+==If an uncaught exception occurs in **thread**, the current thread will be stopped==
+
+If an uncaught exception occurs in **thread**, the current thread won't be stopped
+
+==If an uncaught exception occurs in the current thread, **thread** will be stopped==
+
+If an uncaught exception occurs in the current thread, **thread** won't be stopped
+
+## Shared data
+
+##### Select all atomic
+
+Select all atomic operations.
+==The volatile keyword allows us to make visible changes of a field made by one thread to other threads. This keyword also makes writing to double and long fields atomic. But the keyword doesn't make the increment/decrement and similar operations atomic.==
+
+==value = 5; // where value is int field==
+
+value++; // where value is volatile int field
+
+==value = 500L; // where value is volatile long field==
+
+value = 5L; // where value is long field
+
+value = 5.0d; // where value is double field
+
+## Thread synchronization
+
+##### Multithreaded counter
+
+Here's a class named `Counter`. The class has a single field `count`. An instance of the class is accessed by different threads concurrently. Each thread invokes the method `inc` to increment the field many times.
+
+After the completion of all threads, this field has an incorrect value.
+
+Fix the code, so that it can work correctly with multiple threads. Do not make the class public.
+
+**Example:**
+
+Let's assume we have one instance of `Counter` and two threads. Each thread invokes the method `inc` 5000000 times. If everything works correctly after the completion of both threads `count` must be 10000000.
+
+class Counter {
+  int count = 0;
+  public ==synchronized== void inc() {
+    count++;
+  }
+}
+
+## Collections and thread-safety
+
+##### ConcurrentModificationException cases
+
+What collections may produce `ConcurrentModificationException`?
+==You can seek for the line "throw new ConcurrentModificationException()" in: - non-thread-safe collection ArrayList, - in totally synchronized Vector, - and even in thread-safe CopyOnWriteArrayList and you'll find it in all three cases.==
+
+totally synchronized
+
+none
+
+non thread-safe
+
+==both==
+
+##### Hashing example
+
+Which of the following functions can be considered a hash function?
+
+A function that receives a text and removes all spaces from it
+
+==A function that receives an address and returns its post code==
+
+==A function that receives a number and returns its first digit==
+
+## Hash function
+
+##### Hashing an array
+
+Consider the following hash function for an array of integers:
+
+- if the array has at least 5 elements, pick 5 of them at random and return their sum as their hash value
+- if there are fewer than 5, return the sum of all elements.
+
+Select all the reasons why this is not a good hash function:
+
+It is too slow
+
+==The same array can have different hash values==
+
+==Does not take all the values in the array into consideration==
+
+==For arrays of up to 5 values, the hash value is the same no matter the order of the values==
+
+## Hash table
+
+##### Let it resize!
+
+You have a hash table with 10 buckets, 6 elements, and a max load factor 0.75. What is the minimum number of elements you have to insert to make the hash table resize?
+i.e ==What is the minimum number of elements you have to ADD to existing 6 elements to make the hash table resize==
+
+==2==
+
+## The Map interface
+
+##### Creating a map
+
+ Create `TreeMap` named `map` and fill it with the following three key-value pairs:
+
+```java
+Omega - 24
+Alpha - 1
+Gamma - 3
+```
+
+where strings are keys and numbers are values.
+
+The code for displaying the map is already written.
+
+ Report a typo
+
+**Sample Input 1:**
+
+```
+
+```
+
+**Sample Output 1:**
+
+```
+{Alpha=1, Gamma=3, Omega=24}
+```
+
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) {   
+
+​    SortedMap<String, Integer> map=new TreeMap<>();
+
+​    map.put("Omega", 24);
+
+​    map.put("Alpha", 1);
+
+​    map.put("Gamma", 3);
+
+​    System.out.println(map);
+
+  }
+
+}
+
+## YAML
+
+##### Map mistake
+
+This is a YAML map with personal information but it has two syntax mistakes. What are these mistakes?
+
+```yaml
+personal_information: name = Anna, age = 23, occupation = programmer
+```
+
+there should be semicolons instead of commas
+
+==key-value pairs should be each on its line==
+
+there are no opening and closing tags
+
+==The key and value in each pair should be separated by colons==
+
+## Basic project structure
+
+##### Google annotations
+
+In this challenge, you will apply your skill to google information about the Spring Framework.
+
+There is an annotation called `@SpringBootApplication`. Select a combination of annotations which can replace it to provide the same abilities to your application.
+
+It is not required to understand these annotations clearly to complete this challenge.
+
+==@EnableAutoConfiguration==
+
+@Autowired
+
+==@ComponentScan==
+
+==@Configuration==
+
+@Controller
+
+## Introduction to Spring Web MVC
+
+##### Access URL
+
+The server is running on port `9090`.
+
+Select all the correct ways to access an `index.html` file.
+
+==http://localhost:9090==
+
+http://localhost:8080
+
+==http://localhost:9090/==
+
+http://localhost:8080/index.html
+
+==http://localhost:9090/index.html==
