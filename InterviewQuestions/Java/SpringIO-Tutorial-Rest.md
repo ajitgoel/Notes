@@ -476,7 +476,7 @@ So far, you have a web-based service that handles the core operations involving 
 - Merely using `GET`, `POST`, etc. isn’t REST.
 - Having all the CRUD operations laid out isn’t REST.
 
-In fact, what we have built so far is better described as **RPC** (**Remote Procedure Call**). That’s because there is no way to know how to interact with this service. If you published this today, you’d also have to write a document or host a developer’s portal somewhere with all the details.
+In fact, ==what we have built so far is better described as **RPC** (**Remote Procedure Call**). That’s because there is no way to know how to interact with this service==. If you published this today, you’d also have to write a document or host a developer’s portal somewhere with all the details.
 
 This statement of Roy Fielding’s may further lend a clue to the difference between **REST** and **RPC**:
 
@@ -662,19 +662,14 @@ evolution/src/main/java/payroll/EmployeeModelAssembler.java
 
 ```
 package payroll;
-
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
-
 @Component
 class EmployeeModelAssembler implements RepresentationModelAssembler<Employee, EntityModel<Employee>> {
-
   @Override
   public EntityModel<Employee> toModel(Employee employee) {
-
     return EntityModel.of(employee, //
         linkTo(methodOn(EmployeeController.class).one(employee.getId())).withSelfRel(),
         linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
@@ -714,10 +709,8 @@ Getting single item resource using the assembler
 ```
 @GetMapping("/employees/{id}")
 EntityModel<Employee> one(@PathVariable Long id) {
-
   Employee employee = repository.findById(id) //
       .orElseThrow(() -> new EmployeeNotFoundException(id));
-
   return assembler.toModel(employee);
 }COPY
 ```
@@ -731,11 +724,9 @@ Getting aggregate root resource using the assembler
 ```
 @GetMapping("/employees")
 CollectionModel<EntityModel<Employee>> all() {
-
   List<EntityModel<Employee>> employees = repository.findAll().stream() //
       .map(assembler::toModel) //
       .collect(Collectors.toList());
-
   return CollectionModel.of(employees, linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
 }COPY
 ```
@@ -812,25 +803,18 @@ Employee record that handles both "old" and "new" clients
 
 ```
 package payroll;
-
 import java.util.Objects;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 @Entity
 class Employee {
-
   private @Id @GeneratedValue Long id;
   private String firstName;
   private String lastName;
   private String role;
-
   Employee() {}
-
   Employee(String firstName, String lastName, String role) {
-
     this.firstName = firstName;
     this.lastName = lastName;
     this.role = role;
@@ -924,9 +908,7 @@ POST that handles "old" and "new" client requests
 ```
 @PostMapping("/employees")
 ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) {
-
   EntityModel<Employee> entityModel = assembler.toModel(repository.save(newEmployee));
-
   return ResponseEntity //
       .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
       .body(entityModel);
@@ -934,7 +916,7 @@ ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) {
 ```
 
 - The new `Employee` object is saved as before. But the resulting object is wrapped using the `EmployeeModelAssembler`.
-- Spring MVC’s `ResponseEntity` is used to create an **HTTP 201 Created** status message. This type of response typically includes a **Location** response header, and we use the URI derived from the model’s self-related link.
+- ==Spring MVC’s `ResponseEntity` is used to create an **HTTP 201 Created** status message.== This type of response typically includes a **Location** response header, and we use the URI derived from the model’s self-related link.
 - Additionally, return the model-based version of the saved object.
 
 With these tweaks in place, you can use the same endpoint to create a new employee resource, and use the legacy `name` field:
@@ -984,7 +966,6 @@ Handling a PUT for different clients
 ```
 @PutMapping("/employees/{id}")
 ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
-
   Employee updatedEmployee = repository.findById(id) //
       .map(employee -> {
         employee.setName(newEmployee.getName());
@@ -995,9 +976,7 @@ ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariab
         newEmployee.setId(id);
         return repository.save(newEmployee);
       });
-
   EntityModel<Employee> entityModel = assembler.toModel(updatedEmployee);
-
   return ResponseEntity //
       .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
       .body(entityModel);
@@ -1086,7 +1065,7 @@ So far, you’ve built an evolvable API with bare bones links. To grow your API 
 
 What does that mean? In this section, you’ll explore it in detail.
 
-Business logic inevitably builds up rules that involve processes. The risk of such systems is we often carry such server-side logic into clients and build up strong coupling. REST is about breaking down such connections and minimizing such coupling.
+==Business logic inevitably builds up rules that involve processes. The risk of such systems is we often carry such server-side logic into clients and build up strong coupling. REST is about breaking down such connections and minimizing such coupling.==
 
 To show how to cope with state changes without triggering breaking changes in clients, imagine adding a system that fulfills orders.
 
