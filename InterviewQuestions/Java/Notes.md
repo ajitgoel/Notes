@@ -1407,3 +1407,113 @@ http://localhost:8080
 http://localhost:8080/index.html
 
 ==http://localhost:9090/index.html==
+
+## Posting and deleting data via REST
+
+##### Complete the handler description
+
+ Choose the missing parts of the method described below:
+
+```java
+@PostMapping("/products/{id}")
+public void addProduct({1} int id, {2} String description) {
+    productMap.add(id, description);
+}
+```
+
+==1 - @PathVariable; 2 - @RequestParam==
+
+1 - @RequestParam; 2 - @PathVariable
+
+1 - @RequestParam; 2 - @RequestParam
+
+1 - @PathVariable; 2 - @PathVariable
+
+## Handling requests with bodies
+
+##### Find the correct mapping class
+
+Here is the JSON :
+
+```json
+{
+  "id" : "1112hjkh3481soa7",
+  "destination" : "London",
+  "seat" : 143,
+  "withLunch" : true
+}
+```
+
+Choose the correct mapping class of the following:
+
+1
+
+```java
+public class TicketInfo {
+
+    public String id;
+    public String destination;
+    public int seat;
+    public boolean withLunch;
+
+    TicketInfo() {}
+
+    //setters and getters
+}
+```
+
+2
+
+```java
+public class TicketInfo {
+
+    public String id;
+    public String destination;
+    public int seat;
+    public boolean lunchEnabled;
+
+    TicketInfo() {}
+
+    //setters
+}
+```
+
+3
+
+```java
+public class TicketInfo {
+
+    public String id;
+    public String destination;
+    public int seat;
+    public boolean withLunch;
+
+    TicketInfo() {}
+
+    //getters
+}
+```
+
+4
+
+```java
+public class TicketInfo {
+
+    public String id;
+    public String destination;
+    public int seat;
+    public boolean withLunch;
+
+    TicketInfo() {}
+
+    public String getId() 
+}
+```
+
+==1==
+
+2
+
+3
+
+4
