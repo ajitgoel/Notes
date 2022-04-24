@@ -44,11 +44,9 @@ Let's create `languages` collection and add three elements to it:
 
 ```java
 Collection<String> languages = new ArrayList<>();
-
 languages.add("English");
 languages.add("Deutsch");
 languages.add("Français");
-
 System.out.println(languages.size()); // 3
 ```
 

@@ -1517,3 +1517,45 @@ public class TicketInfo {
 3
 
 4
+
+## Hiding and overriding
+
+##### What does the method print
+
+ Here is a hierarchy of four classes: `A`, `B`, `C` and `D`.
+
+```java
+class A {
+
+    public void method() {
+        System.out.println("A");
+    }
+}
+
+class B extends A {
+
+    public void method() {
+        System.out.println("B");
+    }
+}
+
+class C extends B {
+
+}
+
+class D extends C {
+
+    public void method() {
+        super.method();
+    }
+}
+```
+
+What does this method print? Enter the resulting character.
+
+```java
+A a = new D();
+a.method();
+```
+
+==B==
