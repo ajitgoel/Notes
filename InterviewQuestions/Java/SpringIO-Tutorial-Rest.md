@@ -1519,7 +1519,7 @@ $ curl -v -X PUT localhost:8080/orders/4/complete
 
 With all this in place, your order fulfillment service is capable of conditionally showing what operations are available. It also guards against invalid operations.
 
-By leveraging the protocol of hypermedia and links, clients can be built sturdier and less likely to break simply because of a change in the data. And Spring HATEOAS eases building the hypermedia you need to serve to your clients.
+==By leveraging the protocol of hypermedia and links, clients can be built sturdier and less likely to break simply because of a change in the data. And Spring HATEOAS eases building the hypermedia you need to serve to your clients.==
 
 ## Summary
 
@@ -1527,10 +1527,10 @@ Throughout this tutorial, you have engaged in various tactics to build REST APIs
 
 Instead, the following tactics help make your services less likely to break existing clients you may or may not control:
 
-- Don’t remove old fields. Instead, support them.
-- Use rel-based links so clients don’t have to hard code URIs.
-- Retain old links as long as possible. Even if you have to change the URI, keep the rels so older clients have a path onto the newer features.
-- Use links, not payload data, to instruct clients when various state-driving operations are available.
+- ==Don’t remove old fields. Instead, support them.==
+- ==Use rel-based links so clients don’t have to hard code URIs.==
+- ==Retain old links as long as possible. Even if you have to change the URI, keep the rels so older clients have a path onto the newer features.==
+- ==Use links, not payload data, to instruct clients when various state-driving operations are available.==
 
 It may appear to be a bit of effort to build up `RepresentationModelAssembler` implementations for each resource type and to use these components in all of your controllers. But this extra bit of server-side setup (made easy thanks to Spring HATEOAS) can ensure the clients you control (and more importantly, those you don’t) can upgrade with ease as you evolve your API.
 
