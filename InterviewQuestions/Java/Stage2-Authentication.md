@@ -1,4 +1,4 @@
-**Topics you need to learn in order to complete the current stage:**
+*Topics you need to learn in order to complete the current stage:**
 
 [Static members](https://hyperskill.org/projects/232/stages/1162/preview#)
 
@@ -32,8 +32,6 @@
 
 Use the material from these topics and the skills you’ve learned to successfully complete this stage of the project.
 
-
-
 **You will be working on the following in this project stage**
 
 Implement user registration and authentication procedures using Spring Security.
@@ -50,11 +48,7 @@ Enterprise applications like anti-fraud systems are used by different types of u
 
 In this stage, you need to provide the HTTP Basic authentication for our `REST` service with the `JDBC` implementations of `UserDetailService` for user management. You will require an endpoint for registering users at `POST /api/auth/user`.
 
-
-
 To run the tests, the `application.properties` file should contain the following line: `spring.datasource.url=jdbc:h2:file:../service_db`.
-
-
 
 You will also need some security dependencies in Gradle:
 
@@ -90,7 +84,6 @@ Make sure that the [CSRF](https://owasp.org/www-community/attacks/csrf) is disab
 
 ```java
     public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
-
         @Override
         public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
@@ -258,9 +251,7 @@ Let's look at an example. Here is a class with two public static variables:
 
 ```java
 class SomeClass {
-
     public static String staticStringField;
-
     public static int staticIntField;
 } 
 ```
@@ -275,11 +266,7 @@ System.out.println(SomeClass.staticIntField); // It prints "10"
 System.out.println(SomeClass.staticStringField); // It prints "it's a static member"
 ```
 
-
-
 Generally, it's not a good idea to declare **non-final** **public static fields**, here we just used them as an example.
-
-
 
 We can also access the value of a static field through an instance of the class.
 
@@ -295,9 +282,7 @@ Let's see a more complex example. Here is a class with a static field named `las
 
 ```java
 public class SomeClass {
-
     public static Date lastCreated;
-
     public SomeClass() {
         lastCreated = new Date();
     }
@@ -334,7 +319,6 @@ The standard class `Math` , for example, contains two static constants:
 
 ```java
 public static final double E = 2.7182818284590452354;
-
 public static final double PI = 3.14159265358979323846;
 ```
 
@@ -457,22 +441,17 @@ Instance methods can be overridden if they are inherited by the subclass. The ov
 
 ```java
 class Mammal {
-
     public String sayHello() {
         return "ohlllalalalalalaoaoaoa";
     }
 }
-
 class Cat extends Mammal {
-
     @Override
     public String sayHello() {
         return "meow";
     }
 }
-
 class Human extends Mammal {
-
     @Override
     public String sayHello() {
         return "hello";
@@ -487,21 +466,15 @@ Let's create instances and invoke the method.
 ```java
 Mammal mammal = new Mammal();
 System.out.println(mammal.sayHello()); // it prints "ohlllalalalalalaoaoaoa"
-
 Cat cat = new Cat();
 System.out.println(cat.sayHello()); // it prints "meow"
-
 Human human = new Human();
 System.out.println(human.sayHello()); // it prints "hello"
 ```
 
 As you can see, each subclass has its own implementation of the method `sayHello`.
 
-
-
 You can invoke the base class method in the overridden method using the keyword `super`.
-
-
 
 ##### Rules for overriding methods
 
@@ -539,19 +512,15 @@ The following example demonstrates it.
 
 ```java
 class SuperClass {
-
     public void invokeInstanceMethod() {
         System.out.println("SuperClass: invokeInstanceMethod");
     }
 }
-
 class SubClass extends SuperClass {
-
     @Override
     public void invokeInstanceMethod() {
         System.out.println("SubClass: invokeInstanceMethod is overridden");
-    }
-    
+    }    
     // @Override -- method doesn't override anything
     public void invokeInstanceMethod(String s) {
         System.out.println("SubClass: overloaded invokeInstanceMethod");
@@ -563,7 +532,6 @@ The following code creates an instance and calls both methods:
 
 ```java
 SubClass clazz = new SubClass();
-
 clazz.invokeInstanceMethod();    // SubClass: invokeInstanceMethod() is overridden
 clazz.invokeInstanceMethod("s"); // SubClass: overloaded invokeInstanceMethod(String)
 ```
@@ -577,16 +545,6 @@ Static methods cannot be overridden. If a subclass has a static method with the 
 You will get a compile-time error if a subclass has a static method with the same signature as an instance method in the superclass or vice versa. But if the methods have the same name but different parameters there should be no problems.
 
 ## Polymorphism
-
-[Theory](https://hyperskill.org/learn/step/3587)Practice
-
-13% completed, 0 problems solved
-
-##### Theory
-
- 34 minutes reading
-
-Verify to skipStart practicing
 
 ##### Kinds of polymorphism
 
@@ -616,20 +574,17 @@ Run-time polymorphism works when an overridden method is called through the refe
 **Example.** Here, you can see a class hierarchy. The superclass `MythicalAnimal` has two subclasses: `Chimera` and `Dragon`. The base class has a method `hello`. Both subclasses override this method.
 
 ```java
-class MythicalAnimal {    
-
+class MythicalAnimal {  
     public void hello() {
         System.out.println("Hello, I'm an unknown animal");
     }
 }
-
 class Chimera extends MythicalAnimal {
     @Override
     public void hello() {
         System.out.println("Hello! Hello!");
     }
 }
-
 class Dragon extends MythicalAnimal {
     @Override
     public void hello() {
@@ -666,33 +621,23 @@ In the following example, we have a hierarchy of files. The parent class `File` 
 
 ```java
 class File {
-
     protected String fullName;
-
     // constructor with a single parameter
-
     // getters and setters
-
     public void printFileInfo() {
         String info = this.getFileInfo(); // here is polymorphic behavior!!!
         System.out.println(info);
     }
-
     protected String getFileInfo() {
         return "File: " + fullName;
     }
 }
-
 class ImageFile extends File {
-
     protected int width;
     protected int height;
     protected byte[] content;
-
     // constructor
-
     // getters and setters
-
     @Override
     protected String getFileInfo() {
         return String.format("Image: %s, width: %d, height: %d", fullName, width, height); 
@@ -881,7 +826,7 @@ A **database** is a collection of data that is specifically organized for rapid 
 
 The difference between a database and a usual file is that a file may be structured or not, but a database must have a specific structure. For example, you can create a file with a to-do list:
 
-![img](Stage2-Authentication.assets/d0a83903-5f02-4aff-8758-e57938a01901.svg)
+<img src="Stage2-Authentication.assets/d0a83903-5f02-4aff-8758-e57938a01901.svg" alt="img" style="zoom:50%;" />
 
 Obviously, we'd say that this file has some kind of a structure, but from a computer's perspective, it's still a plain file, until you write a program that manages data in it. Usually, the information in databases is compressed and stored as binaries rather than plain text, so it's clear that this kind of structure is meant for computers, not humans.
 
@@ -1076,11 +1021,7 @@ The following XML document presents an art gallery:
 
 As you can see, in some cases, attributes can replace child elements. There is no consensus about what's better to use. It usually depends on the data you are trying to model, your tools for XML processing and, of course, the people you work with.
 
-
-
 Note that an element can have both attributes and child elements together.
-
-
 
 ##### Pros and cons of XML
 
@@ -1217,7 +1158,6 @@ Explore the model class for this table:
 ```java
 @Entity(name = "user")
 public class User {
-
     @Id
     @Column
     private long userId;
@@ -1352,8 +1292,6 @@ In this topic we will take a closer look at what web security is, why we should 
 
 **Web security** is a set of measures and protocols aimed at protecting data from viruses, spam, and other threats that can harm a website, application, and/or specific user's data. It encompasses Internet, browser security, website security, and network security as it applies to other applications or operating systems as a whole.
 
-![img](Stage2-Authentication.assets/eaa82621-9102-4a9f-b390-bac4a1189bce.svg.)
-
 The main idea of web security is that the Internet is an inherently insecure channel for information exchange. This idea is reflected in two key concepts:
 
 - No one is ever 100% safe. Any site or account may be hacked. There is no notion of being 100% protected from this.
@@ -1387,11 +1325,6 @@ Despite all of the above, it is not always possible to foresee all the weak poin
 ##### Bug Bounty
 
 A **Bug Bounty** program is a deal offered by many websites, organizations, and software developers. Through it, people can be recognized and rewarded for finding bugs, especially those related to vulnerabilities. With these programs developers can detect and fix bugs before the general public knows about them, preventing hacking. In particular, Bug Bounty programs have been implemented by Facebook, Yahoo!, Google, Apple, Microsoft, etc.
-
-![img](Stage2-Authentication.assets/c40d89b4-abc1-40eb-ba75-7ee62b80e9d3.svg.)
-
-
-
 In general, they work like this: the company establishes the rules indicating what exactly one can try to break and get a reward for. These can be new features in the application, functional updates, integration with other services. As soon as changes take place, there is a chance of error. Then users begin to investigate these updates.
 
 This approach gives the company the ability to constantly test its product and always know where a problem might arise. People find bugs, and then developers fix them.
@@ -1465,7 +1398,7 @@ To sum up,
 
 ## Getting started with Spring Security
 
-Access to some web pages, files, or other classified resources of a web application is often restricted to authorized users only. **Spring Security** is a module of the Spring framework that deals with authentication and authorization (or access control). It stands between the client and the application, intercepts all requests, and allows for configuring what functionalities and data are available to which users. It also helps to secure your app against common security vulnerabilities and attacks.
+Access to some web pages, files, or other classified resources of a web application is often restricted to authorized users only. ==**Spring Security** is a module of the Spring framework that deals with authentication and authorization (or access control).== It stands between the client and the application, intercepts all requests, and allows for configuring what functionalities and data are available to which users. It also helps to secure your app against common security vulnerabilities and attacks.
 
 Some of the features of this framework:
 
@@ -1564,13 +1497,13 @@ Now, let's solve some tasks!
 
 ## Authentication
 
-**Authentication** is how we verify the identity of whoever is trying to access our application. A common way to authenticate users is by requiring them to enter login and password. If a user enters the correct data, the system assumes the identity is valid and grants access.
+==**Authentication** is how we verify the identity of whoever is trying to access our application.== A common way to authenticate users is by requiring them to enter login and password. If a user enters the correct data, the system assumes the identity is valid and grants access.
 
 As you probably know, when we add Spring Security starter dependency, Spring Security puts our app behind the authentication process and generates a default user. In most cases, one user is not enough and what we typically need is a lot of users. In this topic, you'll learn how authentication can be configured in Spring Security and we'll create a couple of hardcoded in-memory users. We will start step by step and then see the full example.
 
 ##### AuthenticationManagerBuilder
 
-To configure what authentication should do in Spring Security, we can use a special builder — `AuthenticationManagerBuilder`. With the help of this builder and method chaining we can create hardcoded in-memory users, connect our database with user info, and set other configurations. There are two steps:
+==To configure what authentication should do in Spring Security, we can use a special builder — `AuthenticationManagerBuilder`. With the help of this builder and method chaining we can create hardcoded in-memory users, connect our database with user info, and set other configurations.== There are two steps:
 
 1. Obtain `AuthenticationManagerBuilder`
 2. Set the configuration using this builder
@@ -1595,11 +1528,7 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 As you can see, the method receives `AuthenticationManagerBuilder`.
 
-
-
 The adapter we mentioned allows overriding three methods with the same name — `configure`. The two remaining methods have another purpose and don't receive `AuthenticationManagerBuilder`. When overriding a method pay attention to what it receives.
-
-
 
 To create hardcoded users we will use one of the methods of the builder — `inMemoryAuthentication()` , and then, using method chaining, we'll specify the login and password pair for one or more users. Here's an example with one user:
 
@@ -1615,11 +1544,7 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 Note that apart from specifying the login and password we have one additional method call – `roles()`. This method is used to specify zero or more user roles. In our case, we aren't using any roles. You'll learn about user roles in the upcoming topics.
 
-
-
 This approach is useful for testing and providing examples. Usually, user info will be stored in a database. We will show how to store users in a database in a separate topic.
-
-
 
 If we want more users we can separate them with `and()` method call. Here's an example for 2 users:
 
@@ -1694,8 +1619,6 @@ NoOpPasswordEncoder.getInstance();
 
 Also, as already mentioned, `NoOpPasswordEncoder` returns the same password so there is no need to encode the password, so this part can be skipped.
 
-
-
 Now let's see the full code example and discuss what happens during authentication.
 
 ##### Putting pieces together
@@ -1709,15 +1632,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 // Extending the adapter and adding the annotation
 @EnableWebSecurity
 public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
-
     // Acquiring the builder
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         // storing users in memory
         auth.inMemoryAuthentication()
                 .withUser("user1")
@@ -1730,7 +1650,6 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
                 .and()
                 .passwordEncoder(getEncoder()); // specifying what encoder we used
     }
-
     // creating a PasswordEncoder that is needed in two places
     @Bean
     public PasswordEncoder getEncoder() {
@@ -1739,11 +1658,7 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
 }
 ```
 
-
-
 Note that since we override the default configuration, the default user won't be created.
-
-
 
 If we create and run a program with this implementation included, we'll be able to access it using one of the valid login/password pairs, and form-based or HTTP basic auth, that, as you already know, are enabled by default.
 
@@ -1753,7 +1668,7 @@ The default config related to form-based and HTTP basic auth can be configured t
 
 ##### HttpSecurity
 
-To specify which authentication methods are allowed (form-based, HTTP basic) and how they are configured, we can override another `configure` method of `WebSecurityConfigurerAdapter` that receives the `HttpSecurity` object.
+==To specify which authentication methods are allowed (form-based, HTTP basic) and how they are configured, we can override another `configure` method of `WebSecurityConfigurerAdapter` that receives the `HttpSecurity` object.==
 
 The example below shows the configuration equal to the default one.
 
@@ -1776,11 +1691,7 @@ This configuration is why your application is on lockdown, as soon as you add th
 
 Removing `.formLogin()` in the code above will disable this type of authentication. Also, by placing some additional method calls after `.formLogin()` we can change the look of the login page and some other things. With HTTP basic auth the situation is similar – if we omit `.httpBasic()` we will disable this type of auth.
 
-
-
 When we override the `configure` method we override the default config. If for example, after overriding we don't enable HTTP basic auth explicitly, it will not be enabled. This also applies to the form-based auth.
-
-
 
 Also, authentication is not only about logins and passwords. We may want to implement fingerprint authentication or authentication via SMS where the user has to enter a code that has been sent to their phone in an SMS as proof of their identity. Spring Security allows configuring this functionality too, but we will not consider it in this topic.
 
@@ -1789,16 +1700,6 @@ Also, authentication is not only about logins and passwords. We may want to impl
 In this topic, you've learned how to override default configuration related to authentication and create one or more hardcoded in-memory users. You've also seen how to enable form-based and HTTP basic authentication explicitly or disable them. The way we chose to add hardcoded users is not the only possible one. Spring Security is more flexible, and there are often other ways to add the same functionality.
 
 ## Authorization
-
-[Theory](https://hyperskill.org/learn/step/15269)Practice
-
-100% completed, 0 problems solved
-
-##### Theory
-
- 36 minutes reading
-
-Unskip this topicStart practicing
 
 In simple applications, authentication might be enough – as soon as a user authenticates (confirms their identity), they can access any part of the application. However, in some situations, not all authenticated users should be granted access to some app resources. **Authorization** is the process during which the system decides if an authenticated client has permission to access the requested resource. Authorization always happens after authentication.
 
@@ -1830,25 +1731,20 @@ Let's assume that we've already created an empty new project and included web an
 
 ```java
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 public class Controller {
-
     @GetMapping("/public")
     public String testPublic() {
         return "/public is accessed";
     }
-
     @GetMapping("/authenticated")
     public String testAuth() {
         return "/authenticated is accessed";
     }
-
     @GetMapping("/user")
     public String testUser() {
         return "/user is accessed";
     }
-
     @GetMapping("/admin")
     public String testAdmin() {
         return "/admin is accessed";
@@ -1864,10 +1760,8 @@ Here is what our implementation looks like:
 
 ```java
 // imports ..
-
 @EnableWebSecurity
 public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
-
    @Override
    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
        auth.inMemoryAuthentication()
@@ -1879,7 +1773,6 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
           .and()
           .passwordEncoder(getEncoder());
    }
-
    @Bean
    public PasswordEncoder getEncoder() {
        return new BCryptPasswordEncoder();
@@ -1887,11 +1780,7 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
 }
 ```
 
-
-
 Note that we don't have to add the `ROLE_` prefix to roles. Spring Security will add it automatically. We can also use the `authorities()` method to specify a role, but in this case, it must be prefixed with `ROLE_`. Other than that, `roles("ADMIN")` is equivalent to `authorities("ROLE_ADMIN")`. This knowledge can help you avoid some mistakes and confusion.
-
-
 
 Our program will also have a simple `index.html` file located in the `/resources/static` folder. Here's the content of the file:
 
@@ -1912,7 +1801,7 @@ Now, let's deal with authorization. We will start by learning about some useful 
 
 ##### HttpSecurity
 
-We can configure authorization using the `HttpSecurity` object which can be obtained by overriding one of the `configure` methods of `WebSecurityConfigurerAdapter`. This is the same object that allows us to configure form-based and HTTP basic auth.
+==We can configure authorization using the `HttpSecurity` object which can be obtained by overriding one of the `configure` methods of `WebSecurityConfigurerAdapter`.== This is the same object that allows us to configure form-based and HTTP basic auth.
 
 In this topic, we are interested in some of the methods that we can call using this object. The methods in question can be divided into two groups. One group allows specifying endpoints to which we want to configure access and another group allows specifying the users who can access these endpoints.
 
@@ -1923,11 +1812,7 @@ Using the following methods we can select endpoints:
 - `regexMatchers(HttpMethod method, String... regex)`, `regexMatchers(String... regex)` – similar to MVC matchers but allows using regular expressions.
 - `anyRequest()` – maps any request, regardless of the URL or HTTP method used.
 
-
-
 Spring Security also provides Ant matchers that are similar to MVC matchers mentioned above. The difference is that Ant matchers match only exact URLs. For example, `antMatchers("/secured")` will match only `/secured`, while `mvcMatchers("/secured")` will match `/secured`, as well as `/secured/` and `/secured.html`. It is recommended to use MVC matchers to avoid situations where some paths are mistakenly left unprotected.
-
-
 
 The following methods allow us to specify who can access endpoints:
 
@@ -1987,17 +1872,9 @@ Note that we placed `.mvcMatchers("/**").authenticated()` at the end. That's bec
 
 Keep in mind that we use MVC matchers here. `.mvcMatchers("/admin")` additionally matches `"/admin/"` that will also be available only to users with the `ROLE_ADMIN` role. But what will happen if we replace an MVC matcher with an Ant matcher that matches only exact URLs? `/admin` will require the `ROLE_ADMIN` role as intended, but `/admin/` will only require authentication (`/**` represents all the remaining paths in our case). This makes a huge difference!
 
-
-
 A developer who is unaware of this could use Ant matchers and leave a path unprotected without noticing it, which can create a major security breach in an application. It doesn't mean we should never use Ant matches, though. We can still secure two paths using Ant matchers like this: `antMatchers("/admin", "/admin/")`.
 
-
-
-
-
 Another way to configure authorization is by using special annotations. We will not consider this in this topic, but if you want to learn more about them, here is an [article](https://www.baeldung.com/spring-security-method-security).
-
-
 
 As you can see, we also enabled HTTP basic authentication. Now we are going to use this type of auth and Postman to test our program.
 
@@ -2024,8 +1901,6 @@ Now what will happen if we try to access `/user` or `/admin` as a user that does
 ![img](Stage2-Authentication.assets/60cbef90-ad78-43d1-be9f-380de9222aa1.jpeg)
 
 Even though we provided one of the valid login/password pairs and passed authentication, we received `403 Forbidden` status, which means that the server understood the request but refuses to authorize it. The same will happen if we try to access as the first user. Only users with `ROLE_ADMIN` are authorized to access `/admin` (or `/admin/`). So our application works as intended.
-
-
 
 As you probably know, CSRF (Cross-Site Request Forgery) is enabled by default. If we try to send `POST` requests using Postman or similar programs, we will receive `403 Forbidden` status code because of this protection. In our program, we only have `GET` endpoints so we didn't have any issues. When testing `POST` requests, you can disable this type of protection by calling the `.csrf().disable()` methods on the `HttpSecurity` object. Depending on your implementation you may also need to append a call to `.and()` before the methods.
 
@@ -2056,7 +1931,6 @@ The first thing we'll implement is a controller that will allow us to check that
 ```java
 @RestController
 public class TestController {
-
     @GetMapping("/test")
     public String test() {
         return "/test is accessed";
@@ -2069,7 +1943,6 @@ Now we will deal with the security config. The code below shows our implementati
 ```java
 @EnableWebSecurity
 public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -2079,7 +1952,6 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
                 .csrf().disable() // disabling CSRF will allow sending POST request using Postman
                 .httpBasic(); // enables basic auth.
     }
-
     @Bean
     public PasswordEncoder getEncoder() {
         return new BCryptPasswordEncoder();
@@ -2096,7 +1968,6 @@ class User {
     private String username;
     private String password;
     private String role; // should be prefixed with ROLE_
-
     // constructors, getters and setters
 }
 ```
@@ -2107,11 +1978,9 @@ The `Map` with users will be located in a separate class named `UserRepository`:
 @Component
 public class UserRepository {
     final private Map<String, User> users = new ConcurrentHashMap<>();
-
     public User findUserByUsername(String username) {
         return users.get(username);
     }
-
     public void save(User user) {
         users.put(user.getUsername(), user);
     }
@@ -2129,13 +1998,10 @@ public class RegistrationController {
     UserRepository userRepo;
     @Autowired
     PasswordEncoder encoder;
-
     @PostMapping("/register")
     public void register(@RequestBody User user) {
         // input validation omitted for brevity
-
         user.setPassword(encoder.encode(user.getPassword()));
-
         userRepo.save(user);
     }
 }
@@ -2168,51 +2034,43 @@ All remaining methods of the `UserDetails` interface enable or disable the accou
 
 Not all applications have accounts that expire or get locked under certain conditions. If you don't need to implement these functionalities in your application, you can simply make these four methods return `true`, which means that the users are active. In this topic, we will not implement this functionality.
 
-Now let's provide our implementation of the `UserDetails` interface. As we've mentioned before, the class that implements the interface will be used to store and transfer core user information from the user store to Spring Security. In the `UserRepository` the info about one user is stored in a `User` object with 3 fields. Now we need to provide a converter from `User` to `UserDetails`. We will do it in a constructor that will receive a `User` object and store its content. Here is the implementation:
+Now let's provide our implementation of the `UserDetails` interface. As we've mentioned before, ==the class that implements the interface will be used to store and transfer core user information from the user store to Spring Security.== In the `UserRepository` the info about one user is stored in a `User` object with 3 fields. Now we need to provide a converter from `User` to `UserDetails`. We will do it in a constructor that will receive a `User` object and store its content. Here is the implementation:
 
 ```java
 public class UserDetailsImpl implements UserDetails {
     private final String username;
     private final String password;
-    private final List<GrantedAuthority> rolesAndAuthorities;
-    
+    private final List<GrantedAuthority> rolesAndAuthorities;    
     public UserDetailsImpl(User user) {
         username = user.getUsername();
         password = user.getPassword();
         rolesAndAuthorities = List.of(new SimpleGrantedAuthority(user.getRole()));
     }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return rolesAndAuthorities;
     }
-
     @Override
     public String getPassword() {
         return password;
     }
-
     @Override
     public String getUsername() {
         return username;
     }
-
     // 4 remaining methods that just return true
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
-
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
-
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
     @Override
     public boolean isEnabled() {
         return true;
@@ -2224,7 +2082,7 @@ As you can see, the first three methods return user info that was retrieved from
 
 In simple applications, instead of providing a separate class that implements the `UserDetails` interface, as we did above, we can use the implementation of the interface that Spring Security provides, namely the `User` class. The class implements the builder pattern and can make your code more concise. It is located in the `org.springframework.security.core.userdetails` package. If you want to learn about the `User` class, here is the [link](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/User.html).
 
-Our next step is to implement `UserDetailsService` that is used to retrieve user data from storage.
+Our next step is to implement ==`UserDetailsService` that is used to retrieve user data from storage.==
 
 ##### UserDetailsService
 
@@ -2239,15 +2097,12 @@ This method will be used by Spring Security when someone tries to authenticate. 
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserRepository userRepo;
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findUserByUsername(username);
-
         if (user == null) {
             throw new UsernameNotFoundException("Not found: " + username);
         }
-
         return new UserDetailsImpl(user);
     }
 }
@@ -2272,21 +2127,17 @@ The code below is the missing piece in our `WebSecurityConfigurerImpl` class tha
 public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsService userDetailsService;
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetailsService) // user store 1
                 .passwordEncoder(getEncoder());
-
         auth
                 .inMemoryAuthentication() // user store 2
                 .withUser("Admin").password("hardcoded").roles("USER")
                 .and().passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
-
     // the second configure method that receives HttpSecurity
-
     // password encoder
 }
 ```
@@ -2324,6 +2175,151 @@ As shown here, this also works as intended.
 In this topic, you've seen how we can attach a custom user store to Spring Security by implementing the `UserDetails` and `UserDetailsService` interfaces. `UserDetails` represents a user and stores core user information. `UserDetailsService` is used to retrieve user-related data from a user store and has only one method that receives a username and returns `UserDetails` or throws an exception if the user isn't found. Additionally, we've implemented a simple registration endpoint that populates the user store with data, created one hard-coded user, and successfully tested the program.
 
 If you're familiar with Spring Data, you should know how to connect a database instead of a `List`. If you're not familiar with this Spring module yet, you can use a file to store user data permanently. Feel free to experiment with this.
+
+##### The purpose of UserDetailsService
+
+What is the purpose of the `UserDetailsService` interface?
+
+ It is used to save user-related data to a user store.
+
+==It is used to retrieve user-related data from a user store.==
+
+It represents a user and stores user credentials, roles/authorities, etc.
+
+##### An appropriate method
+
+What is the name of the method we can call on `AuthenticationManagerBuilder`, to which we can pass our implementation of `UserDetailsService`?
+
+inMemoryAuthentication
+
+userDetails
+
+ldapAuthentication
+
+jdbcAuthentication
+
+==userDetailsService==
+
+##### The number of user stores
+
+How many user stores (authentication providers) can we use in one app?
+
+1
+
+2
+
+5
+
+10
+
+==As many as we need==
+
+##### Find two mistakes
+
+Someone implemented the `UserDetails` interface but made some mistakes. Analyze the code and find two mistakes.
+
+The account can't be locked or expired.
+
+```java
+public class UserDetailsImpl implements UserDetails {
+    private final String username;
+    private final String password;
+    private final List<String> rolesAndAuthorities;
+    
+    public UserDetailsImpl(UserInfo userInfo) {
+        username = userInfo.getUsername();
+        password = userInfo.getPassword();
+        rolesAndAuthorities = userInfo.getRolesAndAuthorities();
+    }
+
+    @Override
+    public Collection<String> getAuthorities() {
+        return rolesAndAuthorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+}
+```
+
+==Roles/authorities should be converted to GrantedAuthority and the getAuthorities method should return Collection<? extends GrantedAuthority>.==
+
+The class should implement UserDetailsService instead of UserDetails.
+
+==The isEnabled method should return true.==
+
+The methods isAccountNotExpired, isAccountNonLocked, and isCredentialsNonExpired should return false.
+
+##### Improperly implemented UserDetailsService
+
+The code below is an implementation of `UserDetailsService`. Your task is to read the code and find a mistake.
+
+```java
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+    @Autowired
+    UserRepository userRepo;
+    @Override
+    public User loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepo.findUserByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("Not found: " + username);
+        }
+        return user;
+    }
+}
+```
+
+The `User` class doesn't implement any interface.
+
+The name of the exception should be UserFoundException.
+
+==The loadUserByUsername method should return UserDetails.==
+
+UserDetailsServiceImpl should implement UserDetails.
+
+The loadUserByUsername method should receive UserDetails.
+
+##### Storing users permanently
+
+You want to create a custom user store that will be used in the authentication process. Where can you store user-related data, so that a server restart will not erase it?
+
+Map
+
+List
+
+==database==
+
+==file==
+
+
 
 ## HTTP Basic Auth
 
