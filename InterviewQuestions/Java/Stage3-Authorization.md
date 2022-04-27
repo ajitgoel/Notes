@@ -355,29 +355,24 @@ If your application throws an uncaught exception like `RuntimeException` or any 
 
 It is also possible to set the response code and status for the custom exception. We can write a class that extends `RuntimeException` and add the `@ResponseStatus` annotation to the exception like this:
 
-```java
-@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+==@ResponseStatus(code = HttpStatus.BAD_REQUEST)==
 class FlightNotFoundException extends RuntimeException {    
     public FlightNotFoundException(String cause) {
         super(cause);
     }
 }
-```
 
 Now, we can throw this exception in the same way as `ResponseStatusException`. The status will be set automatically.
 
 For example, in the flight controller:
 
-```java
 @GetMapping("flights/{id}")
 public FlightInfo getFlightInfo(@PathVariable int id) {
     if (id > flightInfoList.size()) {
-        throw new FlightNotFoundException("Flight not found for id =" + id);
+        ==throw new FlightNotFoundException("Flight not found for id =" + id);==
     }
     return flightInfoList.get(id);
 }
-```
-
 If we test this exception with a nonexistent `id=1111`, we get a response with the new status code `400`.
 
 ![img](Stage3-Authorization.assets/1ed64678-bf88-41b3-954a-34dbbb425aee.jpeg)
