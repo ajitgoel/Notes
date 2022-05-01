@@ -4,12 +4,13 @@
     "type": "split",
     "children": [
       {
-        "id": "2774863fc83997ea",
+        "id": "cc49b929361e4d04",
         "type": "leaf",
         "state": {
-          "type": "excalidraw",
+          "type": "markdown",
           "state": {
-            "file": "InterviewQuestions/Drawings.excalidraw"
+            "file": "InterviewQuestions/Java-SpringBoot/Notes.md",
+            "mode": "source"
           }
         }
       }
@@ -67,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "InterviewQuestions/Drawings.excalidraw",
+                "file": "InterviewQuestions/Java-SpringBoot/Notes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,17 +86,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "2774863fc83997ea",
+  "active": "cc49b929361e4d04",
   "lastOpenFiles": [
-    "InterviewQuestions/Drawings.excalidraw",
+    "InterviewQuestions/Java-SpringBoot/Notes.md",
     "InterviewQuestions/Java/Notes.md",
+    "InterviewQuestions/Java-SpringBoot/Notes.md.md",
+    "InterviewQuestions/Drawings.excalidraw",
     "InterviewQuestions/Java/46-Package.md",
     "InterviewQuestions/Java/47-AccessModifiers.md",
     "InterviewQuestions/SystemDesign/HackingTheSystemDesignInterview.md",
     "InterviewQuestions/Personal/Untitled.md",
     "OneZero.md",
-    "CommerceHub-.Net-AWS.md",
-    "InterviewQuestions/ASP.NetCore/ASP.NetCore-Fundamentals-Overview.md",
-    "InterviewQuestions/ASP.NetCore/ImplementingResilientApplications.md"
+    "CommerceHub-.Net-AWS.md"
   ]
 }
