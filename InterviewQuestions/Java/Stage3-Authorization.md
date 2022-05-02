@@ -26,13 +26,13 @@ Let's implement the role model for our system:
 | POST /api/antifraud/transaction | -         | +        | -             | -       |
 | POST /api/antifraud/access      | -         | -        | +             | -       |
 
-Let's talk about roles. `ADMINISTRATOR` is the user who has registered first, all other users should receive the `MERCHANT` roles. All users added after `ADMINISTRATOR` must be locked by default and unlocked later by `ADMINISTRATOR`. The `SUPPORT` role should be assigned by `ADMINISTRATOR` to one of the users later.
+Let's talk about roles. ==`ADMINISTRATOR` is the user who has registered first, all other users should receive the `MERCHANT` roles. All users added after `ADMINISTRATOR` must be locked by default and unlocked later by `ADMINISTRATOR`==. The `SUPPORT` role should be assigned by `ADMINISTRATOR` to one of the users later.
 
 ##### Objectives
 
-- Add authorization to the service and implement the role model shown in the table above. The first registered user should receive the `ADMINISTRATOR` role; the rest — `MERCHANT`. In case of authorization violation, respond with the `HTTP Forbidden` status (`403`). Mind that only one role can be assigned to a user;
-- All users, except `ADMINISTRATOR`, must be locked immediately after registration; only `ADMINISTRATOR` can unlock users;
-- Change the response for the `POST /api/auth/user` endpoint. It should respond with the `HTTP Created` status (`201`) and the body with the JSON object containing the information about a user. Add the `role` field in the response:
+- Add authorization to the service and implement the role model shown in the table above. ==The first registered user should receive the `ADMINISTRATOR` role; the rest — `MERCHANT`.== In case of authorization violation, respond with the `HTTP Forbidden` status (`403`). ==Mind that only one role can be assigned to a user;==
+- ==All users, except `ADMINISTRATOR`, must be locked immediately after registration; only `ADMINISTRATOR` can unlock users;==
+- ==Change the response for the `POST /api/auth/user` endpoint. It should respond with the `HTTP Created` status (`201`) and the body with the JSON object containing the information about a user. Add the `role` field in the response:==
 
 ```json
 {
@@ -43,7 +43,7 @@ Let's talk about roles. `ADMINISTRATOR` is the user who has registered first, al
 }
 ```
 
-- Change the response for the `GET /api/auth/list` endpoint. Add the `role` field in the response:
+- ~~Change the response for the `GET /api/auth/list` endpoint. Add the `role` field in the response:~~
 
 ```json
 [
@@ -63,7 +63,7 @@ Let's talk about roles. `ADMINISTRATOR` is the user who has registered first, al
 ]
 ```
 
-- Add the `PUT /api/auth/role` endpoint that changes user roles. It must accept the following JSON body:
+- ~~Add the `PUT /api/auth/role` endpoint that changes user roles. It must accept the following JSON body:~~
 
 ```json
 {
@@ -72,7 +72,7 @@ Let's talk about roles. `ADMINISTRATOR` is the user who has registered first, al
 }
 ```
 
-If successful, respond with the `HTTP OK` status (`200`) and the body like this:
+~~If successful, respond with the `HTTP OK` status (`200`) and the body like this:~~
 
 ```json
 {
@@ -83,10 +83,10 @@ If successful, respond with the `HTTP OK` status (`200`) and the body like this:
 }
 ```
 
-- If a user is not found, respond with the `HTTP Not Found` status (`404`);
-- If a role is not `SUPPORT` or `MERCHANT`, respond with `HTTP Bad Request` status (`400`);
-- If you want to assign a role that has been already provided to a user, respond with the `HTTP Conflict` status (`409`);
-- Add the `PUT /api/auth/access` endpoint that locks/unlocks users. It accepts the following JSON body:
+- ~~If a user is not found, respond with the `HTTP Not Found` status (`404`);~~
+- ~~If a role is not `SUPPORT` or `MERCHANT`, respond with `HTTP Bad Request` status (`400`);~~
+- ~~If you want to assign a role that has been already provided to a user, respond with the `HTTP Conflict` status (`409`);~~
+- ~~Add the `PUT /api/auth/access` endpoint that locks/unlocks users. It accepts the following JSON body:~~
 
 ```json
 {
@@ -95,7 +95,7 @@ If successful, respond with the `HTTP OK` status (`200`) and the body like this:
 }
 ```
 
-If successful, respond with the `HTTP OK` status (`200`) and the following body:
+~~If successful, respond with the `HTTP OK` status (`200`) and the following body:~~
 
 ```json
 {
@@ -103,8 +103,8 @@ If successful, respond with the `HTTP OK` status (`200`) and the following body:
 }
 ```
 
-- For safety reasons, `ADMINISTRATOR` cannot be blocked. In this case, respond with the `HTTP Bad Request` status (`400`);
-- If a user is not found, the endpoint must respond with `HTTP Not Found` status (`404`).
+- ~~For safety reasons, `ADMINISTRATOR` cannot be blocked. In this case, respond with the `HTTP Bad Request` status (`400`);~~
+- ~~If a user is not found, the endpoint must respond with `HTTP Not Found` status (`404`).~~
 
 ##### Examples
 
