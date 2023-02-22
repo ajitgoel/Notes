@@ -1,0 +1,134 @@
+{
+  "main": {
+    "id": "906d113f91903ff7",
+    "type": "split",
+    "children": [
+      {
+        "id": "2cbae2dcd29e1c67",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e4c8930c6425a1be",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "VisualStudioCode.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bce8f33d70314b94",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Technical Lead-Architect .net - CSharp.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1de8027b55f4b5f4",
+    "type": "split",
+    "children": [
+      {
+        "id": "bbd6a34cd0604f3b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7282c125effcfed0",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "470aba7351fd3a32",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 327.5
+  },
+  "right": {
+    "id": "1226b2989c407223",
+    "type": "split",
+    "children": [
+      {
+        "id": "83f8856cc9492833",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f344f046088476bb",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Technical Lead-Architect .net - CSharp.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false
+    }
+  },
+  "active": "bce8f33d70314b94",
+  "lastOpenFiles": [
+    "VisualStudioCode.md",
+    "InterviewQuestions/ReactJS/InterviewQuestions.md",
+    "InterviewQuestions/Architecture/BigO-ByExamples.md",
+    "InterviewQuestions/ReactJS/Untitled.md",
+    "PersonalProjects/TextToPdfGeneration.md",
+    "Client-Side Optimization.md",
+    "InterviewQuestions/Java-SpringBoot/Notes.md",
+    "InterviewQuestions/Java/Notes.md",
+    "InterviewQuestions/Java-SpringBoot/Notes.md.md",
+    "InterviewQuestions/Drawings.excalidraw"
+  ]
+}
