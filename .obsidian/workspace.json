@@ -8,31 +8,55 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e4c8930c6425a1be",
+            "id": "bce8f33d70314b94",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "VisualStudioCode.md",
+                "file": "NearForm-Technical Lead-Architect .net - CSharp.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "bce8f33d70314b94",
+            "id": "25b74614234ae202",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Technical Lead-Architect .net - CSharp.md",
+                "file": "HackerRank/DominatingXOR.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d68ef5077dc4846c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "HackerRank/TopArticles.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "42113e2d42368fd8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "HackerRank/TopArticles.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -90,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Technical Lead-Architect .net - CSharp.md",
+                "file": "HackerRank/TopArticles.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,17 +142,17 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "bce8f33d70314b94",
+  "active": "42113e2d42368fd8",
   "lastOpenFiles": [
+    "HackerRank/Maximum Distinct.md",
+    "HackerRank/TopArticles.md",
+    "HackerRank/No of Positive Prefixes.md",
+    "HackerRank/DominatingXOR.md",
+    "NearForm-Technical Lead-Architect .net - CSharp.md",
     "VisualStudioCode.md",
     "InterviewQuestions/ReactJS/InterviewQuestions.md",
     "InterviewQuestions/Architecture/BigO-ByExamples.md",
     "InterviewQuestions/ReactJS/Untitled.md",
-    "PersonalProjects/TextToPdfGeneration.md",
-    "Client-Side Optimization.md",
-    "InterviewQuestions/Java-SpringBoot/Notes.md",
-    "InterviewQuestions/Java/Notes.md",
-    "InterviewQuestions/Java-SpringBoot/Notes.md.md",
-    "InterviewQuestions/Drawings.excalidraw"
+    "PersonalProjects/TextToPdfGeneration.md"
   ]
 }
