@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+public class Program
+{
+	public static async Task Main(string[] args)
+	{
+		var result1=await GetVoteCount("Seattle", 160);
+		//Console.WriteLine(JsonConvert.SerializeObject(result1));
+		var result2=await GetVoteCount("NonExistentCity", 160);
+		//Console.WriteLine(JsonConvert.SerializeObject(result2));
+	}
+	public static async Task<long> GetVoteCount(string city, int estimated_cost) {
+		int pageNo=1;
+		long total=0;
+		int total_pages=1;
+		System.Net.Http.HttpClient httpclient=new System.Net.Http.HttpClient();
+		var url="https://jsonmock.hackerrank.com/api/food_outlets?city={0}&estimated_cost={1}&page={2}";
+		
+		while(total_pages>0)
+		{
+			var resultString=await httpclient.GetStringAsync(string.Format(url, city, estimated_cost, pageNo));
+			var resultObject=JsonConvert.DeserializeObject<dynamic>(resultString);
+			if(pageNo == 1){total_pages = resultObject.total_pages;}
+			if(resultObject.total==0){return -1;}
+			
+			foreach(var element in resultObject.data)
+			{
+				total = total + element.user_rating.votes.Value;
+			}
+			if(pageNo == total_pages){break;}
+			pageNo++;
+		}
+		return total;
+	}
+}
