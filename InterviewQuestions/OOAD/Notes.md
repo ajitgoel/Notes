@@ -11,7 +11,7 @@
 ==**Association**: This is the simplest relationship between objects.== Example every customer has sales. So Customer object and sales object have an association relation between them.
 ==**Aggregation(Composition)**: This is also called as composition model. Example in order to make a “Accounts” class it has use other objects example “Voucher”, “Journal” and “Cash” objects. So accounts class is aggregation of these three objects.==
 **Inheritance**: Hierarchy is used to define more specialized classes based on a preexisting generalized class.
-**<u>Polymorphism:</u>** ==When inheritance is used to extend a generalized class to a more specialized class, it includes behavior of the top class(Generalized class). The inheriting class often implement a behavior that can be somewhat different than the generalized class, but the name of the behavior can be same. It is important that a given instance of an object use the correct behavior, and the property of polymorphism allows this to happen automatically.==
+**Polymorphism: ==When inheritance is used to extend a generalized class to a more specialized class, it includes behavior of the top class(Generalized class). The inheriting class often implement a behavior that can be somewhat different than the generalized class, but the name of the behavior can be same. It is important that a given instance of an object use the correct behavior, and the property of polymorphism allows this to happen automatically.==
 
 **(I) What are abstract classes ?**
 Following are features of a abstract class :-

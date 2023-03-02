@@ -1,5 +1,6 @@
 https://leetcode.com/discuss/interview-experience/304327/wayfair-senior-engineer-interview
 
+![[Pasted image 20230226114548.png]]
 ### Phone Screen
 
 Given 2 tables Employees(id, dept_id, salary, name) and department (id, name).
@@ -14,13 +15,13 @@ Given 2 tables Employees(id, dept_id, salary, name) and department (id, name).
 ==insert into employees values(5,20, 5000, 'Ramu');==
 ==insert into department values(10, 'Department1');==
 ==insert into department values(20, 'Department2');==
- ===> select a.name, b.max_salary,b.no_of_employees from department a,== 
+ ==select a.name, b.max_salary,b.no_of_employees from department a,== 
 ==(select b.id, max(salary) 'max_salary', count(a.id) 'no_of_employees' from employees a, department b where a.dept_id=b.id group by b.id) b==
 ==where a.id=b.id==
 
 ==b. find the dept name with max salary and number of employees==
 ==c. find the dept name with no employees==
-===> select name from department where id not in (select dept_id from employees)==
+==select name from department where id not in (select dept_id from employees)==
 
 Given a phone pad as below. List out all the phone numbers that can be made with 7 digits. The method of generating the numbers would be the movement of a rook. It can move vertically and horizontally by any number of steps.
 1 2 3

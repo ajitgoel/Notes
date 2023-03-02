@@ -8,9 +8,7 @@
 
 # Merging vs. Rebasing
 
-<img src="Git-Notes.assets/image-20220130121317167.png" alt="image-20220130121317167" style="zoom:67%;" />
-
-
+![[Pasted image 20230226151515.png]]
 
 ## Conceptual Overview
 
@@ -18,8 +16,7 @@ The first thing to understand about `git rebase` is that it solves the same prob
 
 Consider what happens when you start working on a new feature in a dedicated branch, then another team member updates the `master` branch with new commits. This results in a forked history, which should be familiar to anyone who has used Git as a collaboration tool.
 
-<img src="Untitled.assets\01.svg" alt="A forked commit history" style="zoom: 50%;" />
-
+![[Pasted image 20230226151712.png|500]]
 Now, let’s say that the new commits in `master` are relevant to the feature that you’re working on. To incorporate the new commits into your `feature` branch, you have two options: merging or rebasing.
 
 ### The Merge Option
@@ -38,7 +35,7 @@ Or, you can condense this to a one-liner:
 
 ==This creates a new “merge commit” in the `feature` branch that ties together the histories of both branches, giving you a branch structure that looks like this:==
 
-<img src="Untitled.assets\02.svg" alt="Merging master into the feature branch" style="zoom:50%;" />
+![[Pasted image 20230226151738.png|500]]
 
 ==Merging is nice because it’s a *non-destructive* operation. The existing branches are not changed in any way.==This avoids all of the potential pitfalls of rebasing (discussed below).
 
@@ -54,7 +51,7 @@ git checkout feature git rebase master
 
 ==This moves the entire `feature` branch to begin on the tip of the `master` branch==, effectively incorporating all of the new commits in `master`. But, instead of using a merge commit, ==rebasing *re-writes* the project history by creating brand new commits for each commit in the original branch.==
 
-<img src="Untitled.assets\03.svg" alt="Rebasing the feature branch onto master" style="zoom:25%;" />
+![[Pasted image 20230226151809.png|400]]
 
 ==The major benefit of rebasing is that you get a much cleaner project history.== First, it eliminates the unnecessary merge commits required by `git merge`. Second, as you can see in the above diagram, rebasing also results in a perfectly linear project history—you can follow the tip of `feature` all the way to the beginning of the project without any forks. This makes it easier to navigate your project with commands like `git log`, `git bisect`, and `gitk`.
 

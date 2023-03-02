@@ -1,4 +1,4 @@
-**What does `UNION` do? What is the difference between `UNION` and `UNION ALL`?**
+###### What does `UNION` do? What is the difference between `UNION` and `UNION ALL`?
 
 `UNION` merges the contents of two structurally-compatible tables into a single combined table. The difference between `UNION` and `UNION ALL` is that ==`UNION` will omit duplicate records whereas `UNION ALL` will include duplicate records.==
 

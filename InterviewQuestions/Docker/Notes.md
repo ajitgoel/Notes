@@ -3,9 +3,7 @@ Following are frequently asked Docker job interview questions for fresher as wel
 **1. What is Docker?** Docker is an open-source ==lightweight containerization technology==. It has gained widespread popularity in the cloud and application packaging world. ==It allows you to automate the deployment of applications in lightweight and portable containers.==
 
 **2. What are the advantages of using Docker container?**
-
 Here, are a major advantage of using Docker.
-
 - Offers an efficient and easy initial set up
 - Allows you to describe your application lifecycle in detail
 - Simple configuration and interacts with Docker Compose.
@@ -192,10 +190,7 @@ Below are the steps for Docker life cycle:
 
 Docker isn't a virtualization methodology. It relies on other tools that actually implement **container-based virtualization** or operating system level virtualization. For that, Docker was initially using LXC driver, then moved to `libcontainer` which is now renamed as`runc`. Docker primarily focuses on automating the deployment of applications inside application containers. Application containers are designed to package and run a single service, whereas system containers are designed to run multiple processes, like virtual machines. So, Docker is considered as a container management or application deployment tool on containerized systems.
 
-
-
-![img](Notes.assets\qTuWpm.png)
-
+![[Pasted image 20230225155042.png]]
 
 
 - Unlike a virtual machine, a container does not need to boot the operating system kernel, so containers can be created in less than a second. This feature makes container-based virtualization unique and desirable than other virtualization approaches.

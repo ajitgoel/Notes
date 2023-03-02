@@ -123,8 +123,6 @@ FROM employee
 
 ------
 
-<img src="Notes.assets/image-20220305133744423.png" alt="image-20220305133744423" style="zoom:67%;" />
-
 We want to retrieve the names of all salespeople that have more than 1 order from the tables above. You can assume that each salesperson only has one ID.
 
 

@@ -13,8 +13,6 @@ We don’t want you to be left behind with old ES5 code, so today let’s walk y
 - [Part 5: The Most Important ES2018 Updates](https://www.educative.io/blog/javascript-es6-tutorial-a-complete-crash-course#ES2018)
 - [Part 6: The Most Important ES2019 Updates](https://www.educative.io/blog/ES2019)
 
-
-
 #### **Get up-to-speed with all the newest JS features**Get hands-on practice with all the newest features you’ll need to land a JavaScript interview**[The Complete Guide to Modern JavaScript](https://www.educative.io/courses/complete-guide-to-modern-javascript)**
 
 ## Part 1: Overview of JavaScript Updates
@@ -86,7 +84,7 @@ There is no hard-and-fast rule about when to use which variables. Here are two d
 
 ### Arrow functions
 
-ES6 introduced arrows (`=>`) as a shorthand way to **declare functions**. This update has three notable advantages:
+==ES6 introduced arrows (`=>`) as a shorthand way to **declare functions**.== This update has three notable advantages:
 
 - You no longer have to use `.bind( )` method
 - Code is much cleaner and less verbose
