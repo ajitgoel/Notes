@@ -479,9 +479,7 @@ SELECT * FROM Employees
 
 **Q What is the difference between `char` and `varchar2`?**
 
-==When stored in a database, `varchar2` uses only the allocated space. E.g. if you have a `varchar2(1999)` and put 50 bytes in the table, it will use 52 bytes.
-
-But when stored in a database, `char` always uses the maximum length and is blank-padded. E.g. if you have `char(1999)` and put 50 bytes in the table, it will consume 2000 bytes.==
+==When stored in a database, `varchar2` uses only the allocated space.== E.g. if you have a `varchar2(1999)` and put 50 bytes in the table, it will use 52 bytes. But when stored in a database, ==`char` always uses the maximum length and is blank-padded.== E.g. if you have `char(1999)` and put 50 bytes in the table, it will consume 2000 bytes.
 
 **Q Write an SQL query to display the text `CAPONE` as:**
 

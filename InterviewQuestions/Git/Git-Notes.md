@@ -2,13 +2,15 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | is a stricter development model                              | is a [version control management](https://www.atlassian.com/git/tutorials/what-is-version-control) practice where developers merge small, frequent updates to a core “trunk” or main branch |
 | maintains code quality and minimizes the number of bugs.     | enables teams to iterate quickly and implement [CI/CD](https://www.atlassian.com/continuous-delivery). |
-| only certain individuals can approve changes to the main code. | all developers have access to the main code.                 |
-
-
+| only certain individuals can approve changes to the main code. | all developers have access to the main code.                 |====
 
 # Merging vs. Rebasing
 
-![[Pasted image 20230226151515.png]]
+| Git Merge                                                      | Git Rebase                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ==safe option that preserves history of repository==                         | ==creates a linear history by moving your feature branch onto the tip of main== |               |
+| ==feature branch will have a merge commit every time upstream changes are incorporated==                         | ==re-writes history by creating brand new commits for each commit in original branch==|
+| merge master into feature branch => ==git checkout feature git merge master== | rebase feature branch into master branch => ==git checkout feature git rebase master== |
 
 ## Conceptual Overview
 

@@ -7,9 +7,9 @@ A table may have more than one combination of columns that could uniquely identi
 The ‘**fill factor**‘ option specifies how full SQL Server will make each index page. When there is no free space to insert new row on the index page, SQL Server will create new index page and transfer some rows from the previous page to the new one. This operation is called **page splits**.
 
 **Difference between delete table and truncate**
-DELETE TABLE syntax logs the deletes thus make the delete operation slow. TRUNCATE table does not log any information but it logs information about deallocation of data page of the table so TRUNCATE table is faster as compared to delete table.
+==DELETE TABLE syntax logs the deletes thus make the delete operation slow. TRUNCATE table does not log any information but it logs information about deallocation of data page of the table so TRUNCATE table is faster as compared to delete table.
 √ DELETE table can have criteria while TRUNCATE can not.
-√ TRUNCATE table can not trigger.
+√ TRUNCATE table can not trigger.==
 
 **What are the different types of triggers in Sql SERVER 2000 ?**
 There are two types of triggers :-
@@ -86,7 +86,6 @@ When you’re indexing view, all objects used in view schema cannot be modified 
 -------------------
 
 **EXAMPLE of Correlated Subqueries :** Find all the employees who earn more than the average salary in their department.
-
 SELECT last_name, salary, department_id FROM ==employees outer==
  WHERE salary >(SELECT AVG(salary) FROM employees WHERE department_id = ==outer==.department_id);
 
@@ -97,10 +96,9 @@ SELECT last_name, salary, department_id FROM ==employees outer==
 - Partitions rows into form set of rows. (PARTITION BY clause is used)
 - Orders rows within those partitions into a particular order. (ORDER BY clause is used)
 
-<u>**For employee table having columns name, age, department, salary, Find average salary of employees for each department and order employees within a department by age.**</u>
+###### For employee table having columns name, age, department, salary, Find average salary of employees for each department and order employees within a department by age.
 
-SELECT Name, Age, Department, Salary, ==AVERAGE(Salary) OVER( PARTITION BY Department ORDER BY Age) AS Avg_Salary==
- FROM employee
+SELECT Name, Age, Department, Salary, ==AVERAGE(Salary) OVER( PARTITION BY Department ORDER BY Age) AS Avg_Salary== FROM employee
 
 ---------------------
 
@@ -124,7 +122,6 @@ FROM employee
 ------
 
 We want to retrieve the names of all salespeople that have more than 1 order from the tables above. You can assume that each salesperson only has one ID.
-
 
 ==//salesperson id is not required in the select clause below==
 SELECT Name FROM "Orders" o, Salesperson 

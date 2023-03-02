@@ -1,4 +1,4 @@
-**Solid Principles:** https://www.ajitgoel.net/post/solid-principles/
+**Solid Principles:** https://confident-neumann-2c8c8f.netlify.app/post/solid-principles/
 
 **Dependency Injection** is about how one object acquires a dependency.
 **Inversion of Control (IoC)** means that objects do not create other objects on which they rely to do their work. Instead, they get the objects that they need from an outside source (for example, an xml configuration file).
