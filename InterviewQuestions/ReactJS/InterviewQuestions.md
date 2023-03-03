@@ -1,3 +1,16 @@
+## [7. What is the Virtual DOM?](https://mokkapps.de/blog/my-top-react-interview-questions#7-what-is-the-virtual-dom)
+
+==The [Virtual DOM (VDOM)](https://reactjs.org/docs/faq-internals.html#what-is-the-virtual-dom) is a lightweight JavaScript object and it contains a copy of the real DOM.==
+**Real DOM**
+Slow & expensive DOM manipulation, Allows direct updates from HTML, Wastes too much memory
+**Virtual DOM**
+==Fast & inexpensive DOM manipulation, It cannot be used to update HTML directly, Less memory consumption==
+
+## [8. Is the Shadow DOM the same as the Virtual DOM?]
+No, they are different.
+==The [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) is a browser technology designed primarily for scoping variables and CSS in web components.
+The virtual DOM is a concept implemented by libraries in JavaScript on top of browser APIs.==
+
 ## [1. What is React?](https://mokkapps.de/blog/my-top-react-interview-questions#1-what-is-react)
 
 [React](https://reactjs.org/) is a "JavaScript library for building user interfaces" which was developed by Facebook in 2011.
@@ -33,16 +46,16 @@ const element = <h1>Hello, world!</h1>
 
 ## [5. How to pass data between components?](https://mokkapps.de/blog/my-top-react-interview-questions#5-how-to-pass-data-between-components)
 
-1.  Use props to pass data from parent to child.
+==1.  Use props to pass data from parent to child.==
 2.  Use callbacks to pass data from child to parent.
 3.  Use any of the following methods to pass data among siblings:
     -   Integrating the methods mentioned above.
-    -   Using [Redux](https://redux.js.org/).
+    ==-   Using [Redux](https://redux.js.org/).==
     -   Utilizing [React's Context API](https://reactjs.org/docs/context.html#api).
 
 ## [6. What are the differences between functional and class components?](https://mokkapps.de/blog/my-top-react-interview-questions#6-what-are-the-differences-between-functional-and-class-components)
 
-[Hooks](https://reactjs.org/docs/hooks-intro.html) were introduced in React 16.8. In previous versions, functional components were called stateless components and did not provide the same features as class components (e.g., accessing state). Hooks enable functional components to have the same features as class components. There are no plans to remove class components from React.
+[Hooks](https://reactjs.org/docs/hooks-intro.html) were introduced in React 16.8. In previous versions, functional components were called stateless components and did not provide the same features as class components (e.g., accessing state). ==Hooks enable functional components to have the same features as class components.== There are no plans to remove class components from React.
 
 So let's take a look at the differences:
 
@@ -65,11 +78,11 @@ function Card(props) {
 
 Class components are declared using the ES6 `class` keyword. Props need to be accessed using the `this` keyword:
 
+```
 class Card extends React.Component {
   constructor(props) {
     super(props)
   }
-
   render() {
     return <h2>Title: {this.props.title}</h2>
   }
@@ -80,7 +93,7 @@ class Card extends React.Component {
 
 #### [Functional components](https://mokkapps.de/blog/my-top-react-interview-questions#functional-components)
 
-In functional components we need to use the `useState` hook to be able to handle state:
+==In functional components we need to use the `useState` hook to be able to handle state:==
 
 ```
 const Counter = (props) => {
@@ -123,33 +136,6 @@ class Counter extends React.Component {
 }
 ```
 
-## [7. What is the Virtual DOM?](https://mokkapps.de/blog/my-top-react-interview-questions#7-what-is-the-virtual-dom)
-
-The [Virtual DOM (VDOM)](https://reactjs.org/docs/faq-internals.html#what-is-the-virtual-dom) is a lightweight JavaScript object and it contains a copy of the real DOM.
-
-Real DOM
-
-Virtual DOM
-
-Slow & expensive DOM manipulation
-
-Fast & inexpensive DOM manipulation
-
-Allows direct updates from HTML
-
-It cannot be used to update HTML directly
-
-Wastes too much memory
-
-Less memory consumption
-
-## [8. Is the Shadow DOM the same as the Virtual DOM?]
-No, they are different.
-
-The [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) is a browser technology designed primarily for scoping variables and CSS in web components.
-
-The virtual DOM is a concept implemented by libraries in JavaScript on top of browser APIs.
-
 ## [9. What is "React Fiber"?]
 Fiber is the new reconciliation engine in React 16.
 Its headline feature is incremental rendering: the ability to split rendering work into chunks and spread it out over multiple frames.
@@ -158,10 +144,8 @@ Its headline feature is incremental rendering: the ability to split rendering wo
 ## [10. How does state differ from props?]
 
 Both props and state are plain JavaScript objects.
-
-Props (short for "properties") is an object of arbitrary inputs that are passed to a component by its parent component.
-
-State are variables that are initialized and managed by the component and change over the lifetime of a specific instance of this component.
+==Props (short for "properties") is an object of arbitrary inputs that are passed to a component by its parent component.
+State are variables that are initialized and managed by the component and change over the lifetime of a specific instance of this component.==
 
 [This article from Kent C. Dodds](https://kentcdodds.com/blog/props-vs-state) provides a more detailed explanation.
 
@@ -190,7 +174,7 @@ Hooks are used in functional components instead of the above-mentioned lifecycle
 -   Lazy load your components to reduce the load time of your application. React [Suspense](https://reactjs.org/docs/react-api.html#suspense) can be used to lazy load components.
 
 ## [14. What are keys in React?]
-React needs keys to be able to identify which elements were changed, added, or removed. Each item in an array needs to have a key that provides a stable identity.
+==React needs keys to be able to identify which elements were changed, added, or removed. Each item in an array needs to have a key that provides a stable identity.==
 It's not recommended to use indexes for keys if the order of items may change as it can have a negative impact on the performance and may cause state issues. React will use indexes as keys if you do not assign an explicit key to list items.
 
 Check out Robin Pokorny’s article for an [in-depth explanation of the negative impacts of using an index as a key](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Here is another [in-depth explanation about why keys are necessary](https://reactjs.org/docs/reconciliation.html#recursing-on-children) if you’re interested in learning more.
@@ -221,7 +205,7 @@ Hooks solve a wide variety of seemingly unconnected problems in React that were 
 [Read more](https://reactjs.org/docs/hooks-intro.html#motivation)
 
 ## [18. What is the purpose of useEffect hook?]
-The [Effect hook](https://reactjs.org/docs/hooks-reference.html#useeffect) lets us perform side effects in functional components. It helps us to avoid redundant code in different lifecycle methods of a class component. It helps to group related code.
+==The [Effect hook](https://reactjs.org/docs/hooks-reference.html#useeffect) lets us perform side effects in functional components. It helps us to avoid redundant code in different lifecycle methods of a class component. It helps to group related code.==
 
 ## 19. What are synthetic events in React?
 [SyntheticEvent](https://reactjs.org/docs/events.html) is a cross-browser wrapper around the browser's native event. It has the same API as the browser's native event, including `stopPropagation()` and `preventDefault(), except the events work identically across all browsers.

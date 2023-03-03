@@ -5,7 +5,7 @@ I guess you could think of the Microservices Architectural Style as a specializa
 •Services share schema and contract, not class
 •Service compatibility is based on policy==
 
-<img src="Microservices.assets/image-20220130093623281.png" alt="image-20220130093623281" style="zoom:67%;" />
+![[Pasted image 20230302100641.png]]
 
 These tenets of SOA were given to us by Don Box of Microsoft - MS then went on to release WCF and then told us to Go Forth and Service Orientate. Look where that got us (through no fault of their own - see footnote). Then we have this, from Lewis/Fowler:
 In short, ==the microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.== These services are built around business capabilities and independently deployable by fully automated deployment machinery. There is a bare mininum of centralized management of these services, which may be written in different programming languages and use different data storage technologies. From this definition it's clear that microservices fulfill at least the first two tenets (with real emphasis on the second), but it's questionable whether they fulfill the third (I don't really understand tenet 4 so I won't comment).

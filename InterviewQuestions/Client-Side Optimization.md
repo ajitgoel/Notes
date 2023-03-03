@@ -1,8 +1,11 @@
-- Limit the number of HTTP requests
-- Combine all JavaScript resources into one
+==- Limit the number of HTTP requests==
+==- Combine all JavaScript resources into one==
 - **Use CSS Sprites:** CSS sprites what is a technique to combine several images into a single image called a sprite sheet.
-- **Minify Resources (such as HTML, CSS, and JavaScript)**
-- **File Compression:** All modern browsers support Gzip.
+==- **Minify Resources (such as HTML, CSS, and JavaScript)**==
+==- **File Compression:** All modern browsers support Gzip.==
+==- Place JavaScript at the bottom of the HTML page==
+==- Place stylesheets at the top==
+==- Use CDN to cache all static data==
 - Caching
 There are various methods that can be used for cache validation as follows.
 	-   **Last modified**. The server tells the browser what version of the file it is sending.
@@ -11,11 +14,8 @@ There are various methods that can be used for cache validation as follows.
 	-   **Max-Age.** In the max-age header, we can write “This file expires 1 week from today”.
 -**Image Guidelines**
 There are some good guidelines for image processing.
--   It is good to reduce the size of an image without compromising the quality to a large extent by using various image compression utilities.
+==-   It is good to reduce the size of an image without compromising the quality to a large extent by using various image compression utilities.==
 -   Never set the dimension of an image using the width and height attributes of the HTML image element for dynamic resizing.
 -   You should replace vector graphics with resolution-independent raster graphics.
 -   PNG format is preferred.
-- Place JavaScript at the bottom of the HTML page
-- Place stylesheets at the top
 - **DNS Lookups:** Since DNS Lookups increase the response time and bring latency, we should resolve the domain name before a user click a link.
-- Use CDN to cache all static data

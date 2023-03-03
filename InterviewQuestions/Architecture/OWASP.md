@@ -1,6 +1,4 @@
-<img src="OWASP.assets/image-20220130094642164.png" alt="image-20220130094642164" style="zoom:67%;" />
-
-
+![[Pasted image 20230302100736.png]]
 
 # DotNet Security Cheat Sheet[¶](https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html#dotnet-security-cheat-sheet)
 

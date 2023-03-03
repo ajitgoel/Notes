@@ -184,7 +184,7 @@ Below are the steps for Docker life cycle:
 
 ## ==Docker Containers versus Virtual Machines:==
 
-<img src="Notes.assets\vm-docker4.png" alt="My Image" style="zoom:67%;" />
+![[Pasted image 20230302093220.png]]
 
 ## How is Docker different from a virtual machine?
 

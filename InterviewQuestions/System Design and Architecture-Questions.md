@@ -1,20 +1,16 @@
-## _Q1_: 
-
-What Is CAP Theorem?
+## _Q1_:  What Is CAP Theorem?
 
 **The CAP Theorem for distributed computing** was published by Eric Brewer. This states that it is not possible for a distributed computer system to simultaneously provide all three of the following guarantees:
 
-1.  _Consistency_ (all nodes see the same data even at the same time with concurrent updates )
-2.  _Availability_ (a guarantee that every request receives a response about whether it was successful or failed)
-3.  _Partition tolerance_ (the system continues to operate despite arbitrary message loss or failure of part of the system)
+==1.  _Consistency_ (all nodes see the same data even at the same time with concurrent updates )==
+==2.  _Availability_ (a guarantee that every request receives a response about whether it was successful or failed)==
+==3.  _Partition tolerance_ (the system continues to operate despite arbitrary message loss or failure of part of the system)==
 
 The CAP acronym corresponds to these three guarantees. This theorem has created the base for modern distributed computing approaches. Worlds most high volume traffic companies (e.g. Amazon, Google, Facebook) use this as basis for deciding their application architecture. It's important to understand that only two of these three conditions can be guaranteed to be met by a system.
 
 ---
 
-## _Q2_: 
-
-Explain the difference between Asynchronous and Parallel programming?
+## _Q2_:  Explain the difference between Asynchronous and Parallel programming?
 
 Answer
 
@@ -32,10 +28,10 @@ Answer
 
 Scalability is the ability of a system, network, or process to handle a growing amount of load by adding more resources. The adding of resource can be done in two ways
 
--   **Scaling Up**  
-    This involves adding more resources to the existing nodes. For example, adding more RAM, Storage or processing power.
--   **Scaling Out**  
-    This involves adding more nodes to support more users.
+==-   **Scaling Up**  
+    This involves adding more resources to the existing nodes. For example, adding more RAM, Storage or processing power.==
+==-   **Scaling Out**  
+    This involves adding more nodes to support more users.==
 
 Any of the approaches can be used for scaling up/out a application, however the cost of adding resources (per user) may change as the volume increases. If we add resources to the system It should increase the ability of application to take more load in a proportional manner of added resources.
 
@@ -76,7 +72,7 @@ What do you mean by _lower latency interaction_?
 
 Answer
 
-**Low latency** means that there is very little delay between the time you request something and the time you get a response. As it applies to webSockets, it just means that data can be sent quicker (particularly over slow links) because the connection has already been established so no extra packet roundtrips are required to establish the TCP connection.
+==**Low latency** means that there is very little delay between the time you request something and the time you get a response.== As it applies to webSockets, it just means that data can be sent quicker (particularly over slow links) because the connection has already been established so no extra packet roundtrips are required to establish the TCP connection.
 
 ---
 
@@ -86,7 +82,7 @@ What does the expression “Fail Early” mean, and when would you want to do so
 
 Answer
 
-Essentially, **fail fast** (a.k.a. **fail early**) is to code your software such that, **when there is a problem, the software fails _as soon as_ and _as visibly as_ possible**, rather than trying to proceed in a possibly unstable state.
+==Essentially, **fail fast** (a.k.a. **fail early**) is to code your software such that, **when there is a problem, the software fails _as soon as_ and _as visibly as_ possible**, rather than trying to proceed in a possibly unstable state.==
 
 **Fail Fast** approach won’t reduce the overall number of bugs, at least not at first, but it’ll make most defects much _easier to find_.
 
@@ -98,7 +94,7 @@ What is Domain Driven Design?
 
 Answer
 
-**Domain Driven Design** is a methodology and process prescription for the development of complex systems whose focus is mapping activities, tasks, events, and data within a problem domain into the technology artifacts of a solution domain.
+==**Domain Driven Design** is a methodology and process prescription for the development of complex systems whose focus is mapping activities, tasks, events, and data within a problem domain into the technology artifacts of a solution domain.==
 
 It is all about trying to make your software a model of a real-world system or process.
 
@@ -110,7 +106,7 @@ What is meant by the KISS principle?
 
 Answer
 
-**KISS**, a backronym for "keep it simple, stupid", is a design principle noted by the U.S. Navy in 1960. The KISS principle states that most systems work best if they are kept simple rather than made complicated; therefore simplicity should be a key goal in design, and that unnecessary complexity should be avoided.
+==**KISS**, a backronym for "keep it simple, stupid",== is a design principle noted by the U.S. Navy in 1960. T==he KISS principle states that most systems work best if they are kept simple rather than made complicated;== therefore simplicity should be a key goal in design, and that unnecessary complexity should be avoided.
 
 ---
 
@@ -120,22 +116,9 @@ Why Do You Need Clustering?
 
 Answer
 
-_Clustering_ is needed for achieving high availability for a server software. The main purpose of clustering is to achieve 100% availability or a zero down time in service. A typical server software can be running on one computer machine and it can serve as long as there is no hardware failure or some other failure. By creating a cluster of more than one machine, we can reduce the chances of our service going un-available in case one of the machine fails.
+==_Clustering_ is needed for achieving high availability for a server software. The main purpose of clustering is to achieve 100% availability or a zero down time in service.== A typical server software can be running on one computer machine and it can serve as long as there is no hardware failure or some other failure. By creating a cluster of more than one machine, we can reduce the chances of our service going un-available in case one of the machine fails.
 
 Doing clustering does not always guarantee that service will be 100% available since there can still be a chance that all the machine in a cluster fail at the same time. However it in not very likely in case you have many machines and they are located at different location or supported by their own resources.  
-
----
-
-## _Q10_: 
-
-Define ACID Properties
-
-Answer
-
--   **Atomicity**: It ensures all-or-none rule for database modifications.
--   **Consistency**: Data values are consistent across the database.
--   **Isolation**: Two transactions are said to be independent of one another.
--   **Durability**: Data is not lost even at the time of server failure.
 
 ---
 
@@ -157,7 +140,7 @@ Explain the Single Responsibility Principle (SRP)?
 
 Answer
 
-**Single responsibility** is the concept of a Class doing one specific thing (responsibility) and not trying to do more than it should, which is also referred to as _High Cohesion_.
+==**Single responsibility** is the concept of a Class doing one specific thing (responsibility) and not trying to do more than it should, which is also referred to as _High Cohesion_.==
 
 Classes don't often start out with Low Cohesion, but typically after several releases and different developers adding onto them, suddenly you'll notice that it became a monster or **God** class as some call it. So the class should be refactored.
 
@@ -187,7 +170,7 @@ What Do You Mean By High Availability (HA)?
 
 Answer
 
-**Availability** means the ability of the application user to access the system, If a user cannot access the application, it is assumed unavailable. High Availability means the application will be available, without interruption. Using redundant server nodes with clustering is a common way to achieve higher level of availability in web applications.
+**Availability** means the ability of the application user to access the system, If a user cannot access the application, it is assumed unavailable. High Availability means the application will be available, without interruption. ==Using redundant server nodes with clustering is a common way to achieve higher level of availability in web applications.==
 
 Availability is commonly expressed as a percentage of uptime in a given year.
 
@@ -195,16 +178,16 @@ Availability is commonly expressed as a percentage of uptime in a given year.
 
 ## _Q15_: 
 
-What Is ACID Property Of A System?
+==What Is ACID Property Of A System?==
 
 Answer
 
 _ACID_ is a acronym which is commonly used to define the properties of a relational database system, it stand for following terms
 
--   **Atomicity** - This property guarantees that if one part of the transaction fails, the entire transaction will fail, and the database state will be left unchanged.
--   **Consistency** - This property ensures that any transaction will bring the database from one valid state to another.
--   **Isolation** - This property ensures that the concurrent execution of transactions results in a system state that would be obtained if transactions were executed serially.
--   **Durable** - means that once a transaction has been committed, it will remain so, even in the event of power loss.
+==-   **Atomicity** - This property guarantees that if one part of the transaction fails, the entire transaction will fail, and the database state will be left unchanged.==
+==-   **Consistency** - This property ensures that any transaction will bring the database from one valid state to another.==
+==-   **Isolation** - This property ensures that the concurrent execution of transactions results in a system state that would be obtained if transactions were executed serially.==
+==- **Durable** - means that once a transaction has been committed, it will remain so, even in the event of power loss==
 
 ---
 
@@ -214,11 +197,11 @@ What Is Sticky Session Load Balancing? What Do You Mean By "Session Affinity"?
 
 Answer
 
-_Sticky session_ or a _session affinity technique_ is another popular load balancing technique that requires a user session to be always served by an allocated machine.
+==_Sticky session_ or a _session affinity technique_ is another popular load balancing technique that requires a user session to be always served by an allocated machine.==
 
 In a load balanced server application where user information is stored in session it will be required to keep the session data available to all machines. This can be avoided by always serving a particular user session request from one machine. The machine is associated with a session as soon as the session is created. All the requests in a particular session are always redirected to the associated machine. This ensures the user data is only at one machine and load is also shared.
 
-This is typically done by using SessionId cookie. The cookie is sent to the client for the first request and every subsequent request by client must be containing that same cookie to identify the session.
+==This is typically done by using SessionId cookie. The cookie is sent to the client for the first request and every subsequent request by client must be containing that same cookie to identify the session.==
 
 **What Are The Issues With Sticky Session?**
 
@@ -309,7 +292,7 @@ What is Elasticity (in contrast to Scalability)?
 
 Answer
 
-**Elasticity** means that the throughput of a system scales up or down automatically to meet varying demand as resource is proportionally added or removed. The system needs to be scalable to allow it to benefit from the dynamic addition, or removal, of resources at runtime. Elasticity therefore builds upon scalability and expands on it by adding the notion of automatic resource management.
+==**Elasticity** means that the throughput of a system scales up or down automatically to meet varying demand as resource is proportionally added or removed.== The system needs to be scalable to allow it to benefit from the dynamic addition, or removal, of resources at runtime. Elasticity therefore builds upon scalability and expands on it by adding the notion of automatic resource management.
 
 ---
 
@@ -319,10 +302,9 @@ What is the difference between Concurrency and Parallelism?
 
 Answer
 
--   **Concurrency** is when two or more tasks can start, run, and complete in overlapping time **periods**. It doesn't necessarily mean they'll ever both be running **at the same instant**. For example, _multitasking_ on a single-core machine.
+==-   **Concurrency** is when two or more tasks can start, run, and complete in overlapping time **periods**. It doesn't necessarily mean they'll ever both be running **at the same instant**. For example, _multitasking_ on a single-core machine.==
     
--   **Parallelism** is when tasks _literally_ run at the same time, e.g., on a multicore processor.
-    
+==-   **Parallelism** is when tasks _literally_ run at the same time, e.g., on a multicore processor.==
 
 For instance a bartender is able to look after several customers while he can only prepare one beverage at a time. So he can provide _concurrency without parallelism_.
 
@@ -416,7 +398,7 @@ What Is Sharding?
 
 Answer
 
-**Sharding** is a architectural approach that distributes a single logical database system into a cluster of machines. Sharding is _Horizontal partitioning_ design scheme. In this database design rows of a database table are stored separately, instead of splitting into columns (like in _normalization_ and _vertical partitioning_). Each partition is called as a shard, which can be independently located on a separate database server or physical location.
+==**Sharding** is a architectural approach that distributes a single logical database system into a cluster of machines. Sharding is _Horizontal partitioning_ design scheme.== In this database design rows of a database table are stored separately, instead of splitting into columns (like in _normalization_ and _vertical partitioning_). Each partition is called as a shard, which can be independently located on a separate database server or physical location.
 
 Sharding makes a database system highly scalable. The total number of rows in each table in each database is reduced since the tables are divided and distributed into multiple servers. This reduces the index size, which generally means improved search performance. ==The most common approach for creating shards is by the use of consistent hashing of a unique id in application (e.g. user id).==
 
@@ -517,7 +499,7 @@ What's the difference between principles YAGNI and KISS?
 
 Answer
 
--   **YAGNI (You aint gona need it)** refers to over analyzing and implementing things that may or may not be needed. Sure algorithmic elegance is nice and all but most situation you dont need it. In general engineering terms you should be carefull not to include your own requirements so that you dont taint your customer needs with your own ideas that end up costing the project with little impact for the client.
+-   ==**YAGNI (You aint gona need it)** refers to over analyzing and implementing things that may or may not be needed.== Sure algorithmic elegance is nice and all but most situation you dont need it. In general engineering terms you should be carefull not to include your own requirements so that you dont taint your customer needs with your own ideas that end up costing the project with little impact for the client.
     
 -   **KISS (Keep it simple stupid)** refers to the fact that easy systems are easier to manage. Keeping things simple is not nesseserily less work (like YAGNI is) since it requires more knowlege to implement. They are sometimes similar but grow from different needs.
     
@@ -570,13 +552,13 @@ Answer
 ## _Q40_: 
 
 What Does Eventually Consistent Mean?
-- Eventual Consistency is a guarantee that when an update is made in a distributed database, that update will eventually be reflected in all nodes that store the data, resulting in the same response every time the data is queried.
+==- **Eventual Consistency** is a guarantee that when an update is made in a distributed database, that update will eventually be reflected in all nodes that store the data, resulting in the same response every time the data is queried.==
 - Eventually consistent means that a system will eventually  reach a consistent state, even if it is not consistent in the short term.
 
 ## _Q41_: 
 
 What Is Shared Nothing Architecture? How Does It Scale?
-**Shared Nothing Architecture** is an approach to database design in which each node in a distributed database system has its own private memory and disk storage and no node shares any memory or disk storage with any other node. This approach maximizes scalability and reliability by eliminating any single point of contention.
+==**Shared Nothing Architecture** is an approach to database design in which each node in a distributed database system has its own private memory and disk storage and no node shares any memory or disk storage with any other node. This approach maximizes scalability and reliability by eliminating any single point of contention.==
 Shared nothing architecture scales by using multiple independent nodes that do not share memory or disks. Each node is independent and can scale independently, allowing for higher scalability and availability.
 
 ## _Q42_: 
@@ -604,5 +586,18 @@ What is the most accepted transaction strategy for microservices?
 
 Answer
 - https://softwareengineering.stackexchange.com/questions/290917/what-is-the-most-accepted-transaction-strategy-for-microservices#:~:text=The%20most%20accepted%20transaction%20strategy%20for%20microservices%20is,Show%201%20more%20comment%207%20Answers%20Sorted%20by%3A
-	The usual approach is to isolate those microservices as much as possible - treat them as single units. Then transactions can be developed in context of the service as a whole (ie not part of usual DB transactions, though you can still have DB transactions internal to the service).
+	==The usual approach is to isolate those microservices as much as possible - treat them as single units. Then transactions can be developed in context of the service as a whole (ie not part of usual DB transactions, though you can still have DB transactions internal to the service).==
 - The most accepted transaction strategy for microservices is the Saga pattern. This pattern uses a series of transactions to ensure data consistency across multiple services. It is an asynchronous process that uses a series of compensating transactions to ensure that if one transaction fails, the rest of the transactions can be rolled back or compensated.
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -107,7 +107,6 @@ The updates to classes in ES6 do not introduce a new OO inheritance model. Inste
 You will need the method `constructor` to create a `class`. Let’s take a look.
 
 ==class Person {==
-
  ==constructor(name,age){==
 
   this.name = name;
@@ -140,9 +139,7 @@ It’s particularly useful for constructing API requests and nesting templates.
 Take a look at an example below to see how template literals work:
 
 let name = "Sarah";
-
 const greeting = `Hello my name is ${name}`;
-
 console.log(greeting);
 
 ### Other updates with ES6
@@ -215,25 +212,15 @@ console.log(Object.entries(family));
 This ES8 update offers an alternative to callbacks and Promise and uses much more manageable syntax. ==The Async function allows us to define an asynchronous function and return a Promise. The `.await( )` operator waits for a Promise inside the async function.== Take a look at the new way of writing this code.
 
 function resolveAfter2Seconds() {
-
  return new Promise(resolve => {
-
   setTimeout(() => {resolve('resolved');}, 2000);
-
  });
-
 }
-
 ==async== function asyncCall() {
-
  console.log('calling');
-
  ==const result = await resolveAfter2Seconds();==
-
  console.log(result);
-
 }
-
 asyncCall();
 
 **Let’s discuss the new code a bit more.**
@@ -261,31 +248,20 @@ This feature should not be used at the end, or it will result in an error. Take 
 let myObj = { a:1, b:3, c:5, d:8,}
 
 ==// we use the rest operator to grab everything else left in the object.==
-
 ==let { a, b, ...z } = myObj;==
-
 console.log(a);   // 1
-
 console.log(b);   // 3
-
-console.log(z);   // {c: 5, d: 8}
+==console.log(z);   // {c: 5, d: 8}==
 
 ==// using the spread syntax we cloned our Object==
-
 ==let clone = { ...myObj };==
-
 console.log(clone);
-
 // {a: 1, b: 3, c: 5, d: 8}
 
 myObj.e = 15;
-
 console.log(clone)
-
 // {a: 1, b: 3, c: 5, d: 8}
-
 console.log(myObj)
-
 // {a: 1, b: 3, c: 5, d: 8, e: 15}
 
 ### Asynchronous Iteration

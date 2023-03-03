@@ -12,7 +12,7 @@ d. Interface Segregation Principle
 
 e. Dependency Inversion Principle
 
-a. **Single Responsibility Principle** states that every class should have a single responsibility. There should never be more than one reason for a class to change.
+==a. **Single Responsibility Principle** states that every class should have a single responsibility. There should never be more than one reason for a class to change.==
 
 ```
 //This class violates Single Responsibility Principle since this class is 
@@ -46,13 +46,13 @@ public interface IConnectionManager
 }
 ```
 
-b. **Open/Closed Principle** states that software entities should be open for extension, but closed for modification. In the example above, refactoring `IDatabase`into `IConnectionManager`, `IDataManager`classes allows
+==b. **Open/Closed Principle** states that software entities should be open for extension, but closed for modification.== In the example above, refactoring `IDatabase`into `IConnectionManager`, `IDataManager`classes allows
 
 a. if the client application likes to change the way it opens or closes connection, it can implement its own `IConnectionManager`and pass it to the `IDataManager`class i.e Without touching the original code, it is able to extend the functionality of the classes without actually breaking the already existing class.
 
 b. if the client application likes to change the way its getting or sending data it can implement its own `IDataManager`and use it with the already existing implementation of `IConnectionManager`.
 
-**c. Liskov Substitution Principle** states that code should not know it is using base class or its subtypes.
+==**c. Liskov Substitution Principle** states that code should not know it is using base class or its subtypes.==
 
 ```
 public class DatabaseRepository
@@ -99,7 +99,7 @@ public class OracleConnectionManager : IConnectionManager
 }
 ```
 
-**d. Interface Segregation Principle** states that clients should not be forced to implement interfaces they don’t use.
+==**d. Interface Segregation Principle** states that clients should not be forced to implement interfaces they don’t use.==
 
 **Existing Design** Let’s assume we have to implement a new Robot class in this design. **`Robots`** will need to implement the **`IWorker`** interface because robots works. On the other side, they don’t have to implement it because they don’t eat. If we keep the present design, the new `Robot`class is forced to implement the `eat` method.
 
@@ -160,9 +160,8 @@ public class Manager
 }
 ```
 
-**e. Dependency Inversion Principle** states that
-
-1.  High-level modules(`Manager`class) should not depend on low-level modules(`Worker`, `SuperWorker`classes). Both(`Manager, Worker, SuperWorker` classes) should depend on abstractions(`IWorker`).
+==**e. Dependency Inversion Principle** states that==
+==1.  High-level modules(`Manager`class) should not depend on low-level modules(`Worker`, `SuperWorker`classes). Both(`Manager, Worker, SuperWorker` classes) should depend on abstractions(`IWorker`).==
 2.  Abstractions should not depend on details. Details should depend on abstractions.
 
 **Existing Design** Let’s assume we have to implement a new `SuperWorker`class in this design. If we do that then we will have to change the `Manager.Manage()` method also which introduces risk.

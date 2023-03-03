@@ -4,7 +4,7 @@
 
 DynamoDB is suited for workloads with any amount of data that **require predictable read and write performance** and automatic scaling from large to small and everywhere in between.
 
-==DynamoDB scales up and down to support whatever **read and write capacity you specify** per second in provisioned capacity mode. Or you can set it to On-Demand mode and there is little to no capacity planning.==
+==DynamoDB scales up and down to support whatever **read and write capacity you specify** per second in **provisioned capacity mode**. Or you can set it to **On-Demand mode** and there is little to no capacity planning.==
 
 - DynamoDB stores **3 copies of data** on SSD drives **across 3 AZs** in a region.
 - DynamoDB's most common datatypes are **B** (Binary), **N** (Number), and **S** (String)
@@ -13,15 +13,11 @@ DynamoDB is suited for workloads with any amount of data that **require predicta
 ## Reads and Writes Consistency
 
 DynamoDB can be set to support **Eventually Consistent Reads** (default) and **Strongly Consistent Reads** on a per-call basis.
-
 ==**Eventually consistent reads** data is returned immediately but data can be inconsistent.== Copies of data will be generally consistent in 1 second.
-
 ==**Strongly Consistent Reads** will always read from the leader partition since it always has an up-to-date copy.== Data will never be inconsistent but latency may be higher. Copies of data will be consistent with a guarantee of 1 second.
 
 ## Partitions
-
-A **Partition** is when DynamoDB slices your table up into smaller chunks of data. This speeds up reads for very large tables.
-
+==A **Partition** is when DynamoDB slices your table up into smaller chunks of data. This speeds up reads for very large tables.==
 DynamoDB automatically creates Partitions for:
 
 - Every 10 GB of Data or

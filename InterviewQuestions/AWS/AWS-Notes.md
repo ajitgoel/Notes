@@ -16,7 +16,7 @@ you can use load balancers in front of any systems that deal with request/respon
 **<u>SQS Cons:</u>**
 a. DOESN’T GUARANTEE THAT A MESSAGE IS DELIVERED ONLY ONCE  
 b. DOESN’T GUARANTEE THE MESSAGE ORDER  
-c. DOESN’T REPLACE A MESSAGE BROKER: ==SQS is only a message queue without features like message routing or message priorities.   
+c. DOESN’T REPLACE A MESSAGE BROKER: ==SQS is only a message queue without features like message routing or message priorities.
 SQS FIFO (first-in-first-out) queues FIFO queues guarantee order of messages and have a mechanism to detect duplicate messages. The disadvantages are higher pricing and a limitation on 300 operations per second.  
 Amazon MQ provides Apache ActiveMQ as a service and speaks the JMS, NMS, AMQP, STOMP, MQTT, and WebSocket protocols.==  
 
