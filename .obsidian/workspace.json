@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "0edeebbce76bba1a",
+        "id": "eb6592a77ba3bf18",
         "type": "tabs",
         "children": [
           {
-            "id": "e61bf896de9f81c1",
+            "id": "5353f04e63e81749",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -57,7 +57,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 288.5
+    "width": 339.5
   },
   "right": {
     "id": "1226b2989c407223",
@@ -100,8 +100,16 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "e61bf896de9f81c1",
+  "active": "5353f04e63e81749",
   "lastOpenFiles": [
+    "PersonalProjects/QRCodeGenerator.md",
+    "Pasted image 20230304163330.png",
+    "PersonalProjects/QRCodeGenerator.assets/image-20211128193345709.png",
+    "PersonalProjects/TextToAudioConversion.md",
+    "PersonalProjects/API to mail merge pdf document.md",
+    "screenshot-app.useanvil.com-2023.03.04-12_39_48.png",
+    "Jetbrains/jetbrains-license-linux.sh",
+    "Jetbrains/ jetbrains-license-linux.sh",
     "InterviewQuestions/Architecture/PubSub.md",
     "InterviewQuestions/Personal/Notes.md",
     "InterviewQuestions/GraphQueryLanguage/Graph Query Language-Notes.md",
@@ -128,12 +136,8 @@
     "InterviewQuestions/Git/Git-Notes.md",
     "InterviewQuestions/AWS/AWS-Notes.md",
     "InterviewQuestions/C#/Various Collection Classes and Their Usage.md",
-    "InterviewQuestions/C#/Notes.md",
-    "InterviewQuestions/ReactJS/Untitled.md",
-    "InterviewQuestions/Docker/Notes.md",
     "InterviewQuestions/Docker/Notes.assets/vm-docker4.png",
     "Pasted image 20230302093220.png",
-    "InterviewQuestions/AWS/DynamoDB.md",
     "InterviewQuestions/REST"
   ]
 }

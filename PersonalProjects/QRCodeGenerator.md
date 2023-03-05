@@ -24,9 +24,7 @@ $5/ month or $36/year membership. You have to send email to cancel membership.
 
 
 
-<img src="QRCodeGenerator.assets/image-20211128193345709.png" alt="image-20211128193345709" style="zoom:150%;" />
-
-
+![[Pasted image 20230304163330.png]]
 
 ![image-20211128193509493](QRCodeGenerator.assets/image-20211128193509493.png)
 
