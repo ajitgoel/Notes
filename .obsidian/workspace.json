@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "eb6592a77ba3bf18",
+        "id": "5a54d2122929e34a",
         "type": "tabs",
         "children": [
           {
-            "id": "5353f04e63e81749",
+            "id": "81de35301b18108c",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -100,13 +100,22 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "5353f04e63e81749",
+  "active": "81de35301b18108c",
   "lastOpenFiles": [
+    "PersonalProjects/TShirts business.md",
+    "Pasted image 20230306231145.png",
+    "SizeChart(1).jpeg",
+    "HackerRank/TopArticles.md",
+    "HackerRank/No of Positive Prefixes.md",
+    "HackerRank/Maximum Distinct.md",
+    "HackerRank/DominatingXOR.md",
+    "HackerRank/Dynamic Programming.md",
+    "PersonalProjects/TextToPdfGeneration.md",
+    "PersonalProjects/API to mail merge pdf document.md",
     "PersonalProjects/QRCodeGenerator.md",
     "Pasted image 20230304163330.png",
     "PersonalProjects/QRCodeGenerator.assets/image-20211128193345709.png",
     "PersonalProjects/TextToAudioConversion.md",
-    "PersonalProjects/API to mail merge pdf document.md",
     "screenshot-app.useanvil.com-2023.03.04-12_39_48.png",
     "Jetbrains/jetbrains-license-linux.sh",
     "Jetbrains/ jetbrains-license-linux.sh",
@@ -129,15 +138,7 @@
     "InterviewQuestions/Architecture/JWT.md",
     "InterviewQuestions/Architecture/HTTPStatusCodes.md",
     "InterviewQuestions/Architecture/CSRF-CrossSiteRequestForgery.md",
-    "InterviewQuestions/Architecture/CORS.md",
-    "InterviewQuestions/Architecture/CQRS-CommandQueryResponsibilitySegregation.md",
-    "InterviewQuestions/Architecture/12FactorApp.md",
-    "InterviewQuestions/Architecture/VerticalSliceArchitecture.md",
-    "InterviewQuestions/Git/Git-Notes.md",
-    "InterviewQuestions/AWS/AWS-Notes.md",
-    "InterviewQuestions/C#/Various Collection Classes and Their Usage.md",
     "InterviewQuestions/Docker/Notes.assets/vm-docker4.png",
-    "Pasted image 20230302093220.png",
     "InterviewQuestions/REST"
   ]
 }

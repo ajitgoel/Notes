@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-
 public class Program
 {
 	public static async Task Main(string[] args)
