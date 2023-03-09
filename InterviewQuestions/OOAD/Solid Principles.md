@@ -3,17 +3,12 @@
 **SOLID** means:
 
 _a_. Single Responsibility Principle
-
 b. Open/Closed Principle
-
 c. Liskov Substitution Principle
-
 d. Interface Segregation Principle
-
 e. Dependency Inversion Principle
 
 ==a. **Single Responsibility Principle** states that every class should have a single responsibility. There should never be more than one reason for a class to change.==
-
 ```
 //This class violates Single Responsibility Principle since this class is 
 //doing two things. It is dealing with both opening \ closing connections 

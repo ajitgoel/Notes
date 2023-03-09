@@ -4,18 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "5a54d2122929e34a",
+        "id": "47d8d4ffbcda9f1a",
         "type": "tabs",
         "children": [
           {
-            "id": "81de35301b18108c",
+            "id": "c6528efb45eb2c32",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Tasks.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "07130b5e2e878867",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Jobs applied to.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -44,7 +61,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "hash",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -57,7 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 339.5
+    "width": 328.5
   },
   "right": {
     "id": "1226b2989c407223",
@@ -73,6 +90,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Jobs applied to.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,44 +118,45 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "81de35301b18108c",
+  "active": "07130b5e2e878867",
   "lastOpenFiles": [
-    "PersonalProjects/TShirts business.md",
-    "Pasted image 20230306231145.png",
+    "Tasks.md",
+    "Jobs applied to.md",
+    "InterviewQuestions/Personal/Notes.md",
+    "Remote Software Architect - AASHTOWare Products.md",
+    "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
+    "Rest-Interview Questions.md",
+    "InterviewQuestions/DesignPatterns/Singleton Pattern.md",
+    "Intuit.md",
+    "InterviewQuestions/DataStructuresAlgorithms/9-HashTables.md",
+    "InterviewQuestions/DataStructuresAlgorithms/7-LinkedLists.md",
+    "InterviewQuestions/Java/77-CollectionsFrameworkOverview.md",
+    "InterviewQuestions/AWS/AWS-Notes.md",
+    "InterviewQuestions/AWS/DynamoDB.md",
+    "InterviewQuestions/GraphQueryLanguage/Graph Query Language-Notes.md",
+    "InterviewQuestions/Java-SpringBoot/Notes.md",
+    "InterviewQuestions/Java/SpringIO-Tutorial-Rest.md",
+    "InterviewQuestions/Architecture/OWASP.md",
+    "InterviewQuestions/Architecture/Microservices.md",
+    "InterviewQuestions/Architecture/MD5.md",
+    "InterviewQuestions/Architecture/LoadBalancing-Algorithms.md",
+    "InterviewQuestions/Architecture/HTTPStatusCodes.md",
+    "InterviewQuestions/Architecture/CSRF-CrossSiteRequestForgery.md",
+    "InterviewQuestions/Architecture/CQRS-CommandQueryResponsibilitySegregation.md",
+    "InterviewQuestions/Architecture/CORS.md",
+    "InterviewQuestions/Architecture/JWT.md",
     "SizeChart(1).jpeg",
-    "HackerRank/TopArticles.md",
-    "HackerRank/No of Positive Prefixes.md",
-    "HackerRank/Maximum Distinct.md",
-    "HackerRank/DominatingXOR.md",
-    "HackerRank/Dynamic Programming.md",
-    "PersonalProjects/TextToPdfGeneration.md",
-    "PersonalProjects/API to mail merge pdf document.md",
-    "PersonalProjects/QRCodeGenerator.md",
+    "InterviewQuestions/Architecture/PubSub.md",
+    "Pasted image 20230306231145.png",
     "Pasted image 20230304163330.png",
     "PersonalProjects/QRCodeGenerator.assets/image-20211128193345709.png",
-    "PersonalProjects/TextToAudioConversion.md",
     "screenshot-app.useanvil.com-2023.03.04-12_39_48.png",
     "Jetbrains/jetbrains-license-linux.sh",
     "Jetbrains/ jetbrains-license-linux.sh",
-    "InterviewQuestions/Architecture/PubSub.md",
-    "InterviewQuestions/Personal/Notes.md",
-    "InterviewQuestions/GraphQueryLanguage/Graph Query Language-Notes.md",
-    "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
-    "InterviewQuestions/Architecture/RestProtocol.md",
-    "InterviewQuestions/Architecture/RefreshToken.md",
-    "InterviewQuestions/ReactJS/InterviewQuestions.md",
-    "InterviewQuestions/Architecture/OWASP.md",
     "Pasted image 20230302100736.png",
     "InterviewQuestions/Architecture/OWASP.assets/image-20220130094642164.png",
-    "InterviewQuestions/Architecture/Outh2.md",
-    "InterviewQuestions/Architecture/Microservices.md",
     "Pasted image 20230302100641.png",
     "InterviewQuestions/Architecture/Microservices.assets/image-20220130093623281.png",
-    "InterviewQuestions/Architecture/MD5.md",
-    "InterviewQuestions/Architecture/LoadBalancing-Algorithms.md",
-    "InterviewQuestions/Architecture/JWT.md",
-    "InterviewQuestions/Architecture/HTTPStatusCodes.md",
-    "InterviewQuestions/Architecture/CSRF-CrossSiteRequestForgery.md",
     "InterviewQuestions/Docker/Notes.assets/vm-docker4.png",
     "InterviewQuestions/REST"
   ]

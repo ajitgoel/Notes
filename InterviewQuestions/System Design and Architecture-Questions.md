@@ -257,7 +257,7 @@ What does it mean "System Shall Be Resilient"?
 
 Answer
 
-System is **Resilient** if it stays **responsive in the face of failure**. This applies not only to highly-available, mission critical systems — any system that is _not resilient_ will be unresponsive after a failure.
+==System is **Resilient** if it stays **responsive in the face of failure**.== This applies not only to highly-available, mission critical systems — any system that is _not resilient_ will be unresponsive after a failure.
 
 Resilience is achieved by:
 
