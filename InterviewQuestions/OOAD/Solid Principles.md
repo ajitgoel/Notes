@@ -21,9 +21,7 @@ public interface IDatabase
     void SendData(object data);
 }
 ```
-
 **Refactored code to follow Single Responsibility Principle and Open\closed principle:**
-
 ```
 //Database class has now been refactored into two classes
 //The IDataManager class deals with data communication
@@ -42,13 +40,10 @@ public interface IConnectionManager
 ```
 
 ==b. **Open/Closed Principle** states that software entities should be open for extension, but closed for modification.== In the example above, refactoring `IDatabase`into `IConnectionManager`, `IDataManager`classes allows
-
 a. if the client application likes to change the way it opens or closes connection, it can implement its own `IConnectionManager`and pass it to the `IDataManager`class i.e Without touching the original code, it is able to extend the functionality of the classes without actually breaking the already existing class.
-
 b. if the client application likes to change the way its getting or sending data it can implement its own `IDataManager`and use it with the already existing implementation of `IConnectionManager`.
 
 ==**c. Liskov Substitution Principle** states that code should not know it is using base class or its subtypes.==
-
 ```
 public class DatabaseRepository
 {
@@ -75,7 +70,6 @@ public class DatabaseRepository
 ```
 
 **Refactored code to follow Liskov Substitution Principle:**
-
 ```
 public interface IConnectionManager
 {
@@ -97,7 +91,6 @@ public class OracleConnectionManager : IConnectionManager
 ==**d. Interface Segregation Principle** states that clients should not be forced to implement interfaces they don’t use.==
 
 **Existing Design** Let’s assume we have to implement a new Robot class in this design. **`Robots`** will need to implement the **`IWorker`** interface because robots works. On the other side, they don’t have to implement it because they don’t eat. If we keep the present design, the new `Robot`class is forced to implement the `eat` method.
-
 ```
 public interface IWorker 
 {
@@ -121,7 +114,6 @@ public class Manager
 ```
 
 **Refactored code to follow Interface Segregation Principle:** By splitting the `IWorker`interface in `IFeedable`, `IWorkable`interfaces the new `Robot`class is no longer forced to implement the `Eat` method.
-
 ```
 public interface IWorker : IFeedable, IWorkable{}
 public interface IWorkable 

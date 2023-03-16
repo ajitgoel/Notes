@@ -30,7 +30,7 @@ A state, is that which the server application cares about to fulfill the request
 **Resource**
 A resource, is the data that defines a model representation. This might be the stored data in the database. Note, that, a state is an informacion that depends on the request and the client that is asking for; while the resource is information that is constant through all clients (of course until it needs to be updated).
 
-**Idempotence**
+**==Idempotence==**
 In terms of computer science, this term has a different meaning. It describes an operation that will produce the same result whether it is being called one or many times. In other works, making multiple identical requests has the same effect as making a single one. ==Imagine a client asking a server to update the resource user, setting its property age to the value of 20. No matter how many times you ask this. You'll have the same effect on the database.==
 
 **Safety**

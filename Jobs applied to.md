@@ -20,4 +20,15 @@ https://jobs.boeing.com/job/everett/software-engineers-mid-level-and-experienced
 https://apply.deloitte.com/careers/InviteToApply?jobId=44843&source=LinkedIn
 - Senior Backend Engineer at Epic Games, Bellevue,Washington,United States
 https://www.linkedin.com/jobs/view/3449241491
-- 
+- Senior Principal Engineer, Platform RMS Bellevue, WA Hybrid
+https://www.linkedin.com/jobs/view/3475078786
+- Principal Software Engineer, SunPower Corporation Bellevue, WA Hybrid
+https://www.linkedin.com/jobs/view/3438334509
+- MTS1 Software Engineer Hybrid San Jose Atlanta
+https://ebay.wd5.myworkdayjobs.com/en-US/apply/job/MTS1-Software-Engineer_R0058097-1
+- MTS1 Software Engineer Onsite San Jose
+https://ebay.wd5.myworkdayjobs.com/en-US/apply/job/MTS-1--Software-Engineer_R0058109-1
+- MTS1 Software Engineer Hybrid San Jose
+https://ebay.wd5.myworkdayjobs.com/en-US/apply/job/MTS-1--Software-Engineer_R0058441
+- Software Engineers (Mid-Level and Experienced) Everett, Washington; Renton, Washington 
+https://jobs.boeing.com/job/everett/software-engineers-mid-level-and-experienced/185/45361457760

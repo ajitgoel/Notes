@@ -4,35 +4,40 @@
     "type": "split",
     "children": [
       {
-        "id": "47d8d4ffbcda9f1a",
+        "id": "41a721a3e885688c",
         "type": "tabs",
         "children": [
           {
-            "id": "c6528efb45eb2c32",
+            "id": "b21eedeec82efdae",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tasks.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "07130b5e2e878867",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Jobs applied to.md",
+                "file": "InterviewQuestions/Personal/Notes.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
+      },
+      {
+        "id": "5e1ea58a75e728fe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "87b8f3716b2a9c79",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
       }
     ],
     "direction": "vertical"
@@ -74,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 328.5
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "1226b2989c407223",
@@ -90,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Jobs applied to.md",
+                "file": "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,35 +124,75 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "07130b5e2e878867",
+  "floating": {
+    "id": "a51a076e4ed96fe7",
+    "type": "floating",
+    "children": [
+      {
+        "id": "9421be063ff1b3b8",
+        "type": "window",
+        "children": [
+          {
+            "id": "3888c8fb2d860759",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "c4fe1e6acba3046a",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Sr Software Engineer (AWS-IaC-TypeScript).md",
+                    "mode": "source",
+                    "source": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 205,
+        "y": 27,
+        "width": 1024,
+        "height": 740,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
+  "active": "87b8f3716b2a9c79",
   "lastOpenFiles": [
+    "InterviewQuestions/Personal/Notes.md",
+    "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
+    "Sr Software Engineer (AWS-IaC-TypeScript).md",
+    "InterviewQuestions/AWS/AWS-Notes.md",
+    "InterviewQuestions/AWS/AWS Lambda.md",
+    "InterviewQuestions/AWS/DynamoDB.md",
+    "InterviewQuestions/Java/46-Package.md",
+    "InterviewQuestions/Java/SpringIO-Tutorial-Rest.md",
+    "InterviewQuestions/Java/Stage2-Authentication.md",
+    "Albertsons-Senior Software Engineer.md",
+    "PersonalProjects/TShirts business.md",
+    "Radzen/Radzen-Notes.md",
+    "Radzen/image-20201119201625606.png",
+    "Radzen/image-20201119201606133.png",
     "Tasks.md",
     "Jobs applied to.md",
-    "InterviewQuestions/Personal/Notes.md",
-    "Remote Software Architect - AASHTOWare Products.md",
-    "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
     "Rest-Interview Questions.md",
-    "InterviewQuestions/DesignPatterns/Singleton Pattern.md",
-    "Intuit.md",
-    "InterviewQuestions/DataStructuresAlgorithms/9-HashTables.md",
-    "InterviewQuestions/DataStructuresAlgorithms/7-LinkedLists.md",
-    "InterviewQuestions/Java/77-CollectionsFrameworkOverview.md",
-    "InterviewQuestions/AWS/AWS-Notes.md",
-    "InterviewQuestions/AWS/DynamoDB.md",
-    "InterviewQuestions/GraphQueryLanguage/Graph Query Language-Notes.md",
-    "InterviewQuestions/Java-SpringBoot/Notes.md",
-    "InterviewQuestions/Java/SpringIO-Tutorial-Rest.md",
+    "ReactJs/ReactJsByExample.md",
+    "ReactJs",
+    "InterviewQuestions/ReactJS/ReactJs-InterviewQuestions-2.md",
+    "InterviewQuestions/ReactJS/InterviewQuestions.md",
+    "InterviewQuestions/SQLServer/Database Tuning -Tips and Tricks.md",
+    "InterviewQuestions/Client-Side Optimization.md",
+    "InterviewQuestions/Java-SpringBoot/Rest Controller Unit Test with @WebMvcTest.md",
+    "InterviewQuestions/Java/Java-Interview questions.md",
+    "InterviewQuestions/Java-SpringBoot/SpringBoot-Interview questions.md",
+    "InterviewQuestions/Architecture/RefreshToken.md",
     "InterviewQuestions/Architecture/OWASP.md",
-    "InterviewQuestions/Architecture/Microservices.md",
-    "InterviewQuestions/Architecture/MD5.md",
-    "InterviewQuestions/Architecture/LoadBalancing-Algorithms.md",
-    "InterviewQuestions/Architecture/HTTPStatusCodes.md",
-    "InterviewQuestions/Architecture/CSRF-CrossSiteRequestForgery.md",
-    "InterviewQuestions/Architecture/CQRS-CommandQueryResponsibilitySegregation.md",
-    "InterviewQuestions/Architecture/CORS.md",
-    "InterviewQuestions/Architecture/JWT.md",
+    "InterviewQuestions/Architecture/Outh2.md",
     "SizeChart(1).jpeg",
-    "InterviewQuestions/Architecture/PubSub.md",
     "Pasted image 20230306231145.png",
     "Pasted image 20230304163330.png",
     "PersonalProjects/QRCodeGenerator.assets/image-20211128193345709.png",
@@ -156,8 +202,6 @@
     "Pasted image 20230302100736.png",
     "InterviewQuestions/Architecture/OWASP.assets/image-20220130094642164.png",
     "Pasted image 20230302100641.png",
-    "InterviewQuestions/Architecture/Microservices.assets/image-20220130093623281.png",
-    "InterviewQuestions/Docker/Notes.assets/vm-docker4.png",
     "InterviewQuestions/REST"
   ]
 }

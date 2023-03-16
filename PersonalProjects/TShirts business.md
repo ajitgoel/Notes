@@ -3,3 +3,6 @@
 ![[SizeChart(1).jpeg]]
 
 ![[Pasted image 20230306231145.png]]
+
+https://www.reddit.com/r/Entrepreneur/comments/6gaifh/guide_to_buying_from_alibaba_and_importing_from/
+

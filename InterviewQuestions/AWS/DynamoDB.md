@@ -10,7 +10,7 @@ You can query a global secondary index like you would query the table.==
 ==**A local secondary index** must use the same partition key as the table. You can only vary on the attribute that is used as the sort key.== 
 ==A local secondary index uses the read and write-capacity of the table.==  
 
-==You can enforce **strongly consistent reads** to avoid running into eventual consistency issues with stale data. But reads from a global secondary index are always **eventually consistent**.==
+You can enforce **strongly consistent reads** to avoid running into eventual consistency issues with stale data. But reads from a global secondary index are always **eventually consistent**
 == You can use the query operation to query table or secondary indexes.==
 == The scan operation is flexible but not efficient and shouldn’t be used too often.==  
 

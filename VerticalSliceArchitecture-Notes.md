@@ -9,8 +9,6 @@ A layered architecture like the onion or “clean” pattern we started with is 
 
 <img src="https://mlclehz1uim6.i.optimole.com/zGhTKgw.n_tq~264a/w:772/h:567/q:90/https://headspring.com/wp-content/uploads/2019/11/CleanArchitecture.jpg" alt="img" style="zoom:50%;" />
 
-
-
 This approach/architecture is really only appropriate for a minority of the typical requests in a system. These architectures also tend to be mock-heavy, with rigid rules around dependency management. In practice, I’ve found these rules rarely useful, and you start to get many abstractions around concepts that really shouldn’t be abstracted (Controller MUST talk to a Service that MUST use a Repository).
 
 A more tailored approach to the system would enable you to treat each request as a distinct use case for how to approach its code. Because my system breaks down neatly into “command” requests and “query” requests (GET vs POST/PUT/DELETE in HTTP-land), moving towards a vertical slice architecture gives me CQRS out of the gate.

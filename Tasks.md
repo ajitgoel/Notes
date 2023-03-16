@@ -13,10 +13,22 @@ Rishi renew passport
 -   Form DS-11
 -   List of acceptable documents at [Travel.State.Gov](https://travel.state.gov/content/travel/en/passports/need-passport/under-16.html "Travel.State.Gov")
 ~~Costco connect-Change credit card information~~
-Nissan Altima-Show car for repair
+Nissan Altima
+	Show car for repair
+	Change number plate for new number plate
 Toyota Prius
-	7000 miles tire rotation at Costco-Friday 3/3/2023-6 pm.
 	Oil change- Walmart #519511400 Highway 99, Everett, WA 98204, Mon - Sun | 7am - 7pm
+
+Professional:
+==Gym every other day
+Work on .Net project.
+Learn React, Redux, Learn how to debug async calls in React==
+Learn Azure, Azure certification
+Learn AWS
+Learn Kafka
+==T-Shirts business
+Apply to jobs==
+
 
 --------------------------------
 

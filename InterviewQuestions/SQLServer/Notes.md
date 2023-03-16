@@ -1,16 +1,11 @@
 A table may have more than one combination of columns that could uniquely identify the rows in a table; each combination is a **candidate key**.
-
 ==A **clustered index** is a special type of index that reorders the way in which records in the table are physically stored.Therefore table can have only one clustered index.==
-
 ==A **nonclustered index** is a special type of index in which the logical order of the index does not match the physical stored order of the rows on disk.==
-
 The ‘**fill factor**‘ option specifies how full SQL Server will make each index page. When there is no free space to insert new row on the index page, SQL Server will create new index page and transfer some rows from the previous page to the new one. This operation is called **page splits**.
-
 **Difference between delete table and truncate**
 ==DELETE TABLE syntax logs the deletes thus make the delete operation slow. TRUNCATE table does not log any information but it logs information about deallocation of data page of the table so TRUNCATE table is faster as compared to delete table.
 √ DELETE table can have criteria while TRUNCATE can not.
 √ TRUNCATE table can not trigger.==
-
 **What are the different types of triggers in Sql SERVER 2000 ?**
 There are two types of triggers :-
 **INSTEAD OF triggers** fire in place of the triggering action. For example, if an INSTEAD OF UPDATE trigger exists on the Sales table and an UPDATE statement is executed against the Sales table, the UPDATE statement will not change a row in the sales table. Instead, the UPDATE statement causes the INSTEAD OF UPDATE trigger to be executed, which may or may not modify data in the Sales table.
@@ -69,10 +64,10 @@ You can generate IDs anywhere, instead of having to roundtrip to the database
 Most replication scenarios require GUID columns anyway
 
 **GUID Cons**
-<u>It is a whopping 4 times larger than the traditional 4-byte index value; this can have serious performance and storage implications if you’re not careful</u>
+==It is a whopping 4 times larger than the traditional 4-byte index value; this can have serious performance and storage implications if you’re not careful==
 Cumbersome to debug where userid='{BAE7DF4-DDF-3RG-5TY3E3RF456AS10}’
-The generated GUIDs should be partially sequential for best performance (eg, newsequentialid() on SQL 2005) and to
-enable use of clustered indexes
+==The generated GUIDs should be partially sequential for best performance (eg, newsequentialid() on SQL 2005) and to
+enable use of clustered indexes==
 
 **Difference between View and materialized view**
 For a materialized view, data is persisted into a virtual table which is maintained by SQL Server itself.
@@ -84,7 +79,6 @@ It will certainly impact write performance because with each DML operation, SQL 
 When you’re indexing view, all objects used in view schema cannot be modified till indexed view exists.
 
 -------------------
-
 **EXAMPLE of Correlated Subqueries :** Find all the employees who earn more than the average salary in their department.
 SELECT last_name, salary, department_id FROM ==employees outer==
  WHERE salary >(SELECT AVG(salary) FROM employees WHERE department_id = ==outer==.department_id);
@@ -92,12 +86,9 @@ SELECT last_name, salary, department_id FROM ==employees outer==
 ---------------------
 
 **<u>Window functions in SQL</u>** ==Window functions applies aggregate and ranking functions over a particular== window ==(set of rows) OVER clause is used with window functions to define that window==. OVER clause does two things :
-
 - Partitions rows into form set of rows. (PARTITION BY clause is used)
 - Orders rows within those partitions into a particular order. (ORDER BY clause is used)
-
 ###### For employee table having columns name, age, department, salary, Find average salary of employees for each department and order employees within a department by age.
-
 SELECT Name, Age, Department, Salary, ==AVERAGE(Salary) OVER( PARTITION BY Department ORDER BY Age) AS Avg_Salary== FROM employee
 
 ---------------------
