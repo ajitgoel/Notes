@@ -10,7 +10,6 @@ Redmond, WA
 **Nintendo of America Inc.**
 
 The worldwide pioneer in the creation of interactive entertainment, Nintendo Co., Ltd., of Kyoto, Japan, manufactures and markets hardware and software for its Nintendo Switch™ system and the Nintendo 3DS™ family of portable systems. Since 1983, when it launched the Nintendo Entertainment System™, Nintendo has sold billions of video games and hundreds of millions of hardware units globally, including Nintendo Switch and the Nintendo 3DS family of systems, as well as the Game Boy™, Game Boy Advance, Nintendo DS™ family of systems, Super NES™, Nintendo 64™, Nintendo GameCube™, Wii™, and Wii U™ systems. It has also created industry icons that have become well-known, household names, such as Mario, Donkey Kong, Metroid, Zelda and Pokémon. A wholly owned subsidiary, Nintendo of America Inc., based in Redmond, Wash., serves as headquarters for Nintendo’s operations in the Americas. For more information about Nintendo, please visit the company’s website at [http://www.nintendo.com](http://www.nintendo.com/).
-
   
 Nintendo is an equal opportunity employer. We offer a welcoming and inclusive environment in service to one another, our products, the diverse consumers we represent, and the communities we call home. We do all of this with kindness, empathy and respect for each other.
 

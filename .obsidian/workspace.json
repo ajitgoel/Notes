@@ -13,25 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "InterviewQuestions/Personal/Notes.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          }
-        ]
-      },
-      {
-        "id": "5e1ea58a75e728fe",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "87b8f3716b2a9c79",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
+                "file": "Albertsons-Senior Software Engineer.md",
                 "mode": "source",
                 "source": false
               }
@@ -79,8 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 203.5
   },
   "right": {
     "id": "1226b2989c407223",
@@ -96,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
+                "file": "Albertsons-Senior Software Engineer.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,48 +105,12 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "floating": {
-    "id": "a51a076e4ed96fe7",
-    "type": "floating",
-    "children": [
-      {
-        "id": "9421be063ff1b3b8",
-        "type": "window",
-        "children": [
-          {
-            "id": "3888c8fb2d860759",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "c4fe1e6acba3046a",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "Sr Software Engineer (AWS-IaC-TypeScript).md",
-                    "mode": "source",
-                    "source": false
-                  }
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 205,
-        "y": 27,
-        "width": 1024,
-        "height": 740,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
-  },
-  "active": "87b8f3716b2a9c79",
+  "active": "b21eedeec82efdae",
   "lastOpenFiles": [
+    "PersonalProjects/TShirts business.md",
+    "Sr Software Engineer (AWS-IaC-TypeScript).md",
     "InterviewQuestions/Personal/Notes.md",
     "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
-    "Sr Software Engineer (AWS-IaC-TypeScript).md",
     "InterviewQuestions/AWS/AWS-Notes.md",
     "InterviewQuestions/AWS/AWS Lambda.md",
     "InterviewQuestions/AWS/DynamoDB.md",
@@ -173,7 +118,6 @@
     "InterviewQuestions/Java/SpringIO-Tutorial-Rest.md",
     "InterviewQuestions/Java/Stage2-Authentication.md",
     "Albertsons-Senior Software Engineer.md",
-    "PersonalProjects/TShirts business.md",
     "Radzen/Radzen-Notes.md",
     "Radzen/image-20201119201625606.png",
     "Radzen/image-20201119201606133.png",

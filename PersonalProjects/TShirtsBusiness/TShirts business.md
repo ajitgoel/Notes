@@ -6,3 +6,6 @@
 
 https://www.reddit.com/r/Entrepreneur/comments/6gaifh/guide_to_buying_from_alibaba_and_importing_from/
 
+https://www.alibaba.com/product-detail/2017-high-quality-custom-design-navy_50036788297.html
+
+https://www.alibaba.com/product-detail/Less-than-1-00-t-shirt_1600410766481.html
