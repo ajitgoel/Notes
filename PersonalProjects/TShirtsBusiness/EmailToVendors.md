@@ -47,3 +47,10 @@ Initial order will be for 10000 tshirts(5000 Plain Tshirts, 5000 Raglan TShirts)
 "And we would like to offer our avaiable sample for free, but hope you can pay for the express cost. If you have China agent, we also can send for them for free. " => This works, we will definitely pay for the express cost. Like I said before we are approaching this as a long term project and we would like to work with you. Please provide a sample of white T-shirt, and at least a couple of different color samples of Raglan T-shirts
 
 "For the t shirt weight, do you have an idea? Heavy weight or light weight or middle? Usually we do ring spun cotton t shirt with 120-240gsm. And we can do CPSIA tracking labels." => Weight of the fabric will be 205 grams or above. The other details are part of the initial message, please check
+
+----------------
+
+Hello, we have a requirment for Raglan TShirts. The sizes that we need are 6M, 12M, 18M, 2T, 3T, 4T, 5T, 6T for Raglan Infant and Toddler(unisex) and XS, S, M, L, XL for Youth(unisex) and the weight of the fabric will be 180 grams or above. The fabric needs to be single jersey combed cotton and the colors that we need are: White/ Black, White/ Carolina Blue, White/ parrot Green, White/ Light Pink, White/ Hot Pink, White/ Navy Blue, White/ Red, White/ Royal Blue. Can you provide a quote for the same based on the minimum order quantity for each color and assuming that the order needs to be shipped to our address? Would you be able to ship a couple of sample T-Shirts to 4721 169th street SE, Bothell 98012. Please let me know. My phone number is +1 214 606 5700, if you need to talk to me on whatsapp
+
+Other Raglan TShirt details:
+100% Ring Spun cotton Preshrunk high quality raglan white T-shirts with contrast color set in collar and short sleeves. Quarter-turned to eliminate center crease. Double needle throughout including sleeves and bottoms hems. Seamless rib at neck. CPSIA tracking label compliant. Tear-Away labels (SL(logo) and size info on labels). Poly Packing for every 10 T-shirts and no additional sticky labels on it. Box packing of every 10 packs(10X10) in a heavy duty box to be shipped internationally.
