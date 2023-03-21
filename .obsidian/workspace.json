@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "41a721a3e885688c",
+        "id": "78008036746377bd",
         "type": "tabs",
         "children": [
           {
-            "id": "b21eedeec82efdae",
+            "id": "c56a8920872f6103",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Albertsons-Senior Software Engineer.md",
+                "file": "PersonalProjects/TShirtsBusiness/EmailToVendors.md",
                 "mode": "source",
                 "source": false
               }
@@ -61,7 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 203.5
+    "width": 201.5
   },
   "right": {
     "id": "1226b2989c407223",
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Albertsons-Senior Software Engineer.md",
+                "file": "PersonalProjects/TShirtsBusiness/EmailToVendors.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,11 +102,16 @@
       "canvas:Create new canvas": false,
       "command-palette:Open command palette": false,
       "markdown-importer:Open format converter": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false
+      "obsidian-excalidraw-plugin:Create new drawing": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "b21eedeec82efdae",
+  "active": "c56a8920872f6103",
   "lastOpenFiles": [
+    "Pasted image 20230320190843.png",
+    "PersonalProjects/TShirtsBusiness/TShirts business.md",
+    "PersonalProjects/TShirtsBusiness/EmailToVendors.md",
+    "Albertsons-Senior Software Engineer.md",
     "PersonalProjects/TShirts business.md",
     "Sr Software Engineer (AWS-IaC-TypeScript).md",
     "InterviewQuestions/Personal/Notes.md",
@@ -117,7 +122,6 @@
     "InterviewQuestions/Java/46-Package.md",
     "InterviewQuestions/Java/SpringIO-Tutorial-Rest.md",
     "InterviewQuestions/Java/Stage2-Authentication.md",
-    "Albertsons-Senior Software Engineer.md",
     "Radzen/Radzen-Notes.md",
     "Radzen/image-20201119201625606.png",
     "Radzen/image-20201119201606133.png",
@@ -133,9 +137,6 @@
     "InterviewQuestions/Java-SpringBoot/Rest Controller Unit Test with @WebMvcTest.md",
     "InterviewQuestions/Java/Java-Interview questions.md",
     "InterviewQuestions/Java-SpringBoot/SpringBoot-Interview questions.md",
-    "InterviewQuestions/Architecture/RefreshToken.md",
-    "InterviewQuestions/Architecture/OWASP.md",
-    "InterviewQuestions/Architecture/Outh2.md",
     "SizeChart(1).jpeg",
     "Pasted image 20230306231145.png",
     "Pasted image 20230304163330.png",

@@ -42,7 +42,7 @@ Website
 
 Initial order will be for 10000 tshirts(5000 Plain Tshirts, 5000 Raglan TShirts), Weight of the fabric will be 205 grams or above. 
 
-"And we checked your size chart line, there are adult and child sizes into it, would you want do all of sizes or only kids t shirt?"=> When we ship the order we will need to have a mix of all the sizes and colors(for each of 5000 Plain Tshirts, 5000 Raglan TShirts). If creating different color raglan tshirts for a 5000 Raglan TShirt order will not work based on the order size then please advise. 
+"And we checked your size chart line, there are adult and child sizes into it, would you want do all of sizes or only kids t shirt?"=> When we ship the order we will need to have a mix of all the sizes and colors(for each of 5000 Plain Tshirts, z5000 Raglan TShirts). If creating different color raglan tshirts for a 5000 Raglan TShirt order will not work based on the order size then please advise. 
 
 "And we would like to offer our avaiable sample for free, but hope you can pay for the express cost. If you have China agent, we also can send for them for free. " => This works, we will definitely pay for the express cost. Like I said before we are approaching this as a long term project and we would like to work with you. Please provide a sample of white T-shirt, and at least a couple of different color samples of Raglan T-shirts
 
@@ -54,3 +54,5 @@ Hello, we have a requirment for Raglan TShirts. The sizes that we need are 6M, 1
 
 Other Raglan TShirt details:
 100% Ring Spun cotton Preshrunk high quality raglan white T-shirts with contrast color set in collar and short sleeves. Quarter-turned to eliminate center crease. Double needle throughout including sleeves and bottoms hems. Seamless rib at neck. CPSIA tracking label compliant. Tear-Away labels (SL(logo) and size info on labels). Poly Packing for every 10 T-shirts and no additional sticky labels on it. Box packing of every 10 packs(10X10) in a heavy duty box to be shipped internationally.
+
+https://docs.google.com/spreadsheets/d/141gLS7uMFwkQLhYrSv5UNocTxCO3Z89fuZ6_iBZJ178/edit#gid=0
