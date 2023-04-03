@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "78008036746377bd",
+        "id": "be932122e870854b",
         "type": "tabs",
         "children": [
           {
-            "id": "c56a8920872f6103",
+            "id": "e77264cbe6f9e297",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -18,8 +18,45 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "667798ea509d474e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "InterviewQuestions/ReactJS/Code Review Comments.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c3dcbb2bf3588225",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "InterviewQuestions/Java-SpringBoot/Code Review comments.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a10c5418b77c8d9e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "InterviewQuestions/Java/Java-Code Review comments.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -61,7 +98,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 201.5
+    "width": 301.5
   },
   "right": {
     "id": "1226b2989c407223",
@@ -77,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "PersonalProjects/TShirtsBusiness/EmailToVendors.md",
+                "file": "InterviewQuestions/Java/Java-Code Review comments.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,47 +143,52 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "c56a8920872f6103",
+  "active": "a10c5418b77c8d9e",
   "lastOpenFiles": [
-    "Pasted image 20230320190843.png",
-    "PersonalProjects/TShirtsBusiness/TShirts business.md",
+    "InterviewQuestions/Java-SpringBoot/Code Review comments.md",
+    "InterviewQuestions/Java/Java-Code Review comments.md",
+    "Development-Notes/WebDevelopment.md",
+    "Development-Notes/TypeScript/Typescript-Documentation.md",
+    "Development-Notes/TypeScript/Problems and Solutions.md",
+    "Development-Notes/TypeScript/Notes.md",
+    "Development-Notes/TypeScript",
+    "Development-Notes/Pasted image 20221025113907.png",
+    "Development-Notes/Pasted image 20221025113900.png",
+    "Development-Notes/Pasted image 20221025101524.png",
+    "Development-Notes/Node.js.md",
+    "Development-Notes/NPM.md",
+    "Development-Notes/Java/SpringBoot.md",
+    "Development-Notes/Java/Pasted image 20221203212014.png",
+    "Development-Notes/Java/Java.md",
+    "Development-Notes/Java",
+    "Development-Notes/HTTP response status codes.md",
+    "Development-Notes/Git.md",
+    "Development-Notes/Development-Notes.md",
+    "Development-Notes/CloudFormation.md",
+    "Development-Notes/CSS/SASS-Notes.md",
+    "Development-Notes/CSS/FlexBox-Notes.md",
+    "Development-Notes/CSS/CSS-Notes.md",
+    "Development-Notes/CSS/CSS Selectors Reference.pdf",
+    "Development-Notes/CSS",
+    "Development-Notes/BuilderPattern.md",
+    "Development-Notes/AWS.md",
+    "Development-Notes",
+    "InterviewQuestions/ReactJS/Code Review Comments.md",
     "PersonalProjects/TShirtsBusiness/EmailToVendors.md",
+    "PersonalProjects/TShirtsBusiness/TShirts business.md",
+    "PersonalProjects/TShirtsBusiness/Definations.md",
+    "Tasks.md",
+    "PersonalProjects/TextToPdfGeneration.md",
     "Albertsons-Senior Software Engineer.md",
-    "PersonalProjects/TShirts business.md",
-    "Sr Software Engineer (AWS-IaC-TypeScript).md",
-    "InterviewQuestions/Personal/Notes.md",
-    "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
-    "InterviewQuestions/AWS/AWS-Notes.md",
-    "InterviewQuestions/AWS/AWS Lambda.md",
-    "InterviewQuestions/AWS/DynamoDB.md",
-    "InterviewQuestions/Java/46-Package.md",
-    "InterviewQuestions/Java/SpringIO-Tutorial-Rest.md",
-    "InterviewQuestions/Java/Stage2-Authentication.md",
-    "Radzen/Radzen-Notes.md",
+    "Pasted image 20230320190843.png",
     "Radzen/image-20201119201625606.png",
     "Radzen/image-20201119201606133.png",
-    "Tasks.md",
-    "Jobs applied to.md",
-    "Rest-Interview Questions.md",
-    "ReactJs/ReactJsByExample.md",
     "ReactJs",
-    "InterviewQuestions/ReactJS/ReactJs-InterviewQuestions-2.md",
-    "InterviewQuestions/ReactJS/InterviewQuestions.md",
-    "InterviewQuestions/SQLServer/Database Tuning -Tips and Tricks.md",
-    "InterviewQuestions/Client-Side Optimization.md",
-    "InterviewQuestions/Java-SpringBoot/Rest Controller Unit Test with @WebMvcTest.md",
-    "InterviewQuestions/Java/Java-Interview questions.md",
-    "InterviewQuestions/Java-SpringBoot/SpringBoot-Interview questions.md",
     "SizeChart(1).jpeg",
     "Pasted image 20230306231145.png",
     "Pasted image 20230304163330.png",
-    "PersonalProjects/QRCodeGenerator.assets/image-20211128193345709.png",
-    "screenshot-app.useanvil.com-2023.03.04-12_39_48.png",
     "Jetbrains/jetbrains-license-linux.sh",
     "Jetbrains/ jetbrains-license-linux.sh",
-    "Pasted image 20230302100736.png",
-    "InterviewQuestions/Architecture/OWASP.assets/image-20220130094642164.png",
-    "Pasted image 20230302100641.png",
     "InterviewQuestions/REST"
   ]
 }

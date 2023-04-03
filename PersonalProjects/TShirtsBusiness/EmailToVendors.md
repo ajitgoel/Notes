@@ -53,6 +53,12 @@ Initial order will be for 10000 tshirts(5000 Plain Tshirts, 5000 Raglan TShirts)
 Hello, we have a requirment for Raglan TShirts. The sizes that we need are 6M, 12M, 18M, 2T, 3T, 4T, 5T, 6T for Raglan Infant and Toddler(unisex) and XS, S, M, L, XL for Youth(unisex) and the weight of the fabric will be 180 grams or above. The fabric needs to be single jersey combed cotton and the colors that we need are: White/ Black, White/ Carolina Blue, White/ parrot Green, White/ Light Pink, White/ Hot Pink, White/ Navy Blue, White/ Red, White/ Royal Blue. Can you provide a quote for the same based on the minimum order quantity for each color and assuming that the order needs to be shipped to our address? Would you be able to ship a couple of sample T-Shirts to 4721 169th street SE, Bothell 98012. Please let me know. My phone number is +1 214 606 5700, if you need to talk to me on whatsapp
 
 Other Raglan TShirt details:
-100% Ring Spun cotton Preshrunk high quality raglan white T-shirts with contrast color set in collar and short sleeves. Quarter-turned to eliminate center crease. Double needle throughout including sleeves and bottoms hems. Seamless rib at neck. CPSIA tracking label compliant. Tear-Away labels (SL(logo) and size info on labels). Poly Packing for every 10 T-shirts and no additional sticky labels on it. Box packing of every 10 packs(10X10) in a heavy duty box to be shipped internationally.
+100% Ring Spun cotton Preshrunk high quality raglan white T-shirts with contrast color set in collar and 3/4 size sleeves. Quarter-turned to eliminate center crease. Double needle throughout including sleeves and bottoms hems. Seamless rib at neck. CPSIA tracking label compliant. Tear-Away labels (SL(logo) and size info on labels). Poly Packing for every 10 T-shirts and no additional sticky labels on it. Box packing of every 10 packs(10X10) in a heavy duty box to be shipped internationally.
+Bio-wash
+
+
+Have you done this before
+Bio Wash
+other clothing samples
 
 https://docs.google.com/spreadsheets/d/141gLS7uMFwkQLhYrSv5UNocTxCO3Z89fuZ6_iBZJ178/edit#gid=0
