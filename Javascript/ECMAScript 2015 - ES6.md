@@ -239,15 +239,9 @@ If you create two symbols with the same description they will have different val
 Symbol("id") == Symbol("id") // false
 
 ------
-
-
-
 ## Default Parameter Values
-
 ES6 allows function parameters to have default values.
-
 ### Example
-
 function myFunction(x, y = 10) {
  // y is 10 if not passed or undefined
  return x + y;
@@ -257,49 +251,31 @@ myFunction(5); // will return 15
 [](https://www.w3schools.com/js/tryit.asp?filename=tryjs_es6_default)
 
 ------
-
-
-
 ## Function Rest Parameter
-
 ==The rest parameter (...) allows a function to treat an indefinite number of arguments as an array:==
-
 ### Example
-
 function sum(==...args==) {
  let sum = 0;
  for (let arg of args) sum += arg;
  return sum;
 }
-
 let x = sum(4, 9, 16, 25, 29, 100, 66, 77);
 
 ------
 
 ## Array.find()
-
 ==The `find()` method returns the value of the first array element that passes a test function.==
-
 This example finds (returns the value of ) the first element that is larger than 18:
-
 ### Example
-
 var numbers = [4, 9, 16, 25, 29];
 var first = numbers.find(myFunction);
-
 ==function myFunction(value, index, array) {
  return value > 18;
 }==
-
 Note that ==the function takes 3 arguments:==
-
 - ==The item value==
 - ==The item index==
 - ==The array itself==
-
-------
-
-
 
 ## Array.findIndex()
 
