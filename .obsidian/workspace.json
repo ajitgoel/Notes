@@ -4,35 +4,83 @@
     "type": "split",
     "children": [
       {
-        "id": "be932122e870854b",
+        "id": "806b0c2e9b4c87b9",
         "type": "tabs",
         "children": [
           {
-            "id": "e77264cbe6f9e297",
+            "id": "839c63c4dd995a8c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PersonalProjects/TShirtsBusiness/EmailToVendors.md",
+                "file": "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "667798ea509d474e",
+            "id": "f523f8338e36edfa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Javascript/ECMAScript 2015 - ES6.md",
+                "file": "InterviewQuestions/ReactJS/ReactJs-InterviewQuestions-2.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "adaa053096993f02",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "InterviewQuestions/ReactJS/ReactJs-InterviewQuestions-2.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a68529040297f600",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PersonalProjects/TShirtsBusiness/Definations.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b241bb252ec58678",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PersonalProjects/TShirtsBusiness/third party clothes testing centers near tirupur india.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "2e81487d3e669c26",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PersonalProjects/TShirtsBusiness/Things to Do.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -69,6 +117,14 @@
                 "sortOrder": "alphabetical"
               }
             }
+          },
+          {
+            "id": "0bb44d3178c0e7f2",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
@@ -90,7 +146,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Javascript/ECMAScript 2015 - ES6.md",
+                "file": "PersonalProjects/TShirtsBusiness/Things to Do.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,10 +175,26 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "667798ea509d474e",
+  "active": "2e81487d3e669c26",
   "lastOpenFiles": [
-    "Javascript/Javascript.md",
+    "PersonalProjects/TShirtsBusiness/TShirts business.md",
+    "PersonalProjects/TShirtsBusiness/Things to Do.md",
+    "PersonalProjects/TShirtsBusiness/third party clothes testing centers near tirupur india.md",
+    "PersonalProjects/TShirtsBusiness/Testing standards for imported clothing.md",
+    "PersonalProjects/TShirtsBusiness/Definations.md",
+    "PersonalProjects/API to mail merge pdf document.md",
+    "PersonalProjects/TShirtsBusiness/EmailToVendors.md",
+    "PersonalProjects/QRCodeGenerator.md",
+    "InterviewQuestions/ReactJS/ReactByExample.md",
+    "InterviewQuestions/ReactJS/ReactJs-InterviewQuestions-2.md",
+    "InterviewQuestions/Javascript/Javascript-Toptal-Interview Questions.md",
+    "InterviewQuestions/ReactJS/InterviewQuestions.md",
+    "InterviewQuestions/ReactJS/Code Review Comments.md",
+    "InterviewQuestions/Personal/Solution Architect Responsibilities.md",
+    "InterviewQuestions/Personal/TeamLead-RolesResponsibilities.md",
+    "InterviewQuestions/Personal/Notes.md",
     "Javascript/ECMAScript 2015 - ES6.md",
+    "Javascript/Javascript.md",
     "Javascript/JavaScript ES6.md",
     "Javascript/ES6Features.md",
     "InterviewQuestions/Java/Java-Code Review comments.md",
@@ -135,27 +207,11 @@
     "Development-Notes/Pasted image 20221025113907.png",
     "Development-Notes/Pasted image 20221025113900.png",
     "Development-Notes/Pasted image 20221025101524.png",
-    "Development-Notes/Node.js.md",
-    "Development-Notes/NPM.md",
-    "Development-Notes/Java/SpringBoot.md",
     "Development-Notes/Java/Pasted image 20221203212014.png",
-    "Development-Notes/Java/Java.md",
     "Development-Notes/Java",
-    "Development-Notes/HTTP response status codes.md",
-    "Development-Notes/Git.md",
-    "Development-Notes/Development-Notes.md",
-    "Development-Notes/CloudFormation.md",
-    "Development-Notes/CSS/SASS-Notes.md",
-    "Development-Notes/CSS/FlexBox-Notes.md",
-    "Development-Notes/CSS/CSS-Notes.md",
     "Development-Notes/CSS/CSS Selectors Reference.pdf",
     "Development-Notes/CSS",
-    "Development-Notes/BuilderPattern.md",
-    "Development-Notes/AWS.md",
     "Development-Notes",
-    "InterviewQuestions/ReactJS/Code Review Comments.md",
-    "PersonalProjects/TShirtsBusiness/EmailToVendors.md",
-    "PersonalProjects/TShirtsBusiness/TShirts business.md",
     "Pasted image 20230320190843.png",
     "Radzen/image-20201119201625606.png",
     "Radzen/image-20201119201606133.png",

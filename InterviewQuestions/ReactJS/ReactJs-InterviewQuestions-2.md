@@ -1,6 +1,4 @@
-1.
-
-Explain the Virtual DOM, and a pragmatic overview of how React renders it to the DOM.
+1. Explain the Virtual DOM, and a pragmatic overview of how React renders it to the DOM.
 
 The Virtual DOM is an interesting concept; it’s a complex idea that boils down into a much simpler algorithm.
 
@@ -115,9 +113,7 @@ gives us:
 
 You can play around with a web version of this code [at Matthew Keas’ github](https://goo.gl/HZZMjv).
 
-2.
-
-**Explain the standard JavaScript toolchain, transpilation (via Babel or other compilers), JSX, and these items’ significance in recent development. What sort of tools might you use in the build steps to optimize the compiled output React code?**
+2. **Explain the standard JavaScript toolchain, transpilation (via Babel or other compilers), JSX, and these items’ significance in recent development. What sort of tools might you use in the build steps to optimize the compiled output React code?**
 
 The bleeding edge JavaScript toolchain can seem quite complex, and it’s very important to feel confident in the toolchain and to have a mental picture of how the pieces fit together.
 
@@ -236,7 +232,7 @@ Noting a few things about this code:
 3.  We used a single `componentDidMount()` lifecycle method. This is used because on mount, we’d like the component to check if the HOC is visible.
 4.  The largest function of our component, `_scroll()`, grabs the HOC Component’s DOM element with `DOM.findDOMNode()` and then gets the elements position. This position is compared to the height of the browser window, and if it is less than 100px from the bottom, then the scroll listener is removed and `loaded` is set to `1`.
 
-This technique is called HOC (Higher Order Component) because we pass in elements as `this.props.children` when we nest those elements inside the container component:
+==This technique is called HOC (Higher Order Component) because we pass in elements as `this.props.children` when we nest those elements inside the container component:==
 
 ```js
 <HOC>
@@ -248,21 +244,8 @@ This technique is called HOC (Higher Order Component) because we pass in element
 
 All of these nested elements (which can be custom components) are nested under `<HOC/>`, thus `HOC`’s code will be able to access them as `this.props.children`.
 
-Apply to Join Toptal's Development Network
-
-and enjoy reliable, steady, remote [Freelance React.js Developer Jobs](https://www.toptal.com/freelance-jobs/developers/react)
-
-4.
-
-What is the significance of keys in React?
-
-Hide answer
-
-[](https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279989 "facebook")
-
-[](https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279989 "twitter")
-
-Keys in React are used to identify unique VDOM Elements with their corresponding data driving the UI; having them helps React optimize rendering by recycling existing DOM elements. Let’s look at an example to portray this.
+**4. What is the significance of keys in React?**
+==Keys in React are used to identify unique VDOM Elements with their corresponding data driving the UI; having them helps React optimize rendering by recycling existing DOM elements.== Let’s look at an example to portray this.
 
 We have two `<TwitterUser>` Components being rendered to a page, drawn in decreasing order of followers:
 
@@ -331,17 +314,9 @@ The `setInterval()` occurring on mount reorders the `items` array in `this.state
 
 It is worth noting here that if you render a homogenous array of children – such as the `<li>`’s above – React will actually `console.warn()` you of the potential issue, giving you a stack trace and line number to debug from. You won’t have to worry about React quietly breaking.
 
-5.
+**5. What is the significance of refs in React?**
 
-What is the significance of refs in React?
-
-Hide answer
-
-[](https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279990 "facebook")
-
-[](https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279990 "twitter")
-
-Similarly to keys, refs are added as an attribute to a `React.createElement()` call, such as `<li ref="someName"/>`. The `ref` serves a different purpose, it provides us quick and simple access to the DOM Element represented by a React Element.
+==Similarly to keys, refs are added as an attribute to a `React.createElement()` call, such as `<li ref="someName"/>`. The `ref` serves a different purpose, it provides us quick and simple access to the DOM Element represented by a React Element.==
 
 Refs can be either a string or a function. Using a string will tell React to automatically store the DOM Element as `this.refs[refValue]`. For example:
 
@@ -391,15 +366,7 @@ class List extends Component {
 DOM.render(<List />, document.body)
 ```
 
-6.
-
-[Legacy projects only, < circa 2016] In a general overview, how might React Router and its techniques differ from more traditional JavaScript routers like Backbone’s Router?
-
-Hide answer
-
-[](https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279991 "facebook")
-
-[](https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279991 "twitter")
+**6. [Legacy projects only, < circa 2016] In a general overview, how might React Router and its techniques differ from more traditional JavaScript routers like Backbone’s Router?**
 
 “Traditional” routers like the ever-popular [Backbone.Router](http://backbonejs.org/#Router) establish a predefined set of routes, in which each route defines a series of actions to take when a route is triggered. When combining Backbone.Router with React, you may have to mount and unmount React Components when the route changes:
 
@@ -428,7 +395,6 @@ var MyRouter = Backbone.Router.extend({
 The router exists externally of the React Components, and the VDOM has to mount and unmount potentially frequently, introducing a possible slew of problems. React Router focuses on not just “single-level” routing, but enables - nay, _empowers_ - the creation of HOCs that can “decide for themselves” what to render within them.
 
 This is where the advanced HOC implementations can really help simplify a seemingly complex notion. Let’s look at using a tiny router to assess some of the beauty of embedding application routers inside React HOCs. Here, we define a Component that wraps it’s own routing mechanism (`router()` not provided here, see [universal-utils](https://github.com/matthiasak/universal-utils/blob/master/src/router-alt.js)):
-
 ```js
 // router(routesObject, callback) --> when a route event occurs, we invoke callback() with
 // the React Element and the props passed via the route params
@@ -480,15 +446,7 @@ DOM.render(
 
 A `<Router />` Component has one or more `<Route />` Components as items in `this.props.children`, and `<Route />`s can have sub-`<Route />`s. React Router’s code recursively walks down the tree of children until there are no more to process, allowing the developer to recursively declare routes in a structure that encapsulates sub-routes, instead of having to implement a Backbone-esque flat list of routes (i.e. `"/"`, `"/about"`, `"/users"`, `"/users/:id"`, etc).
 
-7.
-
-Why do class methods need to be bound to a class instance, and how can you avoid the need for binding?
-
-Hide answer
-
-[](https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279993 "facebook")
-
-[](https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279993 "twitter")
+**7. Why do class methods need to be bound to a class instance, and how can you avoid the need for binding?**
 
 In JavaScript, the value of `this` changes depending on the current context. Within React class component methods, developers normally expect `this` to refer to the current instance of a component, so it is necessary to bind these methods to the instance. Normally this is done in the constructor—for example:
 
@@ -569,10 +527,8 @@ _Note: As of September 2019, class fields are a Stage 3 ECMAScript proposal and 
 
 ### 3. Use a Function Component with Hooks
 
-Using the hooks functionality in React it is possible to use state without using `this`, which simplifies component implementation and unit testing.
-
+==Using the hooks functionality in React it is possible to use state without using `this`,== which simplifies component implementation and unit testing.
 For example:
-
 ```jsx
 const SubmitButton = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -585,16 +541,7 @@ const SubmitButton = () => {
 };
 ```
 
-8.
-
-Explain the positives and negatives of shallow rendering components in tests.
-
-Hide answer
-
-[](https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279994 "facebook")
-
-[](https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279994 "twitter")
-
+**8. Explain the positives and negatives of shallow rendering components in tests.**
 Positives:
 
 -   It is faster to shallow render a component than to fully render it. When a React project contains a large number of components, this performance difference can have a significant impact on the total time taken for unit tests to execute.
@@ -604,15 +551,7 @@ Negatives:
 
 -   Shallow rendering is less similar to real-world usage of a component as part of an application, so it may not catch certain problems. Take the example of a `<House />` component that renders a `<LivingRoom />` component. Within a real application, if the `<LivingRoom />` component is broken and throws an error, then `<House />` would fail to render. However, if the unit tests of `<House />` only use shallow rendering, then this issue will not be identified unless `<LivingRoom />` is also covered with unit tests.
 
-9.
-
-If you wanted a component to perform an action only once when the component initially rendered—e.g., make a web analytics call—how would you achieve this with a class component? And how would you achieve it with a function component?
-
-Hide answer
-
-[](https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279995 "facebook")
-
-[](https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279995 "twitter")
+9. If you wanted a component to perform an action only once when the component initially rendered—e.g., make a web analytics call—how would you achieve this with a class component? And how would you achieve it with a function component?
 
 ### Using a Class Component
 
@@ -656,15 +595,7 @@ The value passed as the second argument controls when the callback is executed:
 -   If the second parameter **contains an array of variables**, then the callback will be executed as part of the first render cycle and will be executed again each time an item in the array is modified.
 -   If the second parameter **contains an empty array**, the callback will be executed only once as part of the first render cycle. The example above shows how passing an empty array can result in similar behaviour to the `componentDidMount()` hook within a function component.
 
-10.
-
-What are the most common approaches for styling a React application?
-
-Hide answer
-
-[](https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279996 "facebook")
-
-[](https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279996 "twitter")
+10. What are the most common approaches for styling a React application?
 
 ### CSS Classes
 
@@ -682,17 +613,9 @@ Pre-processors are often used on React projects. This is because, like CSS, they
 
 ### CSS-in-JS Modules Such as Styled Components, Emotion, and Styled-jsx
 
-CSS-in-JS modules are a popular option for styling React applications because they integrate closely with React components. For example, they allow styles to change based on React props at runtime. Also, by default, most of these systems scope all styles to the respective component being styled.
+==CSS-in-JS modules== are a popular option for styling React applications because they ==integrate closely with React components. For example, they allow styles to change based on React props at runtime. Also, by default, most of these systems scope all styles to the respective component being styled.==
 
-11.
-
-If you were working on a React application that was rendering a page very slowly, how would you go about investigating and fixing the issue?
-
-Hide answer
-
-[](https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279997 "facebook")
-
-[](https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279997 "twitter")
+**11. If you were working on a React application that was rendering a page very slowly, how would you go about investigating and fixing the issue?**
 
 If a performance issue such as slow rendering is seen within a React app, the first step is to use the Profiler tool provided within the React Developer Tools browser plugin, which is available for Google Chrome and Mozilla Firefox. The Profiler tool allows developers to find components that take a long time to render or are rendering more frequently than necessary.
 
@@ -703,31 +626,15 @@ One of the most common issues in React applications is when components re-render
 
 Both of these tools rely on a shallow comparison of the props passed into the component—if the props have not changed, then the component will not re-render. While both tools are very useful, the shallow comparison brings with it an additional performance penalty, so both can have a negative performance impact if used incorrectly. By using the React Profiler, performance can be measured before and after using these tools to ensure that performance is actually improved by making a given change.
 
-12.
+**12. At a high level, what is the virtual DOM (VDOM) and how does React use it to render to the DOM?**
 
-At a high level, what is the virtual DOM (VDOM) and how does React use it to render to the DOM?
-
-Hide answer
-
-[](https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279998 "facebook")
-
-[](https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279998 "twitter")
-
-The VDOM is a programming concept, providing a critical part of the React architecture. Rather than interacting directly with the DOM, changes are instead first rendered to the VDOM—a lightweight representation of the target state of the DOM.
+The VDOM is a programming concept, providing a critical part of the React architecture. ==Rather than interacting directly with the DOM, changes are instead first rendered to the VDOM—a lightweight representation of the target state of the DOM.==
 
 Changes made to the VDOM are batched together to avoid unnecessary frequent changes to the DOM. Each time these batched changes are persisted to the DOM, React creates a diff between the current representation and the previous representation persisted to the DOM, then applies the diff to the DOM.
 
 This abstraction layer for the DOM provides a simple interface for developers while allowing React to update the DOM in an efficient and performant manner.
 
-13.
-
-What is prop drilling and how can you avoid it?
-
-Hide answer
-
-[](https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279999 "facebook")
-
-[](https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.toptal.com%2Freact%2Finterview-questions%23question-3279999 "twitter")
+**13. What is prop drilling and how can you avoid it?**
 
 When building a React application, there is often the need for a deeply nested component to use data provided by another component that is much higher in the hierarchy.
 
