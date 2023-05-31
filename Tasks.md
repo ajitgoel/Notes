@@ -12,16 +12,12 @@ Rishi renew passport
 -   Social security number
 -   Form DS-11
 -   List of acceptable documents at [Travel.State.Gov](https://travel.state.gov/content/travel/en/passports/need-passport/under-16.html "Travel.State.Gov")
-~~Costco connect-Change credit card information~~
-Nissan Altima
-	Show car for repair
-	Change number plate for new number plate
-Toyota Prius
-	Oil change- Walmart #519511400 Highway 99, Everett, WA 98204, Mon - Sun | 7am - 7pm
-Call 800 986 3343 principal to rollover money into robinhood account-25$ fees to rollover account
-	Robinhood Traditional IRA 849786058
-	Robinhood Roth IRA: 690509617
-	Robinhood Securities, Direct Rollovers PO Box 772994 Detroit, MI 48277-2994
+
+- Nissan Altima car
+	- Hood repair at dealer
+- Toyota Prius
+	- Oil change- Walmart #519511400 Highway 99, Everett, WA 98204, Mon - Sun | 7am - 7pm
+- ~~Vanguard-Monday through Friday, 8 a.m. to 8 p.m., Eastern time, Call 877-662-7447~~
 
 Professional:
 ==Gym every other day
@@ -32,7 +28,6 @@ Learn AWS
 Learn Kafka
 ==T-Shirts business
 Apply to jobs==
-
 
 --------------------------------
 

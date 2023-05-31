@@ -1433,7 +1433,6 @@ export default <Fib n={10} />
 
 ```
 import React, { FC, Reducer, useCallback, useReducer } from 'react'
-
 interface State {
   count: number
 }
@@ -1444,7 +1443,6 @@ interface DecrementAction {
   type: 'decrement'
 }
 type Action = IncrementAction | DecrementAction
-
 const reducer: Reducer<State, Action> = (state, action) => {
   switch (action.type) {
     case 'increment':
@@ -1455,7 +1453,6 @@ const reducer: Reducer<State, Action> = (state, action) => {
       throw new Error()
   }
 }
-
 export const Counter: FC = () => {
   const [state, dispatch] = useReducer(reducer, { count: 0 })
   const decrement = useCallback(() => dispatch({ type: 'decrement' }), [])
@@ -1472,7 +1469,6 @@ export const Counter: FC = () => {
     </>
   )
 }
-
 export default <Counter />
 ```
 
