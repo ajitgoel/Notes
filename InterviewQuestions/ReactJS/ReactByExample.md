@@ -443,8 +443,8 @@ this message will destroy itself in 2 seconds
 -   use for side-effects
 -   `effectFn`: function that can have side-effects; optionally return cleanup function
 -   `deps`: a list of values that the side-effect depends on (optional)
--   when dependencies change, the effect is cleaned up and ran again
--   if no dependencies are given, then the effect runs on every render
+-   ==when dependencies change, the effect is cleaned up and ran again==
+-   ==if no dependencies are given, then the effect runs on every render==
 -   [docs](https://reactjs.org/docs/hooks-reference.html#useeffect)
 
 ```
