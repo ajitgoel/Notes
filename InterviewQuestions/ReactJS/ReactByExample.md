@@ -1391,29 +1391,24 @@ theme
 ### `useMemo`
 
 -   `const memoizedValue = useMemo(computeValueFn, deps)`
--   `useMemo` will only recompute `memoizedValue` when one of `deps` have changed
--   wrap expensive computations to improve render performance
+-   ==`useMemo` will only recompute `memoizedValue` when one of `deps` have changed==
+-   ==wrap expensive computations to improve render performance==
 -   [docs](https://reactjs.org/docs/hooks-reference.html#usememo)
 
 ```
 import React, { FC, useMemo } from 'react'
-
 const fib = (n: number): number => {
   if (n <= 2) return 1
-
   return fib(n - 1) + fib(n - 2)
 }
-
 export const Fib: FC<{ n: number }> = ({ n }) => {
   const f = useMemo(() => fib(n), [n])
-
   return (
     <pre>
       {n}-th fibonacci number: {f}
     </pre>
   )
 }
-
 export default <Fib n={10} />
 ```
 

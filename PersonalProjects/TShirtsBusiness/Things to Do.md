@@ -3,7 +3,12 @@ Handle Customs and duties: https://www.reddit.com/r/Entrepreneur/comments/xu3gwi
 - get a continous import bond, then hire a shipper/broker to handle everything.
 - The seller will provide you with an invoice the shipping company will provide you with BOL you give both to the custom agent and they will do the rest for you. The tax calculation and release from port. The seller should know the tagging and the requirements to release at the Port of origin.
 - https://members.ncbfaa.org/Scripts/4Disapi.dll/4DCGI/directory/Member/index.html?MenuKey=members
-  
+
+2819-imports@chrobinson.com
+303 218 2050
+
+girlie.madsen@cevalogistics.comF
+
 -https://members.ncbfaa.org/4dcgi/directory/Member/detail.html?Action=NCBFAA&NCBFAA_Activity=DirectoryDetailComp&CID_W=311&AddressIDD_W=567&Time=1628660730&SessionID=1509299174y1e1gqt7j9z8y86o4ra2g4cq7by0n4gdldmor3qxtq3u2y59gkfm20
 Primary Contact: 	Madeleine Veigel
 Secondary Contact: 	Madeleine Veigel
