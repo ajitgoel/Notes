@@ -15,9 +15,9 @@ Rishi renew passport
 
 - Nissan Altima car
 	- Hood repair at dealer
-- Toyota Prius
-	- Oil change- Walmart #519511400 Highway 99, Everett, WA 98204, Mon - Sun | 7am - 7pm
-- ~~Vanguard-Monday through Friday, 8 a.m. to 8 p.m., Eastern time, Call 877-662-7447~~
+
+- Call customer service at 1-866-936-8246 to ask if the fees can be lowered between Mon - Sat: 7:00am - 5:30pm, statement number: 69491020, licence plate number: CEY1379
+
 
 Professional:
 ==Gym every other day
